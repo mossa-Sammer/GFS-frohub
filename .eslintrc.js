@@ -16,5 +16,6 @@ module.exports = {
   },
   rules: {
     "no-unused-vars": ["error", { "args": "after-used" }],
+    "no-use-before-define": ["error", { "functions": false }]
   },
 };

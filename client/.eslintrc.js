@@ -32,6 +32,7 @@ module.exports = {
         "allowTemplateLiterals": true // allows strings to use backticks
       }
     ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": [
       "error",
       {
