@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest --config=server/config/jest.config.js && cd client && npm run test:precommit",
+    "test:server": "jest --watch --config=server/config/jest.config.js",
+    "test:client": "jest cd client && npm test",
+    "lint": "eslint -c server/config/.eslintrc.js server/",
+    "lint:react": "cd client && npm run lint"
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",
@@ -19,6 +24,13 @@
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
-  }
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "test",
+    "lint",
+    "lint:react"
+  ]
 }

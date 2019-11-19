@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  root: true,
   extends: [
     'airbnb',
     "prettier",
@@ -11,6 +12,8 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    it: 'readonly',
+    describe: 'readonly',
   },
   parserOptions: {
     ecmaFeatures: {

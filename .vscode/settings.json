@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["client"]
+  "eslint.workingDirectories": ["client", "server"],
+  "eslint.options": { "configFile": "config/.eslintrc.js" }
 }
