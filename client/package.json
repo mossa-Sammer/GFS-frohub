@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:precommit": "react-scripts test --watchAll=false",
+    "test:precommit": "react-scripts test --passWithNoTests --watchAll=false",
     "lint": "eslint -c config/.eslintrc.js src/",
     "eject": "react-scripts eject"
   },
