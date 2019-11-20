@@ -80,5 +80,5 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
     :  addr.port;
-  console.info(`Listening on http://localhost:${bind}`);
+  console.info(`Listening on http://localhost:${bind}/api`);
 }
