@@ -1,0 +1,6 @@
+.btn {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--font-color) !important;
+  width: 100%;
+}
