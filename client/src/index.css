@@ -1,1 +1,9 @@
 /* Global styles */
+:root {
+  --primary-color: #e24534;
+  --secondary-color: #eee;
+  --font-color: #fff;
+  --boxshadow-color: rgba(189, 198, 206, 0.2);
+  --links-color: #555d66;
+  --links-hover-color: #2e3235;
+}
