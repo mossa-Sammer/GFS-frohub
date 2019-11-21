@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     } else if (error.code === 11000) {
       res.status(401).send({ data: null, err: ['Username or email is already exist'] });
     } else {
-      res.status(500).send({ data: null, err: 'Internal Server Error' });
+      res.status(500).send({ data: null, err: ['Internal Server Error'] });
     }
   }
 };
