@@ -1,1 +1,7 @@
 /* Global styles */
+:root {
+  --primary-color: #e24534;
+  --secondary-color: #eee;
+  --font-color: #fff;
+  --boxshadow-color: rgba(189, 198, 206, 0.2);
+}

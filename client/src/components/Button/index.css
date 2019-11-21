@@ -1,6 +1,6 @@
 .btn {
-  background: #e24534 !important;
-  border-color: #e24534 !important;
-  color: #fff !important;
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--font-color) !important;
   width: 100%;
 }
