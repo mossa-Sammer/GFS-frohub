@@ -4,7 +4,7 @@ import Link from '../../components/Link';
 
 export default function Signup() {
   return (
-    <div>
+    <div className="signup__container">
       <h1>Create your account</h1>
       <div>
         <SignupForm />

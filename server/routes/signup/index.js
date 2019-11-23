@@ -1,3 +1,4 @@
+const { sign } = require('jsonwebtoken');
 const signupSchema = require('./utils/validation');
 const insertNewUser = require('../../database/queries/createUser');
 const hashPassword = require('./utils/hashPassword');
@@ -15,7 +16,8 @@ module.exports = async (req, res) => {
       const hashedPassword = await hashPassword(password);
       const newUser = await insertNewUser({ username, email, password: hashedPassword });
       if (newUser) {
-        res.cookie('jwt', { username }, { maxAge: 30 * 2 * 24 * 60 * 60 * 10000 }, { HttpOnly: true });
+        const cookie = sign({ username }, process.env.SECRET);
+        res.cookie('jwt', cookie, { maxAge: 30 * 2 * 24 * 60 * 60 * 10000 }, { HttpOnly: true });
         res.status(200).send({ data: { username: newUser.username }, err: null });
       } else {
         throw Error('validation error');

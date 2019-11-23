@@ -112,12 +112,13 @@ class SignupForm extends Component {
   }
 }
 
-const formComp = Form.create({})(SignupForm);
 const mapStateToProps = state => {
   console.log(666, state);
   return {
     auth: state.auth,
   };
 };
+
+const formComp = Form.create({})(SignupForm);
 
 export default connect(mapStateToProps, { signupUser })(formComp);

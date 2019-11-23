@@ -18,6 +18,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.payload.err,
+        // eslint-disable-next-line no-unneeded-ternary
         isAuth: action.payload.data ? true : false,
         loading: false,
       };
