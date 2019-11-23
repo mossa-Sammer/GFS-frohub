@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import signupReducer from './containers/signup/signupReducer';
+
+export default combineReducers({
+  auth: signupReducer,
+});

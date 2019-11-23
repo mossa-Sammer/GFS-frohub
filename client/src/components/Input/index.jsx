@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+// import React from 'react';
 import { Input } from 'antd';
 
 import './index.css';
 
-export default function SharedInput(props) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Input {...props} className="input" />;
+// eslint-disable-next-line react/prefer-stateless-function
+export default class SharedInput extends Component {
+  render() {
+    return (
+      <div>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Input {...this.props} className="input" />
+      </div>
+    );
+  }
 }
