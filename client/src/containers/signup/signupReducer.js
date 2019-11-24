@@ -1,4 +1,4 @@
-import { LOADING, SIGN_UP } from './types';
+import { LOADING, SIGN_UP } from './signupAction';
 
 const initialState = {
   isAuth: false,
@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  // console.log(777, action.payload)
   switch (action.type) {
     case LOADING:
       return {

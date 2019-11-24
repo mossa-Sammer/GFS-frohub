@@ -1,5 +1,7 @@
 import signupHttp from './api';
-import { LOADING, SIGN_UP } from './types';
+
+export const LOADING = 'LOADING';
+export const SIGN_UP = 'SIGN_UP';
 
 const signupUser = user => {
   return async dispatch => {
