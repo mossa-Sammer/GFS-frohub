@@ -8,8 +8,9 @@ const signupUser = user => {
         type: LOADING,
       });
       const createdUser = await signupHttp(user);
-      // console.log(99999, createdUser.data)
-      // console.log(99999, createdUser.err)
+      if (createdUser.data) {
+        localStorage.setItem('frohubUser', JSON.stringify(createdUser.data));
+      }
       dispatch({
         type: SIGN_UP,
         payload: createdUser,

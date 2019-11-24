@@ -4,3 +4,8 @@
   color: var(--font-color) !important;
   width: 100%;
 }
+
+.btn:hover {
+  background: var(--primary-color) !important;
+  opacity: 0.7 !important;
+}
