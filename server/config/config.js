@@ -10,6 +10,10 @@ if (process.env.NODE_ENV === 'test') {
   mongoURI = process.env.MONGO_URI;
 }
 
+// Get SECRET
+const secret = process.env.SECRET;
+
 module.exports = {
   mongoURI,
+  secret,
 };
