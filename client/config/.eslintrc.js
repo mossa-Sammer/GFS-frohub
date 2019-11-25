@@ -37,6 +37,8 @@ module.exports = {
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/prefer-stateless-function": 0,
     "prettier/prettier": [
       "error",
       {

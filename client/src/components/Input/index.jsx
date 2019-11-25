@@ -3,13 +3,22 @@ import { Input } from 'antd';
 
 import './index.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class SharedInput extends Component {
   render() {
+    const { type, error } = this.props;
     return (
       <div>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Input {...this.props} className="input" />
+        {type === 'password' ? (
+          <Input.Password {...this.props} className="input" />
+        ) : (
+          <>
+            <Input
+              {...this.props}
+              className={`${error && 'err__border'} input`}
+            />
+            {error && <span className="err__text">{error}</span>}
+          </>
+        )}
       </div>
     );
   }

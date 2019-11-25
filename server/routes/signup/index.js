@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       const newUser = await insertNewUser({ username, email, password: hashedPassword });
       if (newUser) {
         const cookie = sign({ username }, process.env.SECRET);
-        res.cookie('jwt', cookie, { maxAge: 30 * 2 * 24 * 60 * 60 * 10000 }, { HttpOnly: true });
+        res.cookie('jwt', cookie, { maxAge: 6 * 30 * 24 * 60 * 60, httpOnly: true });
         res.status(200).send({ data: { username: newUser.username }, err: null });
       } else {
         throw Error('validation error');
@@ -25,11 +25,14 @@ module.exports = async (req, res) => {
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
-      res.status(422).send({ data: null, err: error.errors });
+      const errors = error.inner.reduce((acc, item) => ({ ...acc, [item.path]: item.message }));
+      res.status(422).send({ data: null, err: errors });
     } else if (error.code === 11000) {
-      res.status(401).send({ data: null, err: ['Username or email is already exist'] });
+      const err = error.errmsg.split('index: ')[1].split(' ')[0];
+      const errField = err.substring(0, err.lastIndexOf('_'));
+      res.status(401).send({ data: null, err: { [errField]: `${errField} is already exists` } });
     } else {
-      res.status(500).send({ data: null, err: ['Internal Server Error'] });
+      res.status(500).send({ data: null, err: { message: 'Internal Server Error' } });
     }
   }
 };

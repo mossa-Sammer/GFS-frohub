@@ -1,25 +1,27 @@
 import signupHttp from './api';
 
-export const LOADING = 'LOADING';
-export const SIGN_UP = 'SIGN_UP';
+export const SIGN_UP_LOADING = 'SIGN_UP_LOADING';
+export const AUTHENTICATED_SUCCESS = 'AUTHENTICATED_SUCCESS';
+export const AUTHENTICATED_FAILED = 'AUTHENTICATED_FAILED';
+export const RESET_ERROR = 'RESET_ERROR';
 
-const signupUser = user => {
+export const signupUser = user => {
   return async dispatch => {
     try {
       dispatch({
-        type: LOADING,
+        type: SIGN_UP_LOADING,
       });
       const createdUser = await signupHttp(user);
       if (createdUser.data) {
         localStorage.setItem('frohubUser', JSON.stringify(createdUser.data));
       }
       dispatch({
-        type: SIGN_UP,
+        type: AUTHENTICATED_SUCCESS,
         payload: createdUser,
       });
     } catch (error) {
       dispatch({
-        type: SIGN_UP,
+        type: AUTHENTICATED_FAILED,
         payload: {
           data: '',
           error,
@@ -29,4 +31,9 @@ const signupUser = user => {
   };
 };
 
-export default signupUser;
+export const resetErrAction = field => {
+  return {
+    type: RESET_ERROR,
+    payload: field,
+  };
+};

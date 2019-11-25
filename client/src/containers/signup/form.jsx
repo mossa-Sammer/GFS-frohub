@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Form, Spin } from 'antd';
 import { Input, Button } from '../../components';
-import signupUser from './signupAction';
+import { signupUser, resetErrAction } from './signupAction';
 
 import './style.css';
 
@@ -31,14 +31,9 @@ class SignupForm extends Component {
     const {
       form: { getFieldDecorator },
     } = this.props;
+    const { resetErrAction: resetErr } = this.props;
     return (
       <>
-        {loading && <Spin />}
-        {error &&
-          error.length &&
-          error.map(item => {
-            return <span className="signup__form-errMsg">{item}</span>;
-          })}
         {isAuth && <Redirect to="/home" />}
         <Form onSubmit={this.handleSubmit}>
           <Form.Item label="Username" className="login__form-item">
@@ -50,7 +45,17 @@ class SignupForm extends Component {
                   message: 'username should be at least 6 characters!',
                 },
               ],
-            })(<Input placeholder="Username" />)}
+              normalize: val => {
+                resetErr('username');
+                return val;
+              },
+            })(
+              <Input
+                placeholder="Username"
+                name="username"
+                error={error && error.username}
+              />
+            )}
           </Form.Item>
           <Form.Item label="E-mail" className="login__form-item">
             {getFieldDecorator('email', {
@@ -64,7 +69,11 @@ class SignupForm extends Component {
                   message: 'E-mail is required',
                 },
               ],
-            })(<Input />)}
+              normalize: val => {
+                resetErr('email');
+                return val;
+              },
+            })(<Input name="email" error={error && error.email} />)}
           </Form.Item>
           <Form.Item label="Password" className="login__form-item">
             {getFieldDecorator('password', {
@@ -97,7 +106,10 @@ class SignupForm extends Component {
             })(<Input type="password" />)}
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit"> Signup </Button>
+            <Button htmlType="submit" disabled={!!loading}>
+              {' '}
+              {loading ? <Spin /> : 'Signup'}{' '}
+            </Button>
           </Form.Item>
         </Form>
       </>
@@ -110,4 +122,6 @@ const mapStateToProps = state => {
   };
 };
 const formComp = Form.create({})(SignupForm);
-export default connect(mapStateToProps, { signupUser })(formComp);
+export default connect(mapStateToProps, { signupUser, resetErrAction })(
+  formComp
+);
