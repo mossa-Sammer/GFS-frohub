@@ -1,6 +1,5 @@
 .input {
   height: 40px !important;
-  width: 60% !important;
 }
 
 .input:hover,
@@ -8,4 +7,12 @@
   border-color: var(--secondary-color) !important;
   border-right-width: 0px !important;
   box-shadow: 0 0 0 1px var(--boxshadow-color) !important;
+}
+
+.err__border {
+  border-color: red !important;
+}
+
+.err__text {
+  color: red;
 }
