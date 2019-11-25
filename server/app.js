@@ -39,15 +39,20 @@ if (process.env.NODE_ENV === 'production') {
 // error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  // send the error object
+  let errObj = { message: err.message };
+
+  // for boom errors
   if (err.isBoom) {
-    // for boom errors
+    const { statusCode } = err.output;
     res.status(err.output.statusCode || 500);
+    if (statusCode === 409 || statusCode === 422) {
+      errObj = err.data;
+    }
   } else {
-    // for unexpected internal server errors
-    res.status(err.statusCode || 500);
+    res.status(500);
+    errObj.message = 'Internal server error';
   }
-  res.json({ error: err.message });
+  res.json({ error: errObj });
 });
 
 module.exports = app;

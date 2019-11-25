@@ -1,9 +1,12 @@
 const { sign } = require('jsonwebtoken');
+const boom = require('@hapi/boom');
+
 const signupSchema = require('./utils/validation');
 const insertNewUser = require('../../database/queries/createUser');
 const hashPassword = require('./utils/hashPassword');
+const { secret } = require('../../config/config');
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     const valid = await signupSchema
@@ -16,23 +19,24 @@ module.exports = async (req, res) => {
       const hashedPassword = await hashPassword(password);
       const newUser = await insertNewUser({ username, email, password: hashedPassword });
       if (newUser) {
-        const cookie = sign({ username }, process.env.SECRET);
-        res.cookie('jwt', cookie, { maxAge: 6 * 30 * 24 * 60 * 60, httpOnly: true });
-        res.status(200).send({ data: { username: newUser.username }, err: null });
-      } else {
-        throw Error('validation error');
+        const cookie = sign({ username }, secret, { expiresIn: 6 * 30 * 24 * 60 * 60 * 1000 });
+        res.cookie('jwt', cookie, { httpOnly: true });
+        res.status(201).send();
       }
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
       const errors = error.inner.reduce((acc, item) => ({ ...acc, [item.path]: item.message }));
-      res.status(422).send({ data: null, err: errors });
+      const errObj = boom.badData('message', errors);
+      next(errObj);
     } else if (error.code === 11000) {
       const err = error.errmsg.split('index: ')[1].split(' ')[0];
       const errField = err.substring(0, err.lastIndexOf('_'));
-      res.status(401).send({ data: null, err: { [errField]: `${errField} is already exists` } });
+      const errObj = { [errField]: `${errField} is already exists` };
+      const errors = boom.conflict('message', errObj);
+      next(errors);
     } else {
-      res.status(500).send({ data: null, err: { message: 'Internal Server Error' } });
+      next(boom.badImplementation(error));
     }
   }
 };

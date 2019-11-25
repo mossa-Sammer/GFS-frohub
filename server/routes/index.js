@@ -1,7 +1,7 @@
 const boom = require('@hapi/boom');
 const express = require('express');
 
-const signup = require('./signup');
+const signup = require('../controllers');
 
 const router = express.Router();
 

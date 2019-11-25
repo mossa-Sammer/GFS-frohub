@@ -1,31 +1,33 @@
 import {
-  SIGN_UP_LOADING,
+  SIGNUP_LOADING,
   AUTHENTICATED_SUCCESS,
-  RESET_ERROR,
+  RESET_SIGNUP_ERROR,
+  SIGNUP_FAIL,
 } from './signupAction';
 
 const initialState = {
-  isAuth: false,
   loading: false,
   error: '',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SIGN_UP_LOADING:
+    case SIGNUP_LOADING:
       return {
         ...state,
         loading: true,
       };
     case AUTHENTICATED_SUCCESS:
       return {
-        ...state,
-        error: action.payload.err,
-        // eslint-disable-next-line no-unneeded-ternary
-        isAuth: action.payload.data ? true : false,
+        error: '',
         loading: false,
       };
-    case RESET_ERROR:
+    case SIGNUP_FAIL:
+      return {
+        error: action.payload.error,
+        loading: false,
+      };
+    case RESET_SIGNUP_ERROR:
       return {
         ...state,
         error: {
