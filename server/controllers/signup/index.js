@@ -2,7 +2,7 @@ const { sign } = require('jsonwebtoken');
 const boom = require('@hapi/boom');
 
 const signupSchema = require('./utils/validation');
-const insertNewUser = require('../../database/queries/createUser');
+const { createUser } = require('../../database/queries/users');
 const hashPassword = require('./utils/hashPassword');
 const { secret } = require('../../config/config');
 
@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       }, { abortEarly: false });
     if (valid) {
       const hashedPassword = await hashPassword(password);
-      const newUser = await insertNewUser({ username, email, password: hashedPassword });
+      const newUser = await createUser({ username, email, password: hashedPassword });
       if (newUser) {
         const cookie = sign({ username }, secret, { expiresIn: 6 * 30 * 24 * 60 * 60 * 1000 });
         res.cookie('jwt', cookie, { httpOnly: true });

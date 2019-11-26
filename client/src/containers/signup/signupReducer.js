@@ -1,13 +1,14 @@
 import {
   SIGNUP_LOADING,
-  AUTHENTICATED_SUCCESS,
   RESET_SIGNUP_ERROR,
   SIGNUP_FAIL,
 } from './signupAction';
 
+import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
+
 const initialState = {
   loading: false,
-  error: '',
+  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -17,9 +18,9 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
       };
-    case AUTHENTICATED_SUCCESS:
+    case AUTHENTICANTE_SUCCESS:
       return {
-        error: '',
+        error: null,
         loading: false,
       };
     case SIGNUP_FAIL:

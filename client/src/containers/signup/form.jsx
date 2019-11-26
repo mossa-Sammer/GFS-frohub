@@ -25,9 +25,7 @@ class SignupForm extends Component {
   };
 
   render() {
-    const {
-      auth: { loading, isAuth, error },
-    } = this.props;
+    const { loading, isAuth, error } = this.props;
     const {
       form: { getFieldDecorator },
     } = this.props;
@@ -118,7 +116,9 @@ class SignupForm extends Component {
 }
 const mapStateToProps = state => {
   return {
-    auth: state.signup,
+    isAuth: state.auth.isAuth,
+    loading: state.signup.loading,
+    error: state.signup.error,
   };
 };
 const formComp = Form.create({})(SignupForm);

@@ -1,7 +1,7 @@
 import axios from '../../axios-config';
+import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
 
 export const SIGNUP_LOADING = 'SIGNUP_LOADING';
-export const AUTHENTICATED_SUCCESS = 'AUTHENTICATED_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const RESET_SIGNUP_ERROR = 'RESET_SIGNUP_ERROR';
 
@@ -13,7 +13,7 @@ export const signupUser = user => {
       });
       await axios.post('/signup', user);
       dispatch({
-        type: AUTHENTICATED_SUCCESS,
+        type: AUTHENTICANTE_SUCCESS,
       });
     } catch (err) {
       const { error } = err.response.data;
