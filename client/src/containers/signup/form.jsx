@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Form, Spin } from 'antd';
-import { Input, Button } from '../../components';
+import { Form } from 'antd';
+import { Input, Button, Loading } from '../../components';
 import { signupUser, resetErrAction } from './signupAction';
 
 import './style.css';
@@ -106,7 +106,7 @@ class SignupForm extends Component {
           <Form.Item>
             <Button htmlType="submit" disabled={!!loading}>
               {' '}
-              {loading ? <Spin /> : 'Signup'}{' '}
+              {loading ? <Loading /> : 'Signup'}{' '}
             </Button>
           </Form.Item>
         </Form>

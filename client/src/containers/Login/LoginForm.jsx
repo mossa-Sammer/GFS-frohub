@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Icon, Spin } from 'antd';
+import { Form, Icon } from 'antd';
 import { Redirect } from 'react-router-dom';
 
-import { Link, Input, Checkbox, Button } from '../../components';
+import { Link, Input, Checkbox, Button, Loading } from '../../components';
 
 const LoginForm = ({
   isAuth,
@@ -56,7 +56,7 @@ const LoginForm = ({
             className="login__button"
             disabled={!!loading}
           >
-            {loading ? <Spin /> : 'Log in'}
+            {loading ? <Loading /> : 'Log in'}
           </Button>
           <div className="login__register">
             <Link href="/signup">Register</Link> |{' '}

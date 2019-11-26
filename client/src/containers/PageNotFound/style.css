@@ -1,0 +1,13 @@
+.pageNotFound__container {
+  width: 70%;
+  margin: auto;
+}
+
+.pageNotFound__img {
+  max-width: 50%;
+  padding: 20px;
+}
+
+.goback_btn {
+  width: 50%;
+}
