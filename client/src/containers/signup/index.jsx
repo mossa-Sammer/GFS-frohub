@@ -2,6 +2,8 @@ import React from 'react';
 import SignupForm from './form';
 import Link from '../../components/Link';
 
+import { LOGIN_URL } from '../../routes_urls';
+
 export default function Signup() {
   return (
     <div className="signup__page">
@@ -16,7 +18,7 @@ export default function Signup() {
         </Link>
         <p>
           Already have an Account?{' '}
-          <Link href="/login">
+          <Link href={LOGIN_URL}>
             <span>Login</span>
           </Link>
         </p>

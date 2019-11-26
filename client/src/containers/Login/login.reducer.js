@@ -18,7 +18,6 @@ export default function loginReducer(state, action) {
         error: action.payload,
         loading: false,
       };
-
     default:
       return {
         loading: false,

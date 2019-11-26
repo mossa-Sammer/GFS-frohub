@@ -17,5 +17,4 @@ export default SharedLink;
 
 SharedLink.propTypes = {
   children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
 };
