@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { Spin } from 'antd';
+import { Loading } from '../components';
 
 import { LOGIN_URL } from '../routes_urls';
 
@@ -13,14 +13,14 @@ const PrivateRoute = ({
   ...rest
 }) => {
   if (loading) {
-    return <Spin />;
+    return <Loading />;
   }
   if (isAuth) {
     return <Route {...rest} component={Component} />;
   }
   return (
     <Redirect
-      to={{ pathname: { LOGIN_URL }, state: { from: location.pathname } }}
+      to={{ pathname: LOGIN_URL, state: { from: location.pathname } }}
     />
   );
 };

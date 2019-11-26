@@ -1,9 +1,18 @@
 const boom = require('@hapi/boom');
+const { verify } = require('jsonwebtoken');
+const { secret } = require('../../config/config');
 
 const auth = (req, res, next) => {
-  const isAuth = req.cookies;
-  if (isAuth) {
-    res.send();
+  const { jwt } = req.cookies;
+  if (jwt && secret) {
+    verify(jwt, secret, (err, decoded) => {
+      if (decoded) {
+        res.send();
+      } else {
+        res.clearCookie('jwt');
+        next(boom.unauthorized('Un authorized'));
+      }
+    });
   } else next(boom.unauthorized('Un authorized'));
 };
 
