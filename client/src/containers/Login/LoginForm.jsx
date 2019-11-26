@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Icon, Button, Checkbox, Alert } from 'antd';
+import { Form, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router-dom';
 
-import { Link, Input } from '../../components';
+import { Link, Input, Checkbox, Button } from '../../components';
 
 const LoginForm = ({
   isAuth,
@@ -28,7 +28,8 @@ const LoginForm = ({
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              placeholder="username/email"
+              error={error && error.username}
             />
           )}
         </Form.Item>
@@ -40,6 +41,7 @@ const LoginForm = ({
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="Password"
+              error={error && error.password}
             />
           )}
         </Form.Item>
@@ -48,18 +50,18 @@ const LoginForm = ({
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox>Remember me</Checkbox>)}
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <Button type="primary" htmlType="submit" className="login__button">
-              Log in
-            </Button>
-          )}
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login__button"
+            disabled={!!loading}
+          >
+            {loading ? <Spin /> : 'Log in'}
+          </Button>
           <div className="login__register">
             <Link href="/signup">Register</Link> |{' '}
             <Link href="/lost-pass">Lost your password?</Link>
           </div>
-          {error ? <Alert description={error.message} type="error" /> : null}
         </Form.Item>
         <div>
           <Link href="/">

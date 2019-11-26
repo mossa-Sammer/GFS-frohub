@@ -15,10 +15,12 @@ export default data => async dispatch => {
     dispatch({
       type: AUTHENTICANTE_SUCCESS,
     });
-  } catch (error) {
+  } catch (err) {
+    const { error } = err.response.data;
+    const errorField = error.message.split(' ')[0];
     dispatch({
       type: LOGIN_ERROR,
-      payload: error,
+      payload: { [errorField]: error.message },
     });
   }
 };

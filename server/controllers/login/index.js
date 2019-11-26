@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     const user = await getUserByEmailOrUsername(username);
 
     if (!user) {
-      return next(boom.unauthorized('Login failed. User does not exist'));
+      return next(boom.unauthorized('username does not exist'));
     }
 
     const {
@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
     const isMatch = await compare(password, signedPassword);
 
     if (!isMatch) {
-      return next(boom.unauthorized('Login failed. password cannot be recognised'));
+      return next(boom.unauthorized('password cannot be recognised'));
     }
 
     const token = sign({ userId }, secret, { expiresIn: 6 * 30 * 24 * 60 * 60 * 1000 });
