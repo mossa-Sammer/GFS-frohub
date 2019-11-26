@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Login, Signup, Home } from './containers';
+import { Login, Signup, Home, PageNotFound } from './containers';
 import { PrivateRoute, LoggedOutRoute } from './auth';
 
 import checkAuthAction from './auth/auth.action';
@@ -24,6 +24,11 @@ class App extends React.Component {
             <LoggedOutRoute exact path={SIGNUP_URL} component={Signup} />
             <LoggedOutRoute exact path={LOGIN_URL} component={Login} />
             <PrivateRoute exact path={HOME_URL} component={Home} />
+            <Route
+              render={() => {
+                return <PageNotFound />;
+              }}
+            />
           </Switch>
         </Router>
       </div>
