@@ -1,7 +1,7 @@
 const http = require('http');
 const mongoose = require('mongoose');
 
-const app = require('./server/app');
+const app = require('./server/app.js');
 const dbConnection = require('./server/database/db_connection');
 
 // Get port from environment and store in Express.
