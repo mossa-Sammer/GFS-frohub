@@ -26,13 +26,12 @@ app.use('/api', indexRouter);
 // Serve React (client) files
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+  app.use(favicon(path.join(__dirname, '..', 'client', 'build', 'favicon.ico')));
   app.get('*', (req, res) => {
     res.sendFile(
       path.join(__dirname, '..', 'client', 'build', 'index.html'),
     );
   });
-
-  app.use(favicon(__dirname, '..', 'client', 'build', 'favicon.ico'));
 }
 
 
