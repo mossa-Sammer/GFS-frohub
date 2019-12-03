@@ -12,7 +12,7 @@ export default class SearchForm extends Component {
         <TreatmentInput />
         <LocationtInput />
         <TimeInput />
-        <Button />
+        <Button>Search</Button>
       </div>
     );
   }
