@@ -1,0 +1,21 @@
+.form__container {
+  height: 300px !important;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(252,150,120,1) 0%, rgba(247,108,127,1) 100.4% );
+  padding: 2rem;
+  width: 100%;
+}
+
+.search__form {
+  background: #fff;
+  width: 30%;
+  height: 200px;
+  padding: 2rem 1rem !important;
+}
+
+.search-btn {
+  width: 100% !important;
+}
+
+.treatment__input {
+  width: 342px;
+}

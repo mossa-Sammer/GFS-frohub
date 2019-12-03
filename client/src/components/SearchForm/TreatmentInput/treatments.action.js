@@ -11,7 +11,7 @@ export default treatment => async dispatch => {
       type: TREATMENT_INPUT_LOADING,
     });
     // api of treatments
-    const treatments = axios.get(`fetch treatments api ${treatment}`);
+    const treatments = await axios.get(`fetch treatments api ${treatment}`);
     dispatch({
       type: TREATMENT_INPUT_LIST,
       payload: treatments,

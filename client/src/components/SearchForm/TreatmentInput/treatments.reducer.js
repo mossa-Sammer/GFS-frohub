@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
     case TREATMENT_INPUT_ERROR:
       return {
         ...state,
+        loading: false,
         err: action.payload,
       };
     default:
