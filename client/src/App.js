@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Login, Signup, Home, PageNotFound, ServicesPage } from './containers';
+import { Login, Signup, Home, PageNotFound, Services } from './containers';
 import { LoggedOutRoute } from './auth';
 
 import checkAuthAction from './auth/auth.action';
@@ -27,7 +27,7 @@ class App extends React.Component {
               <Home />
             </Route>
             <Route exact path={SERVICES_URL}>
-              <ServicesPage />
+              <Services />
             </Route>
             <Route
               render={() => {

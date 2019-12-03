@@ -7,7 +7,7 @@ import searchReducer, {
   locationReducer,
   treatmentsReducer,
 } from './components/SearchForm/search.reducers';
-import servicesReducer from './containers/ServicesPage/services.reducer';
+import servicesReducer from './containers/Services/services.reducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -15,6 +15,6 @@ export default combineReducers({
   signup: signupReducer,
   locations: locationReducer,
   treatments: treatmentsReducer,
-  searchQuery: searchReducer,
+  searchQueries: searchReducer,
   services: servicesReducer,
 });

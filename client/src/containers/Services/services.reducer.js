@@ -1,8 +1,8 @@
 import {
-  LOADING_SEARCH_RESULTS,
-  GET_SERVICES,
-  FILTER_SERVICES,
-  SEARCH_ERROR,
+  SERVICES_LOADING,
+  SERVICES_LIST,
+  SERVICES_FILTER,
+  SERVICES_ERROR,
 } from './services.actions';
 
 const initialState = {
@@ -14,24 +14,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_SEARCH_RESULTS:
+    case SERVICES_LOADING:
       return {
         ...state,
         loading: true,
         err: null,
       };
-    case GET_SERVICES:
+    case SERVICES_LIST:
       return {
         ...state,
         loading: false,
-        services: action.payload,
+        services: action.payload.services,
+        filtredServices: action.payload.filtredServices,
       };
-    case FILTER_SERVICES:
+    case SERVICES_FILTER:
       return {
         ...state,
         filtredServices: action.payload,
       };
-    case SEARCH_ERROR:
+    case SERVICES_ERROR:
       return {
         ...state,
         error: action.payload,

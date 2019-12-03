@@ -10,10 +10,9 @@ import {
 
 const initialState = {
   treatment: '',
-  // I think we should get the default location (address & postcode) from geolocation
   location: '',
-  time: 'any time',
-  date: 'any date',
+  time: null,
+  date: null,
 };
 
 export default (state = initialState, action) => {
@@ -43,4 +42,5 @@ export default (state = initialState, action) => {
   }
 };
 
+// I think we should get the default location (address & postcode) from geolocation
 export { locationReducer, treatmentsReducer };
