@@ -30,7 +30,7 @@ export default class SearchForm extends Component {
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
-            <Button>Search</Button>
+            <Button>Search Treatment</Button>
           </Form.Item>
         </Form>
         <div className="title">
