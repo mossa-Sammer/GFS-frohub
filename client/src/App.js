@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Login, Signup, Home, PageNotFound } from './containers';
-import { PrivateRoute, LoggedOutRoute } from './auth';
+import { Login, Signup, Home, PageNotFound, Services } from './containers';
+import { LoggedOutRoute } from './auth';
 
 import checkAuthAction from './auth/auth.action';
 
-import { LOGIN_URL, SIGNUP_URL, HOME_URL } from './routes_urls';
+import { LOGIN_URL, SIGNUP_URL, HOME_URL, SERVICES_URL } from './routes_urls';
 
 import 'antd/dist/antd.css';
 
@@ -23,7 +23,12 @@ class App extends React.Component {
           <Switch>
             <LoggedOutRoute exact path={SIGNUP_URL} component={Signup} />
             <LoggedOutRoute exact path={LOGIN_URL} component={Login} />
-            <PrivateRoute exact path={HOME_URL} component={Home} />
+            <Route exact path={HOME_URL}>
+              <Home />
+            </Route>
+            <Route exact path={SERVICES_URL}>
+              <Services />
+            </Route>
             <Route
               render={() => {
                 return <PageNotFound />;
