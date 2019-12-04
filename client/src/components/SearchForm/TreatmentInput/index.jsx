@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
-import { Select, Icon } from 'antd';
+import { connect } from 'react-redux';
+import { Select, Icon, Skeleton } from 'antd';
+
+import getTreatments from './treatments.action';
+import searchAction from '../search.actions';
 
 const { Option } = Select;
 
-const treatments = [
-  {
-    id: 1,
-    name: 't1',
-  },
-  {
-    id: 2,
-    name: 't2',
-  },
-  {
-    id: 3,
-    name: 't3',
-  },
-  {
-    id: 4,
-    name: 't4',
-  },
-];
-export default class TreatmentInput extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    icon: 'search',
-  };
+class TreatmentInput extends Component {
+  componentDidMount() {
+    // console.log(222222, this.props);
+    const { getTreatments: allTreatments } = this.props;
+    allTreatments();
+  }
 
   handleTreatment = e => {
-    console.log(111, e);
-    this.setState({ icon: 'close ' });
+    // console.log(111, e);
+    const { searchAction: treatmentSearch } = this.props;
+    if (e) {
+      // console.log(11111, e);
+      // console.log(666, this.props.searchAction);
+      treatmentSearch({
+        name: 'treatment',
+        value: e,
+      });
+    } else {
+      // console.log('Empty');
+      treatmentSearch({
+        name: 'treatment',
+        value: '',
+      });
+    }
   };
 
-  // handleIcon = () => this.setState({ icon: 'search ' });
-
   render() {
-    const { icon } = this.state;
+    const { treatments, loading } = this.props;
+    // console.log(765, treatments);
     return (
       <div className="treatment__input">
         <Select
@@ -43,21 +43,42 @@ export default class TreatmentInput extends Component {
           placeholder="Search hair and beauty"
           style={{ width: '100%' }}
           optionFilterProp="children"
-          suffixIcon={
-            icon === 'search' ? <Icon type="search" /> : <Icon type="close" />
-          }
+          allowClear
+          suffixIcon={<Icon type="search" />}
           onChange={this.handleTreatment}
-          // onSelect={this.handleIcon}
         >
-          {treatments.map(treatment => {
-            return (
-              <Option key={treatment.id} value={treatment.id}>
-                {treatment.name}
-              </Option>
-            );
-          })}
+          {!loading ? (
+            treatments &&
+            treatments.data &&
+            treatments.data.length &&
+            treatments.data.map(treatment => {
+              return (
+                <Option key={treatment.id} value={treatment.id}>
+                  {treatment.name}
+                </Option>
+              );
+            })
+          ) : (
+            <Option key={Math.random()} value={Math.random()}>
+              <Skeleton active paragraph={{ rows: 0 }} />
+            </Option>
+          )}
         </Select>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  // console.log(444, state.treatments.treatments);
+  const { treatments, loading } = state.treatments;
+  // console.log(99, treatments, loading);
+  return {
+    treatments,
+    loading,
+  };
+};
+
+export default connect(mapStateToProps, { getTreatments, searchAction })(
+  TreatmentInput
+);
