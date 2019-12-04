@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   treatment: '',
-  location: '',
+  location: null,
   time: null,
   date: null,
 };
