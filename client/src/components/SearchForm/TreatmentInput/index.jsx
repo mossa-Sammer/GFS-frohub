@@ -41,6 +41,7 @@ class TreatmentInput extends Component {
           allowClear
           suffixIcon={<Icon type="search" />}
           onChange={this.handleTreatment}
+          size="large"
         >
           {!loading ? (
             treatments &&
