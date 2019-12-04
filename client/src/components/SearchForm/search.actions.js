@@ -4,11 +4,8 @@ export const TIME_INPUT_CHANGE = 'TIME_INPUT_CHANGE';
 export const DATE_INPUT_CHANGE = 'DATE_INPUT_CHANGE';
 
 export default inputField => {
-  console.log(9898, inputField);
   switch (inputField.name) {
     case 'treatment':
-      console.log(222, inputField.name);
-      console.log(333, inputField.value);
       return {
         type: TREATMENT_INPUT_CHANGE,
         payload: inputField.value,

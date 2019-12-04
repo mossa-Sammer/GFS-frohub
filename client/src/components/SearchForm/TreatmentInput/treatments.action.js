@@ -12,13 +12,11 @@ export default () => async dispatch => {
     });
     // api of treatments
     const treatments = await axios.get('/api/treatments');
-    // console.log(1111111, treatments.data);
     dispatch({
       type: TREATMENT_INPUT_LIST,
       payload: treatments.data,
     });
   } catch (err) {
-    // const { error } = err.response.data;
     dispatch({
       type: TREATMENT_INPUT_ERROR,
       payload: err,

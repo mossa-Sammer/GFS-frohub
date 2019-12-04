@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Select, Icon, Skeleton } from 'antd';
+import { Select, Icon, Skeleton, message } from 'antd';
 
 import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
@@ -9,23 +9,18 @@ const { Option } = Select;
 
 class TreatmentInput extends Component {
   componentDidMount() {
-    // console.log(222222, this.props);
     const { getTreatments: allTreatments } = this.props;
     allTreatments();
   }
 
   handleTreatment = e => {
-    // console.log(111, e);
     const { searchAction: treatmentSearch } = this.props;
     if (e) {
-      // console.log(11111, e);
-      // console.log(666, this.props.searchAction);
       treatmentSearch({
         name: 'treatment',
         value: e,
       });
     } else {
-      // console.log('Empty');
       treatmentSearch({
         name: 'treatment',
         value: '',
@@ -34,10 +29,10 @@ class TreatmentInput extends Component {
   };
 
   render() {
-    const { treatments, loading } = this.props;
-    // console.log(765, treatments);
+    const { treatments, loading, err } = this.props;
     return (
       <div className="treatment__input">
+        {err && message.error(err)}
         <Select
           showSearch
           placeholder="Search hair and beauty"
@@ -70,12 +65,11 @@ class TreatmentInput extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(444, state.treatments.treatments);
-  const { treatments, loading } = state.treatments;
-  // console.log(99, treatments, loading);
+  const { treatments, loading, err } = state.treatments;
   return {
     treatments,
     loading,
+    err,
   };
 };
 
