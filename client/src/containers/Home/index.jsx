@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       Home page
       <Link href={{ pathname: LOGIN_URL }}>login</Link>
-      <SearchForm />
+      <SearchForm status="homePage" />
     </div>
   );
 }
