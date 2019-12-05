@@ -13,12 +13,12 @@ class TreatmentInput extends Component {
     allTreatments();
   }
 
-  handleTreatment = e => {
+  handleTreatment = value => {
     const { searchAction: treatmentSearch } = this.props;
-    if (e) {
+    if (value) {
       treatmentSearch({
         name: 'treatment',
-        value: e,
+        value,
       });
     } else {
       treatmentSearch({
@@ -32,7 +32,7 @@ class TreatmentInput extends Component {
     const { treatments, loading, err } = this.props;
     return (
       <div className="treatment__input">
-        {err && message.error(err)}
+        {err && message.error(err.message)}
         <Select
           showSearch
           placeholder="Search hair and beauty"
