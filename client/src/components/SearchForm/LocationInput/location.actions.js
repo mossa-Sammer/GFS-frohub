@@ -12,16 +12,17 @@ export const fetchLocationList = query => {
         type: LOCATION_INPUT_LOADING,
       });
       // fetch list of locations from open street map
-      const locationList = await axios.get(`<LINKTOTHEAPI>?q=${query}`);
+      const { data: locationList } = await axios.get(
+        `https://nominatim.openstreetmap.org/search?format=json&limit=10&countrycodes=gb&q=${query}`
+      );
       dispatch({
         type: LOCATION_INPUT_LIST,
         payload: locationList,
       });
     } catch (err) {
-      const { error } = err.response.data;
       dispatch({
         type: LOCATION_INPUT_ERROR,
-        payload: error,
+        payload: err,
       });
     }
   };
