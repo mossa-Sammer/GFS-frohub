@@ -44,7 +44,7 @@ class TreatmentInput extends Component {
           notFoundContent="No treatnemt match"
           dropdownRender={menu => {
             if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
-            return menu;
+            return <>{menu}</>;
           }}
         >
           {treatments &&
