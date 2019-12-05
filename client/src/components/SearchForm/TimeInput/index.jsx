@@ -17,6 +17,8 @@ export default class TimeInput extends Component {
   state = {
     pickerOpen: false,
     selectedValue: 'Any Date',
+    fromTime: '',
+    toTime: '',
   };
 
   handleOpenPicker = () => this.setState({ pickerOpen: true });
@@ -32,17 +34,25 @@ export default class TimeInput extends Component {
     });
   };
 
-  handleTime = (selectedFromTime, string) => {
-    console.log(999999999999);
-    // console.log(444444, moment(selectedFromTime).format('LT'));
-    // console.log(777, selectedFromTime);
+  handleFromTime = selectedFromTime => {
+    const convertedTime = moment(selectedFromTime).format('LT');
+    this.setState({ fromTime: convertedTime });
+  };
+
+  handleToTime = selectedToTime => {
+    const convertedTime = moment(selectedToTime).format('LT');
+    this.setState({ toTime: convertedTime });
   };
 
   render() {
-    const { pickerOpen, selectedValue } = this.state;
+    const { pickerOpen, selectedValue, fromTime, toTime } = this.state;
     return (
       <Collapse accordion expandIcon={() => <Icon type="calendar" />}>
-        <Panel header={selectedValue}>
+        <Panel
+          header={
+            fromTime && toTime ? `${fromTime} - ${toTime}` : selectedValue
+          }
+        >
           <div className="date__container">
             <Button onClick={this.handleAnyTime}>Any Date</Button>
             <Popover
@@ -72,7 +82,7 @@ export default class TimeInput extends Component {
                     <TimePicker
                       defaultValue={moment('12:00', 'HH:mm')}
                       format="HH:mm"
-                      onChange={this.handleTime}
+                      onChange={this.handleToTime}
                     />
                   </Form.Item>
                 </Form>
