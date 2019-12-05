@@ -19,3 +19,14 @@
 .treatment__input {
   width: 342px;
 }
+
+.date__container,
+.time__container {
+  display: flex;
+  flex-direction: row;
+}
+
+.ant-calendar-picker-container {
+  left: 276px !important;
+  top: 195px !important;
+}
