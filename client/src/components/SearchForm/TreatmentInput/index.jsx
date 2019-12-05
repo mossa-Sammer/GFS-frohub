@@ -42,9 +42,13 @@ class TreatmentInput extends Component {
           suffixIcon={<Icon type="search" />}
           onChange={this.handleTreatment}
           size="large"
+          notFoundContent="No treatnemt match"
+          dropdownRender={menu => {
+            if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
+            return menu;
+          }}
         >
-          {!loading ? (
-            treatments &&
+          {treatments &&
             treatments.data &&
             treatments.data.length &&
             treatments.data.map(treatment => {
@@ -53,12 +57,7 @@ class TreatmentInput extends Component {
                   {treatment.name}
                 </Option>
               );
-            })
-          ) : (
-            <Option key={Math.random()} value={Math.random()}>
-              <Skeleton active paragraph={{ rows: 0 }} />
-            </Option>
-          )}
+            })}
         </Select>
       </div>
     );
