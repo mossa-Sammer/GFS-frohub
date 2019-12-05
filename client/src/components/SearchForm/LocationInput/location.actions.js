@@ -13,7 +13,7 @@ export const fetchLocationList = query => {
       });
       // fetch list of locations from open street map
       const { data: locationList } = await axios.get(
-        `https://nominatim.openstreetmap.org/search?format=json&limit=5&q=${query}`
+        `https://nominatim.openstreetmap.org/search?format=json&limit=10&countrycodes=gb&q=${query}`
       );
       dispatch({
         type: LOCATION_INPUT_LIST,

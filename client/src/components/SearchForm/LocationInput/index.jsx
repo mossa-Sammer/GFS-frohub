@@ -44,7 +44,7 @@ class LocationInput extends Component {
     }
     return (
       <>
-        {error && message.error(error)}
+        {error && message.error(error.message)}
         <Select
           allowClear
           showSearch
