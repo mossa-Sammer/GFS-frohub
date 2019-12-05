@@ -36,7 +36,6 @@ class TreatmentInput extends Component {
         <Select
           showSearch
           placeholder="Search hair and beauty"
-          style={{ width: '100%' }}
           optionFilterProp="children"
           allowClear
           suffixIcon={<Icon type="search" />}
