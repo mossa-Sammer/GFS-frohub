@@ -1,4 +1,6 @@
 /* Global styles */
+@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
+
 :root {
   --primary-color: #e05747;
   --secondary-color: #eee;
