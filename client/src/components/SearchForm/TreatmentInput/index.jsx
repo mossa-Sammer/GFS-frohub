@@ -1,63 +1,77 @@
 import React, { Component } from 'react';
-import { Select, Icon } from 'antd';
+import { connect } from 'react-redux';
+import { Select, Icon, Skeleton, message } from 'antd';
+
+import getTreatments from './treatments.action';
+import searchAction from '../search.actions';
 
 const { Option } = Select;
 
-const treatments = [
-  {
-    id: 1,
-    name: 't1',
-  },
-  {
-    id: 2,
-    name: 't2',
-  },
-  {
-    id: 3,
-    name: 't3',
-  },
-  {
-    id: 4,
-    name: 't4',
-  },
-];
-export default class TreatmentInput extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    icon: 'search',
-  };
+class TreatmentInput extends Component {
+  componentDidMount() {
+    const { getTreatments: allTreatments } = this.props;
+    allTreatments();
+  }
 
-  handleTreatment = e => {
-    console.log(111, e);
-    this.setState({ icon: 'close ' });
+  handleTreatment = value => {
+    const { searchAction: treatmentSearch } = this.props;
+    if (value) {
+      treatmentSearch({
+        name: 'treatment',
+        value,
+      });
+    } else {
+      treatmentSearch({
+        name: 'treatment',
+        value: '',
+      });
+    }
   };
-
-  // handleIcon = () => this.setState({ icon: 'search ' });
 
   render() {
-    const { icon } = this.state;
+    const { treatments, loading, err } = this.props;
     return (
       <div className="treatment__input">
+        {err && message.error(err.message)}
         <Select
           showSearch
           placeholder="Search hair and beauty"
-          style={{ width: '100%' }}
           optionFilterProp="children"
-          suffixIcon={
-            icon === 'search' ? <Icon type="search" /> : <Icon type="close" />
-          }
+          allowClear
+          suffixIcon={<Icon type="search" />}
           onChange={this.handleTreatment}
-          // onSelect={this.handleIcon}
+          size="large"
+          notFoundContent="No treatnemt match"
+          dropdownRender={menu => {
+            if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
+            return <>{menu}</>;
+          }}
         >
-          {treatments.map(treatment => {
-            return (
-              <Option key={treatment.id} value={treatment.id}>
-                {treatment.name}
-              </Option>
-            );
-          })}
+          {treatments &&
+            treatments.data &&
+            treatments.data.length &&
+            treatments.data.map(treatment => {
+              return (
+                <Option key={treatment.id} value={treatment.id}>
+                  {treatment.name}
+                </Option>
+              );
+            })}
         </Select>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { treatments, loading, err } = state.treatments;
+  return {
+    treatments,
+    loading,
+    err,
+  };
+};
+
+export default connect(mapStateToProps, { getTreatments, searchAction })(
+  TreatmentInput
+);
