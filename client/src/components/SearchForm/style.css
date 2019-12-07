@@ -44,3 +44,7 @@
   letter-spacing: 5px;
   font-weight: bolder;
 }
+
+.search-btn {
+  position: absolute !important;
+}

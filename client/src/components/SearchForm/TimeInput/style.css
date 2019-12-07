@@ -1,0 +1,34 @@
+.ant-collapse-content {
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  width: 340px;
+  border: 1px solid #eee;
+  left: -2%;
+}
+
+.timing__btn {
+  width: 120px !important;
+  margin-left: 20px;
+}
+
+.time__duration-box {
+  width: 307px;
+  display: flex;
+  flex-direction: row;
+}
+
+.timing__form-item {
+  width: 200px;
+}
+
+/* .time__popover  */
+.ant-popover {
+  /* left: 190px !important; */
+  /* top: 362px !important; */
+}
+
+.ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
+  /* left: 78% !important; */
+}
+
