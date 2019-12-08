@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  Collapse,
-  Button,
-  DatePicker,
-  Icon,
-  // Popover,
-  // TimePicker,
-  // Form,
-} from 'antd';
+import { Collapse, Button, DatePicker, Icon } from 'antd';
 
 import moment from 'moment';
 import TimePicker from './TimePicker';
@@ -18,26 +10,16 @@ import './style.css';
 
 const { Panel } = Collapse;
 class TimeInput extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    date: '',
-    fromTime: '',
-    toTime: '',
-  };
-
   handleDate = e => {
-    // console.log(this.props);
     const { searchAction: handleSearch } = this.props;
     const { _isAMomentObject } = e;
     if (_isAMomentObject) {
       const convertedDate = moment(e).format('YYYY-MM-DD');
-      // this.setState({ date: convertedDate });
       handleSearch({
         name: 'date',
         value: convertedDate,
       });
     } else {
-      // this.setState({ date: '' });
       handleSearch({
         name: 'date',
         value: '',
@@ -47,10 +29,6 @@ class TimeInput extends Component {
 
   render() {
     const { date, from, to } = this.props;
-
-    if (date) {
-      console.log(date);
-    }
     return (
       <Collapse accordion expandIcon={() => <Icon type="calendar" />}>
         <Panel
@@ -83,10 +61,6 @@ class TimeInput extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state.searchQueries.date);
-  // console.log(1111, state.searchQueries.time.from);
-  // console.log(222, state.searchQueries.time.to);
-  // console.log(state.searchQueries);
   const { date, time } = state.searchQueries;
   const { from, to } = time;
   return {

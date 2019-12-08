@@ -7,21 +7,11 @@
   left: -2%;
 }
 
-/* .timing__btn, */
 .date__btn {
   width: 120px !important;
   margin-left: 20px;
 }
-/*
-.time__duration-box {
-  width: 307px;
-  display: flex;
-  flex-direction: row;
-}
 
-.timing__form-item {
-  width: 200px;
-} */
 .timing-btn {
   width: 140px !important;
 }
@@ -53,6 +43,14 @@
   border-radius: 4px;
 }
 
-.date__container i{
-  /* display: none !important; */
+.time__duration-box {
+  width: 308px !important;
+}
+
+.ant-popover {
+  left: 190px !important;
+}
+
+.timing__form-item {
+  width: 40%;
 }

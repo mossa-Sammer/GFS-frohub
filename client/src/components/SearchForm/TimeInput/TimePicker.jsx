@@ -47,7 +47,7 @@ class TimePickerCom extends Component {
   render() {
     const { time } = this.props;
     return (
-      <div>
+      <div className="time">
         <span>Choose Time</span>
         <div className="time__container">
           <Button className="timing-btn" onClick={this.handleTime}>
@@ -59,15 +59,10 @@ class TimePickerCom extends Component {
             content={
               <Form className="time__duration-box" layout="inline">
                 <Form.Item className="timing__form-item" label="From">
-                  <TimePicker
-                    // defaultValue={moment('12:00', 'HH:mm')}
-                    format="HH"
-                    onChange={this.handleFromTime}
-                  />
+                  <TimePicker format="HH" onChange={this.handleFromTime} />
                 </Form.Item>
                 <Form.Item className="timing__form-item" label="To">
                   <TimePicker
-                    // defaultValue={moment('12:00', 'HH:mm')}
                     format="HH"
                     onChange={this.handleToTime}
                     disabled={!time.from}
@@ -88,7 +83,6 @@ class TimePickerCom extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state.searchQueries.time);
   const { time } = state.searchQueries;
   return {
     time,
