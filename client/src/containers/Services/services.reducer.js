@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
     case SERVICES_ERROR:
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     default:
