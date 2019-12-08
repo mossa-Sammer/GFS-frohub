@@ -1,186 +1,99 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Collapse,
   Button,
   DatePicker,
   Icon,
-  Popover,
-  TimePicker,
-  Form,
+  // Popover,
+  // TimePicker,
+  // Form,
 } from 'antd';
 
 import moment from 'moment';
+import TimePicker from './TimePicker';
+import searchAction from '../search.actions';
 
 import './style.css';
 
 const { Panel } = Collapse;
-export default class TimeInput extends Component {
-  // handleAnyTime = () => this.setState({ selectedValue: 'Any Date' });
-
-  // handleDate = selectedDate => {
-  //   const { pickerOpen } = this.state;
-  //   const convertedDate = moment(selectedDate).format('YYYY-MM-DD');
-  //   this.setState({
-  //     selectedValue: convertedDate,
-  //     pickerOpen: !pickerOpen,
-  //   });
-  // };
-
-  // handleFromTime = selectedFromTime => {
-  //   const convertedTime = moment(selectedFromTime).format('LT');
-  //   this.setState({ fromTime: convertedTime });
-  // };
-
-  // handleToTime = selectedToTime => {
-  //   const convertedTime = moment(selectedToTime).format('LT');
-  //   this.setState({ toTime: convertedTime });
-  // };
-
-  // handleSearch = () => console.log(this.state);
-
+class TimeInput extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
-    pickerOpen: false,
-    dateTime: {
-      date: '',
-      time: {
-        from: '',
-        to: '',
-      },
-    },
+    date: '',
+    fromTime: '',
+    toTime: '',
   };
 
-  handleOpenPicker = () => this.setState({ pickerOpen: true });
-
   handleDate = e => {
+    // console.log(this.props);
+    const { searchAction: handleSearch } = this.props;
     const { _isAMomentObject } = e;
     if (_isAMomentObject) {
       const convertedDate = moment(e).format('YYYY-MM-DD');
-      this.setState({ dateTime: { date: convertedDate } });
-    } else {
-      this.setState({ dateTime: { date: '' } });
-    }
-  };
-
-  handleFromTime = selectedFromTime => {
-    const convertedTime = moment(selectedFromTime).format('LT');
-    this.setState({ fromTime: convertedTime });
-  };
-
-  handleToTime = selectedToTime => {
-    const convertedTime = moment(selectedToTime).format('LT');
-    this.setState({ toTime: convertedTime });
-  };
-
-  handleTime = e => {
-    // console.log(e);
-    const { _isAMomentObject } = e;
-    if (!_isAMomentObject) {
-      this.setState(prevState => {
-        return {
-          ...prevState,
-          // change from and to to empty values from: '', to: ''
-        };
+      // this.setState({ date: convertedDate });
+      handleSearch({
+        name: 'date',
+        value: convertedDate,
       });
     } else {
-      // this.setState(prevState => {
-      //   // const { dateTime } = prevState;
-      //   // const { from, to } = dateTime;
-      //   return {
-      //     ...prevState,
-      //     dateTime: {
-      //       from: '',
-      //       to: '',
-      //     },
-      //   };
-      // });
-      // this.setState({dateTime: time: {from:' ', to: ''}})
+      // this.setState({ date: '' });
+      handleSearch({
+        name: 'date',
+        value: '',
+      });
     }
   };
 
   render() {
-    // console.log('Render');
-    // const { pickerOpen, selectedValue, fromTime, toTime } = this.state;
-    // eslint-disable-next-line no-unused-vars
-    const { pickerOpen, dateTime } = this.state;
-    // console.log(4444444, dateTime);
+    const { date, from, to } = this.props;
+
+    if (date) {
+      console.log(date);
+    }
     return (
       <Collapse accordion expandIcon={() => <Icon type="calendar" />}>
         <Panel
-        // header={
-        //   fromTime && toTime ? `${fromTime} - ${toTime}` : selectedValue
-        // }
+          header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
+            from && to ? `${from.split(' ')[0]} - ${to.split(' ')[0]}` : ''
+          }`}
         >
           <div className="timing_container">
             <div>
               <span>Choose Date</span>
               <div className="date__container">
-                {/* <Button className="timing__btn" onClick={this.handleAnyTime}> */}
-                <Button className="timing__btn" onClick={this.handleDate}>
+                <Button className="timing-btn" onClick={this.handleDate}>
                   Any Date
                 </Button>
-                <Popover
-                  placement="rightTop"
-                  content={
-                    pickerOpen && <DatePicker onChange={this.handleDate} />
-                    // <DatePicker onChange={this.handleDate} />
-                  }
-                  trigger="click"
-                >
-                  <Button
-                    className="timing__btn"
-                    onClick={this.handleOpenPicker}
-                  >
-                    Choose Date
-                  </Button>
-                </Popover>
+                <DatePicker
+                  allowClear={false}
+                  className="timing-btn picker"
+                  onChange={this.handleDate}
+                  placeholder="Choose Date"
+                  dropdownClassName="calendar"
+                />
               </div>
             </div>
-            <div>
-              <span>Choose Time</span>
-              <div className="time__container">
-                {/* <Button className="timing__btn" onClick={this.handleAnyTime}> */}
-                <Button className="timing__btn" onClick={this.handleTime}>
-                  Any Time
-                </Button>
-                <Popover
-                  className="time__popover"
-                  placement="bottom"
-                  content={
-                    <Form className="time__duration-box" layout="inline">
-                      <Form.Item className="timing__form-item" label="From">
-                        <TimePicker
-                          defaultValue={moment('12:00', 'HH:mm')}
-                          format="HH:mm"
-                          onChange={this.handleFromTime}
-                          // onChange={this.handleTime}
-                        />
-                      </Form.Item>
-                      <Form.Item className="timing__form-item" label="To">
-                        <TimePicker
-                          defaultValue={moment('12:00', 'HH:mm')}
-                          format="HH:mm"
-                          onChange={this.handleToTime}
-                          // onChange={this.handleTime}
-                        />
-                      </Form.Item>
-                    </Form>
-                  }
-                  trigger="click"
-                >
-                  <Button
-                    className="timing__btn"
-                    onClick={this.handleOpenPicker}
-                  >
-                    Choose Time
-                  </Button>
-                </Popover>
-              </div>
-            </div>
+            <TimePicker />
           </div>
-          {/* <Button onClick={this.handleSearch}>Done</Button> */}
         </Panel>
       </Collapse>
     );
   }
 }
+
+const mapStateToProps = state => {
+  // console.log(state.searchQueries.date);
+  // console.log(1111, state.searchQueries.time.from);
+  // console.log(222, state.searchQueries.time.to);
+  // console.log(state.searchQueries);
+  const { date, time } = state.searchQueries;
+  const { from, to } = time;
+  return {
+    date,
+    from,
+    to,
+  };
+};
+
+export default connect(mapStateToProps, { searchAction })(TimeInput);

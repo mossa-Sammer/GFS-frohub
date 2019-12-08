@@ -7,11 +7,12 @@
   left: -2%;
 }
 
-.timing__btn {
+/* .timing__btn, */
+.date__btn {
   width: 120px !important;
   margin-left: 20px;
 }
-
+/*
 .time__duration-box {
   width: 307px;
   display: flex;
@@ -20,15 +21,38 @@
 
 .timing__form-item {
   width: 200px;
+} */
+.timing-btn {
+  width: 140px !important;
 }
 
-/* .time__popover  */
-.ant-popover {
-  /* left: 190px !important; */
-  /* top: 362px !important; */
+.ant-calendar-picker-container.calendar {
+  left: 480px !important;
+  top: 300px !important;
 }
 
-.ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
-  /* left: 78% !important; */
+.anticon.ant-calendar-picker-icon{
+  display: none !important;
 }
 
+.picker input {
+  visibility: hidden !important;
+}
+
+.date__container .picker:after {
+  display: block !important;
+  position: absolute;
+  top: 0px;
+  height: 33px;
+  width: 140px !important;
+  content: "Choose Date" !important;
+  border: 1px solid #d9d9d9 !important;
+  pointer-events: none;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.date__container i{
+  /* display: none !important; */
+}
