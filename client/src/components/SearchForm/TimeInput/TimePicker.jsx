@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Popover, TimePicker, Form } from 'antd';
+import { Button, Popover, TimePicker, Form, Icon } from 'antd';
 import moment from 'moment';
 
 import searchAction from '../search.actions';
@@ -15,10 +15,12 @@ class TimePickerCom extends Component {
   };
 
   handleFromTime = selectedFromTime => {
-    const convertedTime = selectedFromTime
-      ? moment(selectedFromTime).format('LT')
-      : '';
     const { searchAction: handleSearch } = this.props;
+    const convertedTime = selectedFromTime
+      ? moment(selectedFromTime)
+          .startOf('hour')
+          .format('hh:mm')
+      : '';
     handleSearch({
       name: 'time',
       value: {
@@ -29,12 +31,13 @@ class TimePickerCom extends Component {
   };
 
   handleToTime = selectedToTime => {
-    const { time } = this.props;
+    const { time, searchAction: handleSearch } = this.props;
     const { from } = time;
     const convertedTime = selectedToTime
-      ? moment(selectedToTime).format('LT')
+      ? moment(selectedToTime)
+          .startOf('hour')
+          .format('hh:mm')
       : '';
-    const { searchAction: handleSearch } = this.props;
     handleSearch({
       name: 'time',
       value: {
@@ -48,9 +51,13 @@ class TimePickerCom extends Component {
     const { time } = this.props;
     return (
       <div className="time">
-        <span>Choose Time</span>
+        <Icon className="picker-icon time-icon" type="clock-circle" />
+        <span className="time-title">Choose Time</span>
         <div className="time__container">
-          <Button className="timing-btn" onClick={this.handleTime}>
+          <Button
+            className={`${!time.from && 'active'} timing-btn`}
+            onClick={this.handleTime}
+          >
             Any Time
           </Button>
           <Popover
@@ -72,7 +79,10 @@ class TimePickerCom extends Component {
             }
             trigger="click"
           >
-            <Button className="timing-btn" onClick={this.handleOpenPicker}>
+            <Button
+              className={`${time.from && 'active'} timing-btn choose__time-btn`}
+              onClick={this.handleOpenPicker}
+            >
               Choose Time
             </Button>
           </Popover>

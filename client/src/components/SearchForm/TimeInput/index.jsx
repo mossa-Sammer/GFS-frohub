@@ -30,22 +30,31 @@ class TimeInput extends Component {
   render() {
     const { date, from, to } = this.props;
     return (
-      <Collapse accordion expandIcon={() => <Icon type="calendar" />}>
+      <Collapse
+        accordion
+        expandIcon={() => <Icon className="picker-icon" type="calendar" />}
+      >
         <Panel
+          className="time-box"
           header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
             from && to ? `${from.split(' ')[0]} - ${to.split(' ')[0]}` : ''
           }`}
         >
           <div className="timing_container">
             <div>
-              <span>Choose Date</span>
+              <Icon className="picker-icon date-icon" type="calendar" />
+              <span className="date-title">Choose Date</span>
               <div className="date__container">
-                <Button className="timing-btn" onClick={this.handleDate}>
+                <Button
+                  className={`${!date && 'date__active'} timing-btn `}
+                  onClick={this.handleDate}
+                >
                   Any Date
                 </Button>
                 <DatePicker
                   allowClear={false}
-                  className="timing-btn picker"
+                  className={`${date &&
+                    'active'} timing-btn picker choose__date-btn`}
                   onChange={this.handleDate}
                   placeholder="Choose Date"
                   dropdownClassName="calendar"
