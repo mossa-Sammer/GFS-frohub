@@ -19,7 +19,7 @@ class TimePickerCom extends Component {
     const convertedTime = selectedFromTime
       ? moment(selectedFromTime)
           .startOf('hour')
-          .format('hh:mm')
+          .format('HH:mm')
       : '';
     handleSearch({
       name: 'time',
@@ -36,7 +36,7 @@ class TimePickerCom extends Component {
     const convertedTime = selectedToTime
       ? moment(selectedToTime)
           .startOf('hour')
-          .format('hh:mm')
+          .format('HH:mm')
       : '';
     handleSearch({
       name: 'time',

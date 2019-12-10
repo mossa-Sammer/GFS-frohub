@@ -1,4 +1,4 @@
-import { services, servicesByTreatment } from './mockServices';
+import { services, servicesByTreatment } from './mockupServices/mockServices';
 import { filterServices } from './index';
 
 /** {
