@@ -23,8 +23,14 @@
   border: 1px solid #eee;
 }
 
-.treatment__input {
+.treatment__input,
+.location__input {
   width: 342px;
+}
+
+.treatment__input .ant-select-lg .ant-select-selection--single,
+.location__input .ant-select-selection--single {
+  height: 45px !important;
 }
 
 .date__container,
@@ -45,6 +51,6 @@
   font-weight: bolder;
 }
 
-.search-btn {
-  position: absolute !important;
+.location__input .ant-select-selection__rendered {
+  height: 100% !important;
 }

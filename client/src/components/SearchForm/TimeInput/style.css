@@ -97,3 +97,7 @@
 .choose__date-btn {
   left: 10px;
 }
+
+.time-box {
+  height: 45px !important;
+}
