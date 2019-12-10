@@ -43,7 +43,7 @@ class LocationInput extends Component {
       message.error();
     }
     return (
-      <>
+      <div className="location__input">
         {error && message.error(error.message)}
         <Select
           allowClear
@@ -57,6 +57,7 @@ class LocationInput extends Component {
             return <>{menu}</>;
           }}
           notFoundContent="No location match"
+          placeholder="Enter postcode or area"
         >
           {locationList.map(address => (
             <Option key={address.place_id} value={address.place_id}>
@@ -64,7 +65,7 @@ class LocationInput extends Component {
             </Option>
           ))}
         </Select>
-      </>
+      </div>
     );
   }
 }

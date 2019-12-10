@@ -1,15 +1,14 @@
 // eslint-disable-next-line no-unused-vars, import/prefer-default-export, consistent-return
 export const filterServices = (services, fields) => {
   const { treatment, location, date, time } = fields;
-
-  if (!treatment && !location && !date && !time) return services;
-  if (treatment && !location && !date && !time) {
+  if (!treatment && !location && !date && !time.to) return services;
+  if (treatment && !location && !date && !time.to) {
     const filteredServices = services.filter(service => {
       return service.categories[0].id === Number(treatment);
     });
     return filteredServices;
   }
-  if (!treatment && !location && !date && time) {
+  if (!treatment && !location && !date && time.to) {
     const searchFrom = Number(time.from.split(':')[0]);
     const searchTo = Number(time.to.split(':')[0]);
     // eslint-disable-next-line array-callback-return, consistent-return
