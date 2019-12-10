@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Form } from 'antd';
+
+import { filterServices as filterServicesAction } from '../../containers/Services/services.actions';
 
 import Button from '../Button';
 import TreatmentInput from './TreatmentInput';
@@ -8,7 +12,22 @@ import TimeInput from './TimeInput';
 
 import './style.css';
 
-export default class SearchForm extends Component {
+class SearchForm extends Component {
+  handleSearch = () => {
+    const {
+      status,
+      history,
+      searchQueries,
+      filterServicesAction: filterServices,
+      services,
+    } = this.props;
+    if (status === 'homePage') {
+      history.push('/services');
+    } else {
+      filterServices(services, searchQueries);
+    }
+  };
+
   render() {
     const { status } = this.props;
     return (
@@ -30,7 +49,7 @@ export default class SearchForm extends Component {
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
-            <Button>Search Treatment</Button>
+            <Button onClick={this.handleSearch}>Search Treatment</Button>
           </Form.Item>
         </Form>
         <div className="title">
@@ -40,3 +59,14 @@ export default class SearchForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    searchQueries: state.searchQueries,
+    services: state.services.services,
+  };
+};
+
+export default connect(mapStateToProps, { filterServicesAction })(
+  withRouter(SearchForm)
+);

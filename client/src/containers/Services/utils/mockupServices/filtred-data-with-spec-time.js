@@ -1,0 +1,85 @@
+// eslint-disable-next-line import/prefer-default-export
+export const filteredWithSpecificTime = [
+  {
+    id: 3621,
+    name: 'Small Cornrows',
+    slug: 'small-cornrows',
+    type: 'booking',
+    categories: [{ id: 59, name: 'Cornrows', slug: 'cornrows' }],
+    store: {
+      id: 123,
+      name: 'LovelyBraidsUK',
+      shop_name: 'LovelyBraidsUK',
+      url: 'https://frohub.com/store/lovelybraidsuk/',
+      address: {
+        street_1: 'MOBILE',
+        street_2: '',
+        city: 'London',
+        zip: 'EC2A 4BX',
+        country: 'GB',
+        state: '',
+      },
+    },
+    meta_data: [
+      { id: 25381, key: '_dokan_geolocation_use_store_settings', value: 'yes' },
+      { id: 25382, key: 'dokan_geo_latitude', value: '51.5226153' },
+      { id: 25383, key: 'dokan_geo_longitude', value: '-0.08560050000005504' },
+      { id: 25384, key: 'dokan_geo_public', value: '1' },
+      {
+        id: 25385,
+        key: 'dokan_geo_address',
+        value: 'Bonhill St, Shoreditch, London EC2A 4BX, UK',
+      },
+      {
+        id: 25395,
+        key: 'amazonS3_cache',
+        value: {
+          '//s.w.org/images/core/emoji/11.2.0/svg/2714.svg': {
+            timestamp: 1574972815,
+          },
+        },
+      },
+      {
+        id: 25396,
+        key: '_per_product_admin_commission_type',
+        value: 'percentage',
+      },
+      { id: 25397, key: '_per_product_admin_commission', value: '' },
+      { id: 25398, key: '_yoast_wpseo_primary_product_cat', value: '' },
+      { id: 25399, key: '_yoast_wpseo_content_score', value: '90' },
+      { id: 25903, key: 'pageview', value: '10' },
+      { id: 26027, key: '_lot_discount_quantity', value: '0' },
+      { id: 26028, key: '_lot_discount_amount', value: '0' },
+      { id: 26029, key: '_is_lot_discount', value: 'no' },
+      { id: 26030, key: '_disable_shipping', value: 'no' },
+      { id: 26031, key: '_overwrite_shipping', value: 'no' },
+      { id: 26032, key: '_additional_price', value: '' },
+      { id: 26033, key: '_additional_qty', value: '' },
+      { id: 26034, key: '_dps_processing_time', value: '' },
+    ],
+    availability: [
+      {
+        type: 'time:5',
+        bookable: 'yes',
+        priority: 0,
+        from: '04:00',
+        to: '22:00',
+      },
+      {
+        type: 'time:6',
+        bookable: 'yes',
+        priority: 0,
+        from: '10:00',
+        to: '22:00',
+      },
+      {
+        type: 'time:7',
+        bookable: 'yes',
+        priority: 0,
+        from: '12:00',
+        to: '22:00',
+      },
+      { type: 'time', bookable: 'no', priority: 0, from: '00:00', to: '00:00' },
+    ],
+  },
+];

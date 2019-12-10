@@ -6,23 +6,24 @@ export const SERVICES_LOADING = 'SERVICES_LOADING';
 export const SERVICES_LIST = 'SERVICES_LIST';
 export const SERVICES_FILTER = 'SERVICES_FILTER';
 export const SERVICES_ERROR = 'SERVICES_ERROR';
-// eslint-disable-next-line no-unused-vars
+
 export default fieldsValues => async dispatch => {
   try {
     dispatch({
       type: SERVICES_LOADING,
     });
-    const services = await axios.get('SERVICES API');
+    const { data: services } = await axios.get(
+      'https://frohub.com/wp-json/wc-bookings/v1/products?per_page=100'
+    );
     const filtredServices = filterServicesUtil(services, fieldsValues);
     dispatch({
       type: SERVICES_LIST,
       payload: { services, filtredServices },
     });
   } catch (err) {
-    const { error } = err.response.data;
     dispatch({
       type: SERVICES_ERROR,
-      payload: error,
+      payload: err,
     });
   }
 };
