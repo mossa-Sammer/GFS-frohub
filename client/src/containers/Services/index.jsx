@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message } from 'antd';
+import { message, Row, Col } from 'antd';
 
 import AdvancedSearch from './AdvancedSearch';
 import { SearchForm, ServiceCard, Loading } from '../../components';
@@ -17,9 +17,8 @@ class ServicesPage extends Component {
 
   render() {
     const {
-      services: { loading, error, services, filtredServices },
+      services: { loading, error, filtredServices },
     } = this.props;
-
     return (
       <div>
         <SearchForm status="servicesForm" />
@@ -29,9 +28,19 @@ class ServicesPage extends Component {
           {loading ? (
             <Loading />
           ) : (
-            filtredServices.map(service => (
-              <ServiceCard key={service.id} data={service} />
-            ))
+            <div className="services__container">
+              <p>
+                Choose from {filtredServices.length} venues offering hair and
+                beauty Salons in London
+              </p>
+              <Row>
+                {filtredServices.map(service => (
+                  <Col key={service.id} xs={{ span: 4 }} lg={{ span: 6 }}>
+                    <ServiceCard data={service} />
+                  </Col>
+                ))}
+              </Row>
+            </div>
           )}
         </div>
       </div>

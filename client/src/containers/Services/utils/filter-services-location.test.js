@@ -2,7 +2,7 @@ import {
   services,
   servicesByLocation,
   servicesByLocation2,
-} from './mock-services-location';
+} from './mockupServices/mock-services-location';
 import { filterServices } from './index';
 
 describe('Filter services tests "location"', () => {

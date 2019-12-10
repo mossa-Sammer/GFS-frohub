@@ -23,10 +23,34 @@
   border: 1px solid #eee;
 }
 
+.treatment__input,
+.location__input {
+  width: 342px;
+}
+
+.treatment__input .ant-select-lg .ant-select-selection--single,
+.location__input .ant-select-selection--single {
+  height: 45px !important;
+}
+
+.date__container,
+.time__container {
+  display: flex;
+  flex-direction: row;
+}
+
+.ant-calendar-picker-container {
+  left: 276px !important;
+  top: 195px !important;
+}
 .title {
   padding: 4rem 0 3rem 5rem;
   font-family: 'Cinzel', serif;
   font-size: 40px;
   letter-spacing: 5px;
   font-weight: bolder;
+}
+
+.location__input .ant-select-selection__rendered {
+  height: 100% !important;
 }

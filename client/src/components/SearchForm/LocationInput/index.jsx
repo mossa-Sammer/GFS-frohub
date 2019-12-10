@@ -20,12 +20,17 @@ class LocationInput extends Component {
       locations: { locationList },
       searchChange,
     } = this.props;
-    const selectedLocation = locationList.reduce((location, locationObj) => {
-      if (locationObj.place_id === value) {
-        return locationObj;
-      }
-      return location;
-    }, {});
+    let selectedLocation;
+    if (value) {
+      selectedLocation = locationList.reduce((location, locationObj) => {
+        if (locationObj.place_id === value) {
+          return locationObj;
+        }
+        return location;
+      }, {});
+    } else {
+      selectedLocation = null;
+    }
 
     searchChange({
       name: 'location',
@@ -43,7 +48,7 @@ class LocationInput extends Component {
       message.error();
     }
     return (
-      <>
+      <div className="location__input">
         {error && message.error(error.message)}
         <Select
           allowClear
@@ -57,6 +62,7 @@ class LocationInput extends Component {
             return <>{menu}</>;
           }}
           notFoundContent="No location match"
+          placeholder="Enter postcode or area"
         >
           {locationList.map(address => (
             <Option key={address.place_id} value={address.place_id}>
@@ -64,7 +70,7 @@ class LocationInput extends Component {
             </Option>
           ))}
         </Select>
-      </>
+      </div>
     );
   }
 }

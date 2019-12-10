@@ -53,22 +53,45 @@ export const getDistance = (lat1, lon1, lat2, lon2, unit) => {
   return dist;
 };
 
-// eslint-disable-next-line no-unused-vars, import/prefer-default-export
+// eslint-disable-next-line no-unused-vars, import/prefer-default-export, consistent-return
 export const filterServices = (services, fields) => {
   const { treatment, location, date, time } = fields;
 
-  let filteredServices;
-  if (!treatment && !location && !date && !time) return services;
-  filteredServices = services.filter(service => {
-    if (!treatment) return true;
-    return service.categories[0].id === Number(treatment);
-  });
+  // No search queries applied
+  if (!treatment && !location && !date && !time.to) return services;
 
+  // Only treatment search query applied
+  if (treatment && !location && !date && !time.to) {
+    const filteredServices = services.filter(service => {
+      return service.categories[0].id === Number(treatment);
+    });
+    return filteredServices;
+  }
+
+  // Only time search query applied
+  if (!treatment && !location && !date && time.to) {
+    const searchFrom = Number(time.from.split(':')[0]);
+    const searchTo = Number(time.to.split(':')[0]);
+    // eslint-disable-next-line array-callback-return, consistent-return
+    const filteredServices = services.filter(service => {
+      if (!service.availability.length) return false;
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < service.availability.length; i++) {
+        const { from, to } = service.availability[i];
+        if (searchTo <= Number(from.split(':')[0])) return false;
+        if (searchFrom >= Number(to.split(':')[0])) return false;
+        return true;
+      }
+    });
+    return filteredServices;
+  }
+
+  // Only location search query applied
   if (!treatment && location && !date && !time) {
     const { lat: lat1, lon: lon1 } = location;
     let lat2;
     let lon2;
-    filteredServices = services.filter(service => {
+    const filteredServices = services.filter(service => {
       const {
         store: { address },
         meta_data: metaData,
@@ -92,6 +115,7 @@ export const filterServices = (services, fields) => {
       if (distance <= 10) return true;
       return false;
     });
+    return filteredServices;
   }
-  return filteredServices;
+  return services;
 };
