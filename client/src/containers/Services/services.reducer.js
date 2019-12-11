@@ -3,6 +3,7 @@ import {
   SERVICES_LIST,
   SERVICES_FILTER,
   SERVICES_ERROR,
+  SERVICES_SORT,
 } from './services.actions';
 
 const initialState = {
@@ -28,6 +29,11 @@ export default (state = initialState, action) => {
         filtredServices: action.payload.filtredServices,
       };
     case SERVICES_FILTER:
+      return {
+        ...state,
+        filtredServices: action.payload,
+      };
+    case SERVICES_SORT:
       return {
         ...state,
         filtredServices: action.payload,

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Radio, Icon, Button } from 'antd';
 
 import advancedSearchAction from './advancedSearch.actions';
+import { sortServices } from '../services.actions';
 
 import './style.css';
 
@@ -30,6 +31,17 @@ class AdvancedSearch extends Component {
   clearSort = () => {
     const { advancedSearchAction: advancedSearch } = this.props;
     advancedSearch({ key: 'clear' });
+  };
+
+  handleShowServices = () => {
+    const { visible } = this.state;
+    const {
+      services,
+      advancedSearchQueries,
+      sortServices: sortServicesAction,
+    } = this.props;
+    this.setState({ visible: !visible });
+    sortServicesAction(services, advancedSearchQueries.byRate);
   };
 
   render() {
@@ -81,7 +93,9 @@ class AdvancedSearch extends Component {
               <Button className="clear-btn" onClick={this.clearSort}>
                 Clear filters
               </Button>
-              <Button className="show-btn">Show results</Button>
+              <Button className="show-btn" onClick={this.handleShowServices}>
+                Show results
+              </Button>
             </div>
           </div>
         )}
@@ -95,11 +109,14 @@ class AdvancedSearch extends Component {
 }
 
 const mapStateToProps = state => {
+  // console.log(5555555, state.services.filtredServices);
+  const { advancedSearchQueries, services } = state;
   return {
-    advancedSearchQueries: state.advancedSearchQueries,
+    advancedSearchQueries,
+    services: services.filtredServices,
   };
 };
 
-export default connect(mapStateToProps, { advancedSearchAction })(
+export default connect(mapStateToProps, { advancedSearchAction, sortServices })(
   AdvancedSearch
 );
