@@ -41,6 +41,7 @@ class LocationInput extends Component {
   render() {
     const {
       locations: { locationList, error, loading },
+      locationQuery,
     } = this.props;
     this.match = locationList.length;
 
@@ -62,7 +63,11 @@ class LocationInput extends Component {
             return <>{menu}</>;
           }}
           notFoundContent="No location match"
-          placeholder="Enter postcode or area"
+          placeholder="Enter postcode or address"
+          showAction={['focus', 'click']}
+          defaultValue={
+            (locationQuery && locationQuery.display_name) || undefined
+          }
         >
           {locationList.map(address => (
             <Option key={address.place_id} value={address.place_id}>
@@ -75,9 +80,12 @@ class LocationInput extends Component {
   }
 }
 
-const mapStateToProps = ({ locations, searchQueries: { location } }) => ({
+const mapStateToProps = ({
   locations,
-  location,
+  searchQueries: { location: locationQuery },
+}) => ({
+  locations,
+  locationQuery,
 });
 
 export default connect(mapStateToProps, {
