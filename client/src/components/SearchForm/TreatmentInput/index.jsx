@@ -29,7 +29,7 @@ class TreatmentInput extends Component {
   };
 
   render() {
-    const { treatments, loading, err } = this.props;
+    const { treatments, loading, err, treatmentQuery } = this.props;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -46,6 +46,8 @@ class TreatmentInput extends Component {
             if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
             return <>{menu}</>;
           }}
+          showAction={['focus', 'click']}
+          defaultValue={treatmentQuery || undefined}
         >
           {treatments &&
             treatments.data &&
@@ -64,11 +66,13 @@ class TreatmentInput extends Component {
 }
 
 const mapStateToProps = state => {
+  const { treatment: treatmentQuery } = state.searchQueries;
   const { treatments, loading, err } = state.treatments;
   return {
     treatments,
     loading,
     err,
+    treatmentQuery,
   };
 };
 
