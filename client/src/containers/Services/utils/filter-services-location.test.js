@@ -14,7 +14,10 @@ describe('Filter services tests "location"', () => {
         lat: '51.5895493',
         lon: '-0.4366119',
       },
-      time: null,
+      time: {
+        from: '',
+        to: '',
+      },
       date: null,
     };
     const filteredServices = filterServices(services, searchQueries);
@@ -30,7 +33,10 @@ describe('Filter services tests "location"', () => {
         lat: '51.8885078302529',
         lon: '0.258922620894347',
       },
-      time: null,
+      time: {
+        from: '',
+        to: '',
+      },
       date: null,
     };
     const filteredServices = filterServices(services, searchQueries);
