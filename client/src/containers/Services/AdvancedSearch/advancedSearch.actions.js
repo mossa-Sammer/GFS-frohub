@@ -1,4 +1,3 @@
-// export const SORT_SERVICES = 'SORT_SERVICES';
 export const SORT_BY_RATE = 'SORT_BY_RATE';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const CLEAR_SORT = 'CLEAR_SORT';

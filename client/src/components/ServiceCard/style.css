@@ -2,6 +2,7 @@
   margin: 1.5rem !important;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.14);
   text-align: center;
+  height: 350px;
 }
 
 .service__img {
@@ -12,4 +13,18 @@
 
 .price {
   display: block;
+  margin-bottom: 2rem;
+}
+
+.service-link {
+  border-radius: 1px;
+  padding: .9em 1.6em;
+  font-weight: normal;
+  border: none;
+  text-shadow: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #fff!important;
+  background-color: #37cadd;
+  margin: 3rem 0 !important;
 }

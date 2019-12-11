@@ -27,7 +27,12 @@ export default class ServiceCard extends Component {
         }
       >
         <span className="price">{data.display_cost} $</span>
-        <a href={data.permalink} rel="noopener noreferrer" target="_blank">
+        <a
+          className="service-link"
+          href={data.permalink}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           See more
         </a>
       </Card>
