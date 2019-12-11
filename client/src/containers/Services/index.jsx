@@ -22,17 +22,19 @@ class ServicesPage extends Component {
     return (
       <div>
         <SearchForm status="servicesForm" />
-        <AdvancedSearch />
         <div className="services__container">
           {error && message.error(error.message)}
           {loading ? (
             <Loading />
           ) : (
             <div className="services__container">
-              <p>
-                Choose from {filtredServices.length} venues offering hair and
-                beauty Salons in London
-              </p>
+              <div className="services__header">
+                <AdvancedSearch />
+                <p className="services__statistic">
+                  Choose from {filtredServices.length} venues offering hair and
+                  beauty Salons in London
+                </p>
+              </div>
               <Row>
                 {filtredServices.map(service => (
                   <Col key={service.id} xs={{ span: 4 }} lg={{ span: 6 }}>
