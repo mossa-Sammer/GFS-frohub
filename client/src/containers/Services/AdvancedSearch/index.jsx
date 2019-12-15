@@ -8,14 +8,17 @@ import { sortServices } from '../services.actions';
 import './style.css';
 
 class AdvancedSearch extends Component {
-  // eslint-disable-next-line react/state-in-constructor
   state = {
     visible: false,
   };
 
   handleVisibleSelect = () => {
-    const { visible } = this.state;
-    this.setState({ visible: !visible });
+    this.setState(prevState => {
+      const { visible } = prevState;
+      return {
+        visible: !visible,
+      };
+    });
   };
 
   handleSortRated = e => {
@@ -34,14 +37,21 @@ class AdvancedSearch extends Component {
   };
 
   handleShowServices = () => {
-    const { visible } = this.state;
     const {
       services,
       advancedSearchQueries,
       sortServices: sortServicesAction,
     } = this.props;
-    this.setState({ visible: !visible });
-    sortServicesAction(services, advancedSearchQueries.byRate);
+    this.setState(prevState => {
+      const { visible } = prevState;
+      return {
+        visible: !visible,
+      };
+    });
+    sortServicesAction(services, {
+      byRate: advancedSearchQueries.byRate,
+      byService: advancedSearchQueries.byService,
+    });
   };
 
   render() {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { filterServices as filterServicesUtil } from './utils';
-import { sortServices as sortServicesUtil } from './utils/sort-services';
+import { advancedSearch as sortServicesUtil } from './utils/sort-services';
 
 export const SERVICES_LOADING = 'SERVICES_LOADING';
 export const SERVICES_LIST = 'SERVICES_LIST';
