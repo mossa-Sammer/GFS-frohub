@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 import { filterServices as filterServicesUtil } from './utils';
+import { advancedSearch as sortServicesUtil } from './utils/sort-services';
 
 export const SERVICES_LOADING = 'SERVICES_LOADING';
 export const SERVICES_LIST = 'SERVICES_LIST';
 export const SERVICES_FILTER = 'SERVICES_FILTER';
 export const SERVICES_ERROR = 'SERVICES_ERROR';
+export const SERVICES_SORT = 'SERVICES_SORT';
 
 export default fieldsValues => async dispatch => {
   try {
@@ -33,5 +35,15 @@ export const filterServices = (services, fields) => {
   return {
     type: SERVICES_FILTER,
     payload: filtredServices,
+  };
+};
+
+export const sortServices = (services, field) => {
+  // filter function
+  const sortedServices = sortServicesUtil(services, field);
+  // const sortedServices = services;
+  return {
+    type: SERVICES_SORT,
+    payload: sortedServices,
   };
 };

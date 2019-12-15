@@ -26,8 +26,16 @@ export default class ServiceCard extends Component {
           )
         }
       >
-        <span className="price">{data.display_cost} $</span>
-        <a href={data.permalink} rel="noopener noreferrer" target="_blank">
+        <h2 className="service__title">{data.name}</h2>
+        <span className="price">
+          £{Number.parseFloat(data.display_cost).toFixed(2)}
+        </span>
+        <a
+          className="service-link"
+          href={data.permalink}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           See more
         </a>
       </Card>

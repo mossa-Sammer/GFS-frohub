@@ -1,4 +1,12 @@
 .services__container {
   margin: auto;
-  width: 90%;
+  width: 95%;
+}
+
+.services__header {
+  padding: 1.5rem;
+}
+
+.services__statistic {
+  padding: 0.8rem;
 }
