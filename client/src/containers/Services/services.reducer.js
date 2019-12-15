@@ -10,6 +10,7 @@ const initialState = {
   loading: false,
   services: [],
   filtredServices: [],
+  slots: [],
   err: null,
 };
 
@@ -27,6 +28,7 @@ export default (state = initialState, action) => {
         loading: false,
         services: action.payload.services,
         filtredServices: action.payload.filtredServices,
+        slots: action.payload.slots,
       };
     case SERVICES_FILTER:
       return {

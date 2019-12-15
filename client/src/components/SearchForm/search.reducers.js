@@ -16,6 +16,7 @@ const initialState = {
     to: '',
   },
   date: null,
+  slots: [],
 };
 
 export default (state = initialState, action) => {
@@ -39,6 +40,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         date: action.payload,
+        slots: action.payload.slots,
       };
     default:
       return state;
