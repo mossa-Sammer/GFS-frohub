@@ -39,15 +39,15 @@ export default (stores, services, fields) => {
 
     if (time.to) {
       // console.log(454, time.to);
-      const searchFrom = Number(time.from.split(':')[0]);
-      const searchTo = Number(time.to.split(':')[0]);
+      // const searchFrom = Number(time.from.split(':')[0]);
+      // const searchTo = Number(time.to.split(':')[0]);
       // const toTime = moment(time.to).format('LT');
       // console.log(4432, toTime);
       // console.log(999, stores);
       // console.log(stores.store_open_close.time.opening_time);
       // console.log(stores.store_open_close.time.closing_time);
       // exclude services that doesn't have availability
-      const storesIds = [];
+      // const storesIds = [];
       const filteredStores = stores.filter(store => {
         // console.log(6666, time.from);
         // console.log(9999, store.store_open_close.time);
@@ -59,11 +59,14 @@ export default (stores, services, fields) => {
           const { closing_time, opening_time } = obj;
           if (closing_time === time.to && opening_time === time.from) {
             // storesIds.push(store.id);
-            return service.store.id;
+            return store.id;
           }
           // return closing_time === time.to && opening_time === time.from;
         }
       });
+      console.log(8888888, filteredStores);
+
+      // filteredStores.filter()
       // console.log(7777777, storesIds);
       // if (!service.availability.length) return false;
 
