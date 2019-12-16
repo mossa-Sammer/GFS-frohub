@@ -5,6 +5,7 @@ import { filterServices as filterServicesUtil } from './utils';
 import { advancedSearch as sortServicesUtil } from './utils/sort-services';
 
 export const SERVICES_LOADING = 'SERVICES_LOADING';
+export const SERVICES_STORES = 'SERVICES_STORES';
 export const SERVICES_LIST = 'SERVICES_LIST';
 export const SERVICES_FILTER = 'SERVICES_FILTER';
 export const SERVICES_ERROR = 'SERVICES_ERROR';
@@ -19,13 +20,20 @@ export default fieldsValues => async dispatch => {
     dispatch({
       type: SERVICES_LOADING,
     });
+    const { data: stores } = await axios.get(
+      'https://frohub.com/wp-json/dokan/v1/stores/'
+    );
+    dispatch({
+      type: SERVICES_STORES,
+      payload: stores,
+    });
     const { data: services } = await axios.get(
       'https://frohub.com/wp-json/wc-bookings/v1/products?per_page=100'
     );
     const { data: slots } = await axios.get(
       `https://frohub.com//wp-json/wc-bookings/v1/products/slots?max_date=${maxDate}`
     );
-    const filtredServices = filterServicesUtil(services, fieldsValues);
+    const filtredServices = filterServicesUtil(stores, services, fieldsValues);
     dispatch({
       type: SERVICES_LIST,
       payload: { services, filtredServices, slots: slots.records },
@@ -38,8 +46,8 @@ export default fieldsValues => async dispatch => {
   }
 };
 
-export const filterServices = (services, fields) => {
-  const filtredServices = filterServicesUtil(services, fields);
+export const filterServices = (stores, services, fields) => {
+  const filtredServices = filterServicesUtil(stores, services, fields);
   return {
     type: SERVICES_FILTER,
     payload: filtredServices,

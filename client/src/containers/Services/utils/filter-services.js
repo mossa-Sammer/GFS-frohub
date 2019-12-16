@@ -1,7 +1,8 @@
 import geoDistance from './geo-distance';
 
-export default (services, fields) => {
+export default (stores, services, fields) => {
   const { treatment, location, date, time } = fields;
+  console.log(99999, stores);
   // No search queries applied
   if (!treatment && !location && !date && !time.to) return services;
   const filteredServices = services.filter(service => {

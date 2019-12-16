@@ -1,5 +1,6 @@
 import {
   SERVICES_LOADING,
+  SERVICES_STORES,
   SERVICES_LIST,
   SERVICES_FILTER,
   SERVICES_ERROR,
@@ -11,6 +12,7 @@ const initialState = {
   services: [],
   filtredServices: [],
   slots: [],
+  stores: [],
   err: null,
 };
 
@@ -21,6 +23,13 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
         err: null,
+      };
+    case SERVICES_STORES:
+      return {
+        ...state,
+        loading: false,
+        err: null,
+        stores: action.payload,
       };
     case SERVICES_LIST:
       return {
