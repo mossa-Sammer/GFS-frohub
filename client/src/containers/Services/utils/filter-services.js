@@ -1,9 +1,8 @@
-import moment from 'moment';
 import geoDistance from './geo-distance';
 
 export default (stores, services, fields) => {
   const { treatment, location, date, time } = fields;
-  // console.log(99999, stores);
+
   // No search queries applied
   if (!treatment && !location && !date && !time.to) return services;
   const filteredServices = services.filter(service => {
@@ -38,51 +37,23 @@ export default (stores, services, fields) => {
     }
 
     if (time.to) {
-      // console.log(454, time.to);
-      // const searchFrom = Number(time.from.split(':')[0]);
-      // const searchTo = Number(time.to.split(':')[0]);
-      // const toTime = moment(time.to).format('LT');
-      // console.log(4432, toTime);
-      // console.log(999, stores);
-      // console.log(stores.store_open_close.time.opening_time);
-      // console.log(stores.store_open_close.time.closing_time);
-      // exclude services that doesn't have availability
-      // const storesIds = [];
-      const filteredStores = stores.filter(store => {
-        // console.log(6666, time.from);
-        // console.log(9999, store.store_open_close.time);
+      let matchedStored = {};
+      stores.filter(store => {
         const { time: storeTime } = store.store_open_close;
         // eslint-disable-next-line no-restricted-syntax
         for (const key in storeTime) {
+          // eslint-disable-next-line no-prototype-builtins, no-continue
           if (!storeTime.hasOwnProperty(key)) continue;
           const obj = storeTime[key];
-          const { closing_time, opening_time } = obj;
-          if (closing_time === time.to && opening_time === time.from) {
-            // storesIds.push(store.id);
-            return store.id;
+          const { closing_time: closingTime, opening_time: openingTime } = obj;
+          if (closingTime === time.to && openingTime === time.from) {
+            matchedStored = {
+              id: store.id,
+            };
           }
-          // return closing_time === time.to && opening_time === time.from;
         }
       });
-      console.log(8888888, filteredStores);
-
-      // filteredStores.filter()
-      // console.log(7777777, storesIds);
-      // if (!service.availability.length) return false;
-
-      // let isTimeMatch = false;
-      // for (let i = 0; i < service.availability.length; i += 1) {
-      //   const { from, to } = service.availability[i];
-      //   if (searchTo <= Number(from.split(':')[0])) {
-      //     isTimeMatch = false;
-      //   } else if (searchFrom >= Number(to.split(':')[0])) {
-      //     isTimeMatch = false;
-      //   } else {
-      //     isTimeMatch = true;
-      //     break;
-      //   }
-      // }
-      // if (!isTimeMatch) return false;
+      if (matchedStored.id !== service.store.id) return false;
     }
     return true;
   });
