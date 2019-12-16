@@ -15,20 +15,24 @@ class TimeInput extends Component {
     const { _isAMomentObject } = e;
     if (_isAMomentObject) {
       const convertedDate = moment(e).format('YYYY-MM-DD');
+      const day = moment(e).format('dddd');
       handleSearch({
         name: 'date',
         value: convertedDate,
+        day,
       });
     } else {
       handleSearch({
         name: 'date',
         value: '',
+        day: '',
       });
     }
   };
 
   render() {
     const { date, from, to } = this.props;
+    // console.log(9999, date);
     return (
       <Collapse
         accordion
