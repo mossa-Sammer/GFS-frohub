@@ -21,7 +21,7 @@ export default class ServiceCard extends Component {
             <img
               src="https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/05/09151932/woocommerce-placeholder-300x300.png"
               alt="frohub service"
-              className="service__img"
+              className="service__img defautl-img"
             />
           )
         }

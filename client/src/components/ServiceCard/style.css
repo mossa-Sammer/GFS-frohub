@@ -7,9 +7,11 @@
 
 .service__img {
   display: inline-block !important;
-  height: 200px !important;
 }
 
+.defautl-img {
+  min-height: 342px !important;
+}
 .price {
   display: block;
   padding: 1rem;
