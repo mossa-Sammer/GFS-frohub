@@ -37,26 +37,28 @@ export default (stores, services, fields) => {
     }
 
     if (time.to) {
-      const matchedStored = {};
-      stores.filter(store => {
-        const { time: storeTime } = store.store_open_close;
-        // eslint-disable-next-line no-restricted-syntax
-        for (const key in storeTime) {
-          // eslint-disable-next-line no-prototype-builtins, no-continue
-          if (!storeTime.hasOwnProperty(key)) continue;
-          const obj = storeTime[key];
-          const { closing_time: closingTime, opening_time: openingTime } = obj;
-          if (closingTime === time.to && openingTime === time.from) {
-            matchedStored[store.id] = store.id;
-          }
+      const searchFrom = Number(time.from.split(':')[0]);
+      const searchTo = Number(time.to.split(':')[0]);
+      let isTimeMatch = false;
+      // exclude services that doesn't have availability
+      if (!service.availability.length) return false;
+      for (let i = 0; i < service.availability.length; i += 1) {
+        const { from, to } = service.availability[i];
+        if (searchTo <= Number(from.split(':')[0])) {
+          isTimeMatch = false;
+        } else if (searchFrom >= Number(to.split(':')[0])) {
+          isTimeMatch = false;
+        } else {
+          isTimeMatch = true;
+          break;
         }
-      });
-      if (!matchedStored[service.store.id]) return false;
+      }
+      if (!isTimeMatch) return false;
     }
 
     if (day) {
       const matchedStored = {};
-      stores.filter(store => {
+      stores.forEach(store => {
         const { time: storeTime } = store.store_open_close;
         // eslint-disable-next-line no-restricted-syntax
         for (const key in storeTime) {

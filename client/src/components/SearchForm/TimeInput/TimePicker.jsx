@@ -19,7 +19,7 @@ class TimePickerCom extends Component {
     const convertedTime = selectedFromTime
       ? moment(selectedFromTime)
           .startOf('hour')
-          .format('h:mm a')
+          .format('HH:mm')
       : '';
     handleSearch({
       name: 'time',
@@ -36,7 +36,7 @@ class TimePickerCom extends Component {
     const convertedTime = selectedToTime
       ? moment(selectedToTime)
           .startOf('hour')
-          .format('h:mm a')
+          .format('HH:mm')
       : '';
     handleSearch({
       name: 'time',
@@ -66,11 +66,11 @@ class TimePickerCom extends Component {
             content={
               <Form className="time__duration-box" layout="inline">
                 <Form.Item className="timing__form-item" label="From">
-                  <TimePicker format="hh" onChange={this.handleFromTime} />
+                  <TimePicker format="HH" onChange={this.handleFromTime} />
                 </Form.Item>
                 <Form.Item className="timing__form-item" label="To">
                   <TimePicker
-                    format="hh"
+                    format="HH"
                     onChange={this.handleToTime}
                     disabled={!time.from}
                   />

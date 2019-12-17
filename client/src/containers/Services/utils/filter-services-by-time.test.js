@@ -2,6 +2,7 @@ import { withTimeServices } from './mockupServices/mockup-services-with-time';
 
 import { filteredWithSpecificTime } from './mockupServices/filtred-data-with-spec-time';
 
+import { stores } from './mockupServices/stores';
 import { filterServices } from './index';
 
 it('Filter services by date only', () => {
@@ -14,7 +15,11 @@ it('Filter services by date only', () => {
       to: '20:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(withTimeServices.length - 1);
 });
 
@@ -28,7 +33,11 @@ it('Filter services with specific time from 04:00 to 08:00', () => {
       to: '08:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(filteredWithSpecificTime.length);
 });
 
@@ -42,7 +51,11 @@ it('Filter services with non-available time', () => {
       to: '03:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(0);
 });
 
@@ -56,7 +69,11 @@ it('Filter services with non-available time', () => {
       to: '22:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(0);
 });
 
@@ -70,7 +87,11 @@ it('Filter services with non-available time', () => {
       to: '04:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(0);
 });
 
@@ -84,6 +105,10 @@ it('Filter services with non-available time', () => {
       to: '24:00',
     },
   };
-  const filteredServices = filterServices(withTimeServices, searchQueries);
+  const filteredServices = filterServices(
+    stores,
+    withTimeServices,
+    searchQueries
+  );
   expect(filteredServices).toHaveLength(0);
 });

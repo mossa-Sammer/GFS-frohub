@@ -1,4 +1,5 @@
 import { services, servicesByTreatment } from './mockupServices/mockServices';
+import stores from './mockupServices/stores';
 import { filterServices } from './index';
 
 describe('Filter services tests', () => {
@@ -12,7 +13,7 @@ describe('Filter services tests', () => {
       },
       date: null,
     };
-    const filteredServices = filterServices(services, searchQueries);
+    const filteredServices = filterServices(stores, services, searchQueries);
     expect(filteredServices).toHaveLength(services.length);
     expect(filteredServices).toMatchObject(services);
   });
@@ -28,7 +29,7 @@ describe('Filter services tests', () => {
       date: null,
     };
 
-    const filteredServices = filterServices(services, searchQueries);
+    const filteredServices = filterServices(stores, services, searchQueries);
     expect(filteredServices).toHaveLength(servicesByTreatment.length);
     expect(filteredServices).toMatchObject(servicesByTreatment);
   });

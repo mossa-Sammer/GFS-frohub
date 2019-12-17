@@ -37,6 +37,8 @@ class TimeInput extends Component {
 
   render() {
     const { date, from, to } = this.props;
+    const fromTime = moment(from, 'hh:mm').format('h:mm a');
+    const toTime = moment(to, 'hh:mm').format('h:mm a');
     return (
       <Collapse
         accordion
@@ -45,7 +47,7 @@ class TimeInput extends Component {
         <Panel
           className="time-box"
           header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
-            from && to ? `${from.split(' ')[0]} - ${to.split(' ')[0]}` : ''
+            from && to ? `${fromTime} - ${toTime}` : ''
           }`}
         >
           <div className="timing_container">
