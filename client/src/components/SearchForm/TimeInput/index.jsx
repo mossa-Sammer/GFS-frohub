@@ -30,6 +30,11 @@ class TimeInput extends Component {
     }
   };
 
+  // Can not select days before today
+  disabledDate = current => {
+    return current && current < moment().endOf('day');
+  };
+
   render() {
     const { date, from, to } = this.props;
     return (
@@ -61,6 +66,7 @@ class TimeInput extends Component {
                   onChange={this.handleDate}
                   placeholder="Choose Date"
                   dropdownClassName="calendar"
+                  disabledDate={this.disabledDate}
                 />
               </div>
             </div>
