@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Radio, Icon, Button } from 'antd';
+import { Radio, Icon, Button, Switch, Tooltip } from 'antd';
 
 import advancedSearchAction from './advancedSearch.actions';
 import { sortServices } from '../services.actions';
@@ -36,6 +36,11 @@ class AdvancedSearch extends Component {
     advancedSearch({ key: 'clear' });
   };
 
+  instantBook = isTrue => {
+    const { advancedSearchAction: advancedSearch } = this.props;
+    advancedSearch({ key: 'instantBook', value: isTrue });
+  };
+
   handleShowServices = () => {
     const {
       services,
@@ -48,10 +53,7 @@ class AdvancedSearch extends Component {
         visible: !visible,
       };
     });
-    sortServicesAction(services, {
-      byRate: advancedSearchQueries.byRate,
-      byService: advancedSearchQueries.byService,
-    });
+    sortServicesAction(services, advancedSearchQueries);
   };
 
   render() {
@@ -99,6 +101,23 @@ class AdvancedSearch extends Component {
                 </Radio.Group>
               </div>
             </div>
+            <div className="filter__menu-options filter__menu-instant">
+              <div className="filter_option filter_menu-instant--flex">
+                <Tooltip
+                  placement="right"
+                  title="Services you can book without waiting for beauticians approval"
+                >
+                  <label htmlFor="instantBook">Instant Booking:{'  '}</label>
+                  <Switch
+                    id="instantBook"
+                    defaultChecked
+                    className="filter_instant-booking"
+                    checked={advancedSearchQueries.instantBook}
+                    onChange={this.instantBook}
+                  />
+                </Tooltip>
+              </div>
+            </div>
             <div className="filter__menu-btns">
               <Button className="clear-btn" onClick={this.clearSort}>
                 Clear filters
@@ -119,7 +138,6 @@ class AdvancedSearch extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(5555555, state.services.filtredServices);
   const { advancedSearchQueries, services } = state;
   return {
     advancedSearchQueries,

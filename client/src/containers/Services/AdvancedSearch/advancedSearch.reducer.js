@@ -2,11 +2,13 @@ import {
   SORT_BY_RATE,
   FILTER_BY_TYPE,
   CLEAR_SORT,
+  INSTANT_BOOK,
 } from './advancedSearch.actions';
 
 const initialState = {
   byRate: null,
   byService: null,
+  instantBook: false,
 };
 
 export default (state = initialState, action) => {
@@ -21,10 +23,16 @@ export default (state = initialState, action) => {
         ...state,
         byService: action.payload,
       };
+    case INSTANT_BOOK:
+      return {
+        ...state,
+        instantBook: action.payload,
+      };
     case CLEAR_SORT:
       return {
         byRate: null,
         byService: null,
+        instantBook: false,
       };
     default:
       return state;
