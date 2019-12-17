@@ -32,7 +32,6 @@ class TimeInput extends Component {
 
   render() {
     const { date, from, to } = this.props;
-    // console.log(9999, date);
     return (
       <Collapse
         accordion

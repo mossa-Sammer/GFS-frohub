@@ -41,7 +41,6 @@ export default (state = initialState, action) => {
         ...state,
         date: action.payload.date,
         day: action.payload.day,
-        // slots: action.payload.slots,
       };
     default:
       return state;
