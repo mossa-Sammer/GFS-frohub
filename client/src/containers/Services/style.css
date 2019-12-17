@@ -10,3 +10,16 @@
 .services__statistic {
   padding: 0.8rem;
 }
+
+.services__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.services__cards > div {
+  transition: box-shadow .6s;
+}
+.services__cards > div:hover {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+}
