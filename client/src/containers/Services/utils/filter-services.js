@@ -1,9 +1,10 @@
 import geoDistance from './geo-distance';
 
-export default (services, fields) => {
-  const { treatment, location, date, time } = fields;
+export default (stores, services, fields) => {
+  const { treatment, location, date, time, day } = fields;
+
   // No search queries applied
-  if (!treatment && !location && !date && !time.to) return services;
+  if (!treatment && !location && !date && !time.to && !day) return services;
   const filteredServices = services.filter(service => {
     if (treatment && service.categories[0].id !== Number(treatment))
       return false;
@@ -38,11 +39,9 @@ export default (services, fields) => {
     if (time.to) {
       const searchFrom = Number(time.from.split(':')[0]);
       const searchTo = Number(time.to.split(':')[0]);
-
+      let isTimeMatch = false;
       // exclude services that doesn't have availability
       if (!service.availability.length) return false;
-
-      let isTimeMatch = false;
       for (let i = 0; i < service.availability.length; i += 1) {
         const { from, to } = service.availability[i];
         if (searchTo <= Number(from.split(':')[0])) {
@@ -55,6 +54,23 @@ export default (services, fields) => {
         }
       }
       if (!isTimeMatch) return false;
+    }
+
+    if (day) {
+      const matchedStored = {};
+      stores.forEach(store => {
+        const { time: storeTime } = store.store_open_close;
+        // eslint-disable-next-line no-restricted-syntax
+        for (const key in storeTime) {
+          // eslint-disable-next-line no-prototype-builtins, no-continue
+          if (!storeTime.hasOwnProperty(key)) continue;
+          const storeOpenClose = storeTime[key];
+          if (key === day.toLowerCase() && storeOpenClose.status === 'open') {
+            matchedStored[store.id] = store.id;
+          }
+        }
+      });
+      if (!matchedStored[service.store.id]) return false;
     }
     return true;
   });

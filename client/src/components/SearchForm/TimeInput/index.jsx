@@ -15,20 +15,30 @@ class TimeInput extends Component {
     const { _isAMomentObject } = e;
     if (_isAMomentObject) {
       const convertedDate = moment(e).format('YYYY-MM-DD');
+      const day = moment(e).format('dddd');
       handleSearch({
         name: 'date',
         value: convertedDate,
+        day,
       });
     } else {
       handleSearch({
         name: 'date',
         value: '',
+        day: '',
       });
     }
   };
 
+  // Can not select days before today
+  disabledDate = current => {
+    return current && current < moment().endOf('day');
+  };
+
   render() {
     const { date, from, to } = this.props;
+    const fromTime = moment(from, 'hh:mm').format('h:mm a');
+    const toTime = moment(to, 'hh:mm').format('h:mm a');
     return (
       <Collapse
         accordion
@@ -37,7 +47,7 @@ class TimeInput extends Component {
         <Panel
           className="time-box"
           header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
-            from && to ? `${from.split(' ')[0]} - ${to.split(' ')[0]}` : ''
+            from && to ? `${fromTime} - ${toTime}` : ''
           }`}
         >
           <div className="timing_container">
@@ -58,6 +68,7 @@ class TimeInput extends Component {
                   onChange={this.handleDate}
                   placeholder="Choose Date"
                   dropdownClassName="calendar"
+                  disabledDate={this.disabledDate}
                 />
               </div>
             </div>

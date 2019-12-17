@@ -16,7 +16,7 @@ const initialState = {
     to: '',
   },
   date: null,
-  slots: [],
+  day: '',
 };
 
 export default (state = initialState, action) => {
@@ -39,8 +39,8 @@ export default (state = initialState, action) => {
     case DATE_INPUT_CHANGE:
       return {
         ...state,
-        date: action.payload,
-        slots: action.payload.slots,
+        date: action.payload.date,
+        day: action.payload.day,
       };
     default:
       return state;

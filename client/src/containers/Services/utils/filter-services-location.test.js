@@ -3,6 +3,7 @@ import {
   servicesByLocation,
   servicesByLocation2,
 } from './mockupServices/mock-services-location';
+import stores from './mockupServices/stores';
 import { filterServices } from './index';
 
 describe('Filter services tests "location"', () => {
@@ -20,7 +21,7 @@ describe('Filter services tests "location"', () => {
       },
       date: null,
     };
-    const filteredServices = filterServices(services, searchQueries);
+    const filteredServices = filterServices(stores, services, searchQueries);
     expect(filteredServices).toHaveLength(servicesByLocation.length);
     expect(filteredServices).toMatchObject(servicesByLocation);
   });
@@ -39,7 +40,7 @@ describe('Filter services tests "location"', () => {
       },
       date: null,
     };
-    const filteredServices = filterServices(services, searchQueries);
+    const filteredServices = filterServices(stores, services, searchQueries);
     expect(filteredServices).toHaveLength(servicesByLocation2.length);
     expect(filteredServices).toMatchObject(servicesByLocation2);
   });

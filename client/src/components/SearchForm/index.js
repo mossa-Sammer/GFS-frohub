@@ -20,11 +20,12 @@ class SearchForm extends Component {
       searchQueries,
       filterServicesAction: filterServices,
       services,
+      stores,
     } = this.props;
     if (status === 'homePage') {
       history.push('/services');
     } else {
-      filterServices(services, searchQueries);
+      filterServices(stores, services, searchQueries);
     }
   };
 
@@ -63,6 +64,7 @@ class SearchForm extends Component {
 const mapStateToProps = state => {
   return {
     searchQueries: state.searchQueries,
+    stores: state.services.stores,
     services: state.services.services,
   };
 };
