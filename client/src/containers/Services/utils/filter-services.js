@@ -37,7 +37,7 @@ export default (stores, services, fields) => {
     }
 
     if (time.to) {
-      let matchedStored = {};
+      const matchedStored = {};
       stores.filter(store => {
         const { time: storeTime } = store.store_open_close;
         // eslint-disable-next-line no-restricted-syntax
@@ -47,45 +47,28 @@ export default (stores, services, fields) => {
           const obj = storeTime[key];
           const { closing_time: closingTime, opening_time: openingTime } = obj;
           if (closingTime === time.to && openingTime === time.from) {
-            matchedStored = {
-              id: store.id,
-            };
+            matchedStored[store.id] = store.id;
           }
         }
       });
-      if (matchedStored.id !== service.store.id) return false;
+      if (!matchedStored[service.store.id]) return false;
     }
 
     if (day) {
       const matchedStored = {};
-      const filteredS = stores.filter(store => {
+      stores.filter(store => {
         const { time: storeTime } = store.store_open_close;
-        // console.log(999, storeTime);
         // eslint-disable-next-line no-restricted-syntax
         for (const key in storeTime) {
           // eslint-disable-next-line no-prototype-builtins, no-continue
           if (!storeTime.hasOwnProperty(key)) continue;
           const storeOpenClose = storeTime[key];
-          // console.log(9999, storeOpenClose.status);
-          // console.log(1111, key);
           if (key === day.toLowerCase() && storeOpenClose.status === 'open') {
-            // if (storeOpenClose.status === 'open') {
-            // matchedStored = {
-            //   id: store.id,
-            // };
-            // matchedStored.id = store.id;
             matchedStored[store.id] = store.id;
           }
         }
-        if (!matchedStored[store.id]) return false;
-        // if (matchedStored[store.id] !== service.store.id) {
-        //   console.log(matchedStored);
-        //   console.log(7777777, service.store.id);
-        //   return false;
-        // }
       });
-      // if (matchedStored.id !== service.store.id) return false;
-      return filteredS;
+      if (!matchedStored[service.store.id]) return false;
     }
     return true;
   });
