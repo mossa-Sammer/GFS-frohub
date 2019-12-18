@@ -4,7 +4,7 @@ import './style.css';
 
 export default class ServiceCard extends Component {
   render() {
-    const { data } = this.props;
+    const { data, storeType } = this.props;
     const imgSrc = data.images.length
       ? data.images[0].src
       : 'https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/05/09151932/woocommerce-placeholder-300x300.png';
@@ -16,6 +16,7 @@ export default class ServiceCard extends Component {
         }
       >
         <h2 className="service__title">{data.name}</h2>
+        <span className="service__type">{storeType}</span>
         <span className="service__price">
           £ {Number.parseFloat(data.display_cost).toFixed(2)}
         </span>

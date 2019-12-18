@@ -2,7 +2,7 @@
   margin: 1.5rem !important;
   text-align: center;
   border: none !important;
-  height: 470px !important;
+  height: 500px !important;
   width: 298px;
   border: 1px solid rgba(0,0,0,0) !important;
   box-shadow: 0 0 2px 0 rgba(0,0,0,.15);
@@ -21,7 +21,7 @@
   width: 100%;
 }
 .service__card .ant-card-body {
-  height: calc(170px - 3rem);
+  height: calc(200px - 3rem);
   padding: 0;
   margin: 0 1rem;
 }
@@ -32,6 +32,15 @@
   line-height: 1rem;
   margin-bottom: 0.5rem;
 }
+
+.service__type {
+  display: block;
+  color: rgba(85, 85, 85, 0.8);
+  font-size: 0.9rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .service__title {
   margin: 0.5rem 0;
   font-size: 0.9rem;
