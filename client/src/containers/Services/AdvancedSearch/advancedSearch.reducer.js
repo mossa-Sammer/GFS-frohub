@@ -6,8 +6,8 @@ import {
 } from './advancedSearch.actions';
 
 const initialState = {
-  byRate: null,
-  byService: null,
+  sortBy: null,
+  serviceType: null,
   instantBook: false,
 };
 
@@ -16,12 +16,12 @@ export default (state = initialState, action) => {
     case SORT_BY_RATE:
       return {
         ...state,
-        byRate: action.payload,
+        sortBy: action.payload,
       };
     case FILTER_BY_TYPE:
       return {
         ...state,
-        byService: action.payload,
+        serviceType: action.payload,
       };
     case INSTANT_BOOK:
       return {
@@ -30,8 +30,8 @@ export default (state = initialState, action) => {
       };
     case CLEAR_SORT:
       return {
-        byRate: null,
-        byService: null,
+        sortBy: null,
+        serviceType: null,
         instantBook: false,
       };
     default:

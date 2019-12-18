@@ -17,7 +17,7 @@ class ServicesPage extends Component {
 
   render() {
     const {
-      services: { loading, error, filtredServices },
+      services: { loading, error, sortedServices },
     } = this.props;
     return (
       <div>
@@ -31,12 +31,12 @@ class ServicesPage extends Component {
               <div className="services__header">
                 <AdvancedSearch />
                 <p className="services__statistic">
-                  Choose from {filtredServices.length} venues offering hair and
+                  Choose from {sortedServices.length} venues offering hair and
                   beauty Salons in London
                 </p>
               </div>
               <div className="services__cards">
-                {filtredServices.map(service => (
+                {sortedServices.map(service => (
                   <div key={service.id}>
                     <ServiceCard data={service} />
                   </div>
@@ -50,10 +50,10 @@ class ServicesPage extends Component {
   }
 }
 
-const mapStateToProps = ({ searchQueries, services, filtredServices }) => ({
+const mapStateToProps = ({ searchQueries, services, sortedServices }) => ({
   services,
   searchQueries,
-  filtredServices,
+  sortedServices,
 });
 
 export default connect(mapStateToProps, { getServices: getServicesAction })(

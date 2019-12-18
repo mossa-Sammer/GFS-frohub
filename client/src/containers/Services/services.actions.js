@@ -46,8 +46,8 @@ export const filterServices = (stores, services, fields) => {
   };
 };
 
-export const sortServices = (services, field) => {
-  const sortedServices = sortServicesUtil(services, field);
+export const sortServices = (stores, services, field) => {
+  const sortedServices = sortServicesUtil(stores, services, field);
   return {
     type: SERVICES_SORT,
     payload: sortedServices,
