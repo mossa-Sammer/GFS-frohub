@@ -46,6 +46,7 @@ class AdvancedSearch extends Component {
       services,
       advancedSearchQueries,
       sortServices: sortServicesAction,
+      stores,
     } = this.props;
     this.setState(prevState => {
       const { visible } = prevState;
@@ -53,7 +54,7 @@ class AdvancedSearch extends Component {
         visible: !visible,
       };
     });
-    sortServicesAction(services, advancedSearchQueries);
+    sortServicesAction(stores, services, advancedSearchQueries);
   };
 
   render() {
@@ -68,7 +69,7 @@ class AdvancedSearch extends Component {
               <div>
                 <Radio.Group
                   onChange={this.handleSortRated}
-                  value={advancedSearchQueries.byRate}
+                  value={advancedSearchQueries.sortBy}
                 >
                   <div className="filter_option">
                     <Radio value="highestRate">Highest Rate</Radio>
@@ -87,7 +88,7 @@ class AdvancedSearch extends Component {
               <div>
                 <Radio.Group
                   onChange={this.sortByType}
-                  value={advancedSearchQueries.byService}
+                  value={advancedSearchQueries.serviceType}
                 >
                   <div className="filter_option">
                     <Radio value="mobile">Mobile Beauty</Radio>
@@ -142,6 +143,7 @@ const mapStateToProps = state => {
   return {
     advancedSearchQueries,
     services: services.filtredServices,
+    stores: services.stores,
   };
 };
 

@@ -11,6 +11,7 @@ const initialState = {
   loading: false,
   services: [],
   filtredServices: [],
+  sortedServices: [],
   stores: [],
   err: null,
 };
@@ -36,16 +37,18 @@ export default (state = initialState, action) => {
         loading: false,
         services: action.payload.services,
         filtredServices: action.payload.filtredServices,
+        sortedServices: action.payload.filtredServices,
       };
     case SERVICES_FILTER:
       return {
         ...state,
         filtredServices: action.payload,
+        sortedServices: action.payload,
       };
     case SERVICES_SORT:
       return {
         ...state,
-        filtredServices: action.payload,
+        sortedServices: action.payload,
       };
     case SERVICES_ERROR:
       return {
