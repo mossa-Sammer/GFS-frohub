@@ -52,7 +52,8 @@
 }
 
 .filter__menu-options:nth-child(2),
-.filter__menu-btns {
+.filter__menu-btns,
+.filter__menu-instant {
   padding-top: 2rem;
 }
 .filter__menu-options {
@@ -71,3 +72,16 @@
   color: #56A2FD !important;
 }
 
+.filter_instant-booking.ant-switch-checked {
+  background-color: var(--primary-color);
+}
+
+.filter_menu-instant--flex > span {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 22px;
+}
+
+.filter_menu-instant--flex label {
+  cursor: pointer;
+}

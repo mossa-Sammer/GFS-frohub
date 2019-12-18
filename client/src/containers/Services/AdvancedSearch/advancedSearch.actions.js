@@ -1,6 +1,7 @@
 export const SORT_BY_RATE = 'SORT_BY_RATE';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const CLEAR_SORT = 'CLEAR_SORT';
+export const INSTANT_BOOK = 'INSTANT_BOOK';
 
 export default sortObj => {
   switch (sortObj.key) {
@@ -12,6 +13,11 @@ export default sortObj => {
     case 'sortByType':
       return {
         type: FILTER_BY_TYPE,
+        payload: sortObj.value,
+      };
+    case 'instantBook':
+      return {
+        type: INSTANT_BOOK,
         payload: sortObj.value,
       };
     case 'clear':

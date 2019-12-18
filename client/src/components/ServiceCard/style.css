@@ -3,15 +3,14 @@
   text-align: center;
   border: none !important;
   min-height: 390px !important;
+  width: 298px;
 }
 
 .service__img {
   display: inline-block !important;
+  height: 376px !important;
 }
 
-.defautl-img {
-  min-height: 342px !important;
-}
 .price {
   display: block;
   padding: 1rem;
@@ -23,6 +22,7 @@
   margin: 0;
   font-size: 1em;
   color: rgba(85, 85, 85, 0.8);
+  height: 45px;
 }
 
 .service-link {
