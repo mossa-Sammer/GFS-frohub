@@ -15,6 +15,22 @@ class ServicesPage extends Component {
     getServices(searchQueries);
   }
 
+  getStoreType = storeId => {
+    const {
+      services: { stores },
+    } = this.props;
+    let storeType;
+
+    for (let i = 0; i < stores.length; i += 1) {
+      const store = stores[i];
+      if (store.id === storeId) {
+        storeType = store.categories[0].name;
+        break;
+      }
+    }
+    return storeType;
+  };
+
   render() {
     const {
       services: { loading, error, sortedServices },
@@ -38,7 +54,10 @@ class ServicesPage extends Component {
               <div className="services__cards">
                 {sortedServices.map(service => (
                   <div key={service.id}>
-                    <ServiceCard data={service} />
+                    <ServiceCard
+                      data={service}
+                      storeType={this.getStoreType(service.store.id)}
+                    />
                   </div>
                 ))}
               </div>
