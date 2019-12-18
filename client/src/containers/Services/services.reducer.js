@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case SERVICES_STORES:
       return {
         ...state,
-        loading: false,
+        loading: true,
         err: null,
         stores: action.payload,
       };
