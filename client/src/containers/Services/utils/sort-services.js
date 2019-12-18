@@ -2,7 +2,7 @@
 export const advancedSearch = (stores, services, advancedQueries) => {
   const filteredServices = services.filter(service => {
     if (advancedQueries.instantBook) {
-      // check for instant book
+      if (service.requires_confirmation) return false;
     }
     if (advancedQueries.serviceType) {
       const matchedStores = {};
