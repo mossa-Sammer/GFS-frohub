@@ -32,7 +32,7 @@ class TimeInput extends Component {
 
   // Can not select days before today
   disabledDate = current => {
-    return current && current < moment().endOf('day');
+    return current && current < moment().startOf('day');
   };
 
   render() {

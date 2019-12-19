@@ -47,8 +47,7 @@ class ServicesPage extends Component {
               <div className="services__header">
                 <AdvancedSearch />
                 <p className="services__statistic">
-                  Choose from {sortedServices.length} venues offering hair and
-                  beauty Salons in London
+                  Show all {sortedServices.length}
                 </p>
               </div>
               <div className="services__cards">

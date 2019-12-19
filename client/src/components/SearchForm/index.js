@@ -11,6 +11,7 @@ import LocationtInput from './LocationInput';
 import TimeInput from './TimeInput';
 
 import './style.css';
+import './media.css';
 
 class SearchForm extends Component {
   handleSearch = () => {

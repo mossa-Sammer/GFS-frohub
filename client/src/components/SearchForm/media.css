@@ -1,0 +1,89 @@
+@media only screen and (max-width: 768px) {
+  .form__container {
+    height: 412px;
+    padding: 0 1rem;
+    width: 768px;
+  }
+  .title {
+    font-size: 22px;
+    padding: 9rem 0 3rem 2rem;
+  }
+  .ant-calendar-picker-container.calendar {
+    left: 342px !important;
+  }
+  .ant-popover {
+    left: 28px !important;
+  }
+  .home-search__form.ant-form{
+    padding: 2rem !important;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait){
+  .form__container {
+    padding: 0 2rem !important;
+  }
+  .title {
+    padding: 8rem 0 3rem 5rem;
+    font-size: 36px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .services__container {
+    padding: 0;
+    width: 768px !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .title {
+    display: none;
+  }
+  .ant-form.services-search__form{
+    margin: auto;
+    width: 453px !important;
+    padding: 0 !important;
+  }
+  .home-search__form {
+    width: 519px !important;
+    margin: auto !important;
+  }
+  .ant-popover {
+    left: 210px !important;
+  }
+  .ant-calendar-picker-container.calendar {
+    left: 470px !important;
+  }
+  .treatment__input,
+  .location__input,
+  .ant-collapse,
+  .search-btn {
+    width: 450px !important;
+  
+  }
+  .treatment__input input,
+  .location__input input {
+    height: 80px !important;
+  }
+  .time-box .ant-collapse-content
+    {
+    width: 450px !important;
+  }
+  .ant-popover-placement-bottom {
+    width: 430px !important;
+    left: 60% !important;
+  }
+  .timing-btn,
+  .date__container .picker:after {
+    width: 185px !important;
+  }
+  .time__duration-box {
+    width: 425px !important;
+    padding-left: 2rem !important;
+  }
+  .timing__form-item {
+    margin: 0 !important;
+  }
+}
+
