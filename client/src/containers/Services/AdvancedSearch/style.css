@@ -21,8 +21,8 @@
 
 .filter__menu {
   position: absolute;
-  right: 250px !important;
-  top: 250px !important;
+  right: 220px !important;
+  top: 100px !important;
   width: 400px;
   border: 1px solid #eee;
   min-height: 300px;
@@ -31,6 +31,16 @@
   padding: 2rem;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,.5);
   border-radius: 2px;
+  z-index: 2;
+}
+
+.filter__background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }
 
 .filter_option {
