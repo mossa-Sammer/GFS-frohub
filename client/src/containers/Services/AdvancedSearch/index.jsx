@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Radio, Icon, Button, Switch, Tooltip } from 'antd';
@@ -12,6 +13,14 @@ class AdvancedSearch extends Component {
     visible: false,
   };
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleCloseMenu);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleCloseMenu);
+  }
+
   handleVisibleSelect = () => {
     this.setState(prevState => {
       const { visible } = prevState;
@@ -19,6 +28,12 @@ class AdvancedSearch extends Component {
         visible: !visible,
       };
     });
+  };
+
+  handleCloseMenu = e => {
+    if (e.type === 'click' || e.key === 'Escape') {
+      this.setState({ visible: false });
+    }
   };
 
   handleSortRated = e => {
@@ -63,71 +78,81 @@ class AdvancedSearch extends Component {
     return (
       <div className="filter__container">
         {visible && (
-          <div className="filter__menu">
-            <div className="filter__menu-options">
-              <span className="filter-tilte">Sort by:</span>
-              <div>
-                <Radio.Group
-                  onChange={this.handleSortRated}
-                  value={advancedSearchQueries.sortBy}
-                >
-                  <div className="filter_option">
-                    <Radio value="highestRate">Highest Rate</Radio>
-                  </div>
-                  <div className="filter_option">
-                    <Radio value="highestPrice">Highest Price</Radio>
-                  </div>
-                  <div className="filter_option">
-                    <Radio value="lowestPrice">Lowest Price</Radio>
-                  </div>
-                </Radio.Group>
+          <>
+            <div className="filter__menu">
+              <div className="filter__menu-options">
+                <span className="filter-tilte">Sort by:</span>
+                <div>
+                  <Radio.Group
+                    onChange={this.handleSortRated}
+                    value={advancedSearchQueries.sortBy}
+                  >
+                    <div className="filter_option">
+                      <Radio value="highestRate">Highest Rate</Radio>
+                    </div>
+                    <div className="filter_option">
+                      <Radio value="highestPrice">Highest Price</Radio>
+                    </div>
+                    <div className="filter_option">
+                      <Radio value="lowestPrice">Lowest Price</Radio>
+                    </div>
+                  </Radio.Group>
+                </div>
+              </div>
+              <div className="filter__menu-options">
+                <span className="filter-tilte">Service type:</span>
+                <div>
+                  <Radio.Group
+                    onChange={this.sortByType}
+                    value={advancedSearchQueries.serviceType}
+                  >
+                    <div className="filter_option">
+                      <Radio value="mobile">Mobile Beauty</Radio>
+                    </div>
+                    <div className="filter_option">
+                      <Radio value="home">Home Based</Radio>
+                    </div>
+                    <div className="filter_option">
+                      <Radio value="salon">Salon Based</Radio>
+                    </div>
+                  </Radio.Group>
+                </div>
+              </div>
+              <div className="filter__menu-options filter__menu-instant">
+                <div className="filter_option filter_menu-instant--flex">
+                  <Tooltip
+                    placement="right"
+                    title="Services you can book without waiting for beauticians approval"
+                  >
+                    <label htmlFor="instantBook">Instant Booking:{'  '}</label>
+                    <Switch
+                      id="instantBook"
+                      defaultChecked
+                      className="filter_instant-booking"
+                      checked={advancedSearchQueries.instantBook}
+                      onChange={this.instantBook}
+                    />
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="filter__menu-btns">
+                <Button className="clear-btn" onClick={this.clearSort}>
+                  Clear filters
+                </Button>
+                <Button className="show-btn" onClick={this.handleShowServices}>
+                  Show results
+                </Button>
               </div>
             </div>
-            <div className="filter__menu-options">
-              <span className="filter-tilte">Service type:</span>
-              <div>
-                <Radio.Group
-                  onChange={this.sortByType}
-                  value={advancedSearchQueries.serviceType}
-                >
-                  <div className="filter_option">
-                    <Radio value="mobile">Mobile Beauty</Radio>
-                  </div>
-                  <div className="filter_option">
-                    <Radio value="home">Home Based</Radio>
-                  </div>
-                  <div className="filter_option">
-                    <Radio value="salon">Salon Based</Radio>
-                  </div>
-                </Radio.Group>
-              </div>
-            </div>
-            <div className="filter__menu-options filter__menu-instant">
-              <div className="filter_option filter_menu-instant--flex">
-                <Tooltip
-                  placement="right"
-                  title="Services you can book without waiting for beauticians approval"
-                >
-                  <label htmlFor="instantBook">Instant Booking:{'  '}</label>
-                  <Switch
-                    id="instantBook"
-                    defaultChecked
-                    className="filter_instant-booking"
-                    checked={advancedSearchQueries.instantBook}
-                    onChange={this.instantBook}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-            <div className="filter__menu-btns">
-              <Button className="clear-btn" onClick={this.clearSort}>
-                Clear filters
-              </Button>
-              <Button className="show-btn" onClick={this.handleShowServices}>
-                Show results
-              </Button>
-            </div>
-          </div>
+            <div
+              id="background"
+              onClick={this.handleCloseMenu}
+              className="filter__background"
+              role="button"
+              tabIndex={-1}
+              label="filter-background"
+            />
+          </>
         )}
         <Button className="filter-btn" onClick={this.handleVisibleSelect}>
           <Icon type="swap" />
