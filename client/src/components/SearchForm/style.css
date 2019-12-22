@@ -19,7 +19,7 @@
 
 .treatment__input,
 .location__input {
-  width: 342px;
+  width: 100% !important;
 }
 
 .treatment__input .ant-select-lg .ant-select-selection--single,
