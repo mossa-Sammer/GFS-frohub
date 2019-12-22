@@ -1,0 +1,6 @@
+@media only screen and (max-width: 425px) {
+  .filter__menu {
+    right: 9px !important;
+    top: 320px !important;
+  }
+}
