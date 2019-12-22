@@ -12,7 +12,9 @@ export default class ServiceCard extends Component {
       <Card
         className="service__card"
         cover={
-          <img src={imgSrc} alt="frohub service" className="service__img" />
+          <a href={data.permalink} rel="noopener noreferrer" target="_blank">
+            <img src={imgSrc} alt="frohub service" className="service__img" />
+          </a>
         }
       >
         <h2 className="service__title">{data.name}</h2>
