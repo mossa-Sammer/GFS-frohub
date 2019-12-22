@@ -77,6 +77,18 @@
   width: 40%;
 }
 
+.ant-time-picker-panel-select ul {
+  width: 112px !important;
+}
+
+.ant-time-picker-panel-select li {
+  padding-left: 45px !important;
+}
+
+.ant-calendar-input-wrap {
+  display: none;
+}
+
 .timing-btn {
   width: 140px !important;
   height: 40px !important;
@@ -100,4 +112,17 @@
 
 .time-box {
   height: 45px !important;
+}
+
+.timing__container * {
+  z-index: 2;
+}
+
+.time__background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }

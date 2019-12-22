@@ -31,24 +31,33 @@ class TimePickerCom extends Component {
   };
 
   handleToTime = selectedToTime => {
-    const { time, searchAction: handleSearch } = this.props;
+    const { time, searchAction: handleSearch, closeCollapse } = this.props;
     const { from } = time;
     const convertedTime = selectedToTime
       ? moment(selectedToTime)
           .startOf('hour')
           .format('HH:mm')
       : '';
-    handleSearch({
-      name: 'time',
-      value: {
-        from,
-        to: convertedTime,
-      },
+    closeCollapse(null, () => {
+      handleSearch({
+        name: 'time',
+        value: {
+          from,
+          to: convertedTime,
+        },
+      });
     });
   };
 
   render() {
-    const { time } = this.props;
+    const {
+      time,
+      timeVisible,
+      toOpen,
+      handleOpenChange,
+      handleTimePopover,
+    } = this.props;
+
     return (
       <div className="time">
         <Icon className="picker-icon time-icon" type="clock-circle" />
@@ -63,6 +72,8 @@ class TimePickerCom extends Component {
           <Popover
             className="time__popover"
             placement="bottom"
+            visible={timeVisible}
+            onClick={handleTimePopover}
             content={
               <Form className="time__duration-box" layout="inline">
                 <Form.Item className="timing__form-item" label="From">
@@ -73,6 +84,8 @@ class TimePickerCom extends Component {
                     format="HH"
                     onChange={this.handleToTime}
                     disabled={!time.from}
+                    onOpenChange={handleOpenChange}
+                    open={toOpen}
                   />
                 </Form.Item>
               </Form>

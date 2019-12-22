@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Collapse, Button, DatePicker, Icon } from 'antd';
@@ -10,6 +11,12 @@ import './style.css';
 
 const { Panel } = Collapse;
 class TimeInput extends Component {
+  state = {
+    visible: false,
+    timeVisible: false,
+    toOpen: false,
+  };
+
   handleDate = e => {
     const { searchAction: handleSearch } = this.props;
     const { _isAMomentObject } = e;
@@ -35,22 +42,43 @@ class TimeInput extends Component {
     return current && current < moment().startOf('day');
   };
 
+  toggleCollapse = () => {
+    this.setState(({ visible }) => ({ visible: !visible }));
+  };
+
+  closeCollapse = (e, cb) => {
+    this.setState({ visible: false, timeVisible: false, toOpen: false }, cb);
+  };
+
+  handleOpenChange = open => {
+    this.setState({ toOpen: open });
+  };
+
+  handleTimePopover = () => {
+    this.setState(({ timeVisible }) => ({ timeVisible: !timeVisible }));
+  };
+
   render() {
     const { date, from, to } = this.props;
+    const { visible, timeVisible, toOpen } = this.state;
+
     const fromTime = moment(from, 'hh:mm').format('h:mm a');
     const toTime = moment(to, 'hh:mm').format('h:mm a');
     return (
       <Collapse
         accordion
         expandIcon={() => <Icon className="picker-icon" type="calendar" />}
+        activeKey={visible ? 'time' : ''}
+        onChange={this.toggleCollapse}
       >
         <Panel
           className="time-box"
           header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
             from && to ? `${fromTime} - ${toTime}` : ''
           }`}
+          key="time"
         >
-          <div className="timing_container">
+          <div className="timing__container">
             <div>
               <Icon className="picker-icon date-icon" type="calendar" />
               <span className="date-title">Choose Date</span>
@@ -72,8 +100,21 @@ class TimeInput extends Component {
                 />
               </div>
             </div>
-            <TimePicker />
+            <TimePicker
+              closeCollapse={this.closeCollapse}
+              handleOpenChange={this.handleOpenChange}
+              handleTimePopover={this.handleTimePopover}
+              timeVisible={timeVisible}
+              toOpen={toOpen}
+            />
           </div>
+          <div
+            onClick={this.closeCollapse}
+            className="time__background"
+            role="button"
+            tabIndex={-1}
+            label="time-background"
+          />
         </Panel>
       </Collapse>
     );
