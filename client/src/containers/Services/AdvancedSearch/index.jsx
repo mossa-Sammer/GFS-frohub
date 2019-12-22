@@ -7,6 +7,7 @@ import advancedSearchAction from './advancedSearch.actions';
 import { sortServices } from '../services.actions';
 
 import './style.css';
+import './media.css';
 
 class AdvancedSearch extends Component {
   state = {
