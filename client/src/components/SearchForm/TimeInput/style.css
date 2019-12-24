@@ -30,8 +30,11 @@
   font-size: 20px !important;
 }
 
+.timing__close {
+  display: none !important;
+}
+
 .ant-calendar-picker-container.calendar {
-  left: 480px !important;
   top: 300px !important;
 }
 

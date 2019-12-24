@@ -8,6 +8,7 @@ import TimePicker from './TimePicker';
 import searchAction from '../search.actions';
 
 import './style.css';
+import './media.css';
 
 const { Panel } = Collapse;
 class TimeInput extends Component {
@@ -58,6 +59,15 @@ class TimeInput extends Component {
     this.setState(({ timeVisible }) => ({ timeVisible: !timeVisible }));
   };
 
+  handleVisible = () => {
+    this.setState(prevState => {
+      const { visible } = prevState;
+      return {
+        visible: !visible,
+      };
+    });
+  };
+
   render() {
     const { date, from, to } = this.props;
     const { visible, timeVisible, toOpen } = this.state;
@@ -79,6 +89,11 @@ class TimeInput extends Component {
           key="time"
         >
           <div className="timing__container">
+            <Icon
+              type="close"
+              className="timing__close"
+              onClick={this.handleVisible}
+            />
             <div>
               <Icon className="picker-icon date-icon" type="calendar" />
               <span className="date-title">Choose Date</span>
