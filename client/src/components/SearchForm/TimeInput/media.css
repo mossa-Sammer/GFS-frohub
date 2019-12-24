@@ -11,13 +11,12 @@
     left: 0 !important;
     z-index: 22;
   }
-  .timing__close {
-    display: block;
+  .timing__close.anticon {
+    display: inline-block;
     float: right;
     height: 20px;
     width: 20px;
-    border: 1px solid #333;
-    border-radius: 50%;
+    font-size: 18px;
   }
   .ant-calendar-picker-container.calendar {
     left: 40px !important;
