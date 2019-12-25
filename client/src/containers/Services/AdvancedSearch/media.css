@@ -1,6 +1,28 @@
 @media only screen and (max-width: 425px) {
   .filter__menu {
-    right: 9px !important;
-    top: 320px !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .ant-radio {
+    left: 325px;
+  }
+
+  .ant-tooltip.ant-tooltip-placement-right {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .ant-radio {
+    left: 280px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .ant-radio {
+    left: 240px;
   }
 }
