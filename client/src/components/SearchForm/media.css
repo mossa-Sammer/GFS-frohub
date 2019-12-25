@@ -8,14 +8,8 @@
     font-size: 22px;
     padding: 9rem 0 3rem 2rem;
   }
-  .ant-calendar-picker-container.calendar {
-    left: 342px !important;
-  }
   .ant-popover {
     left: 28px !important;
-  }
-  .home-search__form.ant-form{
-    padding: 2rem !important;
   }
 }
 
@@ -53,21 +47,21 @@
   .ant-popover {
     left: 210px !important;
   }
-  .ant-calendar-picker-container.calendar {
-    left: 470px !important;
-  }
 
-  .treatment__input input,
-  .location__input input {
-    height: 80px !important;
-  }
   .ant-popover-placement-bottom {
-    left: 60% !important;
+    left: 15px !important;
   }
   .time__duration-box {
-    padding-left: 2rem !important;
+    padding: 0 !important;
   }
   .timing__form-item {
     margin: 0 !important;
   }
+  .from__time {
+    margin-left: 1rem !important;
+  }
+  .search__form {
+    margin: 0rem !important;
+    width: 100% !important;
+}
 }

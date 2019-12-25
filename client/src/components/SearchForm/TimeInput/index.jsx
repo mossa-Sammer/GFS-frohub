@@ -8,6 +8,7 @@ import TimePicker from './TimePicker';
 import searchAction from '../search.actions';
 
 import './style.css';
+import './media.css';
 
 const { Panel } = Collapse;
 class TimeInput extends Component {
@@ -58,6 +59,24 @@ class TimeInput extends Component {
     this.setState(({ timeVisible }) => ({ timeVisible: !timeVisible }));
   };
 
+  handleVisible = () => {
+    this.setState(prevState => {
+      const { visible } = prevState;
+      return {
+        visible: !visible,
+      };
+    });
+  };
+
+  clearTimeDate = () => {
+    const { searchAction: handleSearch } = this.props;
+    handleSearch({
+      name: 'date',
+      value: '',
+      day: '',
+    });
+  };
+
   render() {
     const { date, from, to } = this.props;
     const { visible, timeVisible, toOpen } = this.state;
@@ -79,6 +98,19 @@ class TimeInput extends Component {
           key="time"
         >
           <div className="timing__container">
+            <div>
+              <Button className="close__btn" onClick={this.handleVisible}>
+                Close
+              </Button>
+              <Icon
+                type="close"
+                className="timing__close"
+                onClick={this.clearTimeDate}
+              />
+              <span className="selected__time">{`${
+                date ? `${moment(date).format('MM/DD')}` : 'Any Date'
+              } ${from && to ? `${fromTime} - ${toTime}` : ''}`}</span>
+            </div>
             <div>
               <Icon className="picker-icon date-icon" type="calendar" />
               <span className="date-title">Choose Date</span>

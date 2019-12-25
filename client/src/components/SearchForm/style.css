@@ -13,8 +13,7 @@
 
 .search__form {
   width: 400px;
-  min-height: 300px;
-  padding: 3.5rem 1.8rem 0 1.8rem !important;
+  margin-top: 3rem !important;
 }
 
 .treatment__input,
@@ -48,3 +47,4 @@
 .location__input .ant-select-selection__rendered {
   height: 100% !important;
 }
+
