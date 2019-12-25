@@ -12,15 +12,41 @@
     z-index: 22;
   }
   .timing__close.anticon {
-    display: inline-block;
+    display: inline;
     float: right;
-    height: 20px;
-    width: 20px;
-    font-size: 18px;
+    font-size: 14px;
+    position: fixed;
+    top: 5.2rem;
+    right: 41px;
   }
   .ant-calendar-picker-container.calendar {
-    left: 40px !important;
-    top: 110px !important;
+    left: 125px !important;
+    top: 230px !important;
+  }
+  .selected__time {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(51, 51, 51, .2);
+    font-size: 16px;
+    color: rgba(51, 51, 51, .6);
+    margin: 0.8rem 0;
+  }
+  .timing-btn,
+  .date__container .picker:after {
+    width: 185px !important;
+  }
+  .close__btn.ant-btn {
+    display: block;
+    color: var(--primary-color);
+    border: none;
+    font-size: 16px;
+  }
+  .timing__form-item.to__time.ant-row.ant-form-item {
+    margin-left: 2rem !important;
+  }
+  .ant-popover.ant-popover-placement-bottom {
+    left: 56px !important;
   }
 }
 

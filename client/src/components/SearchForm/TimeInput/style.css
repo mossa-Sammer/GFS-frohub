@@ -10,7 +10,9 @@
   width: 120px !important;
   margin-left: 20px;
 }
-
+.close__btn.ant-btn {
+  display: none;
+}
 .date-title,
 .time-title {
   display: inline-block;
@@ -31,6 +33,10 @@
 }
 
 .timing__close.anticon {
+  display: none;
+}
+
+.selected__time {
   display: none;
 }
 
