@@ -49,6 +49,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         sortedServices: action.payload,
+        loading: false,
       };
     case SERVICES_ERROR:
       return {

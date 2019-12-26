@@ -46,10 +46,36 @@ export const filterServices = (stores, services, fields) => {
   };
 };
 
-export const sortServices = (stores, services, field) => {
-  const sortedServices = sortServicesUtil(stores, services, field);
-  return {
-    type: SERVICES_SORT,
-    payload: sortedServices,
-  };
+export const sortServices = (stores, services, field) => async dispatch => {
+  try {
+    let newServices = services;
+
+    if (field.sortBy) {
+      const orderby = {
+        highestRate: 'rating',
+        highestPrice: 'price&order=desc',
+        lowestPrice: 'price&order=asc',
+      };
+      const url = `https://frohub.com/wp-json/wc-bookings/v1/products?orderby=${
+        orderby[field.sortBy]
+      }&per_page=100`;
+      dispatch({
+        type: SERVICES_LOADING,
+      });
+      const { data: orderedServices } = await axios.get(url);
+      newServices = sortServicesUtil(stores, orderedServices, field);
+    }
+
+    const sortedServices = sortServicesUtil(stores, newServices, field);
+
+    dispatch({
+      type: SERVICES_SORT,
+      payload: sortedServices,
+    });
+  } catch (err) {
+    dispatch({
+      type: SERVICES_ERROR,
+      payload: err,
+    });
+  }
 };
