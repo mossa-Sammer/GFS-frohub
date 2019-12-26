@@ -95,3 +95,7 @@
 .filter_menu-instant--flex label {
   cursor: pointer;
 }
+
+.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-menu-vertical {
+  min-height: 45px !important;
+}

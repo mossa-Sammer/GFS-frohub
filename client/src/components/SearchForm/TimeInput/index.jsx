@@ -75,6 +75,13 @@ class TimeInput extends Component {
       value: '',
       day: '',
     });
+    handleSearch({
+      name: 'time',
+      value: {
+        from: '',
+        to: '',
+      },
+    });
   };
 
   render() {
@@ -98,10 +105,10 @@ class TimeInput extends Component {
           key="time"
         >
           <div className="timing__container">
+            <Button className="close__btn" onClick={this.handleVisible}>
+              Close
+            </Button>
             <div>
-              <Button className="close__btn" onClick={this.handleVisible}>
-                Close
-              </Button>
               <Icon
                 type="close"
                 className="timing__close"

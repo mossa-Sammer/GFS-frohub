@@ -73,6 +73,15 @@ class AdvancedSearch extends Component {
     sortServicesAction(stores, services, advancedSearchQueries);
   };
 
+  handleVisible = () => {
+    this.setState(prevState => {
+      const { visible } = prevState;
+      return {
+        visible: !visible,
+      };
+    });
+  };
+
   render() {
     const { visible } = this.state;
     const { advancedSearchQueries } = this.props;
@@ -81,6 +90,9 @@ class AdvancedSearch extends Component {
         {visible && (
           <>
             <div className="filter__menu">
+              <Button className="close__btn" onClick={this.handleVisible}>
+                Close
+              </Button>
               <div className="filter__menu-options">
                 <span className="filter-tilte">Sort by:</span>
                 <div>
