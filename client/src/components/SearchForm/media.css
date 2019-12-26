@@ -2,7 +2,6 @@
   .form__container {
     height: 340px;
     padding: 0 1rem;
-    padding-top: 36px;
   }
   .title {
     font-size: 22px;
@@ -37,6 +36,9 @@
   
   .title {
     display: none;
+  }
+  .form__container {
+    padding-top: 36px;
   }
   .ant-form.search__form{
     padding: 0 !important;
