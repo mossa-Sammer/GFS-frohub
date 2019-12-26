@@ -79,7 +79,7 @@ class TimePickerCom extends Component {
                 <Form.Item className="timing__form-item" label="From">
                   <TimePicker format="HH" onChange={this.handleFromTime} />
                 </Form.Item>
-                <Form.Item className="timing__form-item" label="To">
+                <Form.Item className="timing__form-item to__time" label="To">
                   <TimePicker
                     format="HH"
                     onChange={this.handleToTime}

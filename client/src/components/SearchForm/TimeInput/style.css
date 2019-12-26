@@ -10,7 +10,9 @@
   width: 120px !important;
   margin-left: 20px;
 }
-
+.close__btn.ant-btn {
+  display: none;
+}
 .date-title,
 .time-title {
   display: inline-block;
@@ -30,8 +32,12 @@
   font-size: 20px !important;
 }
 
-.timing__close {
-  display: none !important;
+.timing__close.anticon {
+  display: none;
+}
+
+.selected__time {
+  display: none;
 }
 
 .ant-calendar-picker-container.calendar {
@@ -128,4 +134,13 @@
   z-index: 1;
   top: 0;
   left: 0;
+}
+
+.ant-form-item-children {
+  display: block !important;
+}
+
+.ant-collapse-content.ant-collapse-content-active {
+  width: 100% !important;
+  left: 1px !important;
 }
