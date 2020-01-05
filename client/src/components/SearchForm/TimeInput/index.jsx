@@ -88,8 +88,8 @@ class TimeInput extends Component {
     const { date, from, to } = this.props;
     const { visible, timeVisible, toOpen } = this.state;
 
-    const fromTime = moment(from, 'hh:mm').format('h:mm a');
-    const toTime = moment(to, 'hh:mm').format('h:mm a');
+    const fromTime = moment(from, 'hh:mm').format('LT');
+    const toTime = moment(to, 'hh:mm').format('LT');
     return (
       <Collapse
         accordion
@@ -99,9 +99,11 @@ class TimeInput extends Component {
       >
         <Panel
           className="time-box"
-          header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
-            from && to ? `${fromTime} - ${toTime}` : ''
-          }`}
+          header={`${
+            date
+              ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
+              : 'Any Date'
+          } ${from && to ? `${fromTime} - ${toTime}` : ''}`}
           key="time"
         >
           <div className="timing__container">
@@ -115,7 +117,9 @@ class TimeInput extends Component {
                 onClick={this.clearTimeDate}
               />
               <span className="selected__time">{`${
-                date ? `${moment(date).format('MM/DD')}` : 'Any Date'
+                date
+                  ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
+                  : 'Any Date'
               } ${from && to ? `${fromTime} - ${toTime}` : ''}`}</span>
             </div>
             <div>

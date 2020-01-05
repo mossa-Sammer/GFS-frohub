@@ -25,7 +25,7 @@
     right: 41px;
   }
   .ant-calendar-picker-container.calendar {
-    left: 125px !important;
+    left: 84px !important;
     top: 230px !important;
   }
   .selected__time {
@@ -56,6 +56,14 @@
 
   .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
     left: 74% !important;
+  }
+
+  .ant-collapse-item:last-child > .ant-collapse-content {
+    border-radius: 0 !important;
+  }
+
+  .ant-collapse-content {
+    border: 0 !important;
   }
 }
 
