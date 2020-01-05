@@ -17,5 +17,23 @@ export const advancedSearch = (stores, services, advancedQueries) => {
     }
     return true;
   });
+  if (advancedQueries.sortBy) {
+    if (advancedQueries.sortBy === 'highestPrice') {
+      return filteredServices.sort(
+        (service1, service2) => Number(service2.price) - Number(service1.price)
+      );
+    }
+    if (advancedQueries.sortBy === 'lowestPrice') {
+      return filteredServices.sort(
+        (service1, service2) => Number(service1.price) - Number(service2.price)
+      );
+    }
+    if (advancedQueries.sortBy === 'highestRate') {
+      return filteredServices.sort(
+        (service1, service2) =>
+          Number(service2.average_rating) - Number(service1.average_rating)
+      );
+    }
+  }
   return filteredServices;
 };
