@@ -41,7 +41,11 @@
 }
 
 .ant-calendar-picker-container.calendar {
-  top: 300px !important;
+  top: 320px !important;
+}
+
+.calendar .ant-calendar-header {
+  display: none;
 }
 
 .anticon.ant-calendar-picker-icon {
