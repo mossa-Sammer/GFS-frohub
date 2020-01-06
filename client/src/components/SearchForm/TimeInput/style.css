@@ -86,12 +86,29 @@
   width: 40%;
 }
 
-.ant-time-picker-panel-select ul {
+.ant-time-picker-panel-combobox>div:nth-child(2) {
+  display: none;
+}
+
+.ant-time-picker-panel-select {
   width: 112px !important;
+  overflow: scroll !important;
+}
+
+.ant-time-picker-panel-select ul {
+  width: 100% !important;
 }
 
 .ant-time-picker-panel-select li {
-  padding-left: 45px !important;
+  padding-left: 35px !important;
+}
+
+.ant-time-picker-panel-select li::after {
+  content: ":00";
+}
+
+.ant-time-picker-panel-input {
+  text-align: center;
 }
 
 .ant-calendar-input-wrap {
