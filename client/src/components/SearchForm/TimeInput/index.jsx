@@ -18,6 +18,19 @@ class TimeInput extends Component {
     toOpen: false,
   };
 
+  componentDidUpdate() {
+    const { visible } = this.state;
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'unset';
+  }
+
   handleDate = e => {
     const { searchAction: handleSearch } = this.props;
     const { _isAMomentObject } = e;
@@ -105,7 +118,7 @@ class TimeInput extends Component {
           key="time"
         >
           <div className="timing__container">
-            <Button className="close__btn" onClick={this.handleVisible}>
+            <Button className="close__btn" onClick={this.closeCollapse}>
               Close
             </Button>
             <div>

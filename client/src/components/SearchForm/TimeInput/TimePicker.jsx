@@ -77,11 +77,18 @@ class TimePickerCom extends Component {
             content={
               <Form className="time__duration-box" layout="inline">
                 <Form.Item className="timing__form-item" label="From">
-                  <TimePicker format="HH" onChange={this.handleFromTime} />
+                  <TimePicker
+                    format="HH:mm"
+                    onChange={this.handleFromTime}
+                    inputReadOnly
+                    minuteStep={60}
+                  />
                 </Form.Item>
                 <Form.Item className="timing__form-item to__time" label="To">
                   <TimePicker
-                    format="HH"
+                    format="HH:mm"
+                    inputReadOnly
+                    minuteStep={60}
                     onChange={this.handleToTime}
                     disabled={!time.from}
                     onOpenChange={handleOpenChange}
