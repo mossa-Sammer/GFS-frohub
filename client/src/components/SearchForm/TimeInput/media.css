@@ -37,6 +37,17 @@
     color: rgba(51, 51, 51, .6);
     margin: 0.8rem 0;
   }
+
+  .picker:hover.picker:after {
+    color: rgba(0, 0, 0, 0.65) !important;
+    border: 1px solid #d9d9d9 !important;
+  }
+  
+  .ant-btn:hover {
+    color: rgba(0, 0, 0, 0.65) !important;
+    border: 1px solid #d9d9d9 !important;
+  }
+
   .timing-btn,
   .date__container .picker:after {
     width: 10rem !important;
@@ -66,4 +77,3 @@
     border: 0 !important;
   }
 }
-
