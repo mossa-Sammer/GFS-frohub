@@ -58,6 +58,10 @@
   visibility: hidden !important;
 }
 
+.date__container, .time__container {
+  justify-content: space-around;
+}
+
 .date__container .picker:after {
   display: block !important;
   top: 0px;
