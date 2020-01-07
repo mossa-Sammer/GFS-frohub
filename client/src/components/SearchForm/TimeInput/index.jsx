@@ -15,6 +15,7 @@ class TimeInput extends Component {
   state = {
     visible: false,
     timeVisible: false,
+    dateVisible: false,
     toOpen: false,
   };
 
@@ -30,6 +31,10 @@ class TimeInput extends Component {
   componentWillUnmount() {
     document.body.style.overflow = 'unset';
   }
+
+  toggleDatePopup = () => {
+    this.setState(({ dateVisible }) => ({ dateVisible: !dateVisible }));
+  };
 
   handleDate = e => {
     const { searchAction: handleSearch } = this.props;
@@ -99,10 +104,10 @@ class TimeInput extends Component {
 
   render() {
     const { date, from, to } = this.props;
-    const { visible, timeVisible, toOpen } = this.state;
+    const { visible, dateVisible, timeVisible, toOpen } = this.state;
 
-    const fromTime = moment(from, 'hh:mm').format('h:mm a');
-    const toTime = moment(to, 'hh:mm').format('h:mm a');
+    const fromTime = moment(from, 'hh:mm').format('LT');
+    const toTime = moment(to, 'hh:mm').format('LT');
     return (
       <Collapse
         accordion
@@ -112,9 +117,11 @@ class TimeInput extends Component {
       >
         <Panel
           className="time-box"
-          header={`${date ? `${moment(date).format('MM/DD')}` : 'Any Date'} ${
-            from && to ? `${fromTime} - ${toTime}` : ''
-          }`}
+          header={`${
+            date
+              ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
+              : 'Any Date'
+          } ${from && to ? `${fromTime} - ${toTime}` : ''}`}
           key="time"
         >
           <div className="timing__container">
@@ -128,7 +135,9 @@ class TimeInput extends Component {
                 onClick={this.clearTimeDate}
               />
               <span className="selected__time">{`${
-                date ? `${moment(date).format('MM/DD')}` : 'Any Date'
+                date
+                  ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
+                  : 'Any Date'
               } ${from && to ? `${fromTime} - ${toTime}` : ''}`}</span>
             </div>
             <div>
@@ -136,14 +145,18 @@ class TimeInput extends Component {
               <span className="date-title">Choose Date</span>
               <div className="date__container">
                 <Button
-                  className={`${!date && 'date__active'} timing-btn `}
+                  className={`${!date &&
+                    !dateVisible &&
+                    'date__active'} timing-btn `}
                   onClick={this.handleDate}
+                  name="any-date"
                 >
                   Any Date
                 </Button>
                 <DatePicker
+                  onOpenChange={this.toggleDatePopup}
                   allowClear={false}
-                  className={`${date &&
+                  className={`${date && 'active'} ${dateVisible &&
                     'active'} timing-btn picker choose__date-btn`}
                   onChange={this.handleDate}
                   placeholder="Choose Date"

@@ -10,9 +10,11 @@
   width: 120px !important;
   margin-left: 20px;
 }
+
 .close__btn.ant-btn {
   display: none;
 }
+
 .date-title,
 .time-title {
   display: inline-block;
@@ -41,7 +43,11 @@
 }
 
 .ant-calendar-picker-container.calendar {
-  top: 300px !important;
+  top: 380px !important;
+}
+
+.calendar .ant-calendar-my-select {
+  pointer-events: none;
 }
 
 .anticon.ant-calendar-picker-icon {
@@ -50,6 +56,10 @@
 
 .picker input {
   visibility: hidden !important;
+}
+
+.date__container, .time__container {
+  justify-content: space-around;
 }
 
 .date__container .picker:after {
@@ -72,6 +82,10 @@
 
 .date__container .picker {
   cursor: pointer !important;
+}
+
+.date__container .picker div {
+  height: 100%;
 }
 
 .time__duration-box {
@@ -120,14 +134,20 @@
   height: 40px !important;
 }
 
+.choose__time-btn.ant-btn:focus {
+  color: rgba(0, 0, 0, 0.65) !important;
+  border: 1px solid #d9d9d9 !important;
+}
+
 .picker:hover.picker:after {
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .picker:hover.picker:after,
 .date__active,
-.picker.active:after,
-.time-box .ant-btn:active, .time-box .ant-btn.active {
+.choose__date-btn.ant-calendar-picker.picker.active:after,
+.time-box .ant-btn:active, .time-box .ant-btn.active 
+{
   color: #56A2FD !important;
   border: 1px solid #56A2FD !important;
 }

@@ -64,7 +64,7 @@ class TimePickerCom extends Component {
         <span className="time-title">Choose Time</span>
         <div className="time__container">
           <Button
-            className={`${!time.from && 'active'} timing-btn`}
+            className={`${!time.from && !timeVisible && 'active'} timing-btn`}
             onClick={this.handleTime}
           >
             Any Time
@@ -100,7 +100,8 @@ class TimePickerCom extends Component {
             trigger="click"
           >
             <Button
-              className={`${time.from && 'active'} timing-btn choose__time-btn`}
+              className={`${time.from && 'active'} ${timeVisible &&
+                'active'} timing-btn choose__time-btn`}
               onClick={this.handleOpenPicker}
             >
               Choose Time
