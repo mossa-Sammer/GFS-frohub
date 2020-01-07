@@ -130,7 +130,7 @@
   height: 40px !important;
 }
 
-.ant-btn:focus {
+.choose__time-btn.ant-btn:focus {
   color: rgba(0, 0, 0, 0.65) !important;
   border: 1px solid #d9d9d9 !important;
 }
