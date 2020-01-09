@@ -89,6 +89,11 @@
 .filter__menu-instant {
   border: none !important;
   min-height: 90px;
+  padding-top: 1rem;
+}
+
+.filter_instant-booking {
+  float: right;
 }
 
 .filter_instant-booking.ant-switch-checked {
@@ -98,7 +103,7 @@
 .filter_menu-instant--flex > span {
   display: flex;
   justify-content: space-between;
-  padding-left: 22px;
+  padding: 10px;
 }
 
 .filter_menu-instant--flex label {

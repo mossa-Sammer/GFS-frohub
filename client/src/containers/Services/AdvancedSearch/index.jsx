@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Radio, Icon, Button, Switch, Tooltip } from 'antd';
+import { Radio, Icon, Button, Switch } from 'antd';
 
 import advancedSearchAction from './advancedSearch.actions';
 import { sortServices } from '../services.actions';
@@ -133,18 +133,22 @@ class AdvancedSearch extends Component {
               </div>
               <div className="filter__menu-options filter__menu-instant">
                 <div className="filter_option filter_menu-instant--flex">
-                  <label htmlFor="instantBook">Instant Booking:{'  '}</label>
-                  <Switch
-                    id="instantBook"
-                    defaultChecked
-                    className="filter_instant-booking"
-                    checked={advancedSearchQueries.instantBook}
-                    onChange={this.instantBook}
-                  />
-                  <span>
-                    Services you can book without waiting for beauticians
-                    approval
-                  </span>
+                  <label htmlFor="instantBook" className="filter-tilte">
+                    Instant Booking:{'  '}
+                  </label>
+                  <div>
+                    <Switch
+                      id="instantBook"
+                      defaultChecked
+                      className="filter_instant-booking"
+                      checked={advancedSearchQueries.instantBook}
+                      onChange={this.instantBook}
+                    />
+                    <span>
+                      Services you can book without waiting for beauticians
+                      approval
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="filter__menu-btns">
