@@ -101,7 +101,7 @@ class AdvancedSearch extends Component {
                     value={advancedSearchQueries.sortBy}
                   >
                     <div className="filter_option">
-                      <Radio value="highestRate">Highest Rate</Radio>
+                      <Radio value="highestRate">Highest Rated</Radio>
                     </div>
                     <div className="filter_option">
                       <Radio value="highestPrice">Highest Price</Radio>
@@ -112,7 +112,7 @@ class AdvancedSearch extends Component {
                   </Radio.Group>
                 </div>
               </div>
-              <div className="filter__menu-options">
+              <div className="filter__menu-options filter__menu-type">
                 <span className="filter-tilte">Service type:</span>
                 <div>
                   <Radio.Group
@@ -134,7 +134,7 @@ class AdvancedSearch extends Component {
               <div className="filter__menu-options filter__menu-instant">
                 <div className="filter_option filter_menu-instant--flex">
                   <Tooltip
-                    placement="right"
+                    placement="bottom"
                     title="Services you can book without waiting for beauticians approval"
                   >
                     <label htmlFor="instantBook">Instant Booking:{'  '}</label>
