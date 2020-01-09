@@ -133,19 +133,18 @@ class AdvancedSearch extends Component {
               </div>
               <div className="filter__menu-options filter__menu-instant">
                 <div className="filter_option filter_menu-instant--flex">
-                  <Tooltip
-                    placement="bottom"
-                    title="Services you can book without waiting for beauticians approval"
-                  >
-                    <label htmlFor="instantBook">Instant Booking:{'  '}</label>
-                    <Switch
-                      id="instantBook"
-                      defaultChecked
-                      className="filter_instant-booking"
-                      checked={advancedSearchQueries.instantBook}
-                      onChange={this.instantBook}
-                    />
-                  </Tooltip>
+                  <label htmlFor="instantBook">Instant Booking:{'  '}</label>
+                  <Switch
+                    id="instantBook"
+                    defaultChecked
+                    className="filter_instant-booking"
+                    checked={advancedSearchQueries.instantBook}
+                    onChange={this.instantBook}
+                  />
+                  <span>
+                    Services you can book without waiting for beauticians
+                    approval
+                  </span>
                 </div>
               </div>
               <div className="filter__menu-btns">
