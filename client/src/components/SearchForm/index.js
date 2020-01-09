@@ -54,9 +54,6 @@ class SearchForm extends Component {
             <Button onClick={this.handleSearch}>Search Treatment</Button>
           </Form.Item>
         </Form>
-        <div className="title">
-          Black, Privileged <br /> & Global
-        </div>
       </div>
     );
   }
