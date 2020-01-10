@@ -14,6 +14,26 @@ class TimePickerCom extends Component {
     });
   };
 
+  range = (start, end) => {
+    const result = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = start; i < end; i++) {
+      result.push(i);
+    }
+    return result;
+  };
+
+  disabledHours = current => {
+    const currentDate = moment().date();
+    const selctedDate = moment(current).date();
+    if (currentDate === selctedDate) {
+      const hours = this.range(0, 60);
+      hours.splice(moment().hour());
+      return hours;
+    }
+    return null;
+  };
+
   handleFromTime = selectedFromTime => {
     const { searchAction: handleSearch } = this.props;
     const convertedTime = selectedFromTime
@@ -56,6 +76,7 @@ class TimePickerCom extends Component {
       toOpen,
       handleOpenChange,
       handleTimePopover,
+      date,
     } = this.props;
 
     return (
@@ -93,6 +114,7 @@ class TimePickerCom extends Component {
                     disabled={!time.from}
                     onOpenChange={handleOpenChange}
                     open={toOpen}
+                    disabledHours={() => this.disabledHours(date)}
                   />
                 </Form.Item>
               </Form>
@@ -114,9 +136,10 @@ class TimePickerCom extends Component {
 }
 
 const mapStateToProps = state => {
-  const { time } = state.searchQueries;
+  const { time, date } = state.searchQueries;
   return {
     time,
+    date,
   };
 };
 
