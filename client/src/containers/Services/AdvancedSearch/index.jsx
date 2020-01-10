@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Radio, Icon, Button, Switch, Tooltip } from 'antd';
+import { Radio, Icon, Button, Switch } from 'antd';
 
 import advancedSearchAction from './advancedSearch.actions';
 import { sortServices } from '../services.actions';
@@ -101,7 +101,7 @@ class AdvancedSearch extends Component {
                     value={advancedSearchQueries.sortBy}
                   >
                     <div className="filter_option">
-                      <Radio value="highestRate">Highest Rate</Radio>
+                      <Radio value="highestRate">Highest Rated</Radio>
                     </div>
                     <div className="filter_option">
                       <Radio value="highestPrice">Highest Price</Radio>
@@ -112,7 +112,7 @@ class AdvancedSearch extends Component {
                   </Radio.Group>
                 </div>
               </div>
-              <div className="filter__menu-options">
+              <div className="filter__menu-options filter__menu-type">
                 <span className="filter-tilte">Service type:</span>
                 <div>
                   <Radio.Group
@@ -133,11 +133,10 @@ class AdvancedSearch extends Component {
               </div>
               <div className="filter__menu-options filter__menu-instant">
                 <div className="filter_option filter_menu-instant--flex">
-                  <Tooltip
-                    placement="right"
-                    title="Services you can book without waiting for beauticians approval"
-                  >
-                    <label htmlFor="instantBook">Instant Booking:{'  '}</label>
+                  <label htmlFor="instantBook" className="filter-tilte">
+                    Instant Booking:{'  '}
+                  </label>
+                  <div>
                     <Switch
                       id="instantBook"
                       defaultChecked
@@ -145,7 +144,11 @@ class AdvancedSearch extends Component {
                       checked={advancedSearchQueries.instantBook}
                       onChange={this.instantBook}
                     />
-                  </Tooltip>
+                    <span>
+                      Services you can book without waiting for beauticians
+                      approval
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="filter__menu-btns">
