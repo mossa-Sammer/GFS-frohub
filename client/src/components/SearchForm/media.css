@@ -2,6 +2,8 @@
   .form__container {
     height: 340px;
     padding: 0 1rem;
+    background-position: -6vh 0vw;
+    background-size: 175%;
   }
   .title {
     font-size: 22px;
