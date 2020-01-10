@@ -105,9 +105,6 @@ class TimeInput extends Component {
   render() {
     const { date, from, to } = this.props;
     const { visible, dateVisible, timeVisible, toOpen } = this.state;
-
-    const fromTime = moment(from, 'hh:mm').format('LT');
-    const toTime = moment(to, 'hh:mm').format('LT');
     return (
       <Collapse
         accordion
@@ -121,7 +118,7 @@ class TimeInput extends Component {
             date
               ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
               : 'Any Date'
-          } ${from && to ? `${fromTime} - ${toTime}` : ''}`}
+          } ${from && to ? `${from} - ${to}` : ''}`}
           key="time"
         >
           <div className="timing__container">
@@ -138,7 +135,7 @@ class TimeInput extends Component {
                 date
                   ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
                   : 'Any Date'
-              } ${from && to ? `${fromTime} - ${toTime}` : ''}`}</span>
+              } ${from && to ? `${from} - ${to}` : ''}`}</span>
             </div>
             <div>
               <Icon className="picker-icon date-icon" type="calendar" />
