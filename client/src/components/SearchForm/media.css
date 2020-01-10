@@ -1,9 +1,10 @@
 @media only screen and (max-width: 768px) {
   .form__container {
-    height: 340px;
+    padding-top: 130px !important;
+    height: 459px;
     padding: 0 1rem;
-    background-position: -6vh 0vw;
-    background-size: 175%;
+    background-position: 0vh 0vw;
+    background-color: rgba(224, 87, 71, 0.9);
   }
   .title {
     font-size: 22px;
@@ -11,6 +12,12 @@
   }
   .ant-popover {
     left: 28px !important;
+  }
+  .search__form.services-search__form.ant-form.ant-form-horizontal,
+  .ant-form.ant-form-horizontal.home-search__form {
+    width: 80%;
+    padding: 1rem !important;
+    height: 300px;
   }
 }
 
@@ -30,7 +37,7 @@
   }
   
   .search-btn button {
-    height: 50px !important;
+    height: 36px !important;
   }
 }
 
@@ -40,7 +47,7 @@
     display: none;
   }
   .form__container {
-    padding-top: 36px;
+    padding-top: 25px;
   }
   .ant-form.search__form{
     padding: 0 !important;

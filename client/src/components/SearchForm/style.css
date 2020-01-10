@@ -13,6 +13,12 @@
   border-color: #eee !important;
   box-shadow:  0 0 2px rgba(165, 169, 173, 0.2) !important
 }
+.search__form.services-search__form.ant-form.ant-form-horizontal,
+.ant-form.ant-form-horizontal.home-search__form {
+  background: #fff;
+  padding: 1.5rem !important;
+  height: 300px;
+}
 
 .search__form {
   width: 400px;
