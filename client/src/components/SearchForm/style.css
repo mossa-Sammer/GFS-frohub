@@ -33,6 +33,7 @@
 .treatment__input .ant-select-lg .ant-select-selection--single,
 .location__input .ant-select-selection--single {
   height: 45px !important;
+  font-size: 14px !important;
 }
 
 .date__container,
