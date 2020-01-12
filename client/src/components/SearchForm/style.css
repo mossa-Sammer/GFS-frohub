@@ -56,9 +56,10 @@
 .title {
   padding: 4rem 0 3rem 5rem;
   font-family: 'Cinzel', serif;
-  font-size: 40px;
+  font-size: 20px;
   letter-spacing: 5px;
   font-weight: bolder;
+  color: #fff;
 }
 
 .location__input .ant-select-selection__rendered {

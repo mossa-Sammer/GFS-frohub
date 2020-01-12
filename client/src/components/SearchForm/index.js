@@ -55,6 +55,9 @@ class SearchForm extends Component {
             <Button onClick={this.handleSearch}>Search Frouhub</Button>
           </Form.Item>
         </Form>
+        <div className="title">
+          Find & book afro hair stylists <br /> and beauticians nearby.
+        </div>
       </div>
     );
   }
