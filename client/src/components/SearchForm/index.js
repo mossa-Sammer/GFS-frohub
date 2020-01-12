@@ -41,6 +41,7 @@ class SearchForm extends Component {
               : 'services-search__form'
           }`}
         >
+          <span className="search__form-title">Discover. Book. Slay.</span>
           <Form.Item>
             <TreatmentInput />
           </Form.Item>
@@ -51,7 +52,7 @@ class SearchForm extends Component {
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
-            <Button onClick={this.handleSearch}>Search Treatment</Button>
+            <Button onClick={this.handleSearch}>Search Frouhub</Button>
           </Form.Item>
         </Form>
       </div>
