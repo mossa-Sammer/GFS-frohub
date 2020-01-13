@@ -52,7 +52,7 @@ class SearchForm extends Component {
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
-            <Button onClick={this.handleSearch}>Search Frouhub</Button>
+            <Button onClick={this.handleSearch}>Search FroHub</Button>
           </Form.Item>
         </Form>
         <div className="title">
