@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
 .form__container {
-  height: 412px;
+  height: 432px;
   padding: 2rem 2rem 2rem 10rem;
   background-image: url('https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2020/01/03142951/frohub_cover.jpg');
   display: flex;
@@ -7,6 +9,7 @@
   flex-direction: row;
   background-position: 0vh -7vw;
   background-size: 100%;
+  flex-direction: row;
 }
 
 .treatment__input .ant-select-selection:hover {
@@ -23,6 +26,7 @@
 .search__form {
   width: 400px;
   margin-top: 1rem !important;
+  text-align: center;
 }
 
 .search__form-title {
@@ -35,6 +39,10 @@
 .treatment__input,
 .location__input {
   width: 100% !important;
+}
+
+.ant-form-item.search__form-time  {
+  text-align: left;
 }
 
 .treatment__input .ant-select-lg .ant-select-selection--single,
@@ -54,12 +62,12 @@
   top: 195px !important;
 }
 .title {
-  padding: 4rem 0 3rem 5rem;
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  letter-spacing: 5px;
-  font-weight: bolder;
+  font-size: 28px;
+  letter-spacing: 2px;
   color: #fff;
+  font-family: 'Fredoka One', cursive;
+  margin-left: 6rem;
+  padding-top: 10rem;
 }
 
 .location__input .ant-select-selection__rendered {

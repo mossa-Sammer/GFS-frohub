@@ -48,7 +48,7 @@ class SearchForm extends Component {
           <Form.Item>
             <LocationtInput />
           </Form.Item>
-          <Form.Item>
+          <Form.Item className="search__form-time">
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
@@ -56,7 +56,8 @@ class SearchForm extends Component {
           </Form.Item>
         </Form>
         <div className="title">
-          Find & book afro hair stylists <br /> and beauticians nearby.
+          Find &amp; book afro hair stylists <br /> &nbsp; &nbsp; and
+          beauticians nearby.
         </div>
       </div>
     );
