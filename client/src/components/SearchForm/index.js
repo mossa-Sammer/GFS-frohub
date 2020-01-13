@@ -41,19 +41,24 @@ class SearchForm extends Component {
               : 'services-search__form'
           }`}
         >
+          <span className="search__form-title">Discover. Book. Slay.</span>
           <Form.Item>
             <TreatmentInput />
           </Form.Item>
           <Form.Item>
             <LocationtInput />
           </Form.Item>
-          <Form.Item>
+          <Form.Item className="search__form-time">
             <TimeInput />
           </Form.Item>
           <Form.Item className="search-btn">
-            <Button onClick={this.handleSearch}>Search Treatment</Button>
+            <Button onClick={this.handleSearch}>Search FroHub</Button>
           </Form.Item>
         </Form>
+        <div className="title">
+          Find &amp; book afro hair stylists <br /> &nbsp; &nbsp; and
+          beauticians nearby.
+        </div>
       </div>
     );
   }
