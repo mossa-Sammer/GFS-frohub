@@ -5,6 +5,7 @@
     padding: 0 1rem;
     background-position: 0vh 0vw;
     background-color: rgba(224, 87, 71, 0.9);
+    flex-direction: column;
   }
   .title {
     font-size: 22px;
@@ -44,7 +45,13 @@
 @media only screen and (max-width: 425px) {
   
   .title {
-    display: none;
+    top: 3rem !important;
+    position: absolute;
+    font-size: 18px;
+    right: 0;
+    letter-spacing: 0;
+    padding: 0;
+    right: 1rem;
   }
   .form__container {
     padding-top: 25px;
