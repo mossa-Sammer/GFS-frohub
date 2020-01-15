@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap');
 
 .form__container {
   height: 432px;
@@ -61,13 +61,15 @@
   left: 276px !important;
   top: 195px !important;
 }
+
 .title {
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: 2px;
   color: #fff;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Didact Gothic', sans-serif;
   margin-left: 6rem;
   padding-top: 10rem;
+  font-weight: bold;
 }
 
 .location__input .ant-select-selection__rendered {
