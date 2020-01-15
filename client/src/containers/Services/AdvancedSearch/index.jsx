@@ -73,6 +73,16 @@ class AdvancedSearch extends Component {
     sortServicesAction(stores, services, advancedSearchQueries);
   };
 
+  handleAdvanceSearch = () => {
+    const {
+      services,
+      advancedSearchQueries,
+      sortServices: sortServicesAction,
+      stores,
+    } = this.props;
+    sortServicesAction(stores, services, advancedSearchQueries);
+  };
+
   handleVisible = () => {
     this.setState(prevState => {
       const { visible } = prevState;
@@ -120,13 +130,19 @@ class AdvancedSearch extends Component {
                     value={advancedSearchQueries.serviceType}
                   >
                     <div className="filter_option">
-                      <Radio value="mobile">Mobile Beauty</Radio>
+                      <Radio value="mobile" onClick={this.handleAdvanceSearch}>
+                        Mobile Beauty
+                      </Radio>
                     </div>
                     <div className="filter_option">
-                      <Radio value="home">Home Based</Radio>
+                      <Radio value="home" onClick={this.handleAdvanceSearch}>
+                        Home Based
+                      </Radio>
                     </div>
                     <div className="filter_option">
-                      <Radio value="salon">Salon Based</Radio>
+                      <Radio value="salon" onClick={this.handleAdvanceSearch}>
+                        Salon Based
+                      </Radio>
                     </div>
                   </Radio.Group>
                 </div>
