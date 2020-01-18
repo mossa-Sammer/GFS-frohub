@@ -56,9 +56,7 @@ class SearchForm extends Component {
           </Form.Item>
         </Form>
         <div className="title">
-          <span>
-            Find &amp; book afro hair stylists <br /> and beauticians nearby.
-          </span>
+          <span>Find &amp; book afro hair and beauty.</span>
         </div>
       </div>
     );
