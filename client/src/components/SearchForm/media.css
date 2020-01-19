@@ -45,7 +45,7 @@
 @media only screen and (max-width: 425px) {
   
   .title {
-    top: 3rem !important;
+    top: 4rem !important;
     position: absolute;
     font-size: 18px;
     right: 0;
