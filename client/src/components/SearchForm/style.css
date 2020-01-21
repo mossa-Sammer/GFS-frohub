@@ -12,6 +12,14 @@
   flex-direction: row;
 }
 
+.frohub__banner-headline {
+  display: block;
+}
+
+.frohub__banner-headline:nth-child(2) {
+  padding-left: 70px;
+}
+
 .treatment__input .ant-select-selection:hover {
   border-color: #eee !important;
   box-shadow:  0 0 2px rgba(165, 169, 173, 0.2) !important
