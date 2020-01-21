@@ -56,10 +56,8 @@ class SearchForm extends Component {
           </Form.Item>
         </Form>
         <div className="title">
-          <span>
-            Find &amp; book afro <br />
-            hair and beauty.
-          </span>
+          <span className="frohub__banner-headline">Find &amp; book afro</span>
+          <span className="frohub__banner-headline">hair and beauty.</span>
         </div>
       </div>
     );
