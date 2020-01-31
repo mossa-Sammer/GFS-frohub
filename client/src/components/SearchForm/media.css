@@ -54,7 +54,7 @@
     left: 0;
     right: 13rem;
     margin: 0;
-    /* margin-left: 5px; */
+    margin-left: 5px;
   }
   .frohub__banner-headline:nth-child(2) {
     padding-left: 8px;
