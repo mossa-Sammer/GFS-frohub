@@ -4,7 +4,6 @@ import { message } from 'antd';
 
 import AdvancedSearch from './AdvancedSearch';
 import { ServiceCard, Loading } from '../../components';
-// eslint-disable-next-line import/no-cycle
 import { Layout } from '../index';
 import getServicesAction from './services.actions';
 
