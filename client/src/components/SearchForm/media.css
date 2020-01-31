@@ -7,10 +7,10 @@
     background-color: rgba(224, 87, 71, 0.9);
     flex-direction: column;
   }
-  .title {
+  /* .title {
     font-size: 22px;
     padding: 9rem 0 3rem 2rem;
-  }
+  } */
   .ant-popover {
     left: 28px !important;
   }
@@ -54,6 +54,9 @@
     left: 0;
     right: 13rem;
     margin: 0;
+  }
+  .frohub__banner-headline:first-child {
+    /* width: 160px; */
   }
   .frohub__banner-headline:nth-child(2) {
     padding-left: 20px;
