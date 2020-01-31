@@ -55,11 +55,11 @@
     right: 13rem;
     margin: 0;
   }
-  .frohub__banner-headline:first-child {
+  /* .frohub__banner-headline:first-child {
     width: 160px;
-  }
+  } */
   .frohub__banner-headline:nth-child(2) {
-    padding-left: 10px;
+    padding-left: 0px;
   }
   .form__container {
     padding-top: 25px;
