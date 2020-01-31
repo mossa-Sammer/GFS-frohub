@@ -41,7 +41,7 @@ class TreatmentInput extends Component {
           suffixIcon={<Icon type="search" />}
           onChange={this.handleTreatment}
           size="large"
-          notFoundContent="No treatnemt match"
+          notFoundContent="No treatment match"
           dropdownRender={menu => {
             if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
             return <>{menu}</>;
