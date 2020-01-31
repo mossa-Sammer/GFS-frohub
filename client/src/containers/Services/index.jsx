@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { message } from 'antd';
 
 import AdvancedSearch from './AdvancedSearch';
-import { SearchForm, ServiceCard, Loading } from '../../components';
+import { ServiceCard, Loading } from '../../components';
+// eslint-disable-next-line import/no-cycle
+import { Layout } from '../index';
 import getServicesAction from './services.actions';
 
 import './style.css';
@@ -36,8 +38,8 @@ class ServicesPage extends Component {
       services: { loading, error, sortedServices },
     } = this.props;
     return (
-      <div>
-        <SearchForm status="servicesForm" />
+      <>
+        <Layout status="servicesForm" />
         <div className="services__container">
           {error && message.error(error.message)}
           {loading ? (
@@ -63,7 +65,7 @@ class ServicesPage extends Component {
             </>
           )}
         </div>
-      </div>
+      </>
     );
   }
 }

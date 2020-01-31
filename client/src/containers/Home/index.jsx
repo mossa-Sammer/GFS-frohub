@@ -1,10 +1,13 @@
 import React from 'react';
-import { SearchForm } from '../../components';
+// eslint-disable-next-line import/no-cycle
+import { Layout } from '../index';
 
-export default function Home() {
+function Home() {
   return (
-    <div>
-      <SearchForm status="homePage" />
-    </div>
+    <>
+      <Layout status="homePage" />
+    </>
   );
 }
+
+export default Home;
