@@ -45,7 +45,7 @@
 @media only screen and (max-width: 425px) {
   
   .title {
-    width: 160px;
+    width: 165px;
     top: 4rem !important;
     position: absolute;
     font-size: 18px;
@@ -57,7 +57,7 @@
     margin-left: 5px;
   }
   .frohub__banner-headline:nth-child(2) {
-    padding-left: 15px;
+    padding-left: 20px;
   }
   .form__container {
     padding-top: 25px;
