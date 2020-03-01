@@ -7,10 +7,6 @@
     background-color: rgba(224, 87, 71, 0.9);
     flex-direction: column;
   }
-  /* .title {
-    font-size: 22px;
-    padding: 9rem 0 3rem 2rem;
-  } */
   .ant-popover {
     left: 28px !important;
   }
@@ -87,5 +83,8 @@
   .search__form {
     margin: 0rem !important;
     width: 100% !important;
-}
+  }
+  .ant-select-selection.ant-select-selection--single .ant-select-arrow {
+    right: 280px !important;
+  }
 }
