@@ -85,3 +85,16 @@
   height: 100% !important;
 }
 
+.ant-select-selection__rendered {
+  margin-left: 35px !important;
+}
+
+.ant-select-selection.ant-select-selection--single .ant-select-arrow {
+  left: 0 !important;
+  top: 45% !important;
+  right: 283px !important;
+}
+
+.ant-select-open .ant-select-arrow-icon svg {
+  transform: rotate(0deg) !important;
+}
