@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Collapse, Button, DatePicker, Icon } from 'antd';
 
 import moment from 'moment';
 import TimePicker from './TimePicker';
 import searchAction from '../search.actions';
+
+import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
 import './style.css';
 import './media.css';
@@ -53,6 +56,22 @@ class TimeInput extends Component {
         value: '',
         day: '',
       });
+    }
+  };
+
+  handleDone = () => {
+    const {
+      searchQueries,
+      filterServicesAction: filterServices,
+      services,
+      stores,
+      match,
+      history,
+    } = this.props;
+    filterServices(stores, services, searchQueries);
+    this.setState({ visible: false, timeVisible: false, toOpen: false });
+    if (match.url === '/') {
+      history.push('/services');
     }
   };
 
@@ -170,6 +189,9 @@ class TimeInput extends Component {
               toOpen={toOpen}
             />
           </div>
+          <Button className="done__btn" onClick={this.handleDone}>
+            Done
+          </Button>
           <div
             onClick={this.closeCollapse}
             className="time__background"
@@ -184,13 +206,19 @@ class TimeInput extends Component {
 }
 
 const mapStateToProps = state => {
-  const { date, time } = state.searchQueries;
+  const { searchQueries, services } = state;
+  const { date, time } = searchQueries;
   const { from, to } = time;
   return {
     date,
     from,
     to,
+    searchQueries,
+    stores: services.stores,
+    services: services.services,
   };
 };
 
-export default connect(mapStateToProps, { searchAction })(TimeInput);
+export default connect(mapStateToProps, { searchAction, filterServicesAction })(
+  withRouter(TimeInput)
+);
