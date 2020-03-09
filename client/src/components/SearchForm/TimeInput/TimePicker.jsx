@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Popover, TimePicker, Form, Icon } from 'antd';
+import { Button, TimePicker, Form, Icon } from 'antd';
 import moment from 'moment';
 
 import searchAction from '../search.actions';
 
 class TimePickerCom extends Component {
+  state = {
+    timeContainerVisible: false,
+  };
+
   handleTime = () => {
     const { searchAction: handleSearch } = this.props;
     handleSearch({
@@ -51,21 +55,28 @@ class TimePickerCom extends Component {
   };
 
   handleToTime = selectedToTime => {
-    const { time, searchAction: handleSearch, closeCollapse } = this.props;
+    const { time, searchAction: handleSearch } = this.props;
     const { from } = time;
     const convertedTime = selectedToTime
       ? moment(selectedToTime)
           .startOf('hour')
           .format('HH:mm')
       : '';
-    closeCollapse(null, () => {
-      handleSearch({
-        name: 'time',
-        value: {
-          from,
-          to: convertedTime,
-        },
-      });
+    handleSearch({
+      name: 'time',
+      value: {
+        from,
+        to: convertedTime,
+      },
+    });
+  };
+
+  handleOpenPicker = () => {
+    this.setState(prevStete => {
+      const { timeContainerVisible } = prevStete;
+      return {
+        timeContainerVisible: !timeContainerVisible,
+      };
     });
   };
 
@@ -75,10 +86,10 @@ class TimePickerCom extends Component {
       timeVisible,
       toOpen,
       handleOpenChange,
-      handleTimePopover,
+      // handleTimePopover,
       date,
     } = this.props;
-
+    const { timeContainerVisible } = this.state;
     return (
       <div className="time">
         <Icon className="picker-icon time-icon" type="clock-circle" />
@@ -90,45 +101,43 @@ class TimePickerCom extends Component {
           >
             Any Time
           </Button>
-          <Popover
-            className="time__popover"
-            placement="bottom"
-            visible={timeVisible}
-            onClick={handleTimePopover}
-            content={
-              <Form className="time__duration-box" layout="inline">
-                <Form.Item className="timing__form-item" label="From">
-                  <TimePicker
-                    format="HH:mm"
-                    onChange={this.handleFromTime}
-                    inputReadOnly
-                    minuteStep={60}
-                  />
-                </Form.Item>
-                <Form.Item className="timing__form-item to__time" label="To">
-                  <TimePicker
-                    format="HH:mm"
-                    inputReadOnly
-                    minuteStep={60}
-                    onChange={this.handleToTime}
-                    disabled={!time.from}
-                    onOpenChange={handleOpenChange}
-                    open={toOpen}
-                    disabledHours={() => this.disabledHours(date)}
-                  />
-                </Form.Item>
-              </Form>
-            }
-            trigger="click"
+          <Button
+            className={`${time.from && 'active'} ${timeVisible &&
+              'active'} timing-btn choose__time-btn`}
+            onClick={this.handleOpenPicker}
           >
-            <Button
-              className={`${time.from && 'active'} ${timeVisible &&
-                'active'} timing-btn choose__time-btn`}
-              onClick={this.handleOpenPicker}
-            >
-              Choose Time
-            </Button>
-          </Popover>
+            Choose Time
+          </Button>
+          <div>
+            {timeContainerVisible ? (
+              <>
+                <div className="time__duration-box" layout="inline">
+                  <Form.Item className="timing__form-item" label="From">
+                    <TimePicker
+                      format="HH:mm"
+                      onChange={this.handleFromTime}
+                      inputReadOnly
+                      minuteStep={60}
+                    />
+                  </Form.Item>
+                  <Form.Item className="timing__form-item to__time" label="To">
+                    <TimePicker
+                      format="HH:mm"
+                      inputReadOnly
+                      minuteStep={60}
+                      onChange={this.handleToTime}
+                      disabled={!time.from}
+                      onOpenChange={handleOpenChange}
+                      open={toOpen}
+                      disabledHours={() => this.disabledHours(date)}
+                    />
+                  </Form.Item>
+                </div>
+              </>
+            ) : (
+              <div />
+            )}
+          </div>
         </div>
       </div>
     );
