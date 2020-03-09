@@ -1,3 +1,7 @@
+body {
+  overflow: scroll;
+}
+
 .filter__container {
   float: right;
 }
