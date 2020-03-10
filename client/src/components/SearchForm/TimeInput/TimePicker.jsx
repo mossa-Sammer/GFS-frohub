@@ -81,14 +81,7 @@ class TimePickerCom extends Component {
   };
 
   render() {
-    const {
-      time,
-      timeVisible,
-      toOpen,
-      handleOpenChange,
-      // handleTimePopover,
-      date,
-    } = this.props;
+    const { time, timeVisible, toOpen, handleOpenChange, date } = this.props;
     const { timeContainerVisible } = this.state;
     return (
       <div className="time">

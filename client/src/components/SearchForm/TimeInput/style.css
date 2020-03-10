@@ -218,3 +218,6 @@
   border: none;
 }
 
+.ant-time-picker-panel-select {
+  overflow-x: hidden !important;
+}

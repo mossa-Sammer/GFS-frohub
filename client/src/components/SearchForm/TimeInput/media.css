@@ -3,6 +3,10 @@
     display: none !important;
   }
 
+  .ant-collapse-content-box {
+    min-height: 100vh !important;
+  }
+
   .date__container, .time__container {
     justify-content: space-around;
   }
@@ -86,8 +90,25 @@
     height: 85%;
   }
   .ant-btn.done__btn {
-    position: absolute;
-    top: 85%;
-    left: 0
+    left: 0;
+    bottom: 0;
 }
+
+.time__duration-box {
+  margin-top: 20px;
+}
+
+.ant-form-item.timing__form-item.to__time {
+  margin-left: 40px !important;
+}
+
+/* .date__container .picker:after,
+.timing-btn,
+.ant-time-picker {
+  width: 175px !important;
+} */
+/* .ant-time-picker:nth-child(2) {
+  margin-left: 2px !important;
+} */
+
 }
