@@ -102,13 +102,17 @@
   margin-left: 40px !important;
 }
 
-/* .date__container .picker:after,
+.ant-btn.done__btn {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.date__container .picker:after,
 .timing-btn,
 .ant-time-picker {
-  width: 175px !important;
-} */
-/* .ant-time-picker:nth-child(2) {
-  margin-left: 2px !important;
-} */
+  width: 165px !important;
+}
 
 }
