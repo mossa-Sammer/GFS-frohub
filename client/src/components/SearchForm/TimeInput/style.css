@@ -221,3 +221,8 @@
 .ant-time-picker-panel-select {
   overflow-x: hidden !important;
 }
+
+.date__container .picker:after {
+  display: block !important;
+  top: -3px;
+}
