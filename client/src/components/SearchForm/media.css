@@ -87,4 +87,10 @@
   .ant-select-selection.ant-select-selection--single .ant-select-arrow {
     right: 280px !important;
   }
+  .title.services__title {
+    display: none;
+  }
+  .form__container.form__container-services {
+    padding: 0 !important
+  }
 }

@@ -55,10 +55,10 @@ class SearchForm extends Component {
             Discover. Book. Slay.
           </span>
           <Form.Item>
-            <TreatmentInput />
+            <TreatmentInput status={status} />
           </Form.Item>
           <Form.Item>
-            <LocationtInput />
+            <LocationtInput status={status} />
           </Form.Item>
           <Form.Item className="search__form-time">
             <TimeInput />

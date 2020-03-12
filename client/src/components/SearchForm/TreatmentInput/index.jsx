@@ -14,6 +14,8 @@ class TreatmentInput extends Component {
   }
 
   handleTreatment = (value, children) => {
+    const { status } = this.props;
+    console.log(333, status);
     let navTitle = '';
     if (children && children.props) {
       navTitle = children.props.children;
