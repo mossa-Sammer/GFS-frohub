@@ -1,6 +1,8 @@
 @media only screen and (max-width: 425px) {
-  .time__background {
-    display: none !important;
+
+  .ant-collapse-content-box {
+    overflow: hidden !important;
+    min-height: 100vh !important;
   }
 
   .date__container, .time__container {
@@ -21,10 +23,11 @@
     float: right;
     font-size: 14px;
     position: fixed;
-    top: 5.2rem;
+    top: 9%;
     right: 41px;
   }
   .ant-calendar-picker-container.calendar {
+    position: absolute !important;
     left: 84px !important;
     top: 230px !important;
   }
@@ -85,9 +88,31 @@
   .timing__container {
     height: 85%;
   }
-  .ant-btn.done__btn {
-    position: absolute;
-    top: 85%;
-    left: 0
+
+.time__duration-box {
+  margin-top: 20px;
+}
+
+.ant-form-item.timing__form-item.to__time {
+  margin-left: 40px !important;
+}
+
+.ant-btn.done__btn {
+  position: fixed;
+  height: 45px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.date__container .picker:after,
+.timing-btn,
+.ant-time-picker {
+  width: 165px !important;
+}
+
+.ant-collapse-content>.ant-collapse-content-box {
+  padding: 0 !important;
+  padding-left: 5% !important;
 }
 }
