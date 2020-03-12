@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   treatment: '',
+  treatmentName: '',
   location: null,
   time: {
     from: '',
@@ -25,6 +26,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         treatment: action.payload,
+        treatmentName: action.treatmentName,
       };
     case LOCATION_INPUT_CHANGE:
       return {

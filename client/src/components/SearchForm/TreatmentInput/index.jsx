@@ -13,17 +13,23 @@ class TreatmentInput extends Component {
     allTreatments();
   }
 
-  handleTreatment = value => {
+  handleTreatment = (value, children) => {
+    let navTitle = '';
+    if (children && children.props) {
+      navTitle = children.props.children;
+    }
     const { searchAction: treatmentSearch } = this.props;
     if (value) {
       treatmentSearch({
         name: 'treatment',
         value,
+        treatmentName: navTitle,
       });
     } else {
       treatmentSearch({
         name: 'treatment',
         value: '',
+        treatmentName: '',
       });
     }
   };
