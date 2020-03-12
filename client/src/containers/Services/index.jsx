@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message } from 'antd';
-
+import { message, Pagination } from 'antd';
 import AdvancedSearch from './AdvancedSearch';
 import { ServiceCard, Loading } from '../../components';
 import { Layout } from '../index';
@@ -10,11 +9,17 @@ import getServicesAction from './services.actions';
 import './style.css';
 
 class ServicesPage extends Component {
+  state = {
+    pageCount: 1,
+  };
+
   componentDidMount() {
     const { getServices, searchQueries } = this.props;
 
     getServices(searchQueries);
   }
+
+  onPageChange = page => this.setState({ pageCount: page });
 
   getStoreType = storeId => {
     const {
@@ -32,12 +37,24 @@ class ServicesPage extends Component {
     return storeType;
   };
 
+  paginate = sortedServices => {
+    let { pageCount } = this.state;
+    pageCount -= 1;
+    let lesThanPage = false;
+    if (!sortedServices[pageCount * 10 + 9]) lesThanPage = true;
+    return sortedServices.slice(
+      pageCount * 10,
+      lesThanPage ? sortedServices.length : pageCount * 10 + 10
+    );
+  };
+
   render() {
     const {
       services: { loading, error, sortedServices },
     } = this.props;
+    const paginatedServices = this.paginate(sortedServices);
     return (
-      <>
+      <React.Fragment className="services-page">
         <Layout status="servicesForm" />
         <div className="services__container">
           {error && message.error(error.message)}
@@ -52,7 +69,7 @@ class ServicesPage extends Component {
                 </p>
               </div>
               <div className="services__cards">
-                {sortedServices.map(service => (
+                {paginatedServices.map(service => (
                   <div key={service.id}>
                     <ServiceCard
                       data={service}
@@ -61,10 +78,16 @@ class ServicesPage extends Component {
                   </div>
                 ))}
               </div>
+              <Pagination
+                className="services__pagination"
+                defaultPageSize={10}
+                onChange={this.onPageChange}
+                total={sortedServices.length}
+              />
             </>
           )}
         </div>
-      </>
+      </React.Fragment>
     );
   }
 }
