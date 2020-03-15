@@ -46,7 +46,7 @@ class SearchForm extends Component {
             <TreatmentInput />
           </Form.Item>
           <Form.Item>
-            <LocationtInput />
+            <LocationtInput status={status} />
           </Form.Item>
           <Form.Item className="search__form-time">
             <TimeInput />

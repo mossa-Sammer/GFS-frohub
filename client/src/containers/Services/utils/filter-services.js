@@ -35,26 +35,26 @@ export default (stores, services, fields) => {
         if (distance > 10) return false;
       }
     }
-
-    if (time.to) {
-      const searchFrom = Number(time.from.split(':')[0]);
-      const searchTo = Number(time.to.split(':')[0]);
-      let isTimeMatch = false;
-      // exclude services that doesn't have availability
-      if (!service.availability.length) return false;
-      for (let i = 0; i < service.availability.length; i += 1) {
-        const { from, to } = service.availability[i];
-        if (searchTo <= Number(from.split(':')[0])) {
-          isTimeMatch = false;
-        } else if (searchFrom >= Number(to.split(':')[0])) {
-          isTimeMatch = false;
-        } else {
-          isTimeMatch = true;
-          break;
+    if (time)
+      if (time.to) {
+        const searchFrom = Number(time.from.split(':')[0]);
+        const searchTo = Number(time.to.split(':')[0]);
+        let isTimeMatch = false;
+        // exclude services that doesn't have availability
+        if (!service.availability.length) return false;
+        for (let i = 0; i < service.availability.length; i += 1) {
+          const { from, to } = service.availability[i];
+          if (searchTo <= Number(from.split(':')[0])) {
+            isTimeMatch = false;
+          } else if (searchFrom >= Number(to.split(':')[0])) {
+            isTimeMatch = false;
+          } else {
+            isTimeMatch = true;
+            break;
+          }
         }
+        if (!isTimeMatch) return false;
       }
-      if (!isTimeMatch) return false;
-    }
 
     if (day) {
       const matchedStored = {};
