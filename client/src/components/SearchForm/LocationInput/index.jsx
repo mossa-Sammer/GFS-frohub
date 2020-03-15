@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchLocationList as fetchLocationListAction } from './location.actions';
 import searchByFields from '../../../containers/Services/services.actions';
 import searchChangeAction from '../search.actions';
+import { SERVICES_URL } from '../../../routes_urls';
 
 const { Option } = Select;
 
@@ -21,7 +22,7 @@ class LocationInput extends Component {
       locations: { locationList },
       searchChange,
       serachFields,
-      status,
+      match: { path },
     } = this.props;
     let selectedLocation;
     if (value) {
@@ -34,7 +35,7 @@ class LocationInput extends Component {
     } else {
       selectedLocation = null;
     }
-    if (status !== 'homePage')
+    if (path === SERVICES_URL)
       await serachFields({ location: selectedLocation });
     else
       searchChange({
@@ -88,13 +89,9 @@ class LocationInput extends Component {
 const mapStateToProps = ({
   locations,
   searchQueries: { location: locationQuery },
-  stores,
-  services,
 }) => ({
   locations,
   locationQuery,
-  stores,
-  services,
 });
 
 export default connect(mapStateToProps, {
