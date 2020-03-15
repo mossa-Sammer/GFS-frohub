@@ -21,6 +21,7 @@ class ServicesPage extends Component {
   componentDidMount() {
     const { getServices, searchQueries } = this.props;
     getServices(searchQueries);
+    this.setState({ scrolled: true });
     window.addEventListener('scroll', () => {
       const isTop = window.scrollY < 100;
       if (!isTop) {
@@ -75,77 +76,74 @@ class ServicesPage extends Component {
     const paginatedServices = this.paginate(sortedServices);
     return (
       <>
-        <div status="servicesForm" />
-        <div className="services__container">
-          <div className={`${scrolled ? 'min-header' : 'header'}`}>
-            <div className="left-header">
-              {scrolled ? (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div onClick={this.handleForm} className="small">
-                  <Icon type="search" className="small__form-seach-icon" />
-                  <div className="search-info">
-                    <div className="small__box-right">
-                      {searchQueries.treatmentName
-                        ? searchQueries.treatmentName
-                        : 'All Hair and Beauty'}
-                    </div>
-                    <div>
-                      <span>
-                        {searchQueries.location ? (
-                          <span>
-                            {' '}
-                            in{' '}
-                            {searchQueries.location.display_name.split(',')[0]}
-                          </span>
-                        ) : (
-                          <span className="search-info__location">
-                            Any location
-                          </span>
-                        )}
-                      </span>
-                      {/* <span>.</span> */}
-                      <span className="search-info__date-time">
-                        {searchQueries.date ? (
-                          <span className="search-info__date">{`${
-                            searchQueries.date
-                              ? `${moment(searchQueries.date).format(
-                                  'DD'
-                                )}/${moment(searchQueries.date).format('MM')}`
-                              : 'Any Date'
-                          } `}</span>
-                        ) : (
-                          <span className="search-info__date">Any Date</span>
-                        )}
-                        {searchQueries.time.from && (
-                          <span className="search-info__time">
-                            {searchQueries.time.from && searchQueries.time.to
-                              ? `${searchQueries.time.from} - ${searchQueries.time.to}`
-                              : ''}
-                          </span>
-                        )}
-                      </span>
-                    </div>
+        <div className={`${scrolled ? 'min-header' : 'header'}`}>
+          <div className="left-header">
+            {scrolled ? (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+              <div onClick={this.handleForm} className="small">
+                <Icon type="search" className="small__form-seach-icon" />
+                <div className="search-info">
+                  <div className="small__box-right">
+                    {searchQueries.treatmentName
+                      ? searchQueries.treatmentName
+                      : 'All Hair and Beauty'}
+                  </div>
+                  <div>
+                    <span>
+                      {searchQueries.location ? (
+                        <span>
+                          {' '}
+                          in {searchQueries.location.display_name.split(',')[0]}
+                        </span>
+                      ) : (
+                        <span className="search-info__location">
+                          Any location
+                        </span>
+                      )}
+                    </span>
+                    <span className="search-info__date-time">
+                      {searchQueries.date ? (
+                        <span className="search-info__date">{`${
+                          searchQueries.date
+                            ? `${moment(searchQueries.date).format(
+                                'DD'
+                              )}/${moment(searchQueries.date).format('MM')}`
+                            : 'Any Date'
+                        } `}</span>
+                      ) : (
+                        <span className="search-info__date">Any Date</span>
+                      )}
+                      {searchQueries.time.from && (
+                        <span className="search-info__time">
+                          {searchQueries.time.from && searchQueries.time.to
+                            ? `${searchQueries.time.from} - ${searchQueries.time.to}`
+                            : ''}
+                        </span>
+                      )}
+                    </span>
                   </div>
                 </div>
-              ) : (
-                <SearchForm
-                  status="servicesForm"
-                  className={scrolled ? 'hidden-form' : 'visible-form'}
-                />
-              )}
-            </div>
-            <div className="treatment-title">
-              {isServicesPage && (
-                <span className="frohub__banner-headline">
-                  {searchQueries.treatmentName ? (
-                    searchQueries.treatmentName
-                  ) : (
-                    <>All Hair and Beauty</>
-                  )}
-                </span>
-              )}
-            </div>
+              </div>
+            ) : (
+              <SearchForm
+                status="servicesForm"
+                className={scrolled ? 'hidden-form' : 'visible-form'}
+              />
+            )}
           </div>
+          <div className="treatment-title">
+            {isServicesPage && (
+              <span className="frohub__banner-headline">
+                {searchQueries.treatmentName ? (
+                  searchQueries.treatmentName
+                ) : (
+                  <>All Hair and Beauty</>
+                )}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="services__container">
           {error && message.error(error.message)}
           {loading ? (
             <Loading />
