@@ -1,54 +1,56 @@
 {
-  "name": "gfs-frohub",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "NODE_ENV=production cd client && npm install && npm run build",
-    "dev:server": "nodemon index.js",
-    "dev:client": "cd client && npm start",
-    "test": "jest --passWithNoTests --config=server/config/jest.config.js && cd client && npm run test:precommit",
-    "test:server": "jest --watch --config=server/config/jest.config.js",
-    "test:client": "jest cd client && npm test",
-    "lint": "eslint -c server/config/.eslintrc.js server/",
-    "lint:react": "cd client && npm run lint"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "./server",
-      "./package.json",
-      "./index.js",
-      "./.env"
-    ]
-  },
-  "dependencies": {
-    "@hapi/boom": "^8.0.1",
-    "axios": "^0.19.0",
-    "bcrypt": "^3.0.7",
-    "compression": "^1.7.4",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "dotenv": "^8.2.0",
-    "express": "~4.16.1",
-    "helmet": "^3.21.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.11",
-    "morgan": "~1.9.1",
-    "serve-favicon": "^2.5.0",
-    "yup": "^0.27.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "jest": "^24.9.0",
-    "nodemon": "^1.19.4",
-    "pre-commit": "^1.2.2"
-  },
-  "pre-commit": [
-    "test",
-    "lint",
-    "lint:react"
-  ]
+	"name": "gfs-frohub",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node index.js",
+		"heroku-postbuild": "NODE_ENV=production cd client && npm install && npm run build",
+		"dev:server": "nodemon index.js",
+		"dev:client": "cd client && npm start",
+		"dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" ",
+		"test": "jest --passWithNoTests --config=server/config/jest.config.js && cd client && npm run test:precommit",
+		"test:server": "jest --watch --config=server/config/jest.config.js",
+		"test:client": "jest cd client && npm test",
+		"lint": "eslint -c server/config/.eslintrc.js server/",
+		"lint:react": "cd client && npm run lint"
+	},
+	"nodemonConfig": {
+		"watch": [
+			"./server",
+			"./package.json",
+			"./index.js",
+			"./.env"
+		]
+	},
+	"dependencies": {
+		"@hapi/boom": "^8.0.1",
+		"axios": "^0.19.0",
+		"bcrypt": "^3.0.7",
+		"compression": "^1.7.4",
+		"cookie-parser": "~1.4.4",
+		"cors": "^2.8.5",
+		"debug": "~2.6.9",
+		"dotenv": "^8.2.0",
+		"express": "~4.16.1",
+		"helmet": "^3.21.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.7.11",
+		"morgan": "~1.9.1",
+		"serve-favicon": "^2.5.0",
+		"yup": "^0.27.0"
+	},
+	"devDependencies": {
+		"concurrently": "^5.1.0",
+		"eslint": "^6.6.0",
+		"eslint-config-airbnb-base": "^14.0.0",
+		"eslint-plugin-import": "^2.18.2",
+		"jest": "^24.9.0",
+		"nodemon": "^1.19.4",
+		"pre-commit": "^1.2.2"
+	},
+	"pre-commit": [
+		"test",
+		"lint",
+		"lint:react"
+	]
 }
