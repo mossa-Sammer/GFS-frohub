@@ -98,9 +98,12 @@
 
 .form__container.form__container-services {
   background: none;
-  background-color: rgba(224, 87, 71, 0.9);
-  padding: 0rem 0rem 0rem 11rem !important;
+  padding: 0rem 0rem 0rem 0rem !important;
   height: 180px;
+  position: fixed;
+  top: 0;
+  z-index: 88;
+  width: 100%;
 }
 
 .services__title {

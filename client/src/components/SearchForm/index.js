@@ -31,8 +31,7 @@ class SearchForm extends Component {
   };
 
   render() {
-    const { status, searchQueries } = this.props;
-    const { treatmentName } = searchQueries;
+    const { status } = this.props;
     const isServicesPage = status === 'servicesForm';
     return (
       <div
@@ -69,17 +68,7 @@ class SearchForm extends Component {
             </Form.Item>
           )}
         </Form>
-        {isServicesPage ? (
-          <div className="title services__title">
-            <span className="frohub__banner-headline">
-              {searchQueries.treatmentName ? (
-                treatmentName
-              ) : (
-                <>All Hair and Beauty</>
-              )}
-            </span>
-          </div>
-        ) : (
+        {!isServicesPage && (
           <div className="title home__title">
             <span className="frohub__banner-headline">
               Find &amp; book afro
