@@ -9,6 +9,8 @@ import SearchForm from '../../components/SearchForm';
 import { ServiceCard, Loading } from '../../components';
 import getServicesAction from './services.actions';
 
+import { SERVICES_URL } from '../../routes_urls';
+
 import './style.css';
 import './media.css';
 
@@ -23,13 +25,19 @@ class ServicesPage extends Component {
     const { getServices, searchQueries } = this.props;
     getServices(searchQueries);
     this.setState({ scrolled: true });
-    window.addEventListener('scroll', () => {
-      const isTop = window.scrollY < 100;
-      if (!isTop) {
-        this.setState({ scrolled: true });
-      }
-    });
+    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const isTop = window.scrollY < 100;
+    if (!isTop) {
+      this.setState({ scrolled: true });
+    }
+  };
 
   getStoreType = storeId => {
     const {
@@ -72,7 +80,7 @@ class ServicesPage extends Component {
       searchQueries,
       match,
     } = this.props;
-    const isServicesPage = match.url === '/services';
+    const isServicesPage = match.url === SERVICES_URL;
     const { pageSize, scrolled } = this.state;
     const paginatedServices = this.paginate(sortedServices);
     return (
