@@ -24,7 +24,6 @@ class ServicesPage extends Component {
   componentDidMount() {
     const { getServices, searchQueries } = this.props;
     getServices(searchQueries);
-    this.setState({ scrolled: true });
     window.addEventListener('scroll', this.handleScroll);
   }
 
