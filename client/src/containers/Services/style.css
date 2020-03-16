@@ -1,8 +1,5 @@
-/* .services__container {
-	margin: auto;
-} */
 .services__header {
-	width: 100%;
+	width: 80%;
 	padding: 1.5rem;
 	display: flex;
 	justify-content: space-between;
@@ -21,6 +18,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-top: 100px;
 }
 
 .ant-pagination.services__pagination {
@@ -69,4 +67,84 @@
 
 .services__pagination .anticon {
 	margin: 3px 3px 0 11px !important;
+}
+
+.min-header,
+.header {
+	width: 100%;
+	background-color: rgb(224, 87, 71);
+	padding: 0rem 0rem 0rem 10rem !important;
+	transition: 0.400s ease-out;
+	position: fixed;
+	top: 0;
+	z-index: 22;
+	display: flex;
+	align-items: center;
+}
+
+.header,
+.max-header {
+	min-height: 180px;
+}
+
+.max-header {
+	padding-bottom: 1rem !important;
+}
+.min-header {
+	height: 100px;
+	padding-top: 0.9rem !important;
+}
+.treatment-title {
+	width: 65%;
+}
+.left-header {
+	width: 35%;
+}
+
+.frohub__banner-headline {
+	color: #fff;
+	font-size: 24px;
+	margin-left: 32px;
+	z-index: 33;
+}
+
+.small {
+	background: #fff;
+	width: 360px;
+	height: 55px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.15), 0 0 1px 0 rgba(0,0,0,.4);
+}
+
+.search-info {
+	padding-left: 8px;
+	font-size: 14px;
+	color: rgb(77, 77, 77);
+	line-height: 20px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.search-info__date-time {
+	display: inline-block;
+	padding-left: 8px;
+}
+
+.search-info__date-time,
+.search-info__location {
+	color: rgba(77, 77, 77, .7);
+}
+.search-info__time {
+	padding-left: 5px;
+}
+
+.small__form-seach-icon.anticon.anticon-search {
+	font-size: 24px;
+}
+
+.min-header .frohub__banner-headline {
+	margin-left: 0 !important;
+	font-size: 28px;
 }

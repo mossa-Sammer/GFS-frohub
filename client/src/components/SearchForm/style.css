@@ -27,14 +27,17 @@
 .search__form.services-search__form.ant-form.ant-form-horizontal,
 .ant-form.ant-form-horizontal.home-search__form {
   background: #fff;
-  padding: 1.5rem !important;
+  padding: 1rem !important;
   height: 342px;
 }
 
 .search__form {
   width: 400px;
-  margin-top: 1rem !important;
   text-align: center;
+}
+
+.search__form.home-search__form {
+  margin-top: 1rem !important;
 }
 
 .search__form-title {
@@ -91,4 +94,51 @@
 
 .ant-select-open .ant-select-arrow-icon svg {
   transform: rotate(0deg) !important;
+}
+
+.form__container.form__container-services {
+  background: none;
+  padding: 0rem 0rem 0rem 0rem !important;
+  height: 180px;
+  position: fixed;
+  top: 0;
+  z-index: 88;
+  width: 100%;
+}
+
+.services__title {
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 45%;
+  padding-top: 0 !important;
+}
+
+.form__title-hidden {
+  display: none !important;
+}
+
+.search__form.services-search__form.ant-form.ant-form-horizontal {
+  background: none;
+  height: 170px;
+}
+
+.search__form.services-search__form.ant-form.ant-form-horizontal .ant-row.ant-form-item {
+  height: 25px !important;
+  margin-bottom: 20px;
+}
+
+.services-search__form-item.ant-row.ant-form-item,
+.services-search__form-time.ant-row.ant-form-item {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+  transition: width 0.4s;
+}
+
+.ant-row.ant-form-item.search__form-time {
+  margin-top: 28px;
+}
+
+.search__form.services-search__form.ant-form.ant-form-horizontal,
+.ant-form.ant-form-horizontal.home-search__form {
+  padding: 1rem !important;
 }

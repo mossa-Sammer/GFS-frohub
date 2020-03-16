@@ -9,6 +9,7 @@ export default inputField => async dispatch => {
       dispatch({
         type: TREATMENT_INPUT_CHANGE,
         payload: inputField.value,
+        treatmentName: inputField.treatmentName,
       });
       break;
     case 'location':

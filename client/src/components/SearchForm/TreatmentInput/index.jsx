@@ -4,6 +4,7 @@ import { Select, Icon, Skeleton, message } from 'antd';
 
 import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
+import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
 const { Option } = Select;
 
@@ -13,23 +14,44 @@ class TreatmentInput extends Component {
     allTreatments();
   }
 
-  handleTreatment = value => {
-    const { searchAction: treatmentSearch } = this.props;
+  handleTreatment = (value, children) => {
+    const {
+      status,
+      searchAction: treatmentSearch,
+      searchQueries,
+      filterServicesAction: filterServices,
+      services,
+      stores,
+    } = this.props;
+    let navTitle = '';
+    if (children && children.props) {
+      navTitle = children.props.children;
+    }
     if (value) {
       treatmentSearch({
         name: 'treatment',
         value,
+        treatmentName: navTitle,
       });
+      if (status === 'servicesForm') {
+        const queries = searchQueries;
+        queries.treatment = value;
+        filterServices(stores, services, queries);
+      }
     } else {
+      searchQueries.treatment = '';
+      filterServices(stores, services, searchQueries);
       treatmentSearch({
         name: 'treatment',
         value: '',
+        treatmentName: '',
       });
     }
   };
 
   render() {
-    const { treatments, loading, err, treatmentQuery } = this.props;
+    const { treatments, loading, err, searchQueries } = this.props;
+    const { treatment: treatmentQuery } = searchQueries;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -66,16 +88,20 @@ class TreatmentInput extends Component {
 }
 
 const mapStateToProps = state => {
-  const { treatment: treatmentQuery } = state.searchQueries;
-  const { treatments, loading, err } = state.treatments;
+  const { treatments: allTreatments, searchQueries, stores, services } = state;
+  const { treatments, loading, err } = allTreatments;
   return {
     treatments,
     loading,
     err,
-    treatmentQuery,
+    searchQueries,
+    stores,
+    services: services.services,
   };
 };
 
-export default connect(mapStateToProps, { getTreatments, searchAction })(
-  TreatmentInput
-);
+export default connect(mapStateToProps, {
+  getTreatments,
+  searchAction,
+  filterServicesAction,
+})(TreatmentInput);

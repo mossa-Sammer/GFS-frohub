@@ -32,33 +32,50 @@ class SearchForm extends Component {
 
   render() {
     const { status } = this.props;
+    const isServicesPage = status === 'servicesForm';
     return (
-      <div className="form__container">
+      <div
+        className={
+          !isServicesPage
+            ? 'form__container form__container-home'
+            : 'form__container form__container-services'
+        }
+      >
         <Form
           className={`search__form ${
-            status && status === 'homePage'
-              ? 'home-search__form'
-              : 'services-search__form'
+            !isServicesPage ? 'home-search__form' : 'services-search__form'
           }`}
         >
-          <span className="search__form-title">Discover. Book. Slay.</span>
-          <Form.Item>
-            <TreatmentInput />
+          <span
+            className={
+              isServicesPage ? 'form__title-hidden' : 'search__form-title'
+            }
+          >
+            Discover. Book. Slay.
+          </span>
+          <Form.Item className="search__form-item">
+            <TreatmentInput status={status} />
           </Form.Item>
-          <Form.Item>
-            <LocationtInput />
+          <Form.Item className="search__form-item">
+            <LocationtInput status={status} />
           </Form.Item>
           <Form.Item className="search__form-time">
             <TimeInput />
           </Form.Item>
-          <Form.Item className="search-btn">
-            <Button onClick={this.handleSearch}>Search FroHub</Button>
-          </Form.Item>
+          {!isServicesPage && (
+            <Form.Item className="search-btn">
+              <Button onClick={this.handleSearch}>Search FroHub</Button>
+            </Form.Item>
+          )}
         </Form>
-        <div className="title">
-          <span className="frohub__banner-headline">Find &amp; book afro</span>
-          <span className="frohub__banner-headline">hair and beauty</span>
-        </div>
+        {!isServicesPage && (
+          <div className="title home__title">
+            <span className="frohub__banner-headline">
+              Find &amp; book afro
+            </span>
+            <span className="frohub__banner-headline">hair and beauty</span>
+          </div>
+        )}
       </div>
     );
   }
