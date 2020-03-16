@@ -18,7 +18,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 80px;
+	margin-top: 100px;
 }
 
 .ant-pagination.services__pagination {
@@ -73,14 +73,13 @@
 .header {
 	width: 100%;
 	background-color: rgb(224, 87, 71);
-	padding: 0rem 0rem 0rem 11rem !important;
+	padding: 0rem 0rem 0rem 10rem !important;
 	transition: 0.400s ease-out;
 	position: fixed;
 	top: 0;
 	z-index: 22;
 	display: flex;
 	align-items: center;
-	transition: 0.5s ease;
 }
 
 .header,
@@ -89,39 +88,15 @@
 }
 
 .max-header {
-	/* padding-top: 9rem; */
-	/* padding: 3rem 0 !important; */
-	
+	padding-bottom: 1rem !important;
 }
-
-
 .min-header {
 	height: 100px;
-	padding-top: 1rem !important;
-	/* padding: 4rem 0 !important; */
-	/* animation-name: h; */
-	/* animation-delay: 5s; */
+	padding-top: 0.9rem !important;
 }
-
-/* @keyframes h {
-	0% {
-		padding: 1rem 0;
-	}
-	25% {
-		padding: 2rem 0;
-	}
-	50% {
-		padding: 3rem 0;
-	}
-	100% {
-		padding: 0 5rem;
-	}
-} */
-
 .treatment-title {
 	width: 65%;
 }
-
 .left-header {
 	width: 35%;
 }
@@ -133,10 +108,6 @@
 	z-index: 33;
 }
 
-.hidden-form .ant-form.search__form.services-search__form {
-	display: none !important;
-}
-
 .small {
 	background: #fff;
 	width: 360px;
@@ -146,7 +117,6 @@
 	align-items: center;
 	border-radius: 4px;
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,.15), 0 0 1px 0 rgba(0,0,0,.4);
-	animation-name: h;
 }
 
 .search-info {
@@ -173,14 +143,8 @@
 .small__form-seach-icon.anticon.anticon-search {
 	font-size: 24px;
 }
-@keyframes h {
-	0% {
-		height: 180px;
-	}
-	50% {
-		height: 120px;
-	}
-	100% {
-		height: 80px;
-	}
+
+.min-header .frohub__banner-headline {
+	margin-left: 0 !important;
+	font-size: 28px;
 }
