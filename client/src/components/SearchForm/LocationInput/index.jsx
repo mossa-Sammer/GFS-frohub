@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Select, Icon, Skeleton, message } from 'antd';
-
+import { withRouter } from 'react-router-dom';
 import { fetchLocationList as fetchLocationListAction } from './location.actions';
+import searchByFields from '../../../containers/Services/services.actions';
 import searchChangeAction from '../search.actions';
+import { SERVICES_URL } from '../../../routes_urls';
 
 const { Option } = Select;
 
@@ -15,10 +17,12 @@ class LocationInput extends Component {
     }
   };
 
-  handleSelect = value => {
+  handleSelect = async value => {
     const {
       locations: { locationList },
       searchChange,
+      serachFields,
+      match: { path },
     } = this.props;
     let selectedLocation;
     if (value) {
@@ -31,11 +35,13 @@ class LocationInput extends Component {
     } else {
       selectedLocation = null;
     }
-
-    searchChange({
-      name: 'location',
-      value: selectedLocation,
-    });
+    if (path === SERVICES_URL)
+      await serachFields({ location: selectedLocation });
+    else
+      searchChange({
+        name: 'location',
+        value: selectedLocation,
+      });
   };
 
   render() {
@@ -91,4 +97,5 @@ const mapStateToProps = ({
 export default connect(mapStateToProps, {
   fetchLocationList: fetchLocationListAction,
   searchChange: searchChangeAction,
-})(LocationInput);
+  serachFields: searchByFields,
+})(withRouter(LocationInput));

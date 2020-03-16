@@ -4,7 +4,7 @@ export default (stores, services, fields) => {
   const { treatment, location, date, time, day } = fields;
 
   // No search queries applied
-  if (!treatment && !location && !date && !time.to && !day) return services;
+  if (!treatment && !location && !date && !time && !day) return services;
   const filteredServices = services.filter(service => {
     if (treatment && service.categories[0].id !== Number(treatment))
       return false;
@@ -35,8 +35,7 @@ export default (stores, services, fields) => {
         if (distance > 10) return false;
       }
     }
-
-    if (time.to) {
+    if (time && time.to) {
       const searchFrom = Number(time.from.split(':')[0]);
       const searchTo = Number(time.to.split(':')[0]);
       let isTimeMatch = false;
