@@ -131,6 +131,7 @@
 .services-search__form-item.ant-row.ant-form-item,
 .services-search__form-time.ant-row.ant-form-item {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+  transition: width 0.4s;
 }
 
 .ant-row.ant-form-item.search__form-time {
