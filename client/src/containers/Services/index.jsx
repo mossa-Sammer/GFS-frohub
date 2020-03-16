@@ -10,6 +10,7 @@ import { ServiceCard, Loading } from '../../components';
 import getServicesAction from './services.actions';
 
 import './style.css';
+import './media.css';
 
 class ServicesPage extends Component {
   state = {

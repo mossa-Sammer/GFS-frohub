@@ -1,0 +1,14 @@
+@media only screen and (max-width: 425px) {
+  .min-header {
+    padding: 0 0.5rem !important;
+  }
+  .left-header {
+    width: 100%;
+  }
+  .treatment-title {
+    display: none;
+  }
+  .header {
+    padding: 0 !important;
+  }
+}
