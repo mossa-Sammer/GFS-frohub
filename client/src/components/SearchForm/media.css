@@ -1,7 +1,7 @@
 @media only screen and (max-width: 768px) {
   .form__container {
     padding-top: 130px !important;
-    height: 480px;
+    height: 470px;
     padding: 0 1rem;
     background-position: 0vh 0vw;
     background-color: rgba(224, 87, 71, 0.9);
@@ -14,7 +14,7 @@
   .ant-form.ant-form-horizontal.home-search__form {
     width: 80%;
     padding: 1rem !important;
-    height: 325px;
+    height: 290px;
   }
 }
 
@@ -97,5 +97,11 @@
   }
   .form__container.form__container-services {
     padding: 0 !important
+  }
+  .form__container.form__container-home .search__form-item {
+    margin-bottom: 8px;
+  }
+  .form__container.form__container-home .ant-row.ant-form-item.search__form-time {
+    margin-bottom: 10px !important;
   }
 }
