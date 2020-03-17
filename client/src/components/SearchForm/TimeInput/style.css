@@ -110,6 +110,14 @@
   width: 50%;
 }
 
+.date-header,
+.time-header {
+  padding-left: 18px;
+}
+.time__container,
+.date__container {
+  text-align: center;
+}
 .ant-time-picker {
   width: 155px !important;
 }
