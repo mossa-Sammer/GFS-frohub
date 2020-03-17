@@ -133,10 +133,7 @@ class ServicesPage extends Component {
                 </div>
               </div>
             ) : (
-              <SearchForm
-                status="servicesForm"
-                className={scrolled ? 'hidden-form' : 'visible-form'}
-              />
+              <SearchForm status="servicesForm" className="services__form" />
             )}
           </div>
           <div className="treatment-title">

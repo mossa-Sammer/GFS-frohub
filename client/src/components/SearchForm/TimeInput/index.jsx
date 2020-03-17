@@ -126,6 +126,7 @@ class TimeInput extends Component {
     const { visible, dateVisible, timeVisible, toOpen } = this.state;
     return (
       <Collapse
+        className="time__input"
         accordion
         expandIcon={() => <Icon className="picker-icon" type="calendar" />}
         activeKey={visible ? 'time' : ''}
