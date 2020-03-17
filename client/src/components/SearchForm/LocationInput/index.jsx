@@ -7,8 +7,6 @@ import searchByFields from '../../../containers/Services/services.actions';
 import searchChangeAction from '../search.actions';
 import { SERVICES_URL } from '../../../routes_urls';
 
-import './style.css';
-
 const { Option } = Select;
 
 class LocationInput extends Component {
