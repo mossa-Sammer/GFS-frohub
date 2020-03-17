@@ -1,19 +1,14 @@
 @media only screen and (max-width: 425px) {
-  .header {
-    padding: 5% !important;
-  }
-  .min-header,
-  .max-header {
-    padding: 5% !important;
-    width: 100vw;
+  .min-header {
+    padding: 0 0.5rem !important;
   }
   .left-header {
-    width: 100% !important;
+    width: 100%;
   }
   .treatment-title {
     display: none;
   }
-  .small {
-    width: 100%;
+  .header {
+    padding: 0 !important;
   }
 }
