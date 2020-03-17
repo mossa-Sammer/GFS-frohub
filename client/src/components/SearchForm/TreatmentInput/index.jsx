@@ -72,6 +72,7 @@ class TreatmentInput extends Component {
           }}
           showAction={['focus', 'click']}
           defaultValue={treatmentQuery || undefined}
+          placement="bottomCenter"
         >
           {treatments &&
             treatments.data &&

@@ -1,9 +1,11 @@
 @media only screen and (max-width: 425px) {
   .header {
-    padding: 0 !important;
-  }
-  .min-header {
     padding: 5% !important;
+  }
+  .min-header,
+  .max-header {
+    padding: 5% !important;
+    width: 100vw;
   }
   .left-header {
     width: 100% !important;

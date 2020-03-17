@@ -82,6 +82,10 @@
     margin: 0rem !important;
     width: 100% !important;
   }
+  .form__container.form__container-services {
+    width: 100vw !important;
+    left: 0;
+  }
   .form__container.form__container-services .ant-select-selection.ant-select-selection--single .ant-select-arrow {
     left: 0px !important;
   }
