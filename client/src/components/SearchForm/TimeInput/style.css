@@ -1,3 +1,7 @@
+.form__container-services .time__input {
+  /* transition: all .2s ease-in-out !important; */
+  animation: date .5s ease-in-out;
+}
 .ant-collapse-content {
   z-index: 1;
   background: #fff;
@@ -106,6 +110,14 @@
   width: 50%;
 }
 
+.date-header,
+.time-header {
+  padding-left: 18px;
+}
+.time__container,
+.date__container {
+  text-align: center;
+}
 .ant-time-picker {
   width: 155px !important;
 }

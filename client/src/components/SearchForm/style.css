@@ -51,6 +51,32 @@
 .location__input {
   width: 100% !important;
 }
+.form__container-services .location__input {
+  animation: location 0.5s ease-in-out;
+}
+
+.form__container-services .treatment__input {
+  animation: treatment 0.5s ease-in-out;
+}
+
+@keyframes treatment {
+  0%{
+    transform: translateY(-10px);
+
+  }
+}
+
+@keyframes location {
+  0%{
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes date {
+  0%{
+    transform: translateY(-80px);
+  }
+}
 
 .ant-form-item.search__form-time  {
   text-align: left;
