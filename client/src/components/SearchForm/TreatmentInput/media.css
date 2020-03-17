@@ -1,0 +1,8 @@
+@media only screen and (max-width: 425px) {
+  .small {
+    width: 100%;
+  }
+  .ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft {
+    top: 260px !important;
+  }
+}
