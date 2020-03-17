@@ -85,8 +85,10 @@ class TimePickerCom extends Component {
     const { timeContainerVisible } = this.state;
     return (
       <div className="time">
-        <Icon className="picker-icon time-icon" type="clock-circle" />
-        <span className="time-title">Choose Time</span>
+        <div className="time-header">
+          <Icon className="picker-icon time-icon" type="clock-circle" />
+          <span className="time-title">Choose Time</span>
+        </div>
         <div className="time__container">
           <Button
             className={`${!time.from && !timeVisible && 'active'} timing-btn`}
