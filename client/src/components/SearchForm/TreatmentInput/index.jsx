@@ -6,8 +6,6 @@ import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
 import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
-import './media.css';
-
 const { Option } = Select;
 
 class TreatmentInput extends Component {
@@ -72,7 +70,6 @@ class TreatmentInput extends Component {
           }}
           showAction={['focus', 'click']}
           defaultValue={treatmentQuery || undefined}
-          placement="bottomCenter"
         >
           {treatments &&
             treatments.data &&

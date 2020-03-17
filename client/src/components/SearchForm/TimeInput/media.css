@@ -86,7 +86,7 @@
     min-height: 100vh;
   }
   .timing__container {
-    height: 100vh;
+    height: 85%;
   }
 
 .time__duration-box {
@@ -113,5 +113,6 @@
 
 .ant-collapse-content>.ant-collapse-content-box {
   padding: 0 !important;
+  padding-left: 5% !important;
 }
 }

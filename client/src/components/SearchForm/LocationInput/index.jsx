@@ -35,13 +35,13 @@ class LocationInput extends Component {
     } else {
       selectedLocation = null;
     }
-    searchChange({
-      name: 'location',
-      value: selectedLocation,
-    });
-    if (path === SERVICES_URL) {
+    if (path === SERVICES_URL)
       await serachFields({ location: selectedLocation });
-    }
+    else
+      searchChange({
+        name: 'location',
+        value: selectedLocation,
+      });
   };
 
   render() {

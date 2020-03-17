@@ -158,10 +158,8 @@ class TimeInput extends Component {
               } ${from && to ? `${from} - ${to}` : ''}`}</span>
             </div>
             <div>
-              <div className="date-header">
-                <Icon className="picker-icon date-icon" type="calendar" />
-                <span className="date-title">Choose Date</span>
-              </div>
+              <Icon className="picker-icon date-icon" type="calendar" />
+              <span className="date-title">Choose Date</span>
               <div className="date__container">
                 <Button
                   className={`${!date &&
