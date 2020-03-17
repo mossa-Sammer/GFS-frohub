@@ -58,6 +58,7 @@ class LocationInput extends Component {
       <div className="location__input">
         {error && message.error(error.message)}
         <Select
+          className="location__select"
           allowClear
           showSearch
           suffixIcon={<Icon type="environment" />}
