@@ -6,6 +6,8 @@ import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
 import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
+import './media.css';
+
 const { Option } = Select;
 
 class TreatmentInput extends Component {

@@ -41,16 +41,14 @@
 @media only screen and (max-width: 425px) {
   
   .title {
-    width: 165px;
-    top: 4rem !important;
+    width: 240px;
+    top: 3rem !important;
     position: absolute;
     font-size: 18px;
     letter-spacing: 0;
     padding: 0;
-    left: 0;
-    right: 13rem;
+    left: -8%;
     margin: 0;
-    margin-left: 5px;
   }
   .frohub__banner-headline:nth-child(2) {
     padding-left: 24px;
@@ -84,8 +82,11 @@
     margin: 0rem !important;
     width: 100% !important;
   }
-  .ant-select-selection.ant-select-selection--single .ant-select-arrow {
-    right: 280px !important;
+  .form__container.form__container-services .ant-select-selection.ant-select-selection--single .ant-select-arrow {
+    left: 0px !important;
+  }
+  .form__container.form__container-home .ant-select-selection.ant-select-selection--single .ant-select-arrow {
+    left: 15px !important;
   }
   .title.services__title {
     display: none;
