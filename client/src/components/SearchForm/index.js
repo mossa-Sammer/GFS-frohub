@@ -36,14 +36,14 @@ class SearchForm extends Component {
     return (
       <div
         className={
-          !isServicesPage
-            ? 'form__container form__container-home'
-            : 'form__container form__container-services'
+          isServicesPage
+            ? 'form__container form__container-services'
+            : 'form__container form__container-home'
         }
       >
         <Form
           className={`search__form ${
-            !isServicesPage ? 'home-search__form' : 'services-search__form'
+            isServicesPage ? 'services-search__form' : 'home-search__form'
           }`}
         >
           <span
