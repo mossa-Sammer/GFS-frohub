@@ -35,17 +35,13 @@ class LocationInput extends Component {
     } else {
       selectedLocation = null;
     }
+    searchChange({
+      name: 'location',
+      value: selectedLocation,
+    });
     if (path === SERVICES_URL) {
       await serachFields({ location: selectedLocation });
-      searchChange({
-        name: 'location',
-        value: selectedLocation,
-      });
-    } else
-      searchChange({
-        name: 'location',
-        value: selectedLocation,
-      });
+    }
   };
 
   render() {
@@ -62,6 +58,7 @@ class LocationInput extends Component {
       <div className="location__input">
         {error && message.error(error.message)}
         <Select
+          className="location__select"
           allowClear
           showSearch
           suffixIcon={<Icon type="environment" />}

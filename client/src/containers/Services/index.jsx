@@ -24,7 +24,6 @@ class ServicesPage extends Component {
   componentDidMount() {
     const { getServices, searchQueries } = this.props;
     getServices(searchQueries);
-    this.setState({ scrolled: true });
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -134,10 +133,7 @@ class ServicesPage extends Component {
                 </div>
               </div>
             ) : (
-              <SearchForm
-                status="servicesForm"
-                className={scrolled ? 'hidden-form' : 'visible-form'}
-              />
+              <SearchForm status="servicesForm" className="services__form" />
             )}
           </div>
           <div className="treatment-title">
