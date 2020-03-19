@@ -20,7 +20,6 @@
   }
   .timing__close.anticon {
     display: inline;
-    float: right;
     font-size: 14px;
     position: fixed;
     top: 9%;
