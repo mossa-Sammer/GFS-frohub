@@ -89,7 +89,10 @@
   }
 
 .time__duration-box {
-  margin-top: 20px;
+  margin-top: 2rem;
+}
+.ant-col.ant-form-item-label{
+  margin-left:1rem !important;
 }
 
 .ant-form-item.timing__form-item.to__time {
