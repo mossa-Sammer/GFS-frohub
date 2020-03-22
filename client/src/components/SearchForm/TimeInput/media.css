@@ -1,11 +1,11 @@
 @media only screen and (max-width: 425px) {
-
   .ant-collapse-content-box {
     overflow: hidden !important;
     min-height: 100vh !important;
   }
 
-  .date__container, .time__container {
+  .date__container,
+  .time__container {
     justify-content: space-around;
   }
 
@@ -34,9 +34,9 @@
     display: inline-block;
     width: 100%;
     padding: 1rem;
-    border-bottom: 1px solid rgba(51, 51, 51, .2);
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
     font-size: 16px;
-    color: rgba(51, 51, 51, .6);
+    color: rgba(51, 51, 51, 0.6);
     margin: 0.8rem 0;
   }
 
@@ -44,7 +44,7 @@
     color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid #d9d9d9 !important;
   }
-  
+
   .ant-btn:hover {
     color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid #d9d9d9 !important;
@@ -62,7 +62,7 @@
     float: right;
   }
   .timing__form-item.to__time.ant-row.ant-form-item {
-    margin-left: 2rem !important;
+    /* margin-left: 2rem !important; */
   }
   .ant-popover.ant-popover-placement-bottom {
     left: 0.8rem !important;
@@ -88,32 +88,33 @@
     height: 100vh;
   }
 
-.time__duration-box {
-  margin-top: 2rem;
-}
-.ant-col.ant-form-item-label{
-  margin-left:1rem !important;
-}
+  .time__duration-box {
+    width: 94% !important;
+    margin: 1rem 1rem !important;
+  }
+  .ant-col.ant-form-item-label {
+    margin-left: 1rem !important;
+  }
 
-.ant-form-item.timing__form-item.to__time {
-  margin-left: 40px !important;
-}
+  .ant-form-item.timing__form-item.to__time {
+    /* margin-left: 40px !important; */
+  }
 
-.ant-btn.done__btn {
-  position: fixed;
-  height: 45px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-}
+  .ant-btn.done__btn {
+    position: fixed;
+    height: 45px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
 
-.date__container .picker:after,
-.timing-btn,
-.ant-time-picker {
-  width: 165px !important;
-}
+  .date__container .picker:after,
+  .timing-btn,
+  .ant-time-picker {
+    width: 165px !important;
+  }
 
-.ant-collapse-content>.ant-collapse-content-box {
-  padding: 0 !important;
-}
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 0 !important;
+  }
 }
