@@ -55,19 +55,21 @@ class TimePickerCom extends Component {
   };
 
   handleToTime = selectedToTime => {
-    const { time, searchAction: handleSearch } = this.props;
+    const { time, searchAction: handleSearch, closeCollapse } = this.props;
     const { from } = time;
     const convertedTime = selectedToTime
       ? moment(selectedToTime)
           .startOf('hour')
           .format('HH:mm')
       : '';
-    handleSearch({
-      name: 'time',
-      value: {
-        from,
-        to: convertedTime,
-      },
+    closeCollapse(null, () => {
+      handleSearch({
+        name: 'time',
+        value: {
+          from,
+          to: convertedTime,
+        },
+      });
     });
   };
 

@@ -112,10 +112,12 @@
   margin-left: 35px !important;
 }
 
-.ant-select-selection.ant-select-selection--single .ant-select-arrow {
+.search__form.home-search__form .ant-select-selection.ant-select-selection--single .ant-select-arrow,
+.search__form.services-search__form .ant-select-selection.ant-select-selection--single .ant-select-arrow {
   left: 0 !important;
-  top: 45% !important;
-  right: 310px !important;
+  top: 40% !important;
+  right: 87% !important;
+  font-size: 16px;
 }
 
 .ant-select-open .ant-select-arrow-icon svg {
@@ -159,11 +161,9 @@
   box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
   transition: width 0.4s;
 }
-
-.ant-row.ant-form-item.search__form-time {
-  margin-top: 28px;
+.form__container-services .ant-row.ant-form-item.search__form-time {
+  margin-top: 28px !important;
 }
-
 .search__form.services-search__form.ant-form.ant-form-horizontal,
 .ant-form.ant-form-horizontal.home-search__form {
   padding: 1rem !important;
