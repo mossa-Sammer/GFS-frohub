@@ -12,17 +12,15 @@
   flex-direction: row;
 }
 
-/* .time__duration-box .ant-form-item-control {
-  width: 0% !important;
-} */
-
+.anticon.anticon-close.timing__close {
+  left: 23%;
+  right: initial;
+}
 .time__duration-box {
   width: 90% !important;
   margin: auto !important;
 }
-/* .ant-form-item-children .ant-time-picker {
-  width: 87% !important;
-} */
+
 .frohub__banner-headline {
   display: block;
 }
