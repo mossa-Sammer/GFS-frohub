@@ -195,6 +195,13 @@ class TimeInput extends Component {
           <Button className="done__btn" onClick={this.handleDone}>
             Done
           </Button>
+          <div
+            onClick={this.closeCollapse}
+            className="time__background"
+            role="button"
+            tabIndex={-1}
+            label="time-background"
+          />
         </Panel>
       </Collapse>
     );
