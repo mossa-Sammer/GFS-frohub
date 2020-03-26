@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { Layout } from 'antd';
 import { Loading } from '../components';
 
+import Sider from '../containers/Layout';
 import { LOGIN_URL } from '../routes_urls';
 
 const PrivateRoute = ({
@@ -16,7 +18,16 @@ const PrivateRoute = ({
     return <Loading />;
   }
   if (isAuth) {
-    return <Route {...rest} component={Component} />;
+    return (
+      <Layout>
+        <Layout.Sider>
+          <Sider />
+        </Layout.Sider>
+        <Layout.Content>
+          <Route {...rest} component={Component} />
+        </Layout.Content>
+      </Layout>
+    );
   }
   return (
     <Redirect
