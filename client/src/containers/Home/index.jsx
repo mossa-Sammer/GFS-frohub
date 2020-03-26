@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout } from '../index';
+import { SearchForm } from '../../components';
 
 import './style.css';
 
 function Home() {
   return (
     <div className="home__page-container">
-      <Layout status="homePage" />
+      <SearchForm status="homePage" />
     </div>
   );
 }
