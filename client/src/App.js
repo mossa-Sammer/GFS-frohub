@@ -8,6 +8,7 @@ import {
   PageNotFound,
   Services,
   Personal,
+  Welcome,
 } from './containers';
 import { LoggedOutRoute, PrivateRoute } from './auth';
 
@@ -18,6 +19,7 @@ import {
   SIGNUP_URL,
   HOME_URL,
   SERVICES_URL,
+  STYLIST_URL,
   PERSONAL_URL,
 } from './routes_urls';
 
@@ -43,6 +45,7 @@ class App extends React.Component {
               <Services />
             </Route>
             <PrivateRoute exact path={PERSONAL_URL} component={Personal} />
+            <PrivateRoute exact path={STYLIST_URL} component={Welcome} />
             <Route
               render={() => {
                 return <PageNotFound />;

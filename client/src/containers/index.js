@@ -3,7 +3,16 @@ import Signup from './signup';
 import Layout from './Layout';
 import Home from './Home';
 import Services from './Services';
-import Personal from './Personal';
+import { Welcome, Personal } from './Stylist';
 import PageNotFound from './PageNotFound';
 
-export { Login, Signup, Layout, Home, PageNotFound, Services, Personal };
+export {
+  Login,
+  Signup,
+  Layout,
+  Home,
+  PageNotFound,
+  Services,
+  Welcome,
+  Personal,
+};
