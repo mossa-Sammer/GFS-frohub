@@ -1,5 +1,7 @@
-.home__page-container {
-  min-height: 100vh;
-  overflow-y: scroll;
+body {
+  min-height: 700px;
 }
 
+.home__page-container {
+  min-height: 100vh;
+}
