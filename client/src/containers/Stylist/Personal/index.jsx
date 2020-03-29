@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class Personal extends Component {
+import { BUSINESS_URL } from '../../../routes_urls';
+
+class Personal extends Component {
   render() {
-    return <div>Personal</div>;
+    return (
+      <div>
+        <div>Personal</div>
+        <Button>
+          <Link to={BUSINESS_URL}>Next</Link>
+        </Button>
+      </div>
+    );
   }
 }
+
+export default withRouter(Personal);
