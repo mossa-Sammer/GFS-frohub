@@ -13,8 +13,11 @@
 }
 
 .anticon.anticon-close.timing__close {
-  left: 23%;
+  display: inline-block;
+  position: absolute;
   right: initial;
+  right: 5% !important;
+  top: 7.5%;
 }
 .time__duration-box {
   width: 90% !important;
