@@ -146,16 +146,16 @@ class TimeInput extends Component {
               Close
             </Button>
             <div>
-              <Icon
-                type="close"
-                className="timing__close"
-                onClick={this.clearTimeDate}
-              />
               <span className="selected__time">{`${
                 date
                   ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
                   : 'Any Date'
               } ${from && to ? `${from} - ${to}` : ''}`}</span>
+              <Icon
+                type="close"
+                className="timing__close"
+                onClick={this.clearTimeDate}
+              />
             </div>
             <div>
               <div className="date-header">
