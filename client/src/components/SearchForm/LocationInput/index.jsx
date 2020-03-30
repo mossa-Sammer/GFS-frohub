@@ -12,7 +12,7 @@ const { Option } = Select;
 class LocationInput extends Component {
   handleSearch = value => {
     const { fetchLocationList } = this.props;
-    if (value.length > 3) {
+    if (value.length) {
       fetchLocationList(value);
     }
   };
