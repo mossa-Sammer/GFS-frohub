@@ -1,14 +1,12 @@
 @media only screen and (max-width: 425px) {
-
   .ant-collapse-content-box {
     overflow: hidden !important;
     min-height: 100vh !important;
   }
-
-  .date__container, .time__container {
+  .date__container,
+  .time__container {
     justify-content: space-around;
   }
-
   .ant-collapse-content.ant-collapse-content-active {
     position: fixed !important;
     width: 100vw !important;
@@ -19,11 +17,7 @@
     z-index: 2;
   }
   .timing__close.anticon {
-    display: inline;
-    font-size: 14px;
-    position: fixed;
-    top: 9%;
-    right: 41px;
+    font-size: 16px;
   }
   .ant-calendar-picker-container.calendar {
     position: absolute !important;
@@ -33,26 +27,22 @@
   .selected__time {
     display: inline-block;
     width: 100%;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(51, 51, 51, .2);
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
     font-size: 16px;
-    color: rgba(51, 51, 51, .6);
-    margin: 0.8rem 0;
+    color: rgba(51, 51, 51, 0.6);
   }
-
   .picker:hover.picker:after {
     color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid #d9d9d9 !important;
   }
-  
   .ant-btn:hover {
     color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid #d9d9d9 !important;
   }
-
   .timing-btn,
   .date__container .picker:after {
-    width: 10rem !important;
+    width: 175px !important;
   }
   .close__btn.ant-btn {
     display: block;
@@ -62,14 +52,7 @@
     float: right;
   }
   .timing__form-item.to__time.ant-row.ant-form-item {
-    margin-left: 2rem !important;
-  }
-  .ant-popover.ant-popover-placement-bottom {
-    left: 0.8rem !important;
-  }
-
-  .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
-    left: 74% !important;
+    padding-left: 0.3rem !important;
   }
 
   .ant-collapse-item:last-child > .ant-collapse-content {
@@ -88,29 +71,25 @@
     height: 100vh;
   }
 
-.time__duration-box {
-  margin-top: 20px;
-}
-
-.ant-form-item.timing__form-item.to__time {
-  margin-left: 40px !important;
-}
-
-.ant-btn.done__btn {
-  position: fixed;
-  height: 45px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-}
-
-.date__container .picker:after,
-.timing-btn,
-.ant-time-picker {
-  width: 165px !important;
-}
-
-.ant-collapse-content>.ant-collapse-content-box {
-  padding: 0 !important;
-}
+  .time__duration-box {
+    width: 100% !important;
+  }
+  .timing__form-item {
+    padding-left: 1rem !important;
+  }
+  .ant-btn.done__btn {
+    position: fixed;
+    height: 45px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+  .date__container .picker:after,
+  .timing-btn,
+  .ant-time-picker {
+    width: 160px !important;
+  }
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 0 !important;
+  }
 }

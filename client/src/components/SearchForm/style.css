@@ -1,15 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap");
 
 .form__container {
   height: 66vh;
   padding: 1rem 2rem 2rem 10rem;
-  background-image: url('https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2020/01/03142951/frohub_cover.jpg');
+  background-image: url("https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2020/01/03142951/frohub_cover.jpg");
   display: flex;
   background-repeat: no-repeat;
   flex-direction: row;
   background-position: 0vh -7vw;
   background-size: 100%;
   flex-direction: row;
+}
+
+.anticon.anticon-close.timing__close {
+  display: inline-block;
+  position: absolute;
+  right: initial;
+  right: 5% !important;
+  top: 7.5%;
+}
+.time__duration-box {
+  width: 90% !important;
+  margin: auto !important;
 }
 
 .frohub__banner-headline {
@@ -22,7 +34,7 @@
 
 .treatment__input .ant-select-selection:hover {
   border-color: #eee !important;
-  box-shadow:  0 0 2px rgba(165, 169, 173, 0.2) !important
+  box-shadow: 0 0 2px rgba(165, 169, 173, 0.2) !important;
 }
 .search__form.services-search__form.ant-form.ant-form-horizontal,
 .ant-form.ant-form-horizontal.home-search__form {
@@ -60,25 +72,24 @@
 }
 
 @keyframes treatment {
-  0%{
+  0% {
     transform: translateY(-10px);
-
   }
 }
 
 @keyframes location {
-  0%{
+  0% {
     transform: translateY(-40px);
   }
 }
 
 @keyframes date {
-  0%{
+  0% {
     transform: translateY(-80px);
   }
 }
 
-.ant-form-item.search__form-time  {
+.ant-form-item.search__form-time {
   text-align: left;
 }
 
@@ -97,7 +108,7 @@
   font-size: 30px;
   letter-spacing: 2px;
   color: #fff;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: "Didact Gothic", sans-serif;
   margin-left: 1rem;
   padding-top: 11rem;
   font-weight: bold;
@@ -112,8 +123,12 @@
   margin-left: 35px !important;
 }
 
-.search__form.home-search__form .ant-select-selection.ant-select-selection--single .ant-select-arrow,
-.search__form.services-search__form .ant-select-selection.ant-select-selection--single .ant-select-arrow {
+.search__form.home-search__form
+  .ant-select-selection.ant-select-selection--single
+  .ant-select-arrow,
+.search__form.services-search__form
+  .ant-select-selection.ant-select-selection--single
+  .ant-select-arrow {
   left: 0 !important;
   top: 40% !important;
   right: 87% !important;
@@ -151,14 +166,15 @@
   height: 170px;
 }
 
-.search__form.services-search__form.ant-form.ant-form-horizontal .ant-row.ant-form-item {
+.search__form.services-search__form.ant-form.ant-form-horizontal
+  .ant-row.ant-form-item {
   height: 25px !important;
   margin-bottom: 20px;
 }
 
 .services-search__form-item.ant-row.ant-form-item,
 .services-search__form-time.ant-row.ant-form-item {
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
   transition: width 0.4s;
 }
 .form__container-services .ant-row.ant-form-item.search__form-time {
