@@ -6,6 +6,7 @@ import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
 import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
+import './style.css';
 import './media.css';
 
 const { Option } = Select;
@@ -75,6 +76,11 @@ class TreatmentInput extends Component {
           placement="bottomCenter"
           className="treatment__input-select"
         >
+          <Option
+            key="close-treatment"
+            value=""
+            className="close__treatment-btn"
+          />
           {treatments &&
             treatments.data &&
             treatments.data.length &&

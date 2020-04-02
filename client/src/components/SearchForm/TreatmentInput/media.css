@@ -24,4 +24,18 @@
     width: 90%;
     margin: 0 auto;
   }
+  .ant-select-dropdown-menu-item.close__treatment-btn {
+    display: block;
+    width: 100px !important;
+    background-color:#fff !important;
+    margin: 0 !important;
+    float: right;
+    border-radius: 0 !important;
+    font-size: 24px !important;
+    border: none !important;
+    color: rgba(51, 51, 51, 0.7) !important;
+  }
+  .ant-select-dropdown-menu-item.close__treatment-btn::before {
+    content: "close";
+  }
 }
