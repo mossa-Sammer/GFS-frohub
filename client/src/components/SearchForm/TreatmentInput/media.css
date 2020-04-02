@@ -38,4 +38,14 @@
   .ant-select-dropdown-menu-item.close__treatment-btn::before {
     content: "close";
   }
+  .select__treatment-hint {
+    display: block;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+  }
+  .select__treatment-hint::before {
+    content: "Search for treatments";
+    color: rgba(51, 51, 51, 0.7) !important;
+    font-weight: bold;
+  }
 }

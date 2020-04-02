@@ -81,6 +81,12 @@ class TreatmentInput extends Component {
             value=""
             className="close__treatment-btn"
           />
+          <Option
+            key="search-treatment"
+            value=""
+            className="select__treatment-hint"
+            disabled
+          />
           {treatments &&
             treatments.data &&
             treatments.data.length &&

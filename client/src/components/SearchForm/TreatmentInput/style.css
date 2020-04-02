@@ -1,3 +1,4 @@
-.ant-select-dropdown-menu-item.close__treatment-btn {
+.ant-select-dropdown-menu-item.close__treatment-btn,
+.select__treatment-hint {
 	display: none;
 }
