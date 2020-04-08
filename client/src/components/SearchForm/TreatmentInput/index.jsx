@@ -78,7 +78,7 @@ class TreatmentInput extends Component {
         >
           <Option
             key="close-treatment"
-            value=""
+            value={undefined}
             className="close__treatment-btn"
           />
           <Option
