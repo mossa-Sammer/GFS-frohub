@@ -255,3 +255,11 @@
   display: block !important;
   top: -3px;
 }
+
+.ant-form-item.time__form-item {
+  text-align: left !important;
+}
+
+.ant-form-item.to__time__form-item {
+  margin-left: 0.7rem;
+}

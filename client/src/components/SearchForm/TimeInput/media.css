@@ -72,10 +72,9 @@
   }
 
   .time__duration-box {
-    width: 100% !important;
-  }
-  .timing__form-item {
-    padding-left: 1rem !important;
+    width: 80% !important;
+    padding: 0.5rem !important;
+    
   }
   .ant-btn.done__btn {
     position: fixed;
