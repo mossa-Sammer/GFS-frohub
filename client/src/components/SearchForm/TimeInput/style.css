@@ -263,3 +263,7 @@
 .ant-form-item.to__time__form-item {
   margin-left: 0.7rem;
 }
+
+.date__header-box {
+  display: none;
+}
