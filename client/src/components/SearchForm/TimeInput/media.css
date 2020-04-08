@@ -22,7 +22,7 @@
   .ant-calendar-picker-container.calendar {
     position: absolute !important;
     left: 84px !important;
-    top: 230px !important;
+    top: 200px !important;
   }
   .selected__time {
     display: inline-block;
