@@ -106,7 +106,7 @@ class TreatmentInput extends Component {
               defaultValue={treatmentQuery}
             />
             <Button className="clear__treatment-btn" onClick={this.handleClear}>
-              X
+              {treatmentQuery && 'X'}
             </Button>
           </div>
           {isOpen && (
