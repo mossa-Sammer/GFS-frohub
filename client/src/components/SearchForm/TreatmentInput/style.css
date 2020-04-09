@@ -62,10 +62,13 @@
 
 .clear__treatment-btn.ant-btn:hover,
 .clear__treatment-btn.ant-btn::after,
-.clear__treatment-btn.ant-btn:focus	{
+.clear__treatment-btn.ant-btn:focus,
+.clear__treatment-btn.ant-btn:not([disabled]):hover	{
 	color: #333;
 	background-color: #fafafa;
 	box-shadow: none;
+	height: 40px !important;
+	border: none !important;
 }
 
 .treatments__group.ant-radio-group {
