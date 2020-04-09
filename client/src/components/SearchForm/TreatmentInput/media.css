@@ -1,52 +1,73 @@
 @media only screen and (max-width: 425px) {
-  .small {
-    width: 100%;
-  }
-  .ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft,
-  .ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft ul {
-    width: 100vw !important;
-    min-height: 100vh !important;
-    left: 0 !important;
-  }
-  .ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft {
-    top: 0 !important;
-    z-index: 99;
-    bottom: 0 !important;
-  }
-  .ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft ul li {
-    min-height: 40px;
-    font-size: 16px;
-    padding: 20px;
-    border-bottom: 1px solid rgba(51, 51, 51, .2);
-    color:rgb(51, 51, 51);
-    font-family: 'Didact Gothic', sans-serif;
-    letter-spacing: 0.5px;
-    width: 90%;
-    margin: 0 auto;
-  }
-  .ant-select-dropdown-menu-item.close__treatment-btn {
-    display: block;
-    width: 100px !important;
-    background-color:#fff !important;
-    margin: 0 !important;
-    float: right;
-    border-radius: 0 !important;
-    font-size: 24px !important;
-    border: none !important;
-    color: rgba(51, 51, 51, 0.7) !important;
-    border-bottom: none !important;
-  }
-  .ant-select-dropdown-menu-item.close__treatment-btn::before {
-    content: "close";
-  }
-  .select__treatment-hint {
-    display: block;
-    margin-bottom: 20px !important;
-    width: 100% !important;
-  }
-  .select__treatment-hint::before {
-    content: "Search for treatments";
-    color: rgba(51, 51, 51, 0.7) !important;
-    font-weight: bold;
-  }
+.search__treatment-input.ant-input,
+.ant-btn.close__treatments-btn {
+  display: block;
 }
+
+.search__treatment-input.ant-input,
+.ant-btn.close__treatments-btn,
+.search__treatment-input.ant-input:hover,
+.search__treatment-input.ant-input:focus,
+.clear__treatment-btn.ant-btn:hover,
+.clear__treatment-btn.ant-btn:focus,
+.treatments__group.ant-radio-group {
+  border: none;
+}
+
+.search__treatment-input.ant-input {
+  height: 40px;
+  border-radius: 0;
+  margin-bottom: 1rem;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.ant-btn.close__treatments-btn {
+  float: right;
+  color: var(--primary-color);
+  font-size: 20px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.search__treatment-input.ant-input:hover,
+.search__treatment-input.ant-input:focus,
+.clear__treatment-btn.ant-btn:hover,
+.clear__treatment-btn.ant-btn:focus {
+  box-shadow: none;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.treatments__group.ant-radio-group,
+.treatments__options-box {
+  margin: 0;
+}
+
+.treatments__options-box {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  right: 0;
+  padding: 10px 25px;
+}
+
+.ant-radio {
+  left: 290px !important;
+}
+
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+    .treatment__option-box {
+      padding-left: 40px !important;
+    }
+    .ant-radio {
+      left: 250px !important;
+    }
+}
+
+
+

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Select, Icon, Skeleton, message } from 'antd';
+import { message, Input, Icon, Skeleton, Button, Radio } from 'antd';
 
 import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
@@ -9,15 +9,47 @@ import { filterServices as filterServicesAction } from '../../../containers/Serv
 import './style.css';
 import './media.css';
 
-const { Option } = Select;
-
 class TreatmentInput extends Component {
+  state = {
+    isOpen: false,
+  };
+
   componentDidMount() {
     const { getTreatments: allTreatments } = this.props;
     allTreatments();
   }
 
-  handleTreatment = (value, children) => {
+  handleTreatments = () => {
+    this.setState({
+      isOpen: true,
+    });
+  };
+
+  handleCloseTreatment = () => {
+    this.setState({
+      isOpen: false,
+    });
+  };
+
+  handleClear = () => {
+    const {
+      searchAction: treatmentSearch,
+      searchQueries,
+      filterServicesAction: filterServices,
+      services,
+      stores,
+    } = this.props;
+    searchQueries.treatment = '';
+    filterServices(stores, services, searchQueries);
+    treatmentSearch({
+      name: 'treatment',
+      value: '',
+      treatmentName: '',
+    });
+    this.setState({ isOpen: false });
+  };
+
+  handleTreatment = e => {
     const {
       status,
       searchAction: treatmentSearch,
@@ -26,11 +58,10 @@ class TreatmentInput extends Component {
       services,
       stores,
     } = this.props;
-    let navTitle = '';
-    if (children && children.props) {
-      navTitle = children.props.children;
-    }
-    if (value) {
+    if (e.target.value) {
+      const { value: selectedTreatment } = e.target;
+      const treatmentInfo = selectedTreatment.split(',');
+      const [value, navTitle] = treatmentInfo;
       treatmentSearch({
         name: 'treatment',
         value,
@@ -41,6 +72,7 @@ class TreatmentInput extends Component {
         queries.treatment = value;
         filterServices(stores, services, queries);
       }
+      this.setState({ isOpen: false });
     } else {
       searchQueries.treatment = '';
       filterServices(stores, services, searchQueries);
@@ -52,52 +84,71 @@ class TreatmentInput extends Component {
     }
   };
 
+  handleSearch = e => {
+    // console.log(888888, e.target.value);
+  };
+
   render() {
     const { treatments, loading, err, searchQueries } = this.props;
-    const { treatment: treatmentQuery } = searchQueries;
+    const { treatmentName: treatmentQuery } = searchQueries;
+    const { isOpen } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
-        <Select
-          showSearch
-          placeholder="Search hair and beauty"
-          optionFilterProp="children"
-          allowClear
-          suffixIcon={<Icon type="search" />}
-          onChange={this.handleTreatment}
-          size="large"
-          notFoundContent="No treatment match"
-          dropdownRender={menu => {
-            if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
-            return <>{menu}</>;
-          }}
-          showAction={['focus', 'click']}
-          defaultValue={treatmentQuery || undefined}
-          placement="bottomCenter"
-          className="treatment__input-select"
-        >
-          <Option
-            key="close-treatment"
-            value={undefined}
-            className="close__treatment-btn"
-          />
-          <Option
-            key="search-treatment"
-            value=""
-            className="select__treatment-hint"
-            disabled
-          />
-          {treatments &&
-            treatments.data &&
-            treatments.data.length &&
-            treatments.data.map(treatment => {
-              return (
-                <Option key={treatment.id} value={treatment.id}>
-                  {treatment.name}
-                </Option>
-              );
-            })}
-        </Select>
+        <div>
+          <div className="select-treatment">
+            <Input
+              className="select__treatment-input"
+              prefix={<Icon type="search" />}
+              placeholder="Search hear and beauty"
+              onClick={this.handleTreatments}
+              onChange={this.handleSearch}
+              defaultValue={treatmentQuery}
+            />
+            <Button className="clear__treatment-btn" onClick={this.handleClear}>
+              X
+            </Button>
+          </div>
+          {isOpen && (
+            <div className="treatments__options-box">
+              <Button
+                className="close__treatments-btn"
+                onClick={this.handleCloseTreatment}
+              >
+                Close
+              </Button>
+              <Input
+                placeholder="Search hear and beauty"
+                className="search__treatment-input"
+                defaultValue={treatmentQuery}
+              />
+              <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
+              {treatments && treatments.data && treatments.data.length && (
+                <Radio.Group
+                  className="treatments__group"
+                  onChange={this.handleTreatment}
+                  value={treatmentQuery}
+                >
+                  {treatments.data.map(treatment => {
+                    return (
+                      <div
+                        key={Math.random()}
+                        className="treatment__option-box"
+                      >
+                        <Radio
+                          value={`${treatment.id},${treatment.name}`}
+                          key={Math.random()}
+                        >
+                          {treatment.name}
+                        </Radio>
+                      </div>
+                    );
+                  })}
+                </Radio.Group>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
