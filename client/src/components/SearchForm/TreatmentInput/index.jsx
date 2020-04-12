@@ -16,6 +16,8 @@ class TreatmentInput extends Component {
     isOpen: false,
     treatments: [],
     filteredTreatments: [],
+    defaultValue: '',
+    searchField: '',
   };
 
   async componentDidMount() {
@@ -27,7 +29,7 @@ class TreatmentInput extends Component {
     this.setState({ treatments, filteredTreatments: treatments });
   }
 
-  handleTreatments = () => {
+  handleOpenTreatments = () => {
     this.setState({
       isOpen: true,
     });
@@ -70,6 +72,7 @@ class TreatmentInput extends Component {
       const { value: selectedTreatment } = e.target;
       const treatmentInfo = selectedTreatment.split(',');
       const [value, navTitle] = treatmentInfo;
+      this.setState({ searchField: navTitle });
       treatmentSearch({
         name: 'treatment',
         value,
@@ -93,10 +96,11 @@ class TreatmentInput extends Component {
   };
 
   handleSearch = ({ target: { value } }) => {
-    const { treatments } = this.state;
+    this.setState({ searchField: value });
+    const { treatments, searchField } = this.state;
     let filteredData = treatments;
-    if (value) {
-      filteredData = searchLogic(value, filteredData);
+    if (searchField) {
+      filteredData = searchLogic(searchField, filteredData);
       this.setState({ filteredTreatments: filteredData });
     } else {
       this.setState({ filteredTreatments: treatments });
@@ -106,7 +110,7 @@ class TreatmentInput extends Component {
   render() {
     const { loading, err, searchQueries } = this.props;
     const { treatmentName: treatmentQuery } = searchQueries;
-    const { isOpen, filteredTreatments } = this.state;
+    const { isOpen, filteredTreatments, searchField } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -116,9 +120,10 @@ class TreatmentInput extends Component {
               className="select__treatment-input"
               prefix={<Icon type="search" />}
               placeholder="Search hear and beauty"
-              onClick={this.handleTreatments}
+              onClick={this.handleOpenTreatments}
               onChange={this.handleSearch}
-              value={treatmentQuery}
+              value={searchField}
+              name="searchField"
             />
             <Button className="clear__treatment-btn" onClick={this.handleClear}>
               {treatmentQuery && 'X'}
@@ -135,8 +140,9 @@ class TreatmentInput extends Component {
               <Input
                 placeholder="Search hear and beauty"
                 className="search__treatment-input"
-                value={treatmentQuery}
+                value={searchField}
                 onChange={this.handleSearch}
+                name="searchField"
               />
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
               {filteredTreatments && filteredTreatments.length ? (
