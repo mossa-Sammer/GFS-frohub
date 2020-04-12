@@ -118,7 +118,7 @@ class TreatmentInput extends Component {
               placeholder="Search hear and beauty"
               onClick={this.handleTreatments}
               onChange={this.handleSearch}
-              defaultValue={treatmentQuery}
+              value={treatmentQuery}
             />
             <Button className="clear__treatment-btn" onClick={this.handleClear}>
               {treatmentQuery && 'X'}
@@ -135,7 +135,7 @@ class TreatmentInput extends Component {
               <Input
                 placeholder="Search hear and beauty"
                 className="search__treatment-input"
-                defaultValue={treatmentQuery}
+                value={treatmentQuery}
                 onChange={this.handleSearch}
               />
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
