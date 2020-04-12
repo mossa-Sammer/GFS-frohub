@@ -6,17 +6,25 @@ import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
 import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
+import searchLogic from './helper/search';
+
 import './style.css';
 import './media.css';
 
 class TreatmentInput extends Component {
   state = {
     isOpen: false,
+    treatments: [],
+    filteredTreatments: [],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { getTreatments: allTreatments } = this.props;
-    allTreatments();
+    await allTreatments();
+    const {
+      treatments: { data: treatments },
+    } = this.props;
+    this.setState({ treatments, filteredTreatments: treatments });
   }
 
   handleTreatments = () => {
@@ -84,14 +92,21 @@ class TreatmentInput extends Component {
     }
   };
 
-  handleSearch = e => {
-    // console.log(888888, e.target.value);
+  handleSearch = ({ target: { value } }) => {
+    const { treatments } = this.state;
+    let filteredData = treatments;
+    if (value) {
+      filteredData = searchLogic(value, filteredData);
+      this.setState({ filteredTreatments: filteredData });
+    } else {
+      this.setState({ filteredTreatments: treatments });
+    }
   };
 
   render() {
-    const { treatments, loading, err, searchQueries } = this.props;
+    const { loading, err, searchQueries } = this.props;
     const { treatmentName: treatmentQuery } = searchQueries;
-    const { isOpen } = this.state;
+    const { isOpen, filteredTreatments } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -123,13 +138,13 @@ class TreatmentInput extends Component {
                 defaultValue={treatmentQuery}
               />
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
-              {treatments && treatments.data && treatments.data.length && (
+              {filteredTreatments && filteredTreatments.length ? (
                 <Radio.Group
                   className="treatments__group"
                   onChange={this.handleTreatment}
                   value={treatmentQuery}
                 >
-                  {treatments.data.map(treatment => {
+                  {filteredTreatments.map(treatment => {
                     return (
                       <div
                         key={Math.random()}
@@ -145,6 +160,8 @@ class TreatmentInput extends Component {
                     );
                   })}
                 </Radio.Group>
+              ) : (
+                !loading && <>No treatments found</>
               )}
             </div>
           )}
