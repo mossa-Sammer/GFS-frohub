@@ -136,6 +136,7 @@ class TreatmentInput extends Component {
                 placeholder="Search hear and beauty"
                 className="search__treatment-input"
                 defaultValue={treatmentQuery}
+                onChange={this.handleSearch}
               />
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
               {filteredTreatments && filteredTreatments.length ? (
