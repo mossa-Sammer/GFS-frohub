@@ -84,11 +84,11 @@
   .timing__container {
     height: 100vh;
   }
-
   .time__duration-box {
-    width: 80% !important;
-    padding: 0.5rem !important;
-    
+    padding-top: 1rem !important;
+  }
+  .time__duration-box {
+    margin: auto !important;
   }
   .ant-btn.done__btn {
     position: fixed;
