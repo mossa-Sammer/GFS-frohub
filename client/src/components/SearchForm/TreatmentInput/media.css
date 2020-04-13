@@ -1,11 +1,14 @@
 @media only screen and (max-width: 425px) {
 .search__treatment-input.ant-input,
-.ant-btn.close__treatments-btn {
-  display: block;
+.ant-btn.close__treatments-btn,
+.clear__search-btn.ant-btn {
+  display: inline-block;
 }
 
 .search__treatment-input.ant-input,
 .ant-btn.close__treatments-btn,
+.clear__search-btn.ant-btn,
+.search__treatment-input.ant-input,
 .search__treatment-input.ant-input:hover,
 .search__treatment-input.ant-input:focus,
 .clear__treatment-btn.ant-btn:hover,
@@ -14,11 +17,17 @@
   border: none;
 }
 
+.clear__search-btn.ant-btn,
 .search__treatment-input.ant-input {
   height: 40px;
   border-radius: 0;
   margin-bottom: 1rem;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.search__treatment-input.ant-input {
+  width: 80%;
+
 }
 
 .ant-btn.close__treatments-btn {

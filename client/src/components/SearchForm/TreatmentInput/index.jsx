@@ -16,7 +16,6 @@ class TreatmentInput extends Component {
     isOpen: false,
     treatments: [],
     filteredTreatments: [],
-    defaultValue: '',
     searchField: '',
   };
 
@@ -137,13 +136,21 @@ class TreatmentInput extends Component {
               >
                 Close
               </Button>
-              <Input
-                placeholder="Search hear and beauty"
-                className="search__treatment-input"
-                value={searchField}
-                onChange={this.handleSearch}
-                name="searchField"
-              />
+              <div>
+                <Input
+                  placeholder="Search hear and beauty"
+                  className="search__treatment-input"
+                  value={searchField}
+                  onChange={this.handleSearch}
+                  name="searchField"
+                />
+                <Button
+                  className="clear__search-btn"
+                  onClick={this.handleClear}
+                >
+                  {treatmentQuery && 'X'}
+                </Button>
+              </div>
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
               {filteredTreatments && filteredTreatments.length ? (
                 <Radio.Group

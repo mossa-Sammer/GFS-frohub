@@ -1,7 +1,8 @@
 .ant-select-dropdown-menu-item.close__treatment-btn,
 .select__treatment-hint,
 .search__treatment-input.ant-input,
-.ant-btn.close__treatments-btn {
+.ant-btn.close__treatments-btn,
+.clear__search-btn.ant-btn {
 	display: none;
 }
 
