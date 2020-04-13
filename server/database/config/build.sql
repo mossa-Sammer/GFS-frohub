@@ -1,6 +1,7 @@
 BEGIN;
 
-DROP Schema public CASCADE;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public; 
 
 CREATE TYPE user_role AS ENUM ('admin','hairstylist');
 
@@ -19,7 +20,7 @@ CREATE TABLE business (
   business_id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user"(user_id),
   full_name VARCHAR(255),
-  account_number VARCHAR(30),
+  account_number  VARCHAR(6) UNIQUE,
   preferred_pay_method pay_method NOT NULL
 );
 
@@ -36,15 +37,15 @@ CREATE TABLE salon (
   type salon_type NOT NULL,
   street VARCHAR(255) NOT NULL,
   city VARCHAR(30) NOT NULL,
-  country VARCHAR(30) NOT NULL, 
+  country VARCHAR(2) NOT NULL, 
   postal_code VARCHAR(255)
 );
 
 CREATE TABLE salon_zone (
   salon_zone_id SERIAL PRIMARY KEY,
   salon_id INT REFERENCES salon(salon_id),
-  from_zone VARCHAR(255) NOT NULL,
-  to_zone VARCHAR(255),
+  from_zone INT(1) NOT NULL,
+  to_zone INT(1) NOT NULL,
   price FLOAT(32) NOT NULL
 );  
 
