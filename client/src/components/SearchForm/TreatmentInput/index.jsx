@@ -130,12 +130,14 @@ class TreatmentInput extends Component {
           </div>
           {isOpen && (
             <div className="treatments__options-box">
-              <Button
-                className="close__treatments-btn"
-                onClick={this.handleCloseTreatment}
-              >
-                Close
-              </Button>
+              <div className="close__btn-box">
+                <Button
+                  className="close__treatments-btn"
+                  onClick={this.handleCloseTreatment}
+                >
+                  Close
+                </Button>
+              </div>
               <div>
                 <Input
                   placeholder="Search hear and beauty"
@@ -151,6 +153,7 @@ class TreatmentInput extends Component {
                   {treatmentQuery && 'X'}
                 </Button>
               </div>
+              <hr className="hr" />
               <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
               {filteredTreatments && filteredTreatments.length ? (
                 <Radio.Group

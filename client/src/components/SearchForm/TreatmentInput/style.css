@@ -2,7 +2,9 @@
 .select__treatment-hint,
 .search__treatment-input.ant-input,
 .ant-btn.close__treatments-btn,
-.clear__search-btn.ant-btn {
+.clear__search-btn.ant-btn,
+.hr,
+.close__btn-box {
 	display: none;
 }
 
