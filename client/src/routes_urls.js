@@ -5,3 +5,4 @@ export const SERVICES_URL = '/services';
 export const STYLIST_URL = '/stylist';
 export const PERSONAL_URL = `${STYLIST_URL}/personal`;
 export const BUSINESS_URL = `${STYLIST_URL}/business`;
+export const SALON_URL = `${STYLIST_URL}/salon`;

@@ -12,7 +12,6 @@ const checkAuth = () => {
         type: AUTHENTICANTE_SUCCESS,
       });
     } catch (err) {
-      console.log(4444, err);
       dispatch({
         type: AUTHENTICANTE_FAIL,
       });

@@ -10,6 +10,7 @@ import {
   Personal,
   Welcome,
   Business,
+  Salon,
 } from './containers';
 import { LoggedOutRoute, PrivateRoute } from './auth';
 
@@ -23,6 +24,7 @@ import {
   STYLIST_URL,
   PERSONAL_URL,
   BUSINESS_URL,
+  SALON_URL,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -49,6 +51,7 @@ class App extends React.Component {
             <PrivateRoute exact path={STYLIST_URL} component={Welcome} />
             <PrivateRoute exact path={PERSONAL_URL} component={Personal} />
             <PrivateRoute exact path={BUSINESS_URL} component={Business} />
+            <PrivateRoute exact path={SALON_URL} component={Salon} />
             <Route
               render={() => {
                 return <PageNotFound />;
