@@ -7,6 +7,8 @@ import { Loading } from '../components';
 import Sider from '../containers/Layout';
 import { LOGIN_URL } from '../routes_urls';
 
+import './style.css';
+
 const PrivateRoute = ({
   component: Component,
   isAuth,
@@ -19,14 +21,16 @@ const PrivateRoute = ({
   }
   if (isAuth) {
     return (
-      <Layout>
-        <Layout.Sider>
-          <Sider />
-        </Layout.Sider>
-        <Layout.Content>
-          <Route {...rest} component={Component} />
-        </Layout.Content>
-      </Layout>
+      <div className="stylist__onboarding-container">
+        <Layout className="stylist__container-layout">
+          <Layout.Sider className="sider__container">
+            <Sider />
+          </Layout.Sider>
+          <Layout.Content className="stylist__main-content">
+            <Route {...rest} component={Component} />
+          </Layout.Content>
+        </Layout>
+      </div>
     );
   }
   return (
