@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { PERSONAL_URL, BUSINESS_URL, SALON_URL } from '../../../routes_urls';
+import { PERSONAL_URL, BUSINESS_URL, SALON_URL, STYLIST_SERVICES_URL } from '../../../routes_urls';
 
 export default class Sider extends Component {
   render() {
@@ -16,6 +16,9 @@ export default class Sider extends Component {
         </Menu.Item>
         <Menu.Item>
           <Link to={SALON_URL}>Salon</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={STYLIST_SERVICES_URL}>Services</Link>
         </Menu.Item>
       </Menu>
     );
