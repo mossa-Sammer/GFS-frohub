@@ -103,13 +103,13 @@ class TreatmentInput extends Component {
 
   handleSearch = ({ target: { value } }) => {
     this.setState({ searchField: value });
-    const { treatments, searchField } = this.state;
+    const { treatments } = this.state;
     let filteredData = treatments;
-    if (searchField) {
-      filteredData = searchLogic(searchField, filteredData);
-      this.setState({ filteredTreatments: filteredData });
+    if (value) {
+      filteredData = searchLogic(value, filteredData);
+      this.setState((prev) => ({ filteredTreatments: filteredData }));
     } else {
-      this.setState({ filteredTreatments: treatments });
+      this.setState((prev) => ({ filteredTreatments: treatments }));
     }
   };
 
@@ -185,8 +185,8 @@ class TreatmentInput extends Component {
                   })}
                 </Radio.Group>
               ) : (
-                !loading && <>No treatments found</>
-              )}
+                  !loading && <>No treatments found</>
+                )}
             </div>
           )}
         </div>
