@@ -4,6 +4,10 @@ DROP SCHEMA public CASCADE;
 CREATE SCHEMA public; 
 
 CREATE TYPE user_role AS ENUM ('admin','hairstylist');
+CREATE TYPE pay_method AS ENUM ('cash','card','none');
+CREATE TYPE salon_type as ENUM ('home','salon','mobile'); 
+CREATE TYPE activity_status AS ENUM ('active','inactive');
+
 
 CREATE TABLE "user"(
   user_id SERIAL PRIMARY KEY,
@@ -14,7 +18,6 @@ CREATE TABLE "user"(
   role user_role NOT NULL
 );
 
-CREATE TYPE pay_method AS ENUM ('cash','card','none');
 
 CREATE TABLE business (
   business_id SERIAL PRIMARY KEY,
@@ -24,7 +27,6 @@ CREATE TABLE business (
   preferred_pay_method pay_method NOT NULL
 );
 
-CREATE TYPE salon_type as ENUM ('home','salon','mobile'); 
 
 CREATE TABLE salon (
   salon_id SERIAL PRIMARY KEY,
@@ -44,8 +46,8 @@ CREATE TABLE salon (
 CREATE TABLE salon_zone (
   salon_zone_id SERIAL PRIMARY KEY,
   salon_id INT REFERENCES salon(salon_id),
-  from_zone INT(1) NOT NULL,
-  to_zone INT(1) NOT NULL,
+  from_zone INT NOT NULL,
+  to_zone INT NOT NULL,
   price FLOAT(32) NOT NULL
 );  
 
@@ -57,7 +59,6 @@ CREATE TABLE salon_opening_time (
   to_time TIME NOT NULL
 );
 
-CREATE TYPE activity_status AS ENUM ('active','inactive');
 
 CREATE TABLE service (
   service_id SERIAL PRIMARY KEY,
