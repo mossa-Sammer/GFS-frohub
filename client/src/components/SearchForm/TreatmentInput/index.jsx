@@ -16,16 +16,22 @@ class TreatmentInput extends Component {
     isOpen: false,
     treatments: [],
     filteredTreatments: [],
-    searchField: '',
+    // eslint-disable-next-line react/destructuring-assignment
+    searchField: this.props.searchQueries.treatmentName,
   };
 
   async componentDidMount() {
-    const { getTreatments: allTreatments } = this.props;
+    const { getTreatments: allTreatments, searchQueries } = this.props;
+    const { treatmentName } = searchQueries;
     await allTreatments();
     const {
       treatments: { data: treatments },
     } = this.props;
-    this.setState({ treatments, filteredTreatments: treatments });
+    this.setState({
+      treatments,
+      filteredTreatments: treatments,
+      searchField: treatmentName,
+    });
   }
 
   handleOpenTreatments = () => {
