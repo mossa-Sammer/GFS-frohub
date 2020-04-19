@@ -47,6 +47,7 @@ class TreatmentInput extends Component {
   };
 
   handleClear = () => {
+    this.setState({ searchField: '' });
     const {
       searchAction: treatmentSearch,
       searchQueries,
