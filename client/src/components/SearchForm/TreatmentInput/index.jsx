@@ -107,9 +107,9 @@ class TreatmentInput extends Component {
     let filteredData = treatments;
     if (value) {
       filteredData = searchLogic(value, filteredData);
-      this.setState((prev) => ({ filteredTreatments: filteredData }));
+      this.setState(() => ({ filteredTreatments: filteredData }));
     } else {
-      this.setState((prev) => ({ filteredTreatments: treatments }));
+      this.setState(() => ({ filteredTreatments: treatments }));
     }
   };
 
