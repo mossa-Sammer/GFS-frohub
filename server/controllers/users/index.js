@@ -1,11 +1,16 @@
 const { addUserBusiness, getUserBusiness } = require('./business');
 const { getFinance, updateFinance } = require('./finance');
+const addUser = require('./addUser');
+const getUser = require('./getUser');
+const updateUser = require('./updateUser');
 
-exports.addUserBusiness = addUserBusiness;
-exports.getUserBusiness = getUserBusiness;
-exports.getFinance = getFinance;
-exports.updateFinance = updateFinance;
 
-exports.addUser = require('./addUser');
-exports.getUser = require('./getUser');
-exports.updateUser = require('./updateUser');
+module.exports = {
+  addUserBusiness,
+  getUserBusiness,
+  getFinance,
+  updateFinance,
+  addUser,
+  getUser,
+  updateUser,
+};
