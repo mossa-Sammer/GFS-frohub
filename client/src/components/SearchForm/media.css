@@ -7,6 +7,9 @@
     background-color: rgba(224, 87, 71, 0.9);
     flex-direction: column;
   }
+  .close__collapse-box {
+    display: none;
+  }
   .ant-popover {
     left: 28px !important;
   }

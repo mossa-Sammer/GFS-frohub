@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,6 +15,14 @@ import './style.css';
 import './media.css';
 
 class SearchForm extends Component {
+  state = {
+    toClose: false,
+  };
+
+  closeCollapse = () => {
+    this.setState(({ toClose }) => ({ toClose: !toClose }));
+  };
+
   handleSearch = () => {
     const {
       status,
@@ -32,6 +41,7 @@ class SearchForm extends Component {
 
   render() {
     const { status } = this.props;
+    const { toClose } = this.state;
     const isServicesPage = status === 'servicesForm';
     return (
       <div
@@ -54,7 +64,11 @@ class SearchForm extends Component {
             Discover. Book. Slay.
           </span>
           <Form.Item className="search__form-item">
-            <TreatmentInput status={status} />
+            <TreatmentInput
+              status={status}
+              toClose={toClose}
+              closeCollapse={this.closeCollapse}
+            />
           </Form.Item>
           <Form.Item className="search__form-item">
             <LocationtInput status={status} />
@@ -76,6 +90,12 @@ class SearchForm extends Component {
             <span className="frohub__banner-headline">hair and beauty</span>
           </div>
         )}
+        <div
+          className="close__collapse-box"
+          onClick={this.closeCollapse}
+          role="button"
+          label="close collapse"
+        />
       </div>
     );
   }

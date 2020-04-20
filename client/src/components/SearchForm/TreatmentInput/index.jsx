@@ -13,7 +13,6 @@ import './media.css';
 
 class TreatmentInput extends Component {
   state = {
-    isOpen: false,
     treatments: [],
     filteredTreatments: [],
     // eslint-disable-next-line react/destructuring-assignment
@@ -34,18 +33,6 @@ class TreatmentInput extends Component {
     });
   }
 
-  handleOpenTreatments = () => {
-    this.setState({
-      isOpen: true,
-    });
-  };
-
-  handleCloseTreatment = () => {
-    this.setState({
-      isOpen: false,
-    });
-  };
-
   handleClear = () => {
     this.setState({ searchField: '' });
     const {
@@ -54,6 +41,7 @@ class TreatmentInput extends Component {
       filterServicesAction: filterServices,
       services,
       stores,
+      closeCollapse,
     } = this.props;
     searchQueries.treatment = '';
     filterServices(stores, services, searchQueries);
@@ -62,7 +50,7 @@ class TreatmentInput extends Component {
       value: '',
       treatmentName: '',
     });
-    this.setState({ isOpen: false });
+    closeCollapse();
   };
 
   handleTreatment = e => {
@@ -73,6 +61,7 @@ class TreatmentInput extends Component {
       filterServicesAction: filterServices,
       services,
       stores,
+      closeCollapse,
     } = this.props;
     if (e.target.value) {
       const { value: selectedTreatment } = e.target;
@@ -89,7 +78,7 @@ class TreatmentInput extends Component {
         queries.treatment = value;
         filterServices(stores, services, queries);
       }
-      this.setState({ isOpen: false });
+      closeCollapse();
     } else {
       searchQueries.treatment = '';
       filterServices(stores, services, searchQueries);
@@ -114,9 +103,9 @@ class TreatmentInput extends Component {
   };
 
   render() {
-    const { loading, err, searchQueries } = this.props;
+    const { loading, err, searchQueries, toClose, closeCollapse } = this.props;
     const { treatmentName: treatmentQuery } = searchQueries;
-    const { isOpen, filteredTreatments, searchField } = this.state;
+    const { filteredTreatments, searchField } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -126,7 +115,7 @@ class TreatmentInput extends Component {
               className="select__treatment-input"
               prefix={<Icon type="search" />}
               placeholder="Search hear and beauty"
-              onClick={this.handleOpenTreatments}
+              onClick={closeCollapse}
               onChange={this.handleSearch}
               value={searchField}
               name="searchField"
@@ -135,12 +124,12 @@ class TreatmentInput extends Component {
               {treatmentQuery && 'X'}
             </Button>
           </div>
-          {isOpen && (
+          {toClose && (
             <div className="treatments__options-box">
               <div className="close__btn-box">
                 <Button
                   className="close__treatments-btn"
-                  onClick={this.handleCloseTreatment}
+                  onClick={closeCollapse}
                 >
                   Close
                 </Button>
@@ -176,7 +165,10 @@ class TreatmentInput extends Component {
                       >
                         <Radio
                           value={`${treatment.id},${treatment.name}`}
-                          key={Math.random()}
+                          key={`${treatment.id},${treatment.name}`}
+                          className={
+                            treatmentQuery === treatment.name && 'active'
+                          }
                         >
                           {treatment.name}
                         </Radio>
@@ -185,8 +177,8 @@ class TreatmentInput extends Component {
                   })}
                 </Radio.Group>
               ) : (
-                  !loading && <>No treatments found</>
-                )}
+                !loading && <>No treatments found</>
+              )}
             </div>
           )}
         </div>

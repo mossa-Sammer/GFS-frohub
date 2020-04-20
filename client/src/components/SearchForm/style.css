@@ -12,6 +12,15 @@
   flex-direction: row;
 }
 
+.close__collapse-box {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+}
+
 .anticon.anticon-close.timing__close {
   display: inline-block;
   position: absolute;
@@ -41,6 +50,7 @@
   background: #fff;
   padding: 1rem !important;
   height: 342px;
+  z-index: 55;
 }
 
 .search__form {
@@ -62,6 +72,10 @@
 .treatment__input,
 .location__input {
   width: 100% !important;
+}
+
+.location__input .ant-select-selection--single {
+  background: #fafafa !important;
 }
 .form__container-services .location__input {
   animation: location 0.5s ease-in-out;
@@ -131,7 +145,7 @@
   .ant-select-arrow {
   left: 0 !important;
   top: 40% !important;
-  right: 87% !important;
+  right: 88% !important;
   font-size: 16px;
 }
 
