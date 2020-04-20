@@ -3,19 +3,17 @@ const signup = require('./signup');
 const auth = require('./auth');
 const getTreatments = require('./treatments');
 const {
-  addUserBusiness, addUser, getFinance, getUser, getUserBusiness, updateFinance, updateUser,
-} = require('./users');
+  personal, business, finance, salon, services,
+} = require('./stylist');
 
 module.exports = {
   login,
   signup,
   auth,
   getTreatments,
-  addUserBusiness,
-  addUser,
-  getFinance,
-  getUser,
-  getUserBusiness,
-  updateFinance,
-  updateUser,
+  personal,
+  business,
+  finance,
+  salon,
+  services,
 };
