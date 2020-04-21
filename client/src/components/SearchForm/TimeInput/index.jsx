@@ -142,20 +142,31 @@ class TimeInput extends Component {
           key="time"
         >
           <div className="timing__container">
-            <Button className="close__btn" onClick={this.closeCollapse}>
-              Close
-            </Button>
             <div>
+              <Button className="close__btn" onClick={this.closeCollapse}>
+                Close
+              </Button>
+            </div>
+            <div className="date__header-box">
+              <div className="date__header left">
+                {`${
+                  date
+                    ? `${moment(date).format('DD')}/${moment(date).format(
+                        'MM'
+                      )}`
+                    : 'Any Date'
+                } ${from && to ? `${from} - ${to}` : ''}`}
+              </div>
+              <div className="date__header right">
+                <Icon type="close" onClick={this.clearTimeDate} />
+              </div>
+            </div>
+            <div className="selected__time-box">
               <span className="selected__time">{`${
                 date
                   ? `${moment(date).format('DD')}/${moment(date).format('MM')}`
                   : 'Any Date'
               } ${from && to ? `${from} - ${to}` : ''}`}</span>
-              <Icon
-                type="close"
-                className="timing__close"
-                onClick={this.clearTimeDate}
-              />
             </div>
             <div>
               <div className="date-header">

@@ -109,7 +109,7 @@ class TimePickerCom extends Component {
             {timeContainerVisible ? (
               <>
                 <div className="time__duration-box" layout="inline">
-                  <Form.Item className="timing__form-item" label="From">
+                  <Form.Item className="time__form-item" label="From">
                     <TimePicker
                       format="HH:mm"
                       onChange={this.handleFromTime}
@@ -117,7 +117,10 @@ class TimePickerCom extends Component {
                       minuteStep={60}
                     />
                   </Form.Item>
-                  <Form.Item className="timing__form-item to__time" label="To">
+                  <Form.Item
+                    className="time__form-item to__time__form-item"
+                    label="To"
+                  >
                     <TimePicker
                       format="HH:mm"
                       inputReadOnly

@@ -1,0 +1,101 @@
+.ant-select-dropdown-menu-item.close__treatment-btn,
+.select__treatment-hint,
+.search__treatment-input.ant-input,
+.ant-btn.close__treatments-btn,
+.clear__search-btn.ant-btn,
+.hr,
+.close__btn-box {
+	display: none;
+}
+
+.select-treatment,
+.select__treatment-input input,
+.clear__treatment-btn.ant-btn {
+	background: #fafafa;
+}
+
+.select-treatment {
+	display: flex;
+	border-radius: 3px;
+	border: 1px solid #d9d9d9;
+	height: 45px
+}
+
+.select__treatment-input input,
+.clear__treatment-btn.ant-btn {
+	display: inline-block;
+	border: none;
+	height: 40px;
+	border-radius: 0;
+}
+
+.select__treatment-input input {
+	padding-left: 33px !important;
+	border-right: none;
+}
+
+.clear__treatment-btn.ant-btn {
+	border-left: none;
+}
+
+.anticon.anticon-search,
+.clear__treatment-btn.ant-btn {
+	color: rgba(51, 51, 51, 0.4);
+}
+
+.select__treatment-input.ant-input-affix-wrapper .ant-input-prefix {
+	left: 14px;
+}
+
+.treatments__options-box {
+	position: absolute;
+	height: 300px;
+	background-color: #fff;
+	z-index: 22;
+	width: 370px;
+	overflow-y: scroll;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,.15);
+}
+
+.select__treatment-input.ant-input:hover,
+.select-treatment .ant-input:hover,
+.select__treatment-input.ant-input:focus,
+.clear__treatment-btn.ant-btn:hover,
+.clear__treatment-btn.ant-btn:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.clear__treatment-btn.ant-btn:hover,
+.clear__treatment-btn.ant-btn::after,
+.clear__treatment-btn.ant-btn:focus,
+.clear__treatment-btn.ant-btn:not([disabled]):hover	{
+	color: #333;
+	background-color: #fafafa;
+	box-shadow: none;
+	height: 40px !important;
+	border: none !important;
+}
+
+.treatments__group.ant-radio-group {
+	width: 100%;
+  text-align: left;
+}
+
+.treatment__option-box {
+	text-align: left;
+	height: 45px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid rgba(185, 184, 184, 0.3);
+	font-family: 'Didact Gothic', sans-serif;
+	color: #4d4d4d;
+}
+
+.active .ant-radio .ant-radio-inner{
+	background-color: #e05747;
+	border-color: #e05747 ;
+}
+
+
+
