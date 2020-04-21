@@ -1,22 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Select, Icon, Skeleton, message } from 'antd';
+import { message, Input, Icon, Skeleton, Button, Radio } from 'antd';
 
 import getTreatments from './treatments.action';
 import searchAction from '../search.actions';
 import { filterServices as filterServicesAction } from '../../../containers/Services/services.actions';
 
+import searchLogic from './helper/search';
+
+import './style.css';
 import './media.css';
 
-const { Option } = Select;
-
 class TreatmentInput extends Component {
-  componentDidMount() {
-    const { getTreatments: allTreatments } = this.props;
-    allTreatments();
+  state = {
+    treatments: [],
+    filteredTreatments: [],
+    // eslint-disable-next-line react/destructuring-assignment
+    searchField: this.props.searchQueries.treatmentName,
+  };
+
+  async componentDidMount() {
+    const { getTreatments: allTreatments, searchQueries } = this.props;
+    const { treatmentName } = searchQueries;
+    await allTreatments();
+    const {
+      treatments: { data: treatments },
+    } = this.props;
+    this.setState({
+      treatments,
+      filteredTreatments: treatments,
+      searchField: treatmentName,
+    });
   }
 
-  handleTreatment = (value, children) => {
+  handleClear = () => {
+    this.setState({ searchField: '' });
+    const {
+      searchAction: treatmentSearch,
+      searchQueries,
+      filterServicesAction: filterServices,
+      services,
+      stores,
+      closeCollapse,
+    } = this.props;
+    searchQueries.treatment = '';
+    filterServices(stores, services, searchQueries);
+    treatmentSearch({
+      name: 'treatment',
+      value: '',
+      treatmentName: '',
+    });
+    closeCollapse();
+  };
+
+  handleTreatment = e => {
     const {
       status,
       searchAction: treatmentSearch,
@@ -24,12 +61,13 @@ class TreatmentInput extends Component {
       filterServicesAction: filterServices,
       services,
       stores,
+      closeCollapse,
     } = this.props;
-    let navTitle = '';
-    if (children && children.props) {
-      navTitle = children.props.children;
-    }
-    if (value) {
+    if (e.target.value) {
+      const { value: selectedTreatment } = e.target;
+      const treatmentInfo = selectedTreatment.split(',');
+      const [value, navTitle] = treatmentInfo;
+      this.setState({ searchField: navTitle });
       treatmentSearch({
         name: 'treatment',
         value,
@@ -40,6 +78,7 @@ class TreatmentInput extends Component {
         queries.treatment = value;
         filterServices(stores, services, queries);
       }
+      closeCollapse();
     } else {
       searchQueries.treatment = '';
       filterServices(stores, services, searchQueries);
@@ -51,41 +90,98 @@ class TreatmentInput extends Component {
     }
   };
 
+  handleSearch = ({ target: { value } }) => {
+    this.setState({ searchField: value });
+    const { treatments } = this.state;
+    let filteredData = treatments;
+    if (value) {
+      filteredData = searchLogic(value, filteredData);
+      this.setState(() => ({ filteredTreatments: filteredData }));
+    } else {
+      this.setState(() => ({ filteredTreatments: treatments }));
+    }
+  };
+
   render() {
-    const { treatments, loading, err, searchQueries } = this.props;
-    const { treatment: treatmentQuery } = searchQueries;
+    const { loading, err, searchQueries, toClose, closeCollapse } = this.props;
+    const { treatmentName: treatmentQuery } = searchQueries;
+    const { filteredTreatments, searchField } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
-        <Select
-          showSearch
-          placeholder="Search hair and beauty"
-          optionFilterProp="children"
-          allowClear
-          suffixIcon={<Icon type="search" />}
-          onChange={this.handleTreatment}
-          size="large"
-          notFoundContent="No treatment match"
-          dropdownRender={menu => {
-            if (loading) return <Skeleton active paragraph={{ rows: 0 }} />;
-            return <>{menu}</>;
-          }}
-          showAction={['focus', 'click']}
-          defaultValue={treatmentQuery || undefined}
-          placement="bottomCenter"
-          className="treatment__input-select"
-        >
-          {treatments &&
-            treatments.data &&
-            treatments.data.length &&
-            treatments.data.map(treatment => {
-              return (
-                <Option key={treatment.id} value={treatment.id}>
-                  {treatment.name}
-                </Option>
-              );
-            })}
-        </Select>
+        <div>
+          <div className="select-treatment">
+            <Input
+              className="select__treatment-input"
+              prefix={<Icon type="search" />}
+              placeholder="Search hear and beauty"
+              onClick={closeCollapse}
+              onChange={this.handleSearch}
+              value={searchField}
+              name="searchField"
+            />
+            <Button className="clear__treatment-btn" onClick={this.handleClear}>
+              {treatmentQuery && 'X'}
+            </Button>
+          </div>
+          {toClose && (
+            <div className="treatments__options-box">
+              <div className="close__btn-box">
+                <Button
+                  className="close__treatments-btn"
+                  onClick={closeCollapse}
+                >
+                  Close
+                </Button>
+              </div>
+              <div>
+                <Input
+                  placeholder="Search hear and beauty"
+                  className="search__treatment-input"
+                  value={searchField}
+                  onChange={this.handleSearch}
+                  name="searchField"
+                />
+                <Button
+                  className="clear__search-btn"
+                  onClick={this.handleClear}
+                >
+                  {treatmentQuery && 'X'}
+                </Button>
+              </div>
+              <hr className="hr" />
+              <>{loading && <Skeleton active paragraph={{ rows: 0 }} />}</>
+              {filteredTreatments && filteredTreatments.length ? (
+                <Radio.Group
+                  className="treatments__group"
+                  onChange={this.handleTreatment}
+                  value={treatmentQuery}
+                >
+                  {filteredTreatments.map(treatment => {
+                    return (
+                      <div
+                        key={Math.random()}
+                        className="treatment__option-box"
+                      >
+                        <Radio
+                          value={`${treatment.id},${treatment.name}`}
+                          key={`${treatment.id},${treatment.name}`}
+                          className={
+                            treatmentQuery === treatment.name && 'active'
+                          }
+                        >
+                          {treatment.name}
+                        </Radio>
+                      </div>
+                    );
+                  })}
+                </Radio.Group>
+              ) : (
+                !loading && <>No treatments found</>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
