@@ -5,6 +5,7 @@ const deleteSalonService = require('./deleteSalonService');
 const getSalonServices = require('./getSalonServices');
 
 const getService = require('./getService');
+const getServicesLengthes = require('./getServicesLengthes');
 const addService = require('./addService');
 const updateService = require('./updateService');
 const deleteService = require('./deleteService');
@@ -22,4 +23,5 @@ module.exports = {
   updateService,
   deleteService,
   getAllServices,
+  getServicesLengthes,
 };
