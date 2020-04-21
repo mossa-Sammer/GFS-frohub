@@ -3,6 +3,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
+    "jest/globals": true
   },
   extends: [
     'airbnb-base',
@@ -20,4 +21,5 @@ module.exports = {
     "no-unused-vars": ["error", { "args": "after-used" }],
     "no-use-before-define": ["error", { "functions": false }]
   },
+  "plugins": ["jest"]
 };
