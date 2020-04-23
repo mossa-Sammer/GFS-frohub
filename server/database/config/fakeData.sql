@@ -8,8 +8,6 @@ INSERT INTO "user" (first_name, last_name, email, phone_number, role) VALUES ('A
 
 INSERT INTO "user" (first_name, last_name, email, phone_number, role) VALUES ('angham', 'abed', 'angham@gmail.com', '123456789', 'stylist');
 
-select * from "user";
-
 INSERT INTO business (user_id, full_name, account_number, preferred_pay_method) VALUES (2, 'mossa dababesh', '123556789', 'cash');
 
 INSERT INTO business (user_id, full_name, account_number, preferred_pay_method) VALUES (3,'ahmad ali', '123455689', 'card');
