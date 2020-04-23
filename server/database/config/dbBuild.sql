@@ -54,7 +54,7 @@ CREATE TABLE salon_zone (
 CREATE TABLE salon_opening_time (
   salon_opening_time_id SERIAL PRIMARY KEY,
   salon_id INT REFERENCES salon(salon_id) on DELETE CASCADE,
-  day VARCHAR(255) NOT NULL,
+  day INT NOT NULL,
   from_time TIME NOT NULL,
   to_time TIME NOT NULL
 );
@@ -85,9 +85,7 @@ CREATE TABLE salon_service (
 CREATE TABLE service_image (
   service_image_id SERIAL PRIMARY KEY,
   salon_service_id INT REFERENCES salon_service(salon_service_id) on DELETE CASCADE,
-  image_1 VARCHAR,
-  image_2 VARCHAR,
-  image_3 VARCHAR
+  image VARCHAR
 );
 
 CREATE TABLE finance (
