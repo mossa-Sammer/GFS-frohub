@@ -69,3 +69,5 @@ INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
 INSERT INTO service_image (salon_service_id,image) VALUES (2,'http://');
+
+COMMIT;
