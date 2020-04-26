@@ -27,17 +27,17 @@ INSERT INTO salon_zone (salon_id,from_zone,to_zone,price) VALUES (2,1,9,2031);
 INSERT INTO salon_zone (salon_id,from_zone,to_zone,price) VALUES (2,7,9,631);
 INSERT INTO salon_zone (salon_id,from_zone,to_zone,price) VALUES (2,8,9,431);
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (1,1,'09:00 am','04:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (1,1,'09:00 am','04:00 pm');
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (1,2,'09:00 am','05:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (1,2,'09:00 am','05:00 pm');
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (1,3,'09:00 am','04:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (1,3,'09:00 am','04:00 pm');
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (1,3,'09:00 am','04:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (1,3,'09:00 am','04:00 pm');
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (2,1,'09:00 am','04:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (2,1,'09:00 am','04:00 pm');
 
-INSERT INTO salon_opening_time (salon_id,day,from_time,to__time) values (2,3,'12:00 am','12:00 pm');
+INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) values (2,3,'12:00 am','12:00 pm');
 
 INSERT INTO service (name,status) values ('service1','active');
 INSERT INTO service (name,status) values ('service2','active');

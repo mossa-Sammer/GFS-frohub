@@ -14,7 +14,8 @@ router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 
 // Stylist/Personal
-router.get('/stylist/personal', personal.getStylist);
+
+router.get('/stylist/:id', personal.getStylist);
 router.post('/stylist/personal', personal.addStylist);
 router.patch('/stylist/personal', personal.updateStylist);
 
