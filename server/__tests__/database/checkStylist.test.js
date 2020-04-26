@@ -1,5 +1,5 @@
 const dbConnection = require('../../database/config/dbConnection');
-// const dbBuild = require('../../database/config/dbBuild');
+const dbBuild = require('../../database/config/dbBuild');
 
 const { checkStylist } = require('../../database/queries/stylist');
 
@@ -7,7 +7,7 @@ const getStylistUser = (role = 'stylist') => dbConnection.query('SELECT * FROM "
 
 const getAdminUser = (role = 'admin') => dbConnection.query('SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1', [role]);
 
-// beforeAll(() => dbBuild());
+beforeAll(() => dbBuild());
 
 afterAll(() => dbConnection.end());
 
