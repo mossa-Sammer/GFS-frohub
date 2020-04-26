@@ -24,6 +24,7 @@ CREATE TABLE business (
   user_id INT REFERENCES "user"(user_id) on DELETE CASCADE,
   full_name VARCHAR(255),
   account_number  VARCHAR(12) UNIQUE,
+  sort_code VARCHAR(12) UNIQUE,
   preferred_pay_method pay_method
 );
 
