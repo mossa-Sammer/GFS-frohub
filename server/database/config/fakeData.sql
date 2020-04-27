@@ -8,9 +8,9 @@ INSERT INTO "user" (first_name, last_name, email, phone_number, role) VALUES ('A
 
 INSERT INTO "user" (first_name, last_name, email, phone_number, role) VALUES ('angham', 'abed', 'angham@gmail.com', '123456789', 'stylist');
 
-INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code) VALUES (2, 'mossa salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','home','omar el mukhtar','london','UK','23424');
+INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code,status) VALUES (2, 'mossa salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','home','omar el mukhtar','london','UK','23424','active');
 
-INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code) VALUES (3, 'ahmad salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','salon','omar el mukhtar','gaza','PS','23424');
+INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code,status) VALUES (3, 'ahmad salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','salon','omar el mukhtar','gaza','PS','23424','inactive');
 
 INSERT INTO salon_zone (salon_id,from_zone,to_zone,price) VALUES (1,1,2,531);
 INSERT INTO salon_zone (salon_id,from_zone,to_zone,price) VALUES (1,2,3,731);
