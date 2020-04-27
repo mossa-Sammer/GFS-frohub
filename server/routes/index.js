@@ -20,9 +20,9 @@ router.post('/stylist/personal', personal.addStylist);
 router.patch('/stylist/personal', personal.updateStylist);
 
 // Stylist/business
-router.get('/stylist/business', business.getStylistBusiness);
-router.post('/stylist/business', business.addStylistBusiness);
-router.patch('/stylist/business', business.updateStylistBusiness);
+router.get('/stylist/:id/business', business.getStylistBusiness);
+router.post('/stylist/:id/business', business.addStylistBusiness);
+router.patch('/stylist/:id/business', business.updateStylistBusiness);
 
 // Stylist/finance
 router.get('/stylist/finance', finance.getFinance);
