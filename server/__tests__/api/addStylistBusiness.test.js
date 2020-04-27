@@ -1,8 +1,11 @@
 const supertest = require('supertest');
 const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
+const dbBuild = require('../../database/config/dbBuild');
 
 const getStylist = (role = 'stylist') => dbConnection.query('SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1', [role]);
+
+beforeAll(() => dbBuild());
 
 afterAll(() => dbConnection.end());
 
