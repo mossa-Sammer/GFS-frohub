@@ -21,10 +21,16 @@ module.exports = async (req, res, next) => {
         insertStylistBusiness(id, {
           fullName, accountNumber, sortCode, preffaredPayMethod,
         }).then((business) => {
-          if (business.rows.length) {
+          if (business.rows[0]) {
             res.json({ ...business.rows[0] });
           }
-        }).catch((err) => next(err));
+        }).catch((err) => {
+          if (err.code === '23505') {
+            next(unauthorized('Account number already exist'));
+          } else {
+            next();
+          }
+        });
       } else {
         next(unauthorized('Unauthorized'));
       }
