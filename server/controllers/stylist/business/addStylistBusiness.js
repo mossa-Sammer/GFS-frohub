@@ -15,8 +15,8 @@ module.exports = async (req, res, next) => {
   } = req.body;
   const isStylist = await checkStylist(id);
   if (fullName.length >= 6) {
-    const ukAccountsValidation = new UkModulusChecking({ accountNumber, sortCode }).isValid();
-    if (ukAccountsValidation) {
+    const accountSortValid = new UkModulusChecking({ accountNumber, sortCode }).isValid();
+    if (accountSortValid) {
       if (isStylist.rows.length) {
         insertStylistBusiness(id, {
           fullName, accountNumber, sortCode, preffaredPayMethod,
