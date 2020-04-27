@@ -25,7 +25,7 @@ CREATE TABLE business (
   full_name VARCHAR(255),
   account_number  VARCHAR(12) UNIQUE,
   sort_code VARCHAR(12) UNIQUE,
-  preferred_pay_method pay_method
+  preferred_pay_method pay_method DEFAULT 'none'
 );
 
 
