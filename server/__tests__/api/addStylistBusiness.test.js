@@ -22,7 +22,6 @@ test('POST /api/stylist/:id/business Route', async (done) => {
     .expect(200)
     .expect('Content-Type', /json/)
     .end((err, res) => {
-      console.log(11111111111, err);
       if (err) return done(err);
       const resFields = Object.keys(res.body);
       expect(businessFields).toEqual(resFields);
