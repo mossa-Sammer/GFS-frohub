@@ -5,24 +5,26 @@ const dbConnection = require('../../database/config/dbConnection');
 afterAll(() => dbConnection.end());
 
 test('adding a stylist with invalid data',
-  () => request(app).post('/api/stylist/', {}).expect(422)
+  () => request(app).post('/api/user/personal', {}).expect(422)
     .expect('Content-Type', /json/));
 
 
-test('adding a stylist with valid data', (done) => {
+test('adding a stylist with valid data', () => {
   expect.assertions(1);
   const data = {
     firstName: 'mossa',
     lastName: 'dbabesh',
     email: 'mossa@gmail.com',
     phone: '123123123',
-    role: 'stylist',
   };
-  return request(app).post('/api/stylist/').send(data).expect(200)
-    .expect('Content-Type', /json/)
-    .end((err, res) => {
-      if (err) done(err);
-      expect(res.body.stylist.email).toBe(data.email);
-      done();
+  return dbConnection.query('SELECT * FROM "user" LIMIT 1')
+    .then((result) => {
+      const { rows: [user] } = result;
+      data.userId = user.user_id;
+
+      return request(app).post('/api/user/personal').send(data).expect(200)
+        .expect('Content-Type', /json/);
+    }).then((res) => {
+      expect(res.body.user.email).toBe(data.email);
     });
 });

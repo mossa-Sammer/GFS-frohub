@@ -7,16 +7,23 @@ afterAll(() => dbConnection.end());
 
 
 test('add a stylist', () => {
-  expect.assertions(2);
+  expect.assertions(1);
   const data = {
     firstName: 'soha',
     lastName: 'kadi',
     email: 'soha@gmail.com',
     phone: '1231244',
   };
-  return addPersonalData(data).then((result) => {
+  return dbConnection.query(
+    'SELECT * FROM "user" LIMIT 1',
+  ).then((result) => {
+    const {
+      rows: [user],
+    } = result;
+    data.userId = user.user_id;
+    return addPersonalData(data);
+  }).then((result) => {
     const { rows: [user] } = result;
     expect(user.email).toBe(data.email);
-    expect(user.role).toBe('stylist');
   });
 });
