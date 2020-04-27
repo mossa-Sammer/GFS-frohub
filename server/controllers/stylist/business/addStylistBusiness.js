@@ -1,38 +1,37 @@
 const { unauthorized } = require('@hapi/boom');
+const UkModulusChecking = require('uk-modulus-checking');
 const {
   insertStylistBusiness,
   checkStylist,
 } = require('../../../database/queries');
 
-const { validateAddBusiness } = require('./validation/addBusiness');
-
 module.exports = async (req, res, next) => {
   const { id } = req.params;
   const {
     fullName,
-    accountNum,
+    accountNumber,
     sortCode,
     preffaredPayMethod,
   } = req.body;
-  const isStylist = checkStylist(id);
-  validateAddBusiness.validate({
-    fullName,
-    accountNum,
-    sortCode,
-  }).then(() => {
-    isStylist.then((result) => {
-      if (result.rows.length) {
+  const isStylist = await checkStylist(id);
+  if (fullName.length >= 6) {
+    const ukAccountsValidation = new UkModulusChecking({ accountNumber, sortCode }).isValid();
+    if (ukAccountsValidation) {
+      if (isStylist.rows.length) {
         insertStylistBusiness(id, {
-          fullName, accountNum, sortCode, preffaredPayMethod,
-        })
-          .then((business) => {
-            res.send({ ...business.rows[0] });
-          }).catch((err) => console.log(5555, err));
+          fullName, accountNumber, sortCode, preffaredPayMethod,
+        }).then((business) => {
+          if (business.rows.length) {
+            res.json({ ...business.rows[0] });
+          }
+        }).catch((err) => next(err));
       } else {
-        next(unauthorized('unauthorize'));
+        next(unauthorized('Unauthorized'));
       }
-    })
-      .catch((err) => console.log(99, err));
-  })
-    .catch((err) => console.log(765342, err));
+    } else {
+      next(unauthorized('Account Number or Sort Code invalid'));
+    }
+  } else {
+    next(unauthorized('FullName should be at least 6 characters'));
+  }
 };

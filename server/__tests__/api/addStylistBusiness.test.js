@@ -9,8 +9,8 @@ afterAll(() => dbConnection.end());
 test('POST /api/stylist/:id/business Route', async (done) => {
   const businessDetails = {
     fullName: 'ansam aabed',
-    accountNum: '45209492',
-    sortCode: '2987',
+    accountNumber: '66374958',
+    sortCode: '08-9999',
     preffaredPayMethod: 'card',
   };
   const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
@@ -22,6 +22,7 @@ test('POST /api/stylist/:id/business Route', async (done) => {
     .expect(200)
     .expect('Content-Type', /json/)
     .end((err, res) => {
+      console.log(11111111111, err);
       if (err) return done(err);
       const resFields = Object.keys(res.body);
       expect(businessFields).toEqual(resFields);

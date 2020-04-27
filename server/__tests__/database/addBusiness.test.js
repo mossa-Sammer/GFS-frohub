@@ -13,8 +13,8 @@ describe('Add stylist business details', () => {
   test('The user is stylist', async () => {
     const stylistBusiness = {
       fullName: 'angham aabed',
-      accountNum: '4577892',
-      sortCode: '3245',
+      accountNumber: '66374958',
+      sortCode: '08-99-99',
       preffaredPayMethod: 'card',
     };
     const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
