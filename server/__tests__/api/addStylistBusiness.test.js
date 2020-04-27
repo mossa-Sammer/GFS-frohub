@@ -1,10 +1,13 @@
 const supertest = require('supertest');
 const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
+const buildDB = require('../../database/config/dbBuild');
+
+beforeAll(() => buildDB());
+afterAll(() => dbConnection.end());
 
 const getStylist = (role = 'stylist') => dbConnection.query('SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1', [role]);
 
-afterAll(() => dbConnection.end());
 
 test('POST /api/stylist/:id/business Route', async (done) => {
   const businessDetails = {
