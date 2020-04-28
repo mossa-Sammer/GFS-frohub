@@ -1,11 +1,18 @@
 const request = require('supertest');
+
 const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
+const build = require('../../database/config/dbBuild');
 
+beforeAll(() => build());
 afterAll(() => dbConnection.end());
 
+const getFirstUser = () => dbConnection.query(
+  'SELECT * FROM "user" LIMIT 1',
+);
+
 test('adding a stylist with invalid data',
-  () => request(app).post('/api/user/personal', {}).expect(422)
+  () => request(app).post('/api/user/personal/dddd', {}).expect(422)
     .expect('Content-Type', /json/));
 
 
@@ -17,12 +24,10 @@ test('adding a stylist with valid data', () => {
     email: 'mossa@gmail.com',
     phone: '123123123',
   };
-  return dbConnection.query('SELECT * FROM "user" LIMIT 1')
+  return getFirstUser()
     .then((result) => {
       const { rows: [user] } = result;
-      data.userId = user.user_id;
-
-      return request(app).post('/api/user/personal').send(data).expect(200)
+      return request(app).post(`/api/user/personal/${user.user_id}`).send(data).expect(200)
         .expect('Content-Type', /json/);
     }).then((res) => {
       expect(res.body.user.email).toBe(data.email);
