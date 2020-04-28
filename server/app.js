@@ -38,7 +38,6 @@ if (process.env.NODE_ENV === 'production') {
 // error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  console.log(err);
   let errObj = { message: err.message };
 
   // for boom errors

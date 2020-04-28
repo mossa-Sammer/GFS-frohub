@@ -12,7 +12,7 @@ const getFirstUser = () => dbConnection.query(
 );
 
 test('adding a stylist with invalid data',
-  () => request(app).post('/api/user/personal/dddd', {}).expect(422)
+  () => request(app).post('/api/user/dddd/personal', {}).expect(422)
     .expect('Content-Type', /json/));
 
 
@@ -27,7 +27,7 @@ test('adding a stylist with valid data', () => {
   return getFirstUser()
     .then((result) => {
       const { rows: [user] } = result;
-      return request(app).post(`/api/user/personal/${user.user_id}`).send(data).expect(200)
+      return request(app).post(`/api/user/${user.user_id}/personal`).send(data).expect(200)
         .expect('Content-Type', /json/);
     }).then((res) => {
       expect(res.body.user.email).toBe(data.email);

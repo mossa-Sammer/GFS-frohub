@@ -16,7 +16,7 @@ router.get('/authenticated', auth);
 // Stylist/Personal
 
 router.get('/user/:id/personal', personal.getUser);
-router.post('/user/personal/:userId', personal.addUserData);
+router.post('/user/:id/personal', personal.addUserData);
 router.patch('/user/personal', personal.updateUser);
 
 // Stylist/business
