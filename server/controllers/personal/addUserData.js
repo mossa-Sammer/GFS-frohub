@@ -3,7 +3,11 @@ const { addUserDataSchema, validationError } = require('./validation');
 const { addPersonalData, getUserById } = require('../../database/sql_queries');
 
 module.exports = (req, res, next) => {
-  const { userId } = req.body;
+  let { userId } = req.params;
+  userId = Number(userId);
+  if (!userId) {
+    throw boom.badData('user id should be number');
+  }
   addUserDataSchema.validate(req.body, { abortEarly: false })
     .then(() => getUserById(userId))
     .then((result) => {
@@ -12,7 +16,7 @@ module.exports = (req, res, next) => {
       } = result;
 
       if (!user) throw boom.badData('user not found');
-      return addPersonalData(req.body);
+      return addPersonalData({ ...req.body, userId });
     })
     .then((result) => {
       const {
