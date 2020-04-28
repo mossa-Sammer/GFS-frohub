@@ -9,5 +9,5 @@ module.exports = {
   getSalon,
   updateSalon,
   getAllSalons,
-  getSalonByUserId
+  getSalonByUserId,
 };
