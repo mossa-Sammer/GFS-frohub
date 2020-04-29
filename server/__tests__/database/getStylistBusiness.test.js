@@ -7,11 +7,21 @@ beforeAll(() => dbBuild());
 
 afterAll(() => dbConnection.end());
 
-const getStylist = (role = 'stylist') => dbConnection.query('SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1 OFFSET 2', [role]);
+
+const selectStylist = 'SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1 OFFSET 2';
+const getStylist = (role = 'stylist') => dbConnection.query(selectStylist, [role]);
 
 describe('Get stylist business details query function', () => {
   test('Get stylist business', async () => {
-    const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
+    const businessFields = [
+      'business_id',
+      'user_id',
+      'full_name',
+      'account_number',
+      'sort_code',
+      'preferred_pay_method',
+    ];
+
     const stylist = await getStylist();
     const { user_id: userId } = stylist.rows[0];
     const stylistBusiness = await getStylistBusiness(userId);
