@@ -14,7 +14,7 @@ test('POST /api/stylist/:id/business Route', async (done) => {
     fullName: 'ansam aabed',
     accountNumber: '66374958',
     sortCode: '08-9999',
-    preffaredPayMethod: 'card',
+    preferredPayMethod: 'card',
   };
   const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
   const stylist = await getStylist();
