@@ -12,19 +12,17 @@ afterAll(() => dbConnection.end());
 
 test('GET /api/stylist/:id/business', async (done) => {
   const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
-  const stylist = await getStylist();
-  const { user_id: stylistId } = stylist.rows[0];
-  supertest(app)
-    .get(`/api/stylist/${stylistId}/business`)
-    .expect(200)
-    .expect('Content-Type', /json/)
-    .end((err, response) => {
-      if (err) {
-        if (err) done(err);
-      } else {
-        const responseFields = Object.keys(response.body.data[0]);
-        expect(responseFields).toEqual(businessFields);
-        done();
-      }
-    });
+  try {
+    const stylist = await getStylist();
+    const { user_id: stylistId } = stylist.rows[0];
+    const response = await supertest(app)
+      .get(`/api/stylist/${stylistId}/business`)
+      .expect(200)
+      .expect('Content-Type', /json/);
+    const responseFields = Object.keys(response.body.data[0]);
+    expect(responseFields).toEqual(businessFields);
+    done();
+  } catch (err) {
+    done(err);
+  }
 });
