@@ -1,5 +1,6 @@
 const boom = require('@hapi/boom');
-const { addUserDataSchema, validationError } = require('./validation');
+const { validationError } = require('../helper');
+const { addUserDataSchema } = require('./validation');
 const { addPersonalData, getUserById } = require('../../database/sql_queries');
 
 module.exports = (req, res, next) => {
