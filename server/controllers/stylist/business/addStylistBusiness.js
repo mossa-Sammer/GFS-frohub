@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
     fullName,
     accountNumber,
     sortCode,
-    preffaredPayMethod,
+    preferredPayMethod,
   } = req.body;
   const isStylist = await checkStylist(id);
   if (fullName.length >= 6) {
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
     if (accountSortValid) {
       if (isStylist.rows.length) {
         insertStylistBusiness(id, {
-          fullName, accountNumber, sortCode, preffaredPayMethod,
+          fullName, accountNumber, sortCode, preferredPayMethod,
         }).then((business) => {
           if (business.rows[0]) {
             res.json({ ...business.rows[0] });
