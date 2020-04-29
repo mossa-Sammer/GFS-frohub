@@ -17,7 +17,16 @@ test('POST /api/stylist/:id/business Route', async (done) => {
     sortCode: '08-9999',
     preffaredPayMethod: 'card',
   };
-  const businessFields = ['business_id', 'user_id', 'full_name', 'account_number', 'sort_code', 'preferred_pay_method'];
+
+  const businessFields = [
+    'business_id',
+    'user_id',
+    'full_name',
+    'account_number',
+    'sort_code',
+    'preferred_pay_method',
+  ];
+
   const stylist = await getStylist();
   const { user_id: userId } = stylist.rows[0];
   supertest(app)
