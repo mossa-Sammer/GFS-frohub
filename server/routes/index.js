@@ -2,7 +2,7 @@ const boom = require('@hapi/boom');
 const express = require('express');
 
 const {
-  login, signup, auth, getTreatments, personal, business, finance, salon, services,
+  login, signup, auth, getTreatments, personal, business, finance, salon, services, uploads,
 } = require('../controllers');
 
 const router = express.Router();
@@ -10,6 +10,7 @@ const router = express.Router();
 router.post('/login', login);
 
 router.post('/signup', signup);
+router.post('/upload/:id', uploads.uploadFile);
 router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 

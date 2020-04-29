@@ -6,6 +6,7 @@ const personal = require('./personal');
 const {
   business, finance, salon, services,
 } = require('./stylist');
+const uploads = require('./uploads');
 
 module.exports = {
   login,
@@ -17,4 +18,5 @@ module.exports = {
   finance,
   salon,
   services,
+  uploads,
 };
