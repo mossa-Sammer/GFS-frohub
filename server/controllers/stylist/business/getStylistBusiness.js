@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     if (isStylist.rows[0]) {
       const business = await getStylistBusiness(id);
       if (business.rows) {
-        res.json({ ...business.rows });
+        res.send({ data: business.rows });
       }
     } else {
       next(unauthorized('Unauthorized'));

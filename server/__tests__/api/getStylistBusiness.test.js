@@ -22,7 +22,7 @@ test('GET /api/stylist/:id/business', async (done) => {
       if (err) {
         if (err) done(err);
       } else {
-        const responseFields = Object.keys(response.body[0]);
+        const responseFields = Object.keys(response.body.data[0]);
         expect(responseFields).toEqual(businessFields);
         done();
       }
