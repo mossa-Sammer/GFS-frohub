@@ -13,7 +13,9 @@ test('get salon by user id', async () => {
   expect.assertions(1);
   const result = await getOneSalon();
   const { rows: [firstSalon] } = result;
-  const res = await getSalon(firstSalon.user_id);
+  const { user_id: userId } = firstSalon;
+  const res = await getSalon(userId);
   const { rows: [salon] } = res;
-  expect(salon.user_id).toBe(firstSalon.user_id);
+  const { user_id: userId1 } = salon;
+  expect(userId1).toBe(userId);
 });

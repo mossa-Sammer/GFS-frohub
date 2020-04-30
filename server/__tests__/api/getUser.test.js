@@ -15,9 +15,9 @@ test('get the user using id in query param', (done) => {
       const {
         rows: [user],
       } = data;
-
+      const { user_id: userId } = user;
       request(app)
-        .get(`/api/stylist/${user.user_id}`)
+        .get(`/api/stylist/${userId}`)
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {

@@ -13,14 +13,15 @@ const getFirstSalon = () => connection.query('SELECT * FROM salon LIMIT 1');
 test('API GET /salon/1', async (done) => {
   try {
     const { rows: [firstSalon] } = await getFirstSalon();
-
+    const { user_id: salonOwnerId } = firstSalon;
     const res = await request(app)
-      .get(`/api/salon/${firstSalon.user_id}`)
+      .get(`/api/salon/${salonOwnerId}`)
       .expect(200)
       .expect('Content-Type', /json/);
 
     const { salon } = res.body;
-    expect(salon.user_id).toBe(firstSalon.user_id);
+    const { user_id: userId } = salon;
+    expect(userId).toBe(salonOwnerId);
     done();
   } catch (e) {
     done(e);

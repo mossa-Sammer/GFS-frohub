@@ -11,7 +11,7 @@ const getFirstSalon = () => connection.query('SELECT * FROM salon LIMIT 1');
 
 test('get salon opening times ', async () => {
   const { rows: [firstSalon] } = await getFirstSalon();
-  const salonId = firstSalon.salon_id;
+  const { salon_id: salonId } = firstSalon;
   const { rows: openingTimes } = await getSalonOpeningTimes(salonId);
   expect(openingTimes).toBeDefined();
 });

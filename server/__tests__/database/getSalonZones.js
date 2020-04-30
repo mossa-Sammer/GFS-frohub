@@ -11,7 +11,7 @@ const getFirstSalon = () => connection.query('SELECT * FROM salon LIMIT 1');
 
 test('get salon zones', async () => {
   const { rows: [firstSalon] } = await getFirstSalon();
-  const salonId = firstSalon.salon_id;
+  const { salon_id: salonId } = firstSalon;
   const { rows: zones } = await getSalonZones(salonId);
   expect(zones).toBeDefined();
 });
