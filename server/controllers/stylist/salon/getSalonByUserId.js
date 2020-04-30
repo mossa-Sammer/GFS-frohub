@@ -9,7 +9,7 @@ const {
 // eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
   try {
-    let { userId } = req.params;
+    let { id: userId } = req.params;
     userId = Number(userId);
 
     if (typeof userId !== 'number') {
