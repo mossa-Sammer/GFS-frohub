@@ -16,6 +16,6 @@ test('get salon by user id', async () => {
   const { user_id: userId } = firstSalon;
   const res = await getSalon(userId);
   const { rows: [salon] } = res;
-  const { user_id: userId1 } = salon;
-  expect(userId1).toBe(userId);
+  const { user_id: salonOwnerId } = salon;
+  expect(salonOwnerId).toBe(userId);
 });
