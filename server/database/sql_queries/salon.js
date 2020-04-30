@@ -9,9 +9,3 @@ const getSalon = (userId) => {
 };
 
 module.exports = { getSalon };
-
-
-/* 'SELECT * FROM salon INNER JOIN salon_zone ON salon.
-salon_id=salon_zone.salon_id INNER JOIN salon_opening_time ON salon.
-salon_id=salon_opening_time.salon_id WHERE user_id=$1'
-*/
