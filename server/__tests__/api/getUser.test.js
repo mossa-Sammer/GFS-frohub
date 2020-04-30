@@ -4,28 +4,30 @@ const dbConnection = require('../../database/config/dbConnection');
 
 afterAll(() => dbConnection.end());
 
-test('get the user using id in query param', (done) => {
+test('get the user using id in query param', () => {
   expect.assertions(1);
   const expectedFields = [
-    'user_id', 'first_name', 'last_name', 'email', 'phone_number', 'role',
+    'user_id',
+    'first_name',
+    'last_name',
+    'email',
+    'phone_number',
+    'role',
   ];
 
-  dbConnection.query('SELECT * FROM "user" LIMIT 1')
+  return dbConnection.query('SELECT * FROM "user" LIMIT 1')
     .then((data) => {
       const {
         rows: [user],
       } = data;
       const { user_id: userId } = user;
-      request(app)
-        .get(`/api/stylist/${userId}`)
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .end((err, res) => {
-          if (err) return done(err);
-          const fields = Object.keys(res.body);
-          expect(expectedFields).toEqual(fields);
 
-          return done();
-        });
+      return request(app)
+        .get(`/api/user/${userId}/personal`)
+        .expect('Content-Type', /json/)
+        .expect(200);
+    }).then((result) => {
+      const fields = Object.keys(result.body);
+      expect(expectedFields).toEqual(fields);
     });
 });

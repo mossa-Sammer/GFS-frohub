@@ -1,4 +1,4 @@
-const { getUserById } = require('../../../database/sql_queries');
+const { getUserById } = require('../../database/sql_queries');
 
 module.exports = (req, res, next) => {
   const { id } = req.params;
