@@ -43,7 +43,7 @@ router.delete('/salon/:id/service/:id', services.deleteSalonService);
 // Service
 router.get('/services', services.getAllServices);
 router.get('/service/:id', services.getService);
-router.get('/service/lengthes', services.getServicesLengthes);
+router.get('/services/lengthes', services.getServicesLengthes);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
