@@ -8,13 +8,13 @@ beforeAll(() => dbBuild());
 afterAll(() => dbConnection.end());
 
 
-test('Get stylist business', async () => {
+test('Get all services query', async () => {
   const serviceFields = [
     'service_id',
     'name',
     'status',
   ];
 
-  const stylist = await getAllServices();
-  expect(Object.keys(stylist.rows[0])).toEqual(serviceFields);
+  const services = await getAllServices();
+  expect(Object.keys(services.rows[0])).toEqual(serviceFields);
 });
