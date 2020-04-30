@@ -6,7 +6,7 @@ const {
   getSalonOpeningTimes,
 } = require('../../../database/sql_queries');
 const { checkStylist } = require('../../../database/queries');
-// eslint-disable-next-line consistent-return
+
 module.exports = async (req, res, next) => {
   try {
     let { id: userId } = req.params;
@@ -39,7 +39,7 @@ module.exports = async (req, res, next) => {
       getSalonOpeningTimes(salonId),
     ]);
 
-    return res.json({ salon, zones, openingTimes });
+    res.json({ salon, zones, openingTimes });
   } catch (e) {
     next(e);
   }
