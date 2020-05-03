@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // error handler
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   let errObj = { message: err.message };
 
   // for boom errors
@@ -48,6 +48,9 @@ app.use((err, req, res, next) => {
       errObj = err.data;
     }
   } else {
+    if (err.statusCode) {
+      res.status(err.statusCode).json({ err });
+    }
     res.status(500);
     errObj.message = 'Internal server error';
   }

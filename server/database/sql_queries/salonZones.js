@@ -1,4 +1,6 @@
 const connection = require('../config/dbConnection');
+const { multiRowInsert } = require('./helper');
+
 
 const getSalonZones = (salonId) => {
   const sql = {
@@ -8,4 +10,15 @@ const getSalonZones = (salonId) => {
   return connection.query(sql);
 };
 
-module.exports = { getSalonZones };
+// every single object should be {
+//  salonId, fromZone, toZone, price
+// }
+
+const addSalonZones = async (zones, id) => {
+  const { preparedStatment, values } = multiRowInsert(zones, id);
+  const text = `INSERT INTO salon_zone (salon_id, from_zone, to_zone, price) VALUES ${preparedStatment} RETURNING *`;
+
+  return connection.query(text, values);
+};
+
+module.exports = { addSalonZones, getSalonZones };
