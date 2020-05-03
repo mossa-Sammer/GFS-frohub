@@ -15,6 +15,6 @@ test('Get all services query', async () => {
     'status',
   ];
 
-  const services = await getAllServices();
-  expect(Object.keys(services.rows[0])).toEqual(serviceFields);
+  const { rows: services } = await getAllServices();
+  expect(Object.keys(services[0])).toEqual(serviceFields);
 });
