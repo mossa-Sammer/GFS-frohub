@@ -17,6 +17,7 @@ const {
 
 const {
   checkSalon,
+  addSalonService,
 } = require('./salon');
 
 module.exports = {
@@ -32,4 +33,5 @@ module.exports = {
   insertService,
   getAllServices,
   checkSalon,
+  addSalonService,
 };
