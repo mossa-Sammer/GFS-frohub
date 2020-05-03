@@ -20,7 +20,7 @@ test('Testing POST api/service', async () => {
 
   const status = 'inactive';
 
-  const { rows: insertedService } = await insertService(service.name);
-  expect(insertedService[0].status).toBe(status);
-  expect(Object.keys(insertedService[0])).toEqual(serviceFields);
+  const { rows: [insertedService] } = await insertService(service.name);
+  expect(insertedService.status).toBe(status);
+  expect(Object.keys(insertedService)).toEqual(serviceFields);
 });
