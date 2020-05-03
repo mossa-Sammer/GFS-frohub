@@ -6,6 +6,7 @@ const {
 } = require('./stylist');
 
 const {
+  getService,
   checkService,
   insertService,
   getAllServices,
@@ -16,6 +17,7 @@ module.exports = {
   updateStylistBusiness,
   checkStylist,
   getStylistBusiness,
+  getService,
   checkService,
   insertService,
   getAllServices,
