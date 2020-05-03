@@ -5,7 +5,7 @@ const dbBuild = require('../../database/config/dbBuild');
 
 beforeAll(() => dbBuild());
 afterAll(() => dbConnection.end());
-test('GET /api/services/lengthes', async (done) => {
+test('GET /api/service/length', async (done) => {
   const serviceLengthesFields = [
     'service_length_id',
     'name',
@@ -13,7 +13,7 @@ test('GET /api/services/lengthes', async (done) => {
   ];
   try {
     const response = await supertest(app)
-      .get('/api/services/lengthes')
+      .get('/api/service/length')
       .expect(200)
       .expect('Content-Type', /json/);
     const { servicesLengthes } = response.body;
