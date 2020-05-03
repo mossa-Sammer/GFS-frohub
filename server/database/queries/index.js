@@ -15,6 +15,10 @@ const {
   getAllServices,
 } = require('./services');
 
+const {
+  checkSalon,
+} = require('./salon');
+
 module.exports = {
   insertStylistBusiness,
   updateStylistBusiness,
@@ -27,4 +31,5 @@ module.exports = {
   checkService,
   insertService,
   getAllServices,
+  checkSalon,
 };
