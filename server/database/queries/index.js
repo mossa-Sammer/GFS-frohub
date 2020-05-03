@@ -8,6 +8,7 @@ const {
 const {
   checkService,
   insertService,
+  getAllServices,
 } = require('./services');
 
 module.exports = {
@@ -17,4 +18,5 @@ module.exports = {
   getStylistBusiness,
   checkService,
   insertService,
+  getAllServices,
 };
