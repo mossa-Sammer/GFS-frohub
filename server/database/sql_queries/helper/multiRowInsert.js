@@ -1,10 +1,16 @@
-const multiRowInsert = (data) => {
+const multiRowInsert = (data, forigenId) => {
   let count = 1;
   let preparedStatment = '';
   const values = [];
 
   data.forEach((item) => {
     preparedStatment += '(';
+
+    if (forigenId) {
+      preparedStatment += `$${count},`;
+      count += 1;
+      values.push(forigenId);
+    }
 
     Object.values(item).forEach((value) => {
       values.push(value);
@@ -14,7 +20,7 @@ const multiRowInsert = (data) => {
     preparedStatment = `${preparedStatment.slice(0, -1)}),`;
   });
   preparedStatment = preparedStatment.slice(0, -1);
-
+  console.log(preparedStatment, values);
   return { preparedStatment, values };
 };
 
