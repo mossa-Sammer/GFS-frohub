@@ -2,6 +2,16 @@ const connection = require('../config/dbConnection');
 
 const { multiRowInsert } = require('./helper');
 
+
+const getSalonOpeningTimes = (salonId) => {
+  const sql = {
+    text: 'SELECT day, from_time, to_time FROM salon_opening_time WHERE salon_opening_time.salon_id=$1',
+    values: [salonId],
+  };
+  return connection.query(sql);
+};
+
+
 // every single object should be like {
 //   salonId, day, fromTime, toTime,
 // }
@@ -19,4 +29,4 @@ const addSalonOpeningTimes = async (openingTimes) => {
   return connection.query(sql);
 };
 
-module.exports = { addSalonOpeningTimes };
+module.exports = { getSalonOpeningTimes, addSalonOpeningTimes };
