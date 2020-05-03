@@ -1,12 +1,14 @@
 const {
   insertStylistBusiness,
+  getStylistBusiness,
   updateStylistBusiness,
 } = require('./business');
 
 const checkStylist = require('./checkStylist');
 
 module.exports = {
-  insertStylistBusiness,
-  updateStylistBusiness,
   checkStylist,
+  insertStylistBusiness,
+  getStylistBusiness,
+  updateStylistBusiness,
 };
