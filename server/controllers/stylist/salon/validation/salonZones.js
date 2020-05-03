@@ -1,13 +1,9 @@
 const yup = require('yup');
 
 
-const salonZones = yup.object().shape({
-  zones: yup.array().of(yup.object().shape({
-    salonId: yup.number().required(),
-    fromZone: yup.number().min(1).max(1).required(),
-    toZone: yup.number().min(1).max(1).required(),
-    price: yup.number().required(),
-  })),
-});
-
+const salonZones = yup.array().of(yup.object().shape({
+  fromZone: yup.number().lessThan(10).moreThan(-1).required(),
+  toZone: yup.number().lessThan(10).moreThan(-1).required(),
+  price: yup.number().required(),
+}));
 module.exports = salonZones;
