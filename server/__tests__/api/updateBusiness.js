@@ -59,7 +59,8 @@ test('PATCH /api/stylist/:id/business Route', async (done) => {
       .send(updatedBusiness)
       .expect(200)
       .expect('Content-Type', /json/);
-    const resFields = Object.keys(res.body.data[0]);
+    const { data: response } = res.body;
+    const resFields = Object.keys(response[0]);
     expect(businessFields).toEqual(resFields);
     return done();
   } catch (err) {

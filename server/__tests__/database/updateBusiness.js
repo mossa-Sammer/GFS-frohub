@@ -56,7 +56,8 @@ describe('Add stylist business details', () => {
     const insertStylistBusiness = await insertBusiness(userID, stylistBusiness);
     const { user_id: stylistId } = insertStylistBusiness.rows[0];
     const insertedBusiness = await updateStylistBusiness(stylistId, updatedBusiness);
-    const insertedBusFields = Object.keys(insertedBusiness.rows[0]);
+    const { rows: newBusiness } = insertedBusiness;
+    const insertedBusFields = Object.keys(newBusiness[0]);
     expect(insertedBusFields).toEqual(businessFields);
   });
 });
