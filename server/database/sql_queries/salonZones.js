@@ -14,8 +14,8 @@ const getSalonZones = (salonId) => {
 //  salonId, fromZone, toZone, price
 // }
 
-const addSalonZones = async (zones) => {
-  const { preparedStatment, values } = multiRowInsert(zones);
+const addSalonZones = async (zones, id) => {
+  const { preparedStatment, values } = multiRowInsert(zones, id);
   const text = `INSERT INTO salon_zone (salon_id, from_zone, to_zone, price) VALUES ${preparedStatment} RETURNING *`;
 
   return connection.query(text, values);

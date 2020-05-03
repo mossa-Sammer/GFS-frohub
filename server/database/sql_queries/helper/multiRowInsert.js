@@ -20,7 +20,6 @@ const multiRowInsert = (data, forigenId) => {
     preparedStatment = `${preparedStatment.slice(0, -1)}),`;
   });
   preparedStatment = preparedStatment.slice(0, -1);
-  console.log(preparedStatment, values);
   return { preparedStatment, values };
 };
 

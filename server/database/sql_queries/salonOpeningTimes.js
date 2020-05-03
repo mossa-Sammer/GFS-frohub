@@ -16,8 +16,8 @@ const getSalonOpeningTimes = (salonId) => {
 //   salonId, day, fromTime, toTime,
 // }
 
-const addSalonOpeningTimes = async (openingTimes) => {
-  const { preparedStatment, values } = multiRowInsert(openingTimes);
+const addSalonOpeningTimes = async (openingTimes, id) => {
+  const { preparedStatment, values } = multiRowInsert(openingTimes, id);
 
   const text = `INSERT INTO salon_opening_time (salon_id,day,from_time,to_time) VALUES ${preparedStatment} RETURNING *`;
 
