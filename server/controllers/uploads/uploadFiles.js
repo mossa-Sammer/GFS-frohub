@@ -2,7 +2,7 @@ const boom = require('@hapi/boom');
 const { v4: uuid } = require('uuid');
 const S3 = require('../../config/awsS3');
 
-
+const { checkStylist } = require('../../database/queries/stylist');
 // eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
   const { id: userId } = req.params;
@@ -15,6 +15,8 @@ module.exports = async (req, res, next) => {
   if (!Number(userId)) {
     return next(boom.badRequest('user id should be number'));
   }
+  const { rows: [stylist] } = await checkStylist(userId);
+  if (!stylist) { return next(boom.notFound('stylist not found')); }
 
   if (!contentTypes) {
     return next(boom.badRequest('must specfiy content types'));
