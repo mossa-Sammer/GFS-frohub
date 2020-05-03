@@ -4,6 +4,10 @@ const { getSalon } = require('./salon');
 const { getSalonOpeningTimes } = require('./salonOpeningTimes');
 const { getSalonZones } = require('./salonZones');
 
+const { addSalon } = require('./salon');
+const { addSalonOpeningTimes } = require('./salonOpeningTimes');
+const { addSalonZones } = require('./salonZones');
+
 module.exports = {
   getUserByEmail,
   getUserById,
@@ -11,4 +15,7 @@ module.exports = {
   getSalon,
   getSalonOpeningTimes,
   getSalonZones,
+  addSalon,
+  addSalonOpeningTimes,
+  addSalonZones,
 };

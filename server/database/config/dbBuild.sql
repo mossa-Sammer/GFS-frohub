@@ -41,7 +41,8 @@ CREATE TABLE salon (
   street VARCHAR(255),
   city VARCHAR(30) NOT NULL,
   country VARCHAR(2) NOT NULL, 
-  postal_code VARCHAR(255)
+  postal_code VARCHAR(255),
+  status activity_status DEFAULT 'inactive'
 );
 
 CREATE TABLE salon_zone (
