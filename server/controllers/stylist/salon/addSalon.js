@@ -13,7 +13,6 @@ const {
 
 // eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
-  // const { userId } = req.params;
   const { salon, openingTimes, zones } = req.body;
 
   try {
@@ -22,20 +21,16 @@ module.exports = async (req, res, next) => {
       openingTimesSchema.validate(openingTimes, { abortEarly: false }),
       salonZonesSchema.validate(zones, { abortEarly: false }),
     ]);
-  } catch (err) {
-    if (err.name === 'ValidationError') {
-      const errors = validationError(err);
-      const errObj = boom.badData('message', errors);
-      return next(errObj);
-    } return next(err);
-  }
 
-  try {
     const { rows: [addedSalon] } = await addSalon(salon);
+    const { salon_id: salonId } = addedSalon;
+
     const [{ rows: addedTimes }, { rows: addedZones }] = await Promise.all([
-      addSalonOpeningTimes(openingTimes),
-      addSalonZones(zones),
+      addSalonOpeningTimes(openingTimes, salonId),
+      addSalonZones(zones, salonId),
     ]);
+
+
     return res.json({
       msg: 'added salon data successfully',
       data: {
@@ -44,7 +39,11 @@ module.exports = async (req, res, next) => {
         zones: addedZones,
       },
     });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      const errors = validationError(err);
+      const errObj = boom.badData('message', errors);
+      return next(errObj);
+    } return next(err);
   }
 };
