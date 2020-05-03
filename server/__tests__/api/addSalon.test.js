@@ -34,18 +34,18 @@ test('POST /api/salon ', async (done) => {
       openingTimes: [
         {
           day: 1,
-          fromTime: '00:00:00',
-          toTime: '08:00:00',
+          fromTime: '00:00',
+          toTime: '08:00',
         },
         {
           day: 2,
-          fromTime: '00:00:00',
-          toTime: '09:00:00',
+          fromTime: '00:00',
+          toTime: '09:00',
         },
         {
           day: 3,
-          fromTime: '04:00:00',
-          toTime: '11:30:00',
+          fromTime: '04:00',
+          toTime: '11:30',
         },
       ],
       zones: [
