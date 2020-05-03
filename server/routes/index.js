@@ -31,7 +31,7 @@ router.post('/stylist/finance', finance.addFinance);
 
 // Salon
 router.get('/salons', salon.getAllSalons);
-router.get('/salon/:id', salon.getSalon);
+router.get('/salon/:id', salon.getSalonByUserId);
 router.post('/salon', salon.addSalon);
 router.patch('/salon/:id', salon.updateSalon);
 
@@ -42,9 +42,11 @@ router.patch('/salon/:id/service/:id', services.updateSalonService);
 router.delete('/salon/:id/service/:id', services.deleteSalonService);
 
 // Service
+router.post('/service', services.addService);
+router.post('/service/length', services.addServiceLength);
 router.get('/services', services.getAllServices);
 router.get('/service/:id', services.getService);
-router.get('/service/lengthes', services.getServicesLengthes);
+router.get('/services/lengthes', services.getServicesLengthes);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);

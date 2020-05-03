@@ -8,12 +8,14 @@ afterAll(() => dbConnection.end());
 
 test('add a stylist', () => {
   expect.assertions(1);
+
   const data = {
     firstName: 'soha',
     lastName: 'kadi',
     email: 'soha@gmail.com',
     phone: '1231244',
   };
+
   return dbConnection.query(
     'SELECT * FROM "user" LIMIT 1',
   ).then((result) => {

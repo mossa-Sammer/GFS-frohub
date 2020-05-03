@@ -7,7 +7,12 @@ afterAll(() => dbConnection.end());
 test('get the user using id in query param', () => {
   expect.assertions(1);
   const expectedFields = [
-    'user_id', 'first_name', 'last_name', 'email', 'phone_number', 'role',
+    'user_id',
+    'first_name',
+    'last_name',
+    'email',
+    'phone_number',
+    'role',
   ];
 
   return dbConnection.query('SELECT * FROM "user" LIMIT 1')
@@ -15,9 +20,10 @@ test('get the user using id in query param', () => {
       const {
         rows: [user],
       } = data;
+      const { user_id: userId } = user;
 
       return request(app)
-        .get(`/api/user/${user.user_id}/personal`)
+        .get(`/api/user/${userId}/personal`)
         .expect('Content-Type', /json/)
         .expect(200);
     }).then((result) => {

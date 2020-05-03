@@ -1,3 +1,12 @@
-const { notImplemented } = require('@hapi/boom');
-// eslint-disable-next-line no-unused-vars
-module.exports = (req, res, next) => next(notImplemented('not implemented'));
+const {
+  getServicesLengthes,
+} = require('../../../database/queries');
+
+module.exports = async (req, res, next) => {
+  try {
+    const servicesLengthes = await getServicesLengthes();
+    res.json({ servicesLengthes: servicesLengthes.rows });
+  } catch (err) {
+    next(err);
+  }
+};
