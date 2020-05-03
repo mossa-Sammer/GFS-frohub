@@ -13,51 +13,97 @@ const getStylist = () => connection.query(
 );
 
 test('POST /api/salon ', async (done) => {
-  const { rows: [user] } = await getStylist();
+  expect.assertions(3);
+  try {
+    const { rows: [user] } = await getStylist();
 
-  const data = {
-    salon: {
-      userId: user.user_id,
-      name: 'gfs salon',
-      about: 'lorem ipsum is the simplest text in the world',
-      profileImage: '',
-      coverImage: '',
-      document: '',
-      type: 'mobile',
-      street: 'hmeed',
-      city: 'gaza',
-      countryCode: 'PS',
-      postalCode: '1234',
-    },
-    openingTimes: [
-      {
-        day: 1,
-        fromTime: '00:00:00',
-        toTime: '08:00:00',
+    const data = {
+      salon: {
+        userId: user.user_id,
+        name: 'gfs salon',
+        about: 'lorem ipsum is the simplest text in the world',
+        profileImage: 'c',
+        coverImage: 'c',
+        document: '',
+        type: 'mobile',
+        street: 'hmeed',
+        city: 'gaza',
+        countryCode: 'PS',
+        postalCode: '1234',
       },
-      {
-        day: 2,
-        fromTime: '00:00:00',
-        toTime: '09:00:00',
-      },
-      {
-        day: 3,
-        fromTime: '04:00:00',
-        toTime: '11:30:00',
-      },
-    ],
-    zones: [
-      {
-        fromZone: 1,
-        toZone: 2,
-        price: 500,
-      },
-    ],
-  };
-  const res = await request(app)
-    .post('/api/salon')
-    .send(data).expect(200)
-    .expect('Content-Type', /json/);
-  console.log(res);
-  done();
+      openingTimes: [
+        {
+          day: 1,
+          fromTime: '00:00:00',
+          toTime: '08:00:00',
+        },
+        {
+          day: 2,
+          fromTime: '00:00:00',
+          toTime: '09:00:00',
+        },
+        {
+          day: 3,
+          fromTime: '04:00:00',
+          toTime: '11:30:00',
+        },
+      ],
+      zones: [
+        {
+          fromZone: 1,
+          toZone: 2,
+          price: 500,
+        },
+      ],
+    };
+
+    const salonFields = [
+      'salon_id',
+      'user_id',
+      'name',
+      'about',
+      'profile_image',
+      'cover_image',
+      'document',
+      'type',
+      'street',
+      'city',
+      'country',
+      'postal_code',
+      'status',
+    ];
+    const openingTimesFields = [
+      'salon_opening_time_id',
+      'salon_id',
+      'day',
+      'from_time',
+      'to_time',
+    ];
+
+    const zonesFields = [
+      'salon_zone_id',
+      'salon_id',
+      'from_zone',
+      'to_zone',
+      'price',
+    ];
+
+    const res = await request(app)
+      .post('/api/salon')
+      .send(data).expect(200)
+      .expect('Content-Type', /json/);
+    let { salon, times, zones } = res.body.data;
+
+    salon = Object.keys(salon);
+    times = Object.keys(times[0]);
+    zones = Object.keys(zones[0]);
+
+    expect(salon).toEqual(salonFields);
+    expect(times).toEqual(openingTimesFields);
+    expect(zones).toEqual(zonesFields);
+
+    done();
+  } catch (e) {
+    done(e);
+  }
 });
