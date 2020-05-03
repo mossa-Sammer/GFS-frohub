@@ -13,7 +13,7 @@ test('GET /api/service/length', async (done) => {
   ];
   try {
     const response = await supertest(app)
-      .get('/api/service/length')
+      .get('/api/services/lengthes')
       .expect(200)
       .expect('Content-Type', /json/);
     const { servicesLengthes } = response.body;
