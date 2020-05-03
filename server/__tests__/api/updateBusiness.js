@@ -4,21 +4,7 @@ const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
 const build = require('../../database/config/dbBuild');
 
-const insertBusiness = (id, {
-  fullName,
-  accountNumber,
-  sortCode,
-  preferredPayMethod,
-}) => dbConnection.query(
-  'INSERT INTO business ( user_id, full_name, account_number,  sort_code, preferred_pay_method ) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-  [
-    id,
-    fullName,
-    accountNumber,
-    sortCode,
-    preferredPayMethod,
-  ],
-);
+const { insertStylistBusiness } = require('../../database/queries');
 
 const getStylist = (role = 'stylist') => dbConnection.query('SELECT * FROM "user" WHERE "user".role = $1 LIMIT 1', [role]);
 
@@ -52,7 +38,7 @@ test('PATCH /api/stylist/:id/business Route', async (done) => {
   try {
     const stylist = await getStylist();
     const { user_id: userId } = stylist.rows[0];
-    const stylistBusiness = await insertBusiness(userId, businessDetails);
+    const stylistBusiness = await insertStylistBusiness(userId, businessDetails);
     const { user_id: stylistId } = stylistBusiness.rows[0];
     const res = await supertest(app)
       .patch(`/api/stylist/${stylistId}/business`)
