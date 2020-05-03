@@ -1,7 +1,6 @@
 const dbConnection = require('../../../config/dbConnection');
 
 module.exports = (id, business) => {
-  // console.log(1111111, business);
   const {
     fullName, accountNumber, sortCode, preferredPayMethod,
   } = business;
