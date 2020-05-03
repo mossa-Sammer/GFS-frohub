@@ -1,7 +1,7 @@
 const yup = require('yup');
 
 const addSalonSchema = yup.object().shape({
-  name: yup.string().min(2).required(),
+  name: yup.string().min(3).required(),
   about: yup.string().min(10).required(),
   profileImage: yup.string().required(),
   coverImage: yup.string().required(),
