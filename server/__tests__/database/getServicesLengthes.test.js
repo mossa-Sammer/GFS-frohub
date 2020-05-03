@@ -15,6 +15,6 @@ test('Get services lengthes', async () => {
     'status',
   ];
 
-  const servicesLengthes = await getServicesLengthes();
-  expect(Object.keys(servicesLengthes.rows[0])).toEqual(serviceLengthesFields);
+  const { rows: servicesLengthes } = await getServicesLengthes();
+  expect(Object.keys(servicesLengthes[0])).toEqual(serviceLengthesFields);
 });

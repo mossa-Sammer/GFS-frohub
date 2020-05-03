@@ -16,7 +16,8 @@ test('GET /api/services/lengthes', async (done) => {
       .get('/api/services/lengthes')
       .expect(200)
       .expect('Content-Type', /json/);
-    const responseFields = Object.keys(response.body.data[0]);
+    const { servicesLengthes } = response.body;
+    const responseFields = Object.keys(servicesLengthes[0]);
     expect(responseFields).toEqual(serviceLengthesFields);
     done();
   } catch (err) {
