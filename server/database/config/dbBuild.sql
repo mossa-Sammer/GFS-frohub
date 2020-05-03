@@ -65,13 +65,13 @@ CREATE TABLE salon_opening_time (
 CREATE TABLE service (
   service_id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  status activity_status NOT NULL
+  status activity_status NOT NULL DEFAULT 'inactive'
 );
 
 CREATE TABLE service_length (
   service_length_id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  status activity_status NOT NULL
+  status activity_status NOT NULL DEFAULT 'inactive'
 );
 
 CREATE TABLE salon_service (
