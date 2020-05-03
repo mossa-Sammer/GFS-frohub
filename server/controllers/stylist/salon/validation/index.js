@@ -3,4 +3,8 @@ const salonZonesSchema = require('./salonZones');
 const openingTimesSchema = require('./openingTimes');
 
 
-module.exports = { addSalonSchema, salonZonesSchema, openingTimesSchema };
+module.exports = {
+  addSalonSchema,
+  salonZonesSchema,
+  openingTimesSchema,
+};

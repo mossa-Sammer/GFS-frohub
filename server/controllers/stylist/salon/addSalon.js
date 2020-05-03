@@ -8,7 +8,9 @@ const {
 } = require('../../../database/sql_queries');
 
 const {
-  addSalonSchema, openingTimesSchema, salonZonesSchema,
+  addSalonSchema,
+  openingTimesSchema,
+  salonZonesSchema,
 } = require('./validation');
 
 // eslint-disable-next-line consistent-return

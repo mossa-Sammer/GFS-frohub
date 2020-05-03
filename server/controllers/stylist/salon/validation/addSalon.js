@@ -9,7 +9,7 @@ const addSalonSchema = yup.object().shape({
   type: yup.string().oneOf(['home', 'salon', 'mobile']).required(),
   street: yup.string().required(),
   city: yup.string().required(),
-  countryCode: yup.string().required(),
+  countryCode: yup.string().length(2).required(),
   postalCode: yup.string().required(),
 });
 
