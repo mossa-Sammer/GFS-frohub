@@ -5,7 +5,7 @@ const {
 module.exports = async (req, res, next) => {
   try {
     const servicesLengthes = await getServicesLengthes();
-    res.send({ servicesLengthes: servicesLengthes.rows });
+    res.json({ servicesLengthes: servicesLengthes.rows });
   } catch (err) {
     next(err);
   }
