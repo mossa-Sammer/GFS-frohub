@@ -16,10 +16,12 @@ test('get service query by id', async () => {
     'status',
   ];
 
-  const firstService = await getFirstService();
-  const { service_id: serviceId, status } = firstService.rows[0];
-  const service = await getService(serviceId);
-  const { status: serviceStatus } = service.rows[0];
+  expect.assertions(2);
+
+  const { rows: firstService } = await getFirstService();
+  const { service_id: serviceId, status } = firstService[0];
+  const { rows: service } = await getService(serviceId);
+  const { status: serviceStatus } = service[0];
   expect(serviceStatus).toEqual(status);
-  expect(Object.keys(service.rows[0])).toEqual(serviceFields);
+  expect(Object.keys(service[0])).toEqual(serviceFields);
 });

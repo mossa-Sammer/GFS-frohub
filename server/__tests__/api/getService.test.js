@@ -20,14 +20,15 @@ test('GET /api/service/:id', async (done) => {
   expect.assertions(2);
 
   try {
-    const firstService = await getService();
-    const { service_id: serviceId, name: serviceName } = firstService.rows[0];
+    const { rows: firstService } = await getService();
+    const { service_id: serviceId, name: serviceName } = firstService[0];
     const response = await supertest(app)
       .get(`/api/service/${serviceId}`)
       .expect(200)
       .expect('Content-Type', /json/);
-    const responseFields = Object.keys(response.body.data[0]);
-    const { name } = response.body.data[0];
+    const { service } = response.body;
+    const responseFields = Object.keys(service[0]);
+    const { name } = service[0];
     expect(name).toBe(serviceName);
     expect(responseFields).toEqual(serviceFields);
     done();
