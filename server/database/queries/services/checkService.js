@@ -1,3 +1,5 @@
 const dbConnection = require('../../config/dbConnection');
 
-module.exports = (name) => dbConnection.query('SELECT * FROM service WHERE name=$1', [name]);
+const selectService = 'SELECT * FROM service WHERE name=$1';
+
+module.exports = (name) => dbConnection.query(selectService, [name]);
