@@ -20,12 +20,12 @@ test('POST /api/service/length Route', async (done) => {
   ];
 
   try {
-    const insertedLength = await supertest(app)
+    const { body: insertedLength } = await supertest(app)
       .post('/api/service/length')
       .send(serviceLength)
       .expect(200)
       .expect('Content-Type', /json/);
-    const responseFields = Object.keys(insertedLength.body);
+    const responseFields = Object.keys(insertedLength);
     expect(serviceLengthFields).toEqual(responseFields);
     done();
   } catch (err) {

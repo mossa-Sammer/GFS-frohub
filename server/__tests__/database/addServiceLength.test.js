@@ -20,8 +20,8 @@ describe('Add new service length', () => {
     };
 
     const { name } = serviceLength;
-    const insertedServiceLength = await addServiceLength(name);
-    const newLengthFields = Object.keys(insertedServiceLength.rows[0]);
+    const { rows: insertedServiceLength } = await addServiceLength(name);
+    const newLengthFields = Object.keys(insertedServiceLength[0]);
     expect(newLengthFields).toEqual(serviceLengthFields);
   });
 });
