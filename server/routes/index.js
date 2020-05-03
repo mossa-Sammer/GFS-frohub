@@ -41,6 +41,8 @@ router.patch('/salon/:id/service/:id', services.updateSalonService);
 router.delete('/salon/:id/service/:id', services.deleteSalonService);
 
 // Service
+router.post('/service', services.addService);
+router.post('/service/length', services.addServiceLength);
 router.get('/services', services.getAllServices);
 router.get('/service/:id', services.getService);
 router.get('/service/length', services.getServicesLengthes);
