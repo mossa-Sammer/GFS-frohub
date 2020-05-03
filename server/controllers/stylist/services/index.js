@@ -7,6 +7,7 @@ const getSalonServices = require('./getSalonServices');
 const getService = require('./getService');
 const getServicesLengthes = require('./getServicesLengthes');
 const addService = require('./addService');
+const addServiceLength = require('./addServiceLength');
 const updateService = require('./updateService');
 const deleteService = require('./deleteService');
 const getAllServices = require('./getAllServices');
@@ -20,6 +21,7 @@ module.exports = {
   getSalonServices,
   getService,
   addService,
+  addServiceLength,
   updateService,
   deleteService,
   getAllServices,
