@@ -20,9 +20,10 @@ test('get the user using id in query param', () => {
       const {
         rows: [user],
       } = data;
+      const { user_id: userId } = user;
 
       return request(app)
-        .get(`/api/user/${user.user_id}/personal`)
+        .get(`/api/user/${userId}/personal`)
         .expect('Content-Type', /json/)
         .expect(200);
     }).then((result) => {
