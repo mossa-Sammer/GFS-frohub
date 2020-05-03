@@ -1,3 +1,3 @@
-const uploadFile = require('./uploadFile');
+const uploadFiles = require('./uploadFiles');
 
-module.exports = { uploadFile };
+module.exports = { uploadFiles };

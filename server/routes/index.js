@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/login', login);
 
 router.post('/signup', signup);
-router.post('/upload/:id', uploads.uploadFile);
+router.post('/upload/:id', uploads.uploadFiles);
 router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 
