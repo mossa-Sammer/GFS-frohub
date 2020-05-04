@@ -6,9 +6,14 @@ const {
 
 const checkStylist = require('./checkStylist');
 
+const {
+  getFinance,
+} = require('./finance');
+
 module.exports = {
   checkStylist,
   insertStylistBusiness,
   getStylistBusiness,
   updateStylistBusiness,
+  getFinance,
 };
