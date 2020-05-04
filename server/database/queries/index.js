@@ -13,6 +13,7 @@ const {
   checkService,
   insertService,
   getAllServices,
+  insertServiceImage,
 } = require('./services');
 
 const {
@@ -34,4 +35,5 @@ module.exports = {
   getAllServices,
   checkSalon,
   addSalonService,
+  insertServiceImage,
 };

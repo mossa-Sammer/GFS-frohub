@@ -5,6 +5,7 @@ const {
   checkServiceLength,
   addServiceLength,
   addSalonService,
+  insertServiceImage,
 } = require('../../../database/queries');
 
 module.exports = async (req, res, next) => {
@@ -36,8 +37,14 @@ module.exports = async (req, res, next) => {
             salonService.service_length_id = isServiceLength.service_length_id;
           }
           salonService.price = price;
-          const { rows: [newSalonService] } = await addSalonService(salonService);
-          res.json({ ...newSalonService });
+          const [{ rows: newSalonService }, { rows: insertedImages }] = await Promise.all([
+            addSalonService(salonService),
+            insertServiceImage(images, salonService.service_id),
+          ]);
+          res.json({
+            salonService: newSalonService,
+            serviceImages: insertedImages,
+          });
         }
       }
     }
