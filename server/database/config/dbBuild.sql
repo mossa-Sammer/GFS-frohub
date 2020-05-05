@@ -81,7 +81,7 @@ CREATE TABLE salon_service (
   service_id INT REFERENCES service(service_id) on DELETE CASCADE, 
   service_length_id INT REFERENCES service_length(service_length_id) on DELETE CASCADE,
   price FLOAT(32) NOT NULL,
-  status activity_status NOT NULL
+  status activity_status NOT NULL DEFAULT 'inactive'
 );
 
 CREATE TABLE service_image (
