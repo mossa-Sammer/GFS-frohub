@@ -59,6 +59,8 @@ INSERT INTO salon_service (salon_id,user_id,service_id,service_length_id,price,s
 
 INSERT INTO salon_service (salon_id,user_id,service_id,service_length_id,price,status) VALUES (2,2,1,1,5000,'inactive');
 
+INSERT INTO finance (user_id, salon_service_id, collected_deposit, done) VALUES (2, 1, 200, '2020-05-04');
+
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'http://');
