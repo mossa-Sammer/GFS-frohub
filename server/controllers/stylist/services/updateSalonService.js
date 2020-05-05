@@ -1,3 +1,7 @@
-const { notImplemented } = require('@hapi/boom');
-// eslint-disable-next-line no-unused-vars
-module.exports = (req, res, next) => next(notImplemented('not implemented'));
+/* eslint-disable no-unused-vars */
+module.exports = async (req, res, next) => {
+  const {
+    salonId,
+    serviceId,
+  } = req.params;
+};
