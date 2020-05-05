@@ -50,11 +50,26 @@ const updateSalon = ({
     text: `
     UPDATE salon SET name=$1,about=$2,profile_image=$3,cover_image=$4, document=$5,type=$6,street=$7,city=$8,country=$9,postal_code=$10 WHERE salon_id=$11 RETURNING *
     `,
-    values: [name, about, profileImage, coverImage, document, type,
-      street, city, countryCode, postalCode, salonId],
+    values: [
+      name,
+      about,
+      profileImage,
+      coverImage,
+      document,
+      type,
+      street,
+      city,
+      countryCode,
+      postalCode,
+      salonId,
+    ],
   };
   return connection.query(sql);
 };
 
 
-module.exports = { getSalon, addSalon, updateSalon };
+module.exports = {
+  getSalon,
+  addSalon,
+  updateSalon,
+};

@@ -45,4 +45,8 @@ const deleteOpeningTimes = (salonId) => {
   return connection.query(sql);
 };
 
-module.exports = { getSalonOpeningTimes, addSalonOpeningTimes, deleteOpeningTimes };
+module.exports = {
+  getSalonOpeningTimes,
+  addSalonOpeningTimes,
+  deleteOpeningTimes,
+};
