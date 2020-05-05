@@ -7,6 +7,8 @@ const build = require('../../database/config/dbBuild');
 beforeAll(() => build());
 afterAll(() => connection.end());
 
+const getFirstSalon = () => connection.query('SELECT * FROM salon LIMIT 1');
+
 test('API PATCH /api/salon', async (done) => {
   const data = {
     salon: {
@@ -43,8 +45,10 @@ test('API PATCH /api/salon', async (done) => {
   };
   const expectedFields = ['salon', 'zones', 'openingTimes'];
   try {
+    const { rows: [firstSalon] } = await getFirstSalon();
+    const { salon_id: salonId } = firstSalon;
     const res = await request(app)
-      .patch('/api/salon/1')
+      .patch(`/api/salon/${salonId}`)
       .send(data)
       .expect(200)
       .expect('Content-Type', /json/);
