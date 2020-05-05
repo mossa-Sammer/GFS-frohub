@@ -5,16 +5,12 @@ const { multiRowInsert } = require('./helper');
 
 const getSalonOpeningTimes = (salonId) => {
   const sql = {
-    text: 'SELECT day, from_time, to_time FROM salon_opening_time WHERE salon_opening_time.salon_id=$1',
+    text: 'SELECT * FROM salon_opening_time WHERE salon_opening_time.salon_id=$1',
     values: [salonId],
   };
   return connection.query(sql);
 };
 
-
-// every single object should be like {
-//   salonId, day, fromTime, toTime,
-// }
 
 const addSalonOpeningTimes = async (openingTimes, id) => {
   const { preparedStatment, values } = multiRowInsert(openingTimes, id);
@@ -29,4 +25,17 @@ const addSalonOpeningTimes = async (openingTimes, id) => {
   return connection.query(sql);
 };
 
-module.exports = { getSalonOpeningTimes, addSalonOpeningTimes };
+
+const deleteOpeningTimes = (salonId) => {
+  const sql = {
+    text: 'DELETE FROM salon_opening_time WHERE salon_id=$1',
+    values: [salonId],
+  };
+  return connection.query(sql);
+};
+
+module.exports = {
+  getSalonOpeningTimes,
+  addSalonOpeningTimes,
+  deleteOpeningTimes,
+};

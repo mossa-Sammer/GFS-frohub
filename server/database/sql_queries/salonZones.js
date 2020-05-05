@@ -4,7 +4,7 @@ const { multiRowInsert } = require('./helper');
 
 const getSalonZones = (salonId) => {
   const sql = {
-    text: 'SELECT from_zone, to_zone, price FROM salon_zone WHERE salon_id=$1',
+    text: 'SELECT * FROM salon_zone WHERE salon_id=$1',
     values: [salonId],
   };
   return connection.query(sql);
@@ -21,4 +21,12 @@ const addSalonZones = async (zones, id) => {
   return connection.query(text, values);
 };
 
-module.exports = { addSalonZones, getSalonZones };
+const deleteZones = (salonId) => {
+  const sql = {
+    text: 'DELETE FROM salon_zone WHERE salon_id=$1',
+    values: [salonId],
+  };
+  return connection.query(sql);
+};
+
+module.exports = { addSalonZones, getSalonZones, deleteZones };

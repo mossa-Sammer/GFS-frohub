@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
 
   try {
     const { rows: [salonExist] } = await checkSalon(id);
-    if (!salonExist) next(notFound('Salon not exist'));
+    if (!salonExist) return next(notFound('Salon not exist'));
 
     salonService.salon_id = Number(id);
     salonService.user_id = salonExist.user_id;
