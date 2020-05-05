@@ -11,6 +11,8 @@ const {
   checkServiceLength,
   addServiceLength,
   updateSalonService,
+  deleteSalonServiceImages,
+  insertServiceImage,
 } = require('../../../database/queries');
 
 const { validateSalonService } = require('./validation/validateAddSalonService');
@@ -58,10 +60,13 @@ module.exports = async (req, res, next) => {
       salonService.service_length_id = isServiceLength.service_length_id;
     }
     salonService.price = price;
-
     const { rows: [updatedService] } = await updateSalonService(salonService);
+    const { salon_service_id: salonServiceId } = updatedService;
+    await deleteSalonServiceImages(salonServiceId);
+    const { rows: updatedImages } = await insertServiceImage(images);
     res.json({
       salonService: updatedService,
+      images: updatedImages,
     });
   } catch (err) {
     if (err.name === 'ValidationError') {
