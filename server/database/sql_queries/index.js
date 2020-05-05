@@ -1,12 +1,22 @@
-const { getUserByEmail, getUserById } = require('./getUser');
 const addPersonalData = require('./addPersonalData');
-const { getSalon } = require('./salon');
-const { getSalonOpeningTimes } = require('./salonOpeningTimes');
-const { getSalonZones } = require('./salonZones');
+const { getUserByEmail, getUserById } = require('./getUser');
+const {
+  getSalon,
+  addSalon,
+  updateSalon,
+} = require('./salon');
 
-const { addSalon } = require('./salon');
-const { addSalonOpeningTimes } = require('./salonOpeningTimes');
-const { addSalonZones } = require('./salonZones');
+const {
+  getSalonOpeningTimes,
+  addSalonOpeningTimes,
+  deleteOpeningTimes,
+} = require('./salonOpeningTimes');
+
+const {
+  getSalonZones,
+  addSalonZones,
+  deleteZones,
+} = require('./salonZones');
 
 module.exports = {
   getUserByEmail,
@@ -18,4 +28,7 @@ module.exports = {
   addSalon,
   addSalonOpeningTimes,
   addSalonZones,
+  updateSalon,
+  deleteZones,
+  deleteOpeningTimes,
 };
