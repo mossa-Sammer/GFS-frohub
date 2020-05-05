@@ -4,7 +4,8 @@ module.exports = ({
   salon_id: salonId,
   service_id: serviceId,
   service_length_id: serviceLengthId,
-  user_id: userId, price,
+  user_id: userId,
+  price,
 }) => {
   const insertSalonService = {
     text: 'INSERT INTO salon_service (salon_id, user_id, service_id, service_length_id, price) VALUES ($1, $2, $3, $4, $5) RETURNING *',
@@ -13,7 +14,8 @@ module.exports = ({
       userId,
       serviceId,
       serviceLengthId,
-      price],
+      price,
+    ],
   };
   return dbConnection.query(insertSalonService);
 };
