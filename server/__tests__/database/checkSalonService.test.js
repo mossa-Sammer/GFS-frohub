@@ -23,8 +23,5 @@ test('Check if salon service is exist or not', async () => {
   const { rows: salonService } = await getSalonService();
   const { salon_service_id: salonServiceId } = salonService[0];
   const { rows: [isSalonService] } = await checkSalonService(salonServiceId);
-  // console.log(4444444444, Object.keys(isSalonService[0]));
-  // const { name: salonName, type: salonType } = salon;
   expect(Object.keys(isSalonService)).toEqual(salonServiceFields);
-  // expect(salonType).toBe(type);
 });
