@@ -35,7 +35,10 @@ module.exports = async (req, res, next) => {
       deleteOpeningTimes(salon.salonId),
     ]);
 
-    const [{ rows: updatedZones }, { rows: updatedOpeningTimes }] = await Promise.all([
+    const [
+      { rows: updatedZones },
+      { rows: updatedOpeningTimes },
+    ] = await Promise.all([
       addSalonZones(zones, salonId),
       addSalonOpeningTimes(openingTimes, salonId),
     ]);
