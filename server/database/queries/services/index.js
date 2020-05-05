@@ -7,6 +7,7 @@ const insertService = require('./addService');
 const checkService = require('./checkService');
 const insertServiceImage = require('./addServiceImage');
 const checkSalonService = require('./checkSalonService');
+const updateSalonService = require('./updateSalonService');
 
 module.exports = {
   getServicesLengthes,
@@ -18,4 +19,5 @@ module.exports = {
   checkService,
   checkSalonService,
   insertServiceImage,
+  updateSalonService,
 };

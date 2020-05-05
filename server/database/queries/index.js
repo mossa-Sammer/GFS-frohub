@@ -16,6 +16,7 @@ const {
   getAllServices,
   insertServiceImage,
   checkSalonService,
+  updateSalonService,
 } = require('./services');
 
 const {
@@ -39,5 +40,6 @@ module.exports = {
   addSalonService,
   insertServiceImage,
   checkSalonService,
+  updateSalonService,
   getFinance,
 };
