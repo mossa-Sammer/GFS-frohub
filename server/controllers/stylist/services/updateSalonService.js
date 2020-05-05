@@ -1,8 +1,13 @@
 const {
+  badRequest,
+  unauthorized,
+} = require('@hapi/boom');
+
+const {
   checkSalonService,
 } = require('../../../database/queries');
 
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
   const {
     salonId,
@@ -10,9 +15,12 @@ module.exports = async (req, res, next) => {
   } = req.params;
   try {
     const { rows: isService } = await checkSalonService(serviceId);
-    console.log(888888, isService);
+    if (!isService.length) return next(badRequest('Service isnt exist'));
+    const {
+      salon_id: serviceOwnerId,
+    } = isService[0];
+    if (Number(salonId) !== Number(serviceOwnerId)) return next(unauthorized('Unauthorized'));
   } catch (err) {
-    console.log(11111111111, err);
     next(err);
   }
 };
