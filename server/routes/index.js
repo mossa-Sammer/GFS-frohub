@@ -25,7 +25,7 @@ router.post('/stylist/:id/business', business.addStylistBusiness);
 router.patch('/stylist/:id/business', business.updateStylistBusiness);
 
 // Stylist/finance
-router.get('/stylist/finance', finance.getFinance);
+router.get('/stylist/:id/finance', finance.getFinance);
 router.post('/stylist/finance', finance.addFinance);
 
 // Salon

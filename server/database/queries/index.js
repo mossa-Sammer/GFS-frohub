@@ -3,6 +3,7 @@ const {
   updateStylistBusiness,
   checkStylist,
   getStylistBusiness,
+  getFinance,
 } = require('./stylist');
 
 const {
@@ -36,4 +37,5 @@ module.exports = {
   checkSalon,
   addSalonService,
   insertServiceImage,
+  getFinance,
 };
