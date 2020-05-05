@@ -21,48 +21,47 @@ module.exports = async (req, res, next) => {
   try {
     const { rows: [salonExist] } = await checkSalon(id);
     if (!salonExist) next(notFound('Salon not exist'));
-    else {
-      salonService.salon_id = Number(id);
-      salonService.user_id = salonExist.user_id;
 
-      const {
-        service,
-        length,
-        price,
-        images,
-      } = req.body;
+    salonService.salon_id = Number(id);
+    salonService.user_id = salonExist.user_id;
 
-      await validateSalonService.validate({
-        service,
-        length,
-        price,
-        images,
-      }, { abortEarly: false });
+    const {
+      service,
+      length,
+      price,
+      images,
+    } = req.body;
 
-      const { rows: [serviceNameExist] } = await checkService(service);
-      if (!serviceNameExist) return next(notFound('Service name not found'));
+    await validateSalonService.validate({
+      service,
+      length,
+      price,
+      images,
+    }, { abortEarly: false });
 
-      const { rows: [isServiceLength] } = await checkServiceLength(length);
+    const { rows: [serviceNameExist] } = await checkService(service);
+    if (!serviceNameExist) return next(notFound('Service name not found'));
 
-      if (!isServiceLength) {
-        const { rows: [insertedLength] } = await addServiceLength(length);
-        salonService.service_length_id = insertedLength.service_length_id;
-      } else {
-        salonService.service_length_id = isServiceLength.service_length_id;
-      }
+    const { rows: [isServiceLength] } = await checkServiceLength(length);
 
-      salonService.price = price;
-
-      const { rows: [newSalonService] } = await addSalonService(salonService);
-      const { salon_service_id: salonServiceId } = newSalonService;
-
-      const { rows: insertedImages } = await insertServiceImage(images, salonServiceId);
-
-      res.json({
-        salonService: newSalonService,
-        serviceImages: insertedImages,
-      });
+    if (!isServiceLength) {
+      const { rows: [insertedLength] } = await addServiceLength(length);
+      salonService.service_length_id = insertedLength.service_length_id;
+    } else {
+      salonService.service_length_id = isServiceLength.service_length_id;
     }
+
+    salonService.price = price;
+
+    const { rows: [newSalonService] } = await addSalonService(salonService);
+    const { salon_service_id: salonServiceId } = newSalonService;
+
+    const { rows: insertedImages } = await insertServiceImage(images, salonServiceId);
+
+    res.json({
+      salonService: newSalonService,
+      serviceImages: insertedImages,
+    });
   } catch (err) {
     if (err.name === 'ValidationError') {
       const errors = validationError(err);
