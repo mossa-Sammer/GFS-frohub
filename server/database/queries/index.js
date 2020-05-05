@@ -17,6 +17,7 @@ const {
   insertServiceImage,
   checkSalonService,
   updateSalonService,
+  deleteSalonServiceImages,
 } = require('./services');
 
 const {
@@ -42,4 +43,5 @@ module.exports = {
   checkSalonService,
   updateSalonService,
   getFinance,
+  deleteSalonServiceImages,
 };
