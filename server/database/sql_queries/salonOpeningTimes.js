@@ -12,10 +12,6 @@ const getSalonOpeningTimes = (salonId) => {
 };
 
 
-// every single object should be like {
-//   salonId, day, fromTime, toTime,
-// }
-
 const addSalonOpeningTimes = async (openingTimes, id) => {
   const { preparedStatment, values } = multiRowInsert(openingTimes, id);
 
@@ -29,13 +25,6 @@ const addSalonOpeningTimes = async (openingTimes, id) => {
   return connection.query(sql);
 };
 
-/*
-  openingTimeId,
-  salonId,
-  day,
-  fromTime,
-  toTime
-*/
 
 const deleteOpeningTimes = (salonId) => {
   const sql = {
