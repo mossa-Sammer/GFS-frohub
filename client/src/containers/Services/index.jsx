@@ -18,7 +18,7 @@ class ServicesPage extends Component {
   state = {
     pageCount: 1,
     pageSize: 9,
-    scrolled: false,
+    scrolled: true,
   };
 
   componentDidMount() {
