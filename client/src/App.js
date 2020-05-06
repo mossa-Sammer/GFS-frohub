@@ -1,12 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Login, Signup, Home, PageNotFound, Services } from './containers';
-import { LoggedOutRoute } from './auth';
+import {
+  Login,
+  Signup,
+  Home,
+  PageNotFound,
+  Services,
+  Personal,
+  Welcome,
+  Business,
+  Salon,
+  StylistServices,
+} from './containers';
+import { LoggedOutRoute, PrivateRoute } from './auth';
 
 import checkAuthAction from './auth/auth.action';
 
-import { LOGIN_URL, SIGNUP_URL, HOME_URL, SERVICES_URL } from './routes_urls';
+import {
+  LOGIN_URL,
+  SIGNUP_URL,
+  HOME_URL,
+  SERVICES_URL,
+  STYLIST_URL,
+  PERSONAL_URL,
+  BUSINESS_URL,
+  SALON_URL,
+  STYLIST_SERVICES_URL,
+} from './routes_urls';
 
 import 'antd/dist/antd.css';
 
@@ -29,6 +50,15 @@ class App extends React.Component {
             <Route exact path={SERVICES_URL}>
               <Services />
             </Route>
+            <PrivateRoute exact path={STYLIST_URL} component={Welcome} />
+            <PrivateRoute exact path={PERSONAL_URL} component={Personal} />
+            <PrivateRoute exact path={BUSINESS_URL} component={Business} />
+            <PrivateRoute exact path={SALON_URL} component={Salon} />
+            <PrivateRoute
+              exact
+              path={STYLIST_SERVICES_URL}
+              component={StylistServices}
+            />
             <Route
               render={() => {
                 return <PageNotFound />;
