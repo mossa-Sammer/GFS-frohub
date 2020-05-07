@@ -1,0 +1,53 @@
+ @media only screen and (max-width: 768px) {
+	.sider__container {
+		display: none;
+	}
+	.stylist__container-layout.ant-layout.ant-layout-has-sider,
+	.stylist__onboarding-container {
+		min-height: 100vh !important;
+	}
+	.stylist__onboarding-container {
+		width: 100% !important;
+		margin: 0 !important;
+		padding-top: 30px;
+	}
+	.mobile__sider-container {
+		display: flex;
+		position: fixed;
+		top: 0;
+		height: 60px;
+		background-color: #fff;
+		width: 100%;
+		z-index: 22;
+		flex-direction: row;
+	}
+	.left-mobile__sider,
+	.right-mobile__sider {
+		width: 50%;
+		padding: 15px;
+	}
+	.right-mobile__sider {
+		text-align: end;
+	}
+	.sider__logo-img {
+		width: 50%;
+	}
+	.sider__menu-icon {
+		padding-top: 10px;
+	}
+	.mobile__menu-container {
+		display: flex;
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    height: 600px;
+    top: 50px;
+    height: 100vh;
+	}
+	.mobile__menu-container .ant-menu-item.logo-box {
+		display: none;
+	}
+	.mobile__menu-container .sidebar-menu.ant-menu.ant-menu-light {
+		width: 100%;
+	}
+ }
