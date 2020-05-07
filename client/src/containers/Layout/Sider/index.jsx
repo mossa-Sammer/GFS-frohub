@@ -1,40 +1,55 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
-import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Icon } from 'antd';
 
-import {
-  PERSONAL_URL,
-  BUSINESS_URL,
-  SALON_URL,
-  STYLIST_SERVICES_URL,
-} from '../../../routes_urls';
+import StylistSider from '../../../components/StylistNavbar';
 
 import './style.css';
+import './media.css';
 
 export default class Sider extends Component {
+  state = {
+    isOpen: false,
+  };
+
+  handleMenu = () => {
+    this.setState(prevState => {
+      const { isOpen } = prevState;
+      return {
+        isOpen: !isOpen,
+      };
+    });
+  };
+
   render() {
+    const { isOpen } = this.state;
     return (
-      <Menu className="sidebar-menu">
-        <Menu.Item className="logo-box">
-          <img
-            src="https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/10/22155814/frohub_landscape_e05747ff_transparent_300dpi.png"
-            alt="logo"
-            className="logo-img"
-          />
-        </Menu.Item>
-        <Menu.Item className="sider-item">
-          <Link to={PERSONAL_URL}>Personal</Link>
-        </Menu.Item>
-        <Menu.Item className="sider-item">
-          <Link to={BUSINESS_URL}>Business</Link>
-        </Menu.Item>
-        <Menu.Item className="sider-item">
-          <Link to={SALON_URL}>Salon</Link>
-        </Menu.Item>
-        <Menu.Item className="sider-item">
-          <Link to={STYLIST_SERVICES_URL}>Services</Link>
-        </Menu.Item>
-      </Menu>
+      <>
+        <Layout.Sider className="sider__container">
+          <StylistSider />
+        </Layout.Sider>
+        <div className="mobile__sider-container">
+          <div className="left-mobile__sider">
+            <img
+              src="https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/10/22155814/frohub_landscape_e05747ff_transparent_300dpi.png"
+              alt="logo"
+              className="sider__logo-img"
+            />
+          </div>
+          <div className="right-mobile__sider">
+            <Icon
+              className="sider__menu-icon"
+              type={isOpen ? 'close' : 'menu'}
+              onClick={this.handleMenu}
+            />
+          </div>
+        </div>
+        {isOpen && (
+          <div className="mobile__menu-container" onClick={this.handleMenu}>
+            <StylistSider />
+          </div>
+        )}
+      </>
     );
   }
 }
