@@ -14,7 +14,7 @@ class PersonalForm extends Component {
     e.preventDefault();
     const { form, history } = this.props;
     // eslint-disable-next-line no-unused-vars
-    form.validateFieldsAndScroll((err, _values) => {
+    form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         history.push(BUSINESS_URL);
       }
@@ -63,7 +63,7 @@ class PersonalForm extends Component {
             })(<Input />)}
           </Form.Item>
           <Form.Item className="phone-field" label="Phone Number">
-            {getFieldDecorator('phone', {
+            {getFieldDecorator('phone-field', {
               rules: [
                 {
                   required: true,
@@ -74,7 +74,7 @@ class PersonalForm extends Component {
           </Form.Item>
           <div className="name-wrapper">
             <Form.Item className="first-name-field" label="First Name">
-              {getFieldDecorator('first name', {
+              {getFieldDecorator('firstName', {
                 rules: [
                   {
                     required: true,
@@ -84,7 +84,7 @@ class PersonalForm extends Component {
               })(<Input />)}
             </Form.Item>
             <Form.Item className="last-name-field" label="Last Name">
-              {getFieldDecorator('last name', {
+              {getFieldDecorator('lastName', {
                 rules: [
                   {
                     required: true,
@@ -110,6 +110,8 @@ class PersonalForm extends Component {
   }
 }
 
-const WrappedPersonalForm = Form.create({ name: 'personal' })(PersonalForm);
+const WrappedPersonalForm = Form.create({
+  name: 'personal',
+})(PersonalForm);
 
 export default withRouter(WrappedPersonalForm);
