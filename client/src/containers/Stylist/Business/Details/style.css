@@ -1,0 +1,26 @@
+.business__details-container {
+	width: 50%;
+}
+.ant-input-group .sort_code-input.ant-input {
+	display: inline-block;
+	width: 60px;
+	margin-right: 5px;
+}
+.ant-form-item-control .business-hint {
+	line-height: 20px;
+	width: 100% !important;
+}
+
+.business__form-item.ant-form-item {
+	margin-bottom: 8px;
+}
+
+.business__radio-btn.ant-radio-wrapper {
+	display: block;
+	height: '30px';
+	line-height: '30px';
+}
+
+.business__radio-btn.ant-radio-wrapper .ant-radio {
+	left: 0 !important;
+}
