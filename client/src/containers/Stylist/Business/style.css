@@ -1,0 +1,12 @@
+.business-container {
+	display: flex;
+	flex-direction: column;
+}
+.tabs__business-container {
+	min-height: 400px;
+}
+.business__next-btn.ant-btn {
+	width: 125px;
+	height: 40px;
+	margin-left: auto;
+}
