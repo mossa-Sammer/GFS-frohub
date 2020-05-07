@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Select, Col, Row } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { Button, Form, Input, Select } from 'antd';
+
 import countries from 'country-data';
 
 import { BUSINESS_URL } from '../../../routes_urls';
@@ -9,14 +10,13 @@ import './style.css';
 const { Option } = Select;
 
 class PersonalForm extends Component {
-  state = {};
-
   handleSubmit = e => {
     e.preventDefault();
-    const { form } = this.props;
-    form.validateFieldsAndScroll((err, values) => {
+    const { form, history } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    form.validateFieldsAndScroll((err, _values) => {
       if (!err) {
-        this.setState(values);
+        history.push(BUSINESS_URL);
       }
     });
   };
@@ -30,14 +30,16 @@ class PersonalForm extends Component {
       initialValue: '+44',
     })(
       <Select
+        className="phone-code"
         showSearch
-        style={{ width: 100 }}
         filterOption={(input, option) =>
           option.props.children.indexOf(input) >= 0
         }
       >
         {codes.map(c => (
-          <Option value={c}>{c}</Option>
+          <Option key={c} value={c}>
+            {c}
+          </Option>
         ))}
       </Select>
     );
@@ -45,76 +47,62 @@ class PersonalForm extends Component {
     return (
       <div>
         <h3>Personal details</h3>
-        <Form onSubmit={this.handleSubmit}>
-          <Row>
-            <Col span={8}>
-              <Form.Item label="Email">
-                {getFieldDecorator('email', {
-                  rules: [
-                    {
-                      type: 'email',
-                      message: 'The input is not valid E-mail!',
-                    },
-                    {
-                      required: true,
-                      message: 'Please input your E-mail!',
-                    },
-                  ],
-                })(<Input />)}
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
-              <Form.Item label="Phone Number">
-                {getFieldDecorator('phone', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please input your phone number!',
-                    },
-                  ],
-                })(
-                  <Input
-                    addonBefore={prefixSelector}
-                    style={{ width: '100%' }}
-                  />
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
-              <Form.Item label="first name">
-                {getFieldDecorator('first name', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please input your first name',
-                    },
-                  ],
-                })(<Input />)}
-              </Form.Item>
-            </Col>
-            <Col span={8} offset={3}>
-              <Form.Item label="last name">
-                {getFieldDecorator('last name', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please input your last name',
-                    },
-                  ],
-                })(<Input />)}
-              </Form.Item>
-            </Col>
-          </Row>
+        <Form className="personal-form" onSubmit={this.handleSubmit}>
+          <Form.Item className="email-field" label="Email">
+            {getFieldDecorator('email', {
+              rules: [
+                {
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ],
+            })(<Input />)}
+          </Form.Item>
+          <Form.Item className="phone-field" label="Phone Number">
+            {getFieldDecorator('phone', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your phone number!',
+                },
+              ],
+            })(<Input addonBefore={prefixSelector} />)}
+          </Form.Item>
+          <div className="name-wrapper">
+            <Form.Item className="first-name-field" label="First Name">
+              {getFieldDecorator('first name', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input your first name',
+                  },
+                ],
+              })(<Input />)}
+            </Form.Item>
+            <Form.Item className="last-name-field" label="Last Name">
+              {getFieldDecorator('last name', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input your last name',
+                  },
+                ],
+              })(<Input />)}
+            </Form.Item>
+          </div>
+
           <Form.Item>
-            <Link to={BUSINESS_URL}>
-              <Button className="personal-next-btn" type="primary">
-                Next
-              </Button>
-            </Link>
+            <Button
+              className="personal-next-btn"
+              type="primary"
+              htmlType="submit"
+            >
+              Next
+            </Button>
           </Form.Item>
         </Form>
       </div>
