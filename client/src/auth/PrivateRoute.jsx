@@ -23,9 +23,7 @@ const PrivateRoute = ({
     return (
       <div className="stylist__onboarding-container">
         <Layout className="stylist__container-layout">
-          <Layout.Sider className="sider__container">
-            <Sider />
-          </Layout.Sider>
+          <Sider />
           <Layout.Content className="stylist__main-content">
             <Route {...rest} component={Component} />
           </Layout.Content>

@@ -8,3 +8,7 @@
 .logo-img {
 	width: 80%;
 }
+
+.mobile__sider-container {
+	display: none;
+}
