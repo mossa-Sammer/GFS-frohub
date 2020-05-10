@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { Form, Input, Radio, Button } from 'antd';
 
-import { getBusinessDetails } from '../api';
+import { getBusinessDetails, postBusinessDetails } from '../api';
 
 import './style.css';
 import './media.css';
@@ -17,7 +17,7 @@ class BusinessDetails extends Component {
     sortCode1: '',
     sortCode2: '',
     sortCode3: '',
-    paymentMethod: 'none',
+    preferredPayMethod: 'none',
   };
 
   async componentDidMount() {
@@ -26,7 +26,7 @@ class BusinessDetails extends Component {
       fullName,
       accountNumber,
       sortCode,
-      paymentmethod,
+      preferredPayMethod,
     } = stylistBusiness;
     const stylistSortCode = sortCode.split('');
     this.setState({
@@ -35,7 +35,7 @@ class BusinessDetails extends Component {
       sortCode1: stylistSortCode[0],
       sortCode2: stylistSortCode[1],
       sortCode3: stylistSortCode[2],
-      paymentmethod,
+      preferredPayMethod,
     });
   }
 
@@ -45,7 +45,7 @@ class BusinessDetails extends Component {
 
   handlePaymetMethod = method =>
     this.setState({
-      paymentMethod: method.target.value,
+      preferredPayMethod: method.target.value,
       err: false,
       errMsg: '',
     });
@@ -59,19 +59,19 @@ class BusinessDetails extends Component {
       sortCode1,
       sortCode2,
       sortCode3,
-      paymentMethod,
+      preferredPayMethod,
     } = this.state;
     if (!sortCode1 || !sortCode2 || !sortCode3)
       return this.setState({ err: true, errMsg: 'Sort code required' });
-    form.validateFieldsAndScroll(err => {
+    form.validateFieldsAndScroll(async err => {
       if (!err) {
-        // eslint-disable-next-line no-unused-vars
         const business = {
           fullName,
           accountNumber,
           sortCode: sortCode1 + sortCode2 + sortCode3,
-          paymentMethod,
+          preferredPayMethod,
         };
+        await postBusinessDetails(business);
       }
     });
   };
@@ -92,7 +92,7 @@ class BusinessDetails extends Component {
       sortCode1,
       sortCode2,
       sortCode3,
-      paymentMethod,
+      preferredPayMethod,
     } = this.state;
     return (
       <div className="business__details-container">
@@ -154,7 +154,7 @@ class BusinessDetails extends Component {
             <Radio.Group
               onChange={this.handlePaymetMethod}
               className="payment__methods-box"
-              value={paymentMethod}
+              value={preferredPayMethod}
             >
               <Radio className="business__radio-btn" value="card">
                 Card

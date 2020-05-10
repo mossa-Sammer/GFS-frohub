@@ -11,7 +11,7 @@ const getBusinessDetails = async (id = 4) => {
     fullName: '',
     accountNumber: '',
     sortCode: '',
-    paymentmethod: '',
+    preferredPayMethod: '',
   };
   const { data } = business.data;
   if (!data.length) return stylistBusiness;
@@ -20,8 +20,13 @@ const getBusinessDetails = async (id = 4) => {
     fullName: stylistBus.full_name,
     accountNumber: stylistBus.account_number,
     sortCode: stylistBus.sort_code,
-    paymentmethod: stylistBus.preferred_pay_method,
+    preferredPayMethod: stylistBus.preferred_pay_method,
   };
 };
 
-export { getBusinessDetails };
+const postBusinessDetails = async business => {
+  const id = 4;
+  await axios.patch(`/stylist/${id}/business`, business);
+};
+
+export { getBusinessDetails, postBusinessDetails };
