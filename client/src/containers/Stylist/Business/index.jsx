@@ -23,9 +23,6 @@ class Business extends Component {
             <Finance />
           </TabPane>
         </Tabs>
-        <Button className="business__next-btn">
-          <Link to={SALON_URL}>Next</Link>
-        </Button>
       </div>
     );
   }

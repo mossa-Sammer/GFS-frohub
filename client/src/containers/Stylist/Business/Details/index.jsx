@@ -1,64 +1,100 @@
 import React, { Component } from 'react';
 
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Radio, Button } from 'antd';
 
 import './style.css';
 import './media.css';
 
-export default class BusinessDetails extends Component {
-  handleSortCode = (num, e) => {
-    console.log(e.target.value);
-    console.log(num);
+class BusinessDetails extends Component {
+  state = {
+    fullName: '',
+    err: false,
+    errMsg: '',
+    sortCode1: '',
+    sortCode2: '',
+    sortCode3: '',
+  };
+
+  handleSortCode = (num, { target: { value, name } }) => {
+    this.setState({ [name]: value });
   };
 
   handlePaymetMethod = method => {
-    console.log(777, method.target.value);
+    // console.log(777, method.target.value);
+  };
+
+  handleBusiness = e => {
+    e.preventDefault();
+    const { form } = this.props;
+    form.validateFieldsAndScroll(err => {
+      // if (!err) {
+      // }
+    });
+  };
+
+  handleValues = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
   };
 
   render() {
+    const {
+      form: { getFieldDecorator },
+    } = this.props;
+    const { err, errMsg } = this.state;
     return (
       <div className="business__details-container">
-        <Form>
-          <Form.Item
-            className="business__form-item"
-            label="Your full name"
-            name="fullname"
-            rules={[{ required: true, message: 'Please input your fullname!' }]}
-          >
-            <Input />
+        {err && <span>{errMsg}</span>}
+        <Form onSubmit={this.handleBusiness}>
+          <Form.Item className="business__form-item" label="Your full name">
+            {getFieldDecorator('fullName', {
+              rules: [
+                { required: true, message: 'Please, Enter your full name' },
+              ],
+            })(<Input name="fullName" onChange={this.handleValues} />)}
           </Form.Item>
           <Form.Item
             className="business__form-item"
             label="Your account number"
-            name="accountnumber"
-            rules={[
-              { required: true, message: 'Please input your account number!' },
-            ]}
           >
-            <Input />
+            {getFieldDecorator('accountNumber', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please, Enter your account number',
+                },
+              ],
+            })(<Input name="accountNumber" onChange={this.handleValues} />)}
           </Form.Item>
           <Form.Item
             className="business__form-item"
             label="Your account number"
-            name="sortcode"
-            rules={[
-              { required: true, message: 'Please input your sort code!' },
-            ]}
           >
-            <Input.Group>
-              <Input
-                className="sort_code-input"
-                onChange={e => this.handleSortCode(1, e)}
-              />
-              <Input
-                className="sort_code-input"
-                onChange={e => this.handleSortCode(2, e)}
-              />
-              <Input
-                className="sort_code-input"
-                onChange={e => this.handleSortCode(3, e)}
-              />
-            </Input.Group>
+            {getFieldDecorator('sortCode', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please, Enter your sort code',
+                },
+              ],
+            })(
+              <Input.Group>
+                <Input
+                  className="sort_code-input"
+                  name="sortCode1"
+                  onChange={e => this.handleSortCode(1, e)}
+                />
+                <Input
+                  className="sort_code-input"
+                  name="sortCode2"
+                  onChange={e => this.handleSortCode(2, e)}
+                />
+                <Input
+                  className="sort_code-input"
+                  name="sortCode3"
+                  onChange={e => this.handleSortCode(3, e)}
+                />
+              </Input.Group>
+            )}
           </Form.Item>
           <Form.Item className="business__form-item">
             <p className="business-hint">
@@ -83,8 +119,21 @@ export default class BusinessDetails extends Component {
               </Radio>
             </Radio.Group>
           </Form.Item>
+          <Button
+            className="business__next-btn"
+            type="primary"
+            htmlType="submit"
+          >
+            Next
+          </Button>
         </Form>
       </div>
     );
   }
 }
+
+const BusinessDetailsForm = Form.create({ name: 'BusinessDetails' })(
+  BusinessDetails
+);
+
+export default BusinessDetailsForm;
