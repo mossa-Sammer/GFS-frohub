@@ -1,4 +1,4 @@
-import axios from '../../../../axios-config';
+import axios from '../../../axios-config';
 
 const getBusinessDetails = async (id = 4) => {
   const business = await axios.get(`/stylist/${id}/business`);

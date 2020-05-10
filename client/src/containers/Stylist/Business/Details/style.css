@@ -28,3 +28,7 @@
 .business__radio-btn.ant-radio-wrapper .ant-radio {
 	left: 0 !important;
 }
+
+.err__msg-box {
+	color: red;
+}

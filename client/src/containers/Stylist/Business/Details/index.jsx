@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 
 import { Form, Input, Radio, Button } from 'antd';
 
-import { getBusinessDetails } from './api';
+import { getBusinessDetails } from '../api';
 
 import './style.css';
 import './media.css';
@@ -21,7 +22,6 @@ class BusinessDetails extends Component {
 
   async componentDidMount() {
     const stylistBusiness = await getBusinessDetails();
-    console.log(7555, stylistBusiness);
     const {
       fullName,
       accountNumber,
@@ -29,7 +29,6 @@ class BusinessDetails extends Component {
       paymentmethod,
     } = stylistBusiness;
     const stylistSortCode = sortCode.split('');
-    // console.log(111111111111, sortCode1);
     this.setState({
       fullName,
       accountNumber,
@@ -97,7 +96,7 @@ class BusinessDetails extends Component {
     } = this.state;
     return (
       <div className="business__details-container">
-        {err && <span>{errMsg}</span>}
+        {err && <span className="err__msg-box">* {errMsg} !</span>}
         <Form onSubmit={this.handleBusiness}>
           <Form.Item className="business__form-item" label="Your full name">
             {getFieldDecorator('fullName', {
