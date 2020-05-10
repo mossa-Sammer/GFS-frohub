@@ -13,22 +13,37 @@ class BusinessDetails extends Component {
     sortCode1: '',
     sortCode2: '',
     sortCode3: '',
+    paymentMethod: 'none',
   };
 
   handleSortCode = (num, { target: { value, name } }) => {
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, err: false, errMsg: '' });
   };
 
-  handlePaymetMethod = method => {
-    // console.log(777, method.target.value);
-  };
+  handlePaymetMethod = method =>
+    this.setState({
+      paymentMethod: method.target.value,
+      err: false,
+      errMsg: '',
+    });
 
   handleBusiness = e => {
     e.preventDefault();
     const { form } = this.props;
+    const {
+      fullName,
+      sortCode1,
+      sortCode2,
+      sortCode3,
+      paymentMethod,
+    } = this.state;
+    if (!sortCode1 || !sortCode2 || !sortCode3)
+      return this.setState({ err: true, errMsg: 'Sort code required' });
     form.validateFieldsAndScroll(err => {
-      // if (!err) {
-      // }
+      if (!err) {
+        console.log(fullName, sortCode1, sortCode2, sortCode3, paymentMethod);
+        // this.setState({});
+      }
     });
   };
 
@@ -69,32 +84,24 @@ class BusinessDetails extends Component {
             className="business__form-item"
             label="Your account number"
           >
-            {getFieldDecorator('sortCode', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please, Enter your sort code',
-                },
-              ],
-            })(
-              <Input.Group>
-                <Input
-                  className="sort_code-input"
-                  name="sortCode1"
-                  onChange={e => this.handleSortCode(1, e)}
-                />
-                <Input
-                  className="sort_code-input"
-                  name="sortCode2"
-                  onChange={e => this.handleSortCode(2, e)}
-                />
-                <Input
-                  className="sort_code-input"
-                  name="sortCode3"
-                  onChange={e => this.handleSortCode(3, e)}
-                />
-              </Input.Group>
-            )}
+            <Input.Group>
+              <Input
+                className="sort_code-input"
+                name="sortCode1"
+                onChange={e => this.handleSortCode(1, e)}
+                required
+              />
+              <Input
+                className="sort_code-input"
+                name="sortCode2"
+                onChange={e => this.handleSortCode(2, e)}
+              />
+              <Input
+                className="sort_code-input"
+                name="sortCode3"
+                onChange={e => this.handleSortCode(3, e)}
+              />
+            </Input.Group>
           </Form.Item>
           <Form.Item className="business__form-item">
             <p className="business-hint">
@@ -119,11 +126,7 @@ class BusinessDetails extends Component {
               </Radio>
             </Radio.Group>
           </Form.Item>
-          <Button
-            className="business__next-btn"
-            type="primary"
-            htmlType="submit"
-          >
+          <Button className="business__next-btn" htmlType="submit">
             Next
           </Button>
         </Form>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Tabs } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Tabs } from 'antd';
+import { withRouter } from 'react-router-dom';
 
 import BusinessDetails from './Details';
 import Finance from './Finance';
-
-import { SALON_URL } from '../../../routes_urls';
 
 import './style.css';
 
