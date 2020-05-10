@@ -15,6 +15,7 @@ test('get the user using id in query param', () => {
     'email',
     'phone_number',
     'role',
+    'country',
   ];
 
   return dbConnection.query('SELECT * FROM "user" LIMIT 1')
