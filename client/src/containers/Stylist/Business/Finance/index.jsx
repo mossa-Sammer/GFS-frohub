@@ -5,6 +5,8 @@ import { Table } from 'antd';
 
 import moment from 'moment';
 
+import { Loading } from '../../../../components';
+
 import { getFinance } from '../api';
 
 import './style.css';
@@ -15,10 +17,12 @@ export default class Finance extends Component {
     hasFinance: false,
     stylistFinance: [],
     totalDeposited: 0,
+    loading: true,
   };
 
   async componentDidMount() {
-    const { hasFinance, stylistFinance } = await getFinance(2);
+    const { hasFinance, stylistFinance } = await getFinance(3);
+    this.setState({ loading: false });
     if (hasFinance) {
       let { totalDeposited } = this.state;
       await stylistFinance.map(
@@ -29,7 +33,7 @@ export default class Finance extends Component {
   }
 
   render() {
-    const { stylistFinance, hasFinance, totalDeposited } = this.state;
+    const { stylistFinance, hasFinance, totalDeposited, loading } = this.state;
     const columns = [
       {
         title: 'Jobs done',
@@ -48,8 +52,8 @@ export default class Finance extends Component {
           <h4>Total Earning through FroHub</h4>
           <span className="finance__total-deposite">€ {totalDeposited}</span>
         </div>
-        {hasFinance ? (
-          stylistFinance.length ? (
+        {!loading ? (
+          hasFinance && stylistFinance.length ? (
             stylistFinance.map(finance => {
               return (
                 <div key={finance.salon_service_id}>
@@ -84,10 +88,10 @@ export default class Finance extends Component {
               );
             })
           ) : (
-            <>loading</>
+            <>No Finance</>
           )
         ) : (
-          <>No Finance </>
+          <Loading />
         )}
       </div>
     );
