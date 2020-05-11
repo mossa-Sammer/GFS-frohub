@@ -29,4 +29,20 @@ const postBusinessDetails = async business => {
   await axios.patch(`/stylist/${id}/business`, business);
 };
 
-export { getBusinessDetails, postBusinessDetails };
+const getFinance = async id => {
+  const {
+    data: { stylistFinance },
+  } = await axios.get(`/stylist/${id}/finance`);
+
+  if (!stylistFinance.length)
+    return {
+      hasFinance: false,
+      stylistFinance: [],
+    };
+  return {
+    hasFinance: true,
+    stylistFinance,
+  };
+};
+
+export { getBusinessDetails, postBusinessDetails, getFinance };
