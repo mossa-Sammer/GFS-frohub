@@ -1,26 +1,31 @@
 const boom = require('@hapi/boom');
 const { sign } = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
 const { compare } = require('bcrypt');
 
-const { getUserByEmailOrUsername } = require('../../database/queries/users');
+// const { getUserByEmailOrUsername } = require('../../database/queries/users');
+const { getUserByEmail } = require('../../database/sql_queries');
 const { secret } = require('../../config/config');
 
 module.exports = async (req, res, next) => {
-  const { username, password, remember } = req.body;
+  const { email, password, remember } = req.body;
 
   try {
-    const user = await getUserByEmailOrUsername(username);
+    const { rows: user } = await getUserByEmail(email);
 
-    if (!user) {
-      return next(boom.unauthorized('username does not exist'));
+    if (!user.length) {
+      return next(boom.unauthorized('email does not exist'));
     }
-
+    // console.log(11111111111, user);
     const {
-      _id: userId, username: storedUsername, email, password: signedPassword,
-    } = user;
+      user_id: userId, password: signedPassword,
+    } = user[0];
+
+    // const hash = await bcrypt.hash('123456', 10);
+    // console.log(hash);
 
     const isMatch = await compare(password, signedPassword);
-
+    // console.log(111111111, isMatch);
     if (!isMatch) {
       return next(boom.unauthorized('password cannot be recognised'));
     }
@@ -37,7 +42,6 @@ module.exports = async (req, res, next) => {
 
     const data = {
       userId,
-      username: storedUsername,
       email,
     };
 
