@@ -7,7 +7,7 @@ import { SALON_URL } from '../../../routes_urls';
 class Business extends Component {
   render() {
     return (
-      <div className="business-container">
+      <div>
         <div>business</div>
         <Button>
           <Link to={SALON_URL}>Next</Link>
