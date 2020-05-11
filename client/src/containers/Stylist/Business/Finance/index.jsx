@@ -7,6 +7,9 @@ import moment from 'moment';
 
 import { getFinance } from '../api';
 
+import './style.css';
+import './media.css';
+
 export default class Finance extends Component {
   state = {
     hasFinance: false,
@@ -41,34 +44,42 @@ export default class Finance extends Component {
     ];
     return (
       <div>
-        <h4>Total Earning through FroHub</h4>
-        <span>€ {totalDeposited}</span>
+        <div className="finance__head">
+          <h4>Total Earning through FroHub</h4>
+          <span className="finance__total-deposite">€ {totalDeposited}</span>
+        </div>
         {hasFinance ? (
           stylistFinance.length ? (
             stylistFinance.map(finance => {
               return (
                 <div key={finance.salon_service_id}>
-                  <div>
-                    <span>
+                  <div className="finance__container">
+                    <span className="finance__done left">
                       {
                         moment(finance.done)
                           .format('MMMM/YYYY')
                           .split('/')[0]
                       }
-                      &nbsp;
+                      &nbsp; &nbsp;
                       {
                         moment(finance.done)
                           .format('MMMM/YYYY')
                           .split('/')[1]
                       }
                     </span>
-                    <span>{finance.collected_deposit}</span>
+                    <span className="finance__done right">
+                      € {finance.collected_deposit}
+                    </span>
                   </div>
-                  <Table
-                    dataSource={[finance]}
-                    columns={columns}
-                    pagination={false}
-                  />
+                  <div>
+                    <Table
+                      dataSource={[finance]}
+                      columns={columns}
+                      pagination={false}
+                      className="finance__table"
+                      rowKey={record => `${record.salon_service_id} service`}
+                    />
+                  </div>
                 </div>
               );
             })

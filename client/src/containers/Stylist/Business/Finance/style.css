@@ -1,0 +1,46 @@
+.finance__head,
+.finance__container {
+	 width: 100%;
+}
+.finance__head {
+	height: 80px;
+	padding: 15px 0;
+	margin-bottom: 15px;
+}
+.finance__total-deposite,
+.finance__container {
+	font-weight: bold;
+}
+.finance__total-deposite {
+	color: #000;
+	font-size: 18px;
+}
+.finance__container {
+	display: flex;
+	height: 40px;
+	background-color: #d9d9d9;
+	font-size: 16px;
+	padding: 0 10px;
+	border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+	margin-bottom: 10px;
+	align-items: center;
+}
+.finance__done,
+.finance__table {
+	width: 50%;
+}
+.finance__done {
+	display: inline-block;
+}
+.finance__done.right {
+	text-align: right;
+}
+.finance__table.ant-table-wrapper .ant-table-thead tr th {
+	border: 1px solid rgba(51, 51, 51, 0.8);
+}
+
+.finance__table.ant-table-wrapper .ant-table-tbody > tr > td {
+	border: 1px solid rgba(51, 51, 51, 0.5);
+}
+
+
