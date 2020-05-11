@@ -15,7 +15,8 @@ CREATE TABLE "user"(
   last_name VARCHAR(30) NOT NULL,
   email VARCHAR NOT NULL,
   phone_number VARCHAR,
-  role user_role NOT NULL
+  role user_role NOT NULL,
+  country VARCHAR(2) NOT NULL
 );
 
 
