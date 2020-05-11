@@ -23,6 +23,7 @@ test('adding a stylist with valid data', () => {
     lastName: 'dbabesh',
     email: 'mossa@gmail.com',
     phone: '123123123',
+    country: 'PS',
   };
   return getFirstUser()
     .then((result) => {

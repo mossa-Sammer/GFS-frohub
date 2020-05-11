@@ -1,12 +1,12 @@
 BEGIN;
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role) VALUES ('rahel', 'tas', 'rahel@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123216789', 'admin');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('rahel', 'tas', 'rahel@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123216789', 'admin', 'PS');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role) VALUES ('mossa', 'dababesh', 'mossa@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('mossa', 'dababesh', 'mossa@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist', 'AL');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role) VALUES ('Ahmad', 'Ali', 'ahmad@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '125556789', 'stylist');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('Ahmad', 'Ali', 'ahmad@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '125556789', 'stylist', 'AU');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role) VALUES ('angham', 'abed', 'angham@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('angham', 'abed', 'angham@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist', 'GB');
 
 INSERT INTO business (user_id, full_name, account_number, sort_code, preferred_pay_method) VALUES (4, 'angham aabed', '26207729', '560029', 'card');
 
