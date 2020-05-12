@@ -22,13 +22,13 @@ const LoginForm = ({
             <div className="login__logo" />
           </Link>
         </h1>
-        <Form.Item className="login__item" label="Username or Email Address">
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+        <Form.Item className="login__item" label="Email Address">
+          {getFieldDecorator('email', {
+            rules: [{ required: true, message: 'Please input your email!' }],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="username/email"
+              placeholder="E-mail"
               error={error && error.username}
             />
           )}
