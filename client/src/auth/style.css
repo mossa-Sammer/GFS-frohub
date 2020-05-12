@@ -1,7 +1,7 @@
 .stylist__onboarding-container {
 	width: 80%;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .stylist__container-layout.ant-layout.ant-layout-has-sider,
@@ -45,4 +45,5 @@
 .stylist__main-content.ant-layout-content {
 	padding: 40px;
 	border-left: none;
+	padding-top: 100px;
 }
