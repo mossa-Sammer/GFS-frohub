@@ -23,7 +23,7 @@ const LoginForm = ({
           </Link>
         </h1>
         <Form.Item className="login__item" label="Username or Email Address">
-          {getFieldDecorator('username', {
+          {getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input
