@@ -1,42 +1,41 @@
 const boom = require('@hapi/boom');
 const { v4: uuid } = require('uuid');
-const S3 = require('../../config/awsS3');
 
+const { S3, storageUrl, bucket } = require('../../config/awsS3');
 const { checkStylist } = require('../../database/queries/stylist');
+
+const typesValidation = require('./contentTypesValidation');
+
 // eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
   const { id: userId } = req.params;
   const { contentTypes } = req.body;
-  const promises = [];
   const images = [];
-  const imageUrl = 'https://frohub-test.s3.eu-west-2.amazonaws.com/';
+
+  const imageUrl = `${storageUrl}/`;
+  let promises = [];
 
 
   if (!Number(userId)) {
     return next(boom.badRequest('user id should be number'));
   }
+
   const { rows: [stylist] } = await checkStylist(userId);
   if (!stylist) { return next(boom.notFound('stylist not found')); }
 
-  if (!contentTypes) {
-    return next(boom.badRequest('must specfiy content types'));
-  }
+  await typesValidation.validate(contentTypes);
 
 
-  for (let i = 0; i < contentTypes.length; i += 1) {
-    if (!contentTypes.includes('pdf') && !contentTypes.startsWith('image/')) {
-      return next(boom.badRequest('should be image or pdf document'));
-    }
-    const key = `${userId}/${uuid()}.${contentTypes[i]}`;
-
-    promises.push(S3.getSignedUrlPromise('putObject', {
-      Bucket: 'frohub-test',
-      ContentType: contentTypes[i],
-      Key: key,
-    }));
+  promises = await Promise.all(contentTypes.map((type) => {
+    const key = `${userId}/${uuid()}.${type}`;
     images.push(imageUrl + key);
-  }
 
-  const uploadUrls = await Promise.all(promises);
-  res.json({ uploadUrls, images });
+    return S3.getSignedUrlPromise('putObject', {
+      Bucket: bucket,
+      ContentType: type,
+      Key: key,
+    });
+  }));
+
+  res.json({ promises, images });
 };
