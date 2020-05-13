@@ -22,8 +22,9 @@ test('adding a stylist with valid data', () => {
     firstName: 'mossa',
     lastName: 'dbabesh',
     email: 'mossa@gmail.com',
-    phone: '123123123',
+    phoneNumber: '123123123',
     country: 'PS',
+    callingCode: '972',
   };
   return getFirstUser()
     .then((result) => {
