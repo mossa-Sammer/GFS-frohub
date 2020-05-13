@@ -1,0 +1,14 @@
+.ant-menu-item.logo-box {
+	height: 70px !important;
+	text-align: center;
+	padding-top: 20px;
+	margin-top: 10px !important;
+}
+
+.logo-img {
+	width: 80%;
+}
+
+.mobile__sider-container {
+	display: none;
+}

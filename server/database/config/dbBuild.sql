@@ -15,7 +15,9 @@ CREATE TABLE "user"(
   last_name VARCHAR(30) NOT NULL,
   email VARCHAR NOT NULL,
   phone_number VARCHAR,
-  role user_role NOT NULL
+  password VARCHAR NOT NULL,
+  role user_role NOT NULL,
+  country VARCHAR(2) NOT NULL
 );
 
 
@@ -41,7 +43,8 @@ CREATE TABLE salon (
   street VARCHAR(255),
   city VARCHAR(30) NOT NULL,
   country VARCHAR(2) NOT NULL, 
-  postal_code VARCHAR(255)
+  postal_code VARCHAR(255),
+  status activity_status DEFAULT 'inactive'
 );
 
 CREATE TABLE salon_zone (
@@ -80,7 +83,7 @@ CREATE TABLE salon_service (
   service_id INT REFERENCES service(service_id) on DELETE CASCADE, 
   service_length_id INT REFERENCES service_length(service_length_id) on DELETE CASCADE,
   price FLOAT(32) NOT NULL,
-  status activity_status NOT NULL
+  status activity_status NOT NULL DEFAULT 'inactive'
 );
 
 CREATE TABLE service_image (

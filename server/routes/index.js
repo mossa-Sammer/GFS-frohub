@@ -26,7 +26,7 @@ router.post('/stylist/:id/business', business.addStylistBusiness);
 router.patch('/stylist/:id/business', business.updateStylistBusiness);
 
 // Stylist/finance
-router.get('/stylist/finance', finance.getFinance);
+router.get('/stylist/:id/finance', finance.getFinance);
 router.post('/stylist/finance', finance.addFinance);
 
 // Salon
@@ -38,7 +38,7 @@ router.patch('/salon/:id', salon.updateSalon);
 // Salon services
 router.get('/salon/:id/services', services.getSalonServices);
 router.post('/salon/:id/service', services.addSalonService);
-router.patch('/salon/:id/service/:id', services.updateSalonService);
+router.patch('/salon/:salonId/service/:serviceId', services.updateSalonService);
 router.delete('/salon/:id/service/:id', services.deleteSalonService);
 
 // Service

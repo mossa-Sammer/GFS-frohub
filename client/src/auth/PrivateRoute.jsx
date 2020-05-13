@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { Layout } from 'antd';
 import { Loading } from '../components';
 
+import Sider from '../containers/Layout';
 import { LOGIN_URL } from '../routes_urls';
+
+import './style.css';
 
 const PrivateRoute = ({
   component: Component,
@@ -16,7 +20,16 @@ const PrivateRoute = ({
     return <Loading />;
   }
   if (isAuth) {
-    return <Route {...rest} component={Component} />;
+    return (
+      <div className="stylist__onboarding-container">
+        <Layout className="stylist__container-layout">
+          <Sider />
+          <Layout.Content className="stylist__main-content">
+            <Route {...rest} component={Component} />
+          </Layout.Content>
+        </Layout>
+      </div>
+    );
   }
   return (
     <Redirect

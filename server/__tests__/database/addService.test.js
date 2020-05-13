@@ -7,7 +7,7 @@ beforeAll(() => dbBuild());
 
 afterAll(() => dbConnection.end());
 
-test('Testing POST api/service', async () => {
+test('Testing insert new service query', async () => {
   const service = {
     name: 'hair loss',
   };

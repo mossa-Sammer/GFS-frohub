@@ -2,22 +2,22 @@ const boom = require('@hapi/boom');
 const { sign } = require('jsonwebtoken');
 const { compare } = require('bcrypt');
 
-const { getUserByEmailOrUsername } = require('../../database/queries/users');
+const { getUserByEmail } = require('../../database/sql_queries');
 const { secret } = require('../../config/config');
 
 module.exports = async (req, res, next) => {
-  const { username, password, remember } = req.body;
+  const { email, password, remember } = req.body;
 
   try {
-    const user = await getUserByEmailOrUsername(username);
+    const { rows: user } = await getUserByEmail(email);
 
-    if (!user) {
-      return next(boom.unauthorized('username does not exist'));
+    if (!user.length) {
+      return next(boom.unauthorized('email does not exist'));
     }
 
     const {
-      _id: userId, username: storedUsername, email, password: signedPassword,
-    } = user;
+      user_id: userId, password: signedPassword,
+    } = user[0];
 
     const isMatch = await compare(password, signedPassword);
 
@@ -37,7 +37,6 @@ module.exports = async (req, res, next) => {
 
     const data = {
       userId,
-      username: storedUsername,
       email,
     };
 
