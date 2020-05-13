@@ -3,47 +3,70 @@ import { withRouter } from 'react-router-dom';
 import { Button, Form, Input, Select } from 'antd';
 
 import axios from 'axios';
-
-import countries from 'country-data';
-
+import { PhoneNumberUtil } from 'google-libphonenumber';
+import { connect } from 'react-redux';
 import { BUSINESS_URL } from '../../../routes_urls';
+
 import './style.css';
 
 const { Option } = Select;
 
 class PersonalForm extends Component {
   state = {
-    // userId: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    // role: '',
+    country: '',
     changed: false,
     error: false,
+    countries: [],
   };
 
   async componentDidMount() {
-    const { data } = await axios.get('/api/user/2/personal');
+    const { user, form } = this.props;
+    const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
+      axios.get(`/api/user/${user.userId}/personal`),
+      axios.get(
+        'https://cors-anywhere.herokuapp.com/http://country.io/phone.json'
+      ),
+    ]);
+
+    const countries = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [key, value] of Object.entries(allCountries)) {
+      countries.push({ key, value });
+    }
+
     const {
       email,
-      role,
       first_name: firstName,
       last_name: lastName,
       phone_number: phoneNumber,
-      user_id: userId,
-    } = data;
+      calling_code: callingCode,
+      country,
+    } = fetchedUser;
 
-    const userData = { userId, email, firstName, lastName, phoneNumber, role };
-    this.setState({ ...userData });
+    form.setFieldsValue({
+      email,
+      firstName,
+      lastName,
+      phoneNumber,
+      callingCode,
+    });
+
+    this.setState({ countries, country });
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const { form, history } = this.props;
+    const { form, history, user } = this.props;
     // eslint-disable-next-line no-unused-vars
-    form.validateFieldsAndScroll((err, values) => {
+    form.validateFields(async (err, values) => {
       if (!err) {
+        const { country } = this.state;
+
+        await axios.post(`/api/user/${user.userId}/personal`, {
+          ...values,
+          country,
+        });
+
         history.push(BUSINESS_URL);
       }
     });
@@ -51,7 +74,6 @@ class PersonalForm extends Component {
 
   handleFormChange = () => {
     const { changed } = this.state;
-
     const {
       form: { getFieldsError },
     } = this.props;
@@ -62,35 +84,39 @@ class PersonalForm extends Component {
     if (!changed) this.setState({ changed: true });
   };
 
-  render() {
-    const {
-      email,
-      firstName,
-      lastName,
-      phoneNumber,
-      changed,
-      error,
-    } = this.state;
+  handlePhonePrefix = value => this.setState({ country: value });
 
+  handlePhoneValidation = (rule, value, callback) => {
+    const { country } = this.state;
+    if (!country) return callback();
+    if (value.length >= 18) callback('The input is not valid phone number!');
+
+    const phoneUtil = PhoneNumberUtil.getInstance();
+    const number = phoneUtil.parseAndKeepRawInput(value, country);
+
+    if (phoneUtil.isPossibleNumber(number)) return callback();
+    return callback('The input is not valid phone number!');
+  };
+
+  render() {
+    const { changed, error, countries } = this.state;
     const {
       form: { getFieldDecorator },
     } = this.props;
 
-    const { all: codes } = countries.callingCodes;
-
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '+44',
-    })(
+    const prefixSelector = getFieldDecorator('callingCode')(
       <Select
+        style={{ width: 100 }}
         className="phone-code"
         showSearch
         filterOption={(input, option) =>
           option.props.children.indexOf(input) >= 0
         }
+        onChange={this.handlePhonePrefix}
       >
-        {codes.map(c => (
-          <Option key={c} value={c}>
-            {c}
+        {countries.map(c => (
+          <Option key={c.key} value={c.key}>
+            {c.value}
           </Option>
         ))}
       </Select>
@@ -106,7 +132,6 @@ class PersonalForm extends Component {
         >
           <Form.Item className="email-field" label="Email">
             {getFieldDecorator('email', {
-              initialValue: email,
               rules: [
                 {
                   type: 'email',
@@ -120,8 +145,7 @@ class PersonalForm extends Component {
             })(<Input />)}
           </Form.Item>
           <Form.Item className="phone-field" label="Phone Number">
-            {getFieldDecorator('phone-field', {
-              initialValue: phoneNumber,
+            {getFieldDecorator('phoneNumber', {
               rules: [
                 {
                   required: true,
@@ -131,13 +155,18 @@ class PersonalForm extends Component {
                   whitespace: true,
                   message: 'Please input your phone number!',
                 },
+                { validator: this.handlePhoneValidation },
               ],
-            })(<Input addonBefore={prefixSelector} />)}
+            })(
+              <Input
+                addonBefore={prefixSelector}
+                onChange={this.handlePhoneChange}
+              />
+            )}
           </Form.Item>
           <div className="name-wrapper">
             <Form.Item className="first-name-field" label="First Name">
               {getFieldDecorator('firstName', {
-                initialValue: firstName,
                 rules: [
                   {
                     required: true,
@@ -152,7 +181,6 @@ class PersonalForm extends Component {
             </Form.Item>
             <Form.Item className="last-name-field" label="Last Name">
               {getFieldDecorator('lastName', {
-                initialValue: lastName,
                 rules: [
                   {
                     required: true,
@@ -183,8 +211,13 @@ class PersonalForm extends Component {
   }
 }
 
+const mapStateToProps = ({ login }) => {
+  return {
+    user: login.user,
+  };
+};
 const WrappedPersonalForm = Form.create({
   name: 'personal',
 })(PersonalForm);
 
-export default withRouter(WrappedPersonalForm);
+export default connect(mapStateToProps, null)(withRouter(WrappedPersonalForm));
