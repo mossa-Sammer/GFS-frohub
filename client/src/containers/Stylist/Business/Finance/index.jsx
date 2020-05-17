@@ -21,7 +21,7 @@ export default class Finance extends Component {
   };
 
   async componentDidMount() {
-    const { hasFinance, stylistFinance } = await getFinance(3);
+    const { hasFinance, stylistFinance } = await getFinance(2);
     this.setState({ loading: false });
     if (hasFinance) {
       let { totalDeposited } = this.state;
