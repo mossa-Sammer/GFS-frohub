@@ -14,9 +14,14 @@ const getBusinessDetails = async (id = 4) => {
     preferredPayMethod: '',
   };
   const { data } = business.data;
-  if (!data.length) return stylistBusiness;
+  if (!data.length)
+    return {
+      hasBusiness: false,
+      stylistBusiness,
+    };
   const stylistBus = data[0];
   return {
+    hasBusiness: true,
     fullName: stylistBus.full_name,
     accountNumber: stylistBus.account_number,
     sortCode: stylistBus.sort_code,
@@ -26,7 +31,32 @@ const getBusinessDetails = async (id = 4) => {
 
 const postBusinessDetails = async business => {
   const id = 4;
-  await axios.patch(`/stylist/${id}/business`, business);
+  try {
+    await axios.post(`/stylist/${id}/business`, business);
+    return {
+      err: false,
+    };
+  } catch (err) {
+    return {
+      err: true,
+      error: err.response.data,
+    };
+  }
+};
+
+const updateBusinessDetails = async business => {
+  const id = 4;
+  try {
+    await axios.patch(`/stylist/${id}/business`, business);
+    return {
+      err: false,
+    };
+  } catch (err) {
+    return {
+      err: true,
+      error: err.response.data,
+    };
+  }
 };
 
 const getFinance = async id => {
@@ -45,4 +75,9 @@ const getFinance = async id => {
   };
 };
 
-export { getBusinessDetails, postBusinessDetails, getFinance };
+export {
+  getBusinessDetails,
+  postBusinessDetails,
+  updateBusinessDetails,
+  getFinance,
+};

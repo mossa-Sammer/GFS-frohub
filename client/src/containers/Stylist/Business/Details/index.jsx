@@ -1,9 +1,16 @@
-/* eslint-disable react/no-unused-state */
+/* eslint-disable consistent-return, react/no-unused-state */
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 import { Form, Input, Radio, Button } from 'antd';
 
-import { getBusinessDetails, postBusinessDetails } from '../api';
+import {
+  getBusinessDetails,
+  postBusinessDetails,
+  updateBusinessDetails,
+} from '../api';
+
+import { SALON_URL } from '../../../../routes_urls';
 
 import './style.css';
 import './media.css';
@@ -14,10 +21,11 @@ class BusinessDetails extends Component {
     accountNumber: '',
     err: false,
     errMsg: '',
-    sortCode1: '',
-    sortCode2: '',
-    sortCode3: '',
+    sortCode: '',
     preferredPayMethod: 'none',
+    hasBusiness: false,
+    success: false,
+    successMessage: '',
   };
 
   async componentDidMount() {
@@ -27,21 +35,16 @@ class BusinessDetails extends Component {
       accountNumber,
       sortCode,
       preferredPayMethod,
+      hasBusiness,
     } = stylistBusiness;
-    const stylistSortCode = sortCode.split('');
     this.setState({
       fullName,
       accountNumber,
-      sortCode1: stylistSortCode[0],
-      sortCode2: stylistSortCode[1],
-      sortCode3: stylistSortCode[2],
+      sortCode,
       preferredPayMethod,
+      hasBusiness,
     });
   }
-
-  handleSortCode = (num, { target: { value, name } }) => {
-    this.setState({ [name]: value, err: false, errMsg: '' });
-  };
 
   handlePaymetMethod = method =>
     this.setState({
@@ -52,32 +55,46 @@ class BusinessDetails extends Component {
 
   handleBusiness = e => {
     e.preventDefault();
-    const { form } = this.props;
+    const { form, history } = this.props;
     const {
       fullName,
       accountNumber,
-      sortCode1,
-      sortCode2,
-      sortCode3,
+      sortCode,
       preferredPayMethod,
+      hasBusiness,
     } = this.state;
-    if (!sortCode1 || !sortCode2 || !sortCode3)
-      return this.setState({ err: true, errMsg: 'Sort code required' });
     form.validateFieldsAndScroll(async err => {
       if (!err) {
         const business = {
           fullName,
           accountNumber,
-          sortCode: sortCode1 + sortCode2 + sortCode3,
+          sortCode,
           preferredPayMethod,
         };
-        await postBusinessDetails(business);
+        if (!hasBusiness) {
+          const { error } = await postBusinessDetails(business);
+          if (error)
+            return this.setState({ err: true, errMsg: error.error.message });
+          this.setState({
+            success: true,
+            successMessage: 'Successfully Added',
+          });
+        } else {
+          const { error } = await updateBusinessDetails(business);
+          if (error)
+            return this.setState({ err: true, errMsg: error.error.message });
+          this.setState({
+            success: true,
+            successMessage: 'Successfully Updated',
+          });
+        }
+        setTimeout(() => history.push(SALON_URL), 1000);
       }
     });
   };
 
   handleValues = ({ target: { value, name } }) => {
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, err: false, success: false });
   };
 
   render() {
@@ -89,14 +106,16 @@ class BusinessDetails extends Component {
       errMsg,
       accountNumber,
       fullName,
-      sortCode1,
-      sortCode2,
-      sortCode3,
+      sortCode,
       preferredPayMethod,
+      success,
+      successMessage,
     } = this.state;
     return (
       <div className="business__details-container">
         {err && <span className="err__msg-box">* {errMsg} !</span>}
+        {/* {success && message.success(successMessage)} */}
+        {success && <span className="success__msg-box">{successMessage}</span>}
         <Form onSubmit={this.handleBusiness}>
           <Form.Item className="business__form-item" label="Your full name">
             {getFieldDecorator('fullName', {
@@ -121,27 +140,21 @@ class BusinessDetails extends Component {
             })(<Input name="accountNumber" onChange={this.handleValues} />)}
           </Form.Item>
           <Form.Item className="business__form-item" label="Your sort code">
-            <Input.Group>
+            {getFieldDecorator('sortCode', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please, Enter your sort code',
+                },
+              ],
+              initialValue: sortCode,
+            })(
               <Input
                 className="sort_code-input"
-                name="sortCode1"
-                onChange={e => this.handleSortCode(1, e)}
-                required
-                value={sortCode1}
+                name="sortCode"
+                onChange={this.handleValues}
               />
-              <Input
-                className="sort_code-input"
-                name="sortCode2"
-                onChange={e => this.handleSortCode(2, e)}
-                value={sortCode2}
-              />
-              <Input
-                className="sort_code-input"
-                name="sortCode3"
-                onChange={e => this.handleSortCode(3, e)}
-                value={sortCode3}
-              />
-            </Input.Group>
+            )}
           </Form.Item>
           <Form.Item className="business__form-item">
             <p className="business-hint">
@@ -180,4 +193,4 @@ const BusinessDetailsForm = Form.create({ name: 'BusinessDetails' })(
   BusinessDetails
 );
 
-export default BusinessDetailsForm;
+export default withRouter(BusinessDetailsForm);

@@ -32,3 +32,7 @@
 .err__msg-box {
 	color: red;
 }
+
+.success__msg-box {
+	color: green;
+}
