@@ -17,7 +17,6 @@ import './media.css';
 
 class BusinessDetails extends Component {
   state = {
-    fullName: '',
     accountNumber: '',
     err: false,
     errMsg: '',
@@ -31,14 +30,12 @@ class BusinessDetails extends Component {
   async componentDidMount() {
     const stylistBusiness = await getBusinessDetails();
     const {
-      fullName,
       accountNumber,
       sortCode,
       preferredPayMethod,
       hasBusiness,
     } = stylistBusiness;
     this.setState({
-      fullName,
       accountNumber,
       sortCode,
       preferredPayMethod,
@@ -57,7 +54,6 @@ class BusinessDetails extends Component {
     e.preventDefault();
     const { form, history } = this.props;
     const {
-      fullName,
       accountNumber,
       sortCode,
       preferredPayMethod,
@@ -66,7 +62,6 @@ class BusinessDetails extends Component {
     form.validateFieldsAndScroll(async err => {
       if (!err) {
         const business = {
-          fullName,
           accountNumber,
           sortCode,
           preferredPayMethod,
@@ -105,7 +100,6 @@ class BusinessDetails extends Component {
       err,
       errMsg,
       accountNumber,
-      fullName,
       sortCode,
       preferredPayMethod,
       success,
@@ -114,17 +108,8 @@ class BusinessDetails extends Component {
     return (
       <div className="business__details-container">
         {err && <span className="err__msg-box">* {errMsg} !</span>}
-        {/* {success && message.success(successMessage)} */}
         {success && <span className="success__msg-box">{successMessage}</span>}
         <Form onSubmit={this.handleBusiness}>
-          <Form.Item className="business__form-item" label="Your full name">
-            {getFieldDecorator('fullName', {
-              rules: [
-                { required: true, message: 'Please, Enter your full name' },
-              ],
-              initialValue: fullName,
-            })(<Input name="fullName" onChange={this.handleValues} />)}
-          </Form.Item>
           <Form.Item
             className="business__form-item"
             label="Your account number"

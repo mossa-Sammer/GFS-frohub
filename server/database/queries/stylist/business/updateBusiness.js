@@ -2,11 +2,10 @@ const dbConnection = require('../../../config/dbConnection');
 
 module.exports = (id, business) => {
   const {
-    fullName, accountNumber, sortCode, preferredPayMethod,
+    accountNumber, sortCode, preferredPayMethod,
   } = business;
-  const updateBusiness = 'UPDATE business SET full_name=$1, account_number=$2, sort_code=$3, preferred_pay_method=$4 WHERE user_id=$5 RETURNING *';
+  const updateBusiness = 'UPDATE business SET account_number=$1, sort_code=$2, preferred_pay_method=$3 WHERE user_id=$4 RETURNING *';
   return dbConnection.query(updateBusiness, [
-    fullName,
     accountNumber,
     sortCode,
     preferredPayMethod,

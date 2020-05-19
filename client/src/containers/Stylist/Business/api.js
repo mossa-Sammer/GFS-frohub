@@ -8,7 +8,6 @@ const getBusinessDetails = async (id = 4) => {
       errMsg: 'Unauthorized',
     };
   const stylistBusiness = {
-    fullName: '',
     accountNumber: '',
     sortCode: '',
     preferredPayMethod: '',
@@ -22,7 +21,6 @@ const getBusinessDetails = async (id = 4) => {
   const stylistBus = data[0];
   return {
     hasBusiness: true,
-    fullName: stylistBus.full_name,
     accountNumber: stylistBus.account_number,
     sortCode: stylistBus.sort_code,
     preferredPayMethod: stylistBus.preferred_pay_method,
