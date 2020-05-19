@@ -14,6 +14,8 @@ test('get the user using id in query param', () => {
     'last_name',
     'email',
     'phone_number',
+    'calling_code',
+    'password',
     'role',
     'country',
   ];
