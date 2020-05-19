@@ -11,13 +11,9 @@ export default data => async dispatch => {
   });
 
   try {
-    const response = await axios.post('/login', data);
-
-    const { data: userData } = response.data;
-
+    await axios.post('/login', data);
     dispatch({
       type: AUTHENTICANTE_SUCCESS,
-      payload: { userData },
     });
   } catch (err) {
     const { error } = err.response.data;

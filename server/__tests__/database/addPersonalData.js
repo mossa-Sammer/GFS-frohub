@@ -13,9 +13,7 @@ test('add a stylist', () => {
     firstName: 'soha',
     lastName: 'kadi',
     email: 'soha@gmail.com',
-    phoneNumber: '599000000',
-    country: 'PS',
-    callingCode: '970',
+    phone: '1231244',
   };
 
   return dbConnection.query(
