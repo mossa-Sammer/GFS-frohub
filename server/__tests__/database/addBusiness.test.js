@@ -12,7 +12,6 @@ afterAll(() => dbConnection.end());
 describe('Add stylist business details', () => {
   test('The user is stylist', async () => {
     const stylistBusiness = {
-      fullName: 'angham aabed',
       accountNumber: '66374958',
       sortCode: '08-99-99',
       preferredPayMethod: 'card',
@@ -20,7 +19,7 @@ describe('Add stylist business details', () => {
 
     const businessFields = [
       'business_id',
-      'user_id', 'full_name',
+      'user_id',
       'account_number',
       'sort_code',
       'preferred_pay_method',

@@ -8,7 +8,7 @@ INSERT INTO "user" (first_name, last_name, email, phone_number, role, country) V
 
 INSERT INTO "user" (first_name, last_name, email, phone_number, role, country) VALUES ('angham', 'abed', 'angham@gmail.com', '123456789', 'stylist','GB');
 
-INSERT INTO business (user_id, full_name, account_number, sort_code, preferred_pay_method) VALUES (4, 'angham aabed', '26207729', '560029', 'card');
+INSERT INTO business (user_id, account_number, sort_code, preferred_pay_method) VALUES (4, '26207729', '560029', 'card');
 
 INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code, status) VALUES (2, 'mossa salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','home','omar el mukhtar','london','UK','23424','active');
 

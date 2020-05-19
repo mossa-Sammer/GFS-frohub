@@ -13,7 +13,6 @@ module.exports = async (req, res, next) => {
     preferredPayMethod,
   } = req.body;
   const isStylist = await checkStylist(id);
-  console.log(44444, isStylist);
   const accountSortValid = new UkModulusChecking({ accountNumber, sortCode }).isValid();
   if (accountSortValid) {
     if (isStylist.rows.length) {
