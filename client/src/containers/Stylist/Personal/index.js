@@ -3,9 +3,10 @@ import { withRouter } from 'react-router-dom';
 import { Button, Form, Input, Select } from 'antd';
 
 import axios from 'axios';
-import { PhoneNumberUtil } from 'google-libphonenumber';
 import { connect } from 'react-redux';
+
 import { BUSINESS_URL } from '../../../routes_urls';
+import validatePhone from './util';
 
 import './style.css';
 
@@ -57,7 +58,7 @@ class PersonalForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { form, history, user } = this.props;
-    // eslint-disable-next-line no-unused-vars
+
     form.validateFields(async (err, values) => {
       if (!err) {
         const { country } = this.state;
@@ -89,13 +90,9 @@ class PersonalForm extends Component {
   handlePhoneValidation = (rule, value, callback) => {
     const { country } = this.state;
     if (!country) return callback();
-    if (value.length >= 18) callback('The input is not valid phone number!');
-
-    const phoneUtil = PhoneNumberUtil.getInstance();
-    const number = phoneUtil.parseAndKeepRawInput(value, country);
-
-    if (phoneUtil.isPossibleNumber(number)) return callback();
-    return callback('The input is not valid phone number!');
+    const { err, msg } = validatePhone(country, value);
+    if (err === true) return callback(msg);
+    return callback();
   };
 
   render() {
