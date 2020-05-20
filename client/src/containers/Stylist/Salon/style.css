@@ -1,3 +1,33 @@
 .profile-image__input .ant-form-item-control {
   width: fit-content;
 }
+
+.document-upload__wrapper {
+  margin: 2rem 0;
+}
+
+.address-section__header {
+  margin: 4rem 0 1rem;
+}
+
+.address-section .address {
+  width: 50% !important;
+}
+
+.salon__page {
+  position: relative;
+  padding-bottom: 4rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.salon__btn {
+  position: absolute !important;
+  right: 3rem;
+  bottom: -2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .address-section .address {
+    width: 80% !important;
+  }
+}
