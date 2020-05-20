@@ -17,6 +17,7 @@ import './media.css';
 
 class BusinessDetails extends Component {
   state = {
+    userId: null,
     accountNumber: '',
     err: false,
     errMsg: '',
@@ -28,7 +29,9 @@ class BusinessDetails extends Component {
   };
 
   async componentDidMount() {
-    const stylistBusiness = await getBusinessDetails();
+    const user = await JSON.parse(localStorage.getItem('user'));
+    const { userId } = user;
+    const stylistBusiness = await getBusinessDetails(userId);
     const {
       accountNumber,
       sortCode,
@@ -36,6 +39,7 @@ class BusinessDetails extends Component {
       hasBusiness,
     } = stylistBusiness;
     this.setState({
+      userId,
       accountNumber,
       sortCode,
       preferredPayMethod,
@@ -58,6 +62,7 @@ class BusinessDetails extends Component {
       sortCode,
       preferredPayMethod,
       hasBusiness,
+      userId,
     } = this.state;
     form.validateFieldsAndScroll(async err => {
       if (!err) {
@@ -67,7 +72,7 @@ class BusinessDetails extends Component {
           preferredPayMethod,
         };
         if (!hasBusiness) {
-          const { error } = await postBusinessDetails(business);
+          const { error } = await postBusinessDetails(userId, business);
           if (error)
             return this.setState({ err: true, errMsg: error.error.message });
           this.setState({
@@ -75,7 +80,7 @@ class BusinessDetails extends Component {
             successMessage: 'Successfully Added',
           });
         } else {
-          const { error } = await updateBusinessDetails(business);
+          const { error } = await updateBusinessDetails(userId, business);
           if (error)
             return this.setState({ err: true, errMsg: error.error.message });
           this.setState({

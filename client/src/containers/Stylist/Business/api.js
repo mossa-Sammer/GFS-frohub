@@ -1,6 +1,6 @@
 import axios from '../../../axios-config';
 
-const getBusinessDetails = async (id = 4) => {
+const getBusinessDetails = async id => {
   const business = await axios.get(`/stylist/${id}/business`);
   if (business.status !== 200)
     return {
@@ -27,8 +27,7 @@ const getBusinessDetails = async (id = 4) => {
   };
 };
 
-const postBusinessDetails = async business => {
-  const id = 4;
+const postBusinessDetails = async (id, business) => {
   try {
     await axios.post(`/stylist/${id}/business`, business);
     return {
@@ -42,8 +41,7 @@ const postBusinessDetails = async business => {
   }
 };
 
-const updateBusinessDetails = async business => {
-  const id = 4;
+const updateBusinessDetails = async (id, business) => {
   try {
     await axios.patch(`/stylist/${id}/business`, business);
     return {
