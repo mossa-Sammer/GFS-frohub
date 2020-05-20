@@ -11,7 +11,9 @@ export default data => async dispatch => {
   });
 
   try {
-    await axios.post('/login', data);
+    const { data: user } = await axios.post('/login', data);
+    const { data: loggedUser } = user;
+    localStorage.setItem('user', JSON.stringify(loggedUser));
     dispatch({
       type: AUTHENTICANTE_SUCCESS,
     });
