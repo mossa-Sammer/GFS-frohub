@@ -1,0 +1,25 @@
+.opening-times {
+  width: 65%;
+}
+
+.opening-times__item {
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+  justify-content: space-between !important;
+  margin-bottom: 1rem;
+}
+
+.day-select {
+  margin-right: 1rem !important;
+  width: 200px !important;
+  height: 36px !important;
+}
+
+.day-select .ant-select-selection {
+  height: 36px;
+}
+
+.opening-times__item__time {
+  margin-right: 1rem !important;
+}
