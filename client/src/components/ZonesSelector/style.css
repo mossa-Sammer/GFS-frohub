@@ -3,54 +3,49 @@
   width: 100% !important;
 }
 
-.zone-selector__item {
-  display: flex !important;
-  justify-content: space-between !important;
-  width: 90% !important;
+.zone-selector__zones .zone-selector__item {
+  justify-content: space-between;
+  display: flex;
   margin: 1rem 0;
 }
 
-.zone-selector__select-wrapper {
-  display: flex !important;
-  width: 35%;
+.zone-selector__zones .zone-selector__item > * {
+  flex: 1;
+  margin-right: 1rem;
 }
 
-.zone-selector__select {
-  width: 45% !important;
+.zone-selector__item > .zone-selector__select-wrapper {
+  display: flex;
+}
+
+.zone-selector__select-wrapper .zone-selector:first-child {
+  margin-right: 1rem;
+}
+
+.zone-selector__item > .zone-selector__price {
+  flex: 0.3;
 }
 
 .zone-selector__btns-wrapper {
-  display: flex !important;
-  width: 40%;
+  display: flex;
 }
 
-.zone-selector__price {
-  width: 20% !important;
+.zone-selector__btns-wrapper .zone-selector__btn:first-child {
+  margin-right: 1rem;
 }
 
-/* .zone-selector__item > * {
-  margin-right: 10px !important;
-} */
-
-/*
-.zone-selector__from {
-  width: 35rem !important;
-}
-
-.zone-selector__to {
-  width: 35rem !important;
-} */
 @media only screen and (max-width: 600px) {
-  body {
-    color: red;
-  }
-  .zone-selector__item {
-    width: 400px;
-    display: flex !important;
-    flex-direction: column !important;
+  .zone-selector__zones .zone-selector__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
     border-radius: 3px;
     padding: 1rem;
+  }
+
+  .zone-selector__zones .zone-selector__item > * {
+    margin-right: 0;
   }
 
   .zone-selector__select-wrapper {
@@ -59,20 +54,22 @@
     margin-bottom: 0.5rem;
   }
 
-  .zone-selector__select-wrapper > * {
-    width: 45% !important;
+  .zone-selector__item .zone-selector__select-wrapper > * {
+    width: 45%;
   }
-  .zone-selector__price {
-    margin-bottom: 0.5rem !important;
+
+  .zone-selector__item .zone-selector__price {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    width: 100%;
   }
-  .zone-selector__btns-wrapper {
+
+  .zone-selector__item .zone-selector__btns-wrapper {
     display: flex;
+    justify-content: space-between;
   }
-  .zone-selector__btns-wrapper > * {
-    width: 45% !important;
-  }
-  .zone-selector__btns-wrapper {
-    display: flex !important;
-    justify-content: space-between !important;
+  
+  .zone-selector__item .zone-selector__btns-wrapper > * {
+    width: 45%;
   }
 }

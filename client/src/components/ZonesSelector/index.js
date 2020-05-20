@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Input, Button } from 'antd';
+import { Select, InputNumber, Button } from 'antd';
 import uniqueId from 'uuid/dist/v4';
 // each zone from to price
 import './style.css';
@@ -29,15 +29,14 @@ const ZonesSelector = ({
     <div className="zone-selector__zones">
       <p>{label}</p>
       {zones.map(zone => (
-        <div key={uniqueId()} className="zone-selector__item">
+        <div key={uniqueId()} className="zone-selector__item" disabled>
           <div className="zone-selector__select-wrapper">
             <Select
-              // key={unqiueId()}
               className="zone-selector"
               size={window.innerWidth > 450 ? 'default' : 'small'}
               name="fromZone"
               showSearch
-              placeholder="From Zone"
+              placeholder="From"
               defaultValue={zone.from}
               optionFilterProp="children"
               filterOption={handleFilter}
@@ -53,7 +52,7 @@ const ZonesSelector = ({
               size={window.innerWidth > 450 ? 'default' : 'small'}
               name="toZone"
               showSearch
-              placeholder="To Zone"
+              placeholder="To"
               defaultValue={zone.to}
               optionFilterProp="children"
               filterOption={handleFilter}
@@ -65,20 +64,25 @@ const ZonesSelector = ({
               ))}
             </Select>
           </div>
-          <Input
-            size={window.innerWidth > 450 ? 'default' : 'small'}
+          <InputNumber
             className="zone-selector__price"
+            size={window.innerWidth > 450 ? 'default' : 'small'}
+            formatter={value =>
+              `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            }
+            parser={value => value.replace(/\$\s?|(,*)/g, '')}
+            // onChange={onChange}
             // value={zone.price}
             placeholder="price"
           />
           <div className="zone-selector__btns-wrapper">
-            <Button
+            {/* <Button
               type="primary"
               className="zone-selector__btn"
               size={window.innerWidth > 450 ? 'default' : 'small'}
             >
-              Edit
-            </Button>
+              Save
+            </Button> */}
             <Button
               type="danger"
               className="zone-selector__btn"
