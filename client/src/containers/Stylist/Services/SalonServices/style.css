@@ -1,0 +1,17 @@
+.service__container {
+	height: 50px;
+	background-color: #fff;
+	display: flex;
+	padding: 0 10px;
+	align-content: center;
+	align-content: center;
+	margin-bottom: 5px;
+	align-items: center;
+}
+.edit__service {
+	text-align: right;
+}
+.service_name,
+.edit__service {
+	width: 50%;
+}
