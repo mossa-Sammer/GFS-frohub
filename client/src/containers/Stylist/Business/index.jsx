@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Tabs } from 'antd';
 
-import { SALON_URL } from '../../../routes_urls';
+import { withRouter } from 'react-router-dom';
+
+import BusinessDetails from './Details';
+import Finance from './Finance';
+
+const { TabPane } = Tabs;
 
 class Business extends Component {
   render() {
     return (
       <div>
-        <div>business</div>
-        <Button>
-          <Link to={SALON_URL}>Next</Link>
-        </Button>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="Business Details" key="details">
+            <BusinessDetails />
+          </TabPane>
+          <TabPane tab="Finance" key="finance">
+            <Finance />
+          </TabPane>
+        </Tabs>
       </div>
     );
   }

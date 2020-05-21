@@ -14,7 +14,6 @@ test('GET /api/stylist/:id/business', async (done) => {
   const businessFields = [
     'business_id',
     'user_id',
-    'full_name',
     'account_number',
     'sort_code',
     'preferred_pay_method',

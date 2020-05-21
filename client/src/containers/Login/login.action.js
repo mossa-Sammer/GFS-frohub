@@ -11,13 +11,12 @@ export default data => async dispatch => {
   });
 
   try {
-    const response = await axios.post('/login', data);
-
-    const { data: userData } = response.data;
-
+    const { data: user } = await axios.post('/login', data);
+    const { data: loggedUser } = user;
+    localStorage.setItem('user', JSON.stringify(loggedUser));
     dispatch({
       type: AUTHENTICANTE_SUCCESS,
-      payload: { userData },
+      payload: { loggedUser },
     });
   } catch (err) {
     const { error } = err.response.data;
