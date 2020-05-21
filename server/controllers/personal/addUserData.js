@@ -30,6 +30,12 @@ module.exports = (req, res, next) => {
         const errors = validationError(err);
         const errObj = boom.badData('message', errors);
         return next(errObj);
-      } return next(err);
+      }
+      if (err.detail.includes('Key') && err.detail.includes('email')) {
+        return next(boom.badRequest('email already exists', {
+          email: 'email already exists',
+        }));
+      }
+      return next(err);
     });
 };
