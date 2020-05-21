@@ -22,6 +22,7 @@ class PersonalForm extends Component {
 
   async componentDidMount() {
     const { user, form } = this.props;
+
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
       axios.get(`/api/user/${user.userId}/personal`),
       axios.get(
@@ -58,17 +59,29 @@ class PersonalForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { form, history, user } = this.props;
-
+    const { setFields } = form;
     form.validateFields(async (err, values) => {
       if (!err) {
         const { country } = this.state;
-
-        await axios.post(`/api/user/${user.userId}/personal`, {
-          ...values,
-          country,
-        });
-
-        history.push(BUSINESS_URL);
+        try {
+          await axios.post(`/api/user/${user.userId}/personal`, {
+            ...values,
+            country,
+          });
+          history.push(BUSINESS_URL);
+        } catch (requestErr) {
+          const {
+            data: { errors },
+          } = requestErr.response;
+          if (errors.email) {
+            setFields({
+              email: {
+                value: values.email,
+                errors: [new Error(errors.email)],
+              },
+            });
+          }
+        }
       }
     });
   };
@@ -210,7 +223,7 @@ class PersonalForm extends Component {
 
 const mapStateToProps = ({ login }) => {
   return {
-    user: login.user,
+    user: login.loggedUser,
   };
 };
 const WrappedPersonalForm = Form.create({
