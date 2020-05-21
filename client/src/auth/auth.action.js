@@ -7,8 +7,7 @@ export const AUTHENTICANTE_FAIL = 'AUTHENTICANTE_FAIL';
 const checkAuth = () => {
   return async dispatch => {
     try {
-      await axios.get('/api/authenticated');
-      await localStorage.getItem('user');
+      localStorage.getItem('user');
       dispatch({
         type: AUTHENTICANTE_SUCCESS,
       });
