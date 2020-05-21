@@ -13,14 +13,12 @@ afterAll(() => dbConnection.end());
 
 test('PATCH /api/stylist/:id/business Route', async (done) => {
   const businessDetails = {
-    fullName: 'ansam aabed',
     accountNumber: '66374958',
     sortCode: '08-9999',
     preffaredPayMethod: 'card',
   };
 
   const updatedBusiness = {
-    fullName: 'ansam abed',
     accountNumber: '66374958',
     sortCode: '08-9999',
     preffaredPayMethod: 'cash',
@@ -29,7 +27,6 @@ test('PATCH /api/stylist/:id/business Route', async (done) => {
   const businessFields = [
     'business_id',
     'user_id',
-    'full_name',
     'account_number',
     'sort_code',
     'preferred_pay_method',
