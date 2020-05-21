@@ -13,7 +13,7 @@ CREATE TABLE "user"(
   user_id SERIAL PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
-  email VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
   phone_number VARCHAR,
   calling_code VARCHAR(10) NOT NULL, 
   password VARCHAR NOT NULL,
