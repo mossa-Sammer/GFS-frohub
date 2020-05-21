@@ -1,14 +1,14 @@
 BEGIN;
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('rahel', 'tas', 'rahel@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123216789', 'admin', 'PS');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, calling_code, role, country) VALUES ('rahel', 'tas', 'rahel@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123216789','970', 'admin', 'PS');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('mossa', 'dababesh', 'mossa@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist', 'AL');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, calling_code, role, country) VALUES ('mossa', 'dababesh', 'mossa@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789','970', 'stylist', 'AL');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('Ahmad', 'Ali', 'ahmad@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '125556789', 'stylist', 'AU');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, calling_code, role, country) VALUES ('Ahmad', 'Ali', 'ahmad@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '125556789','970', 'stylist', 'AU');
 
-INSERT INTO "user" (first_name, last_name, email, password, phone_number, role, country) VALUES ('angham', 'abed', 'angham@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789', 'stylist', 'GB');
+INSERT INTO "user" (first_name, last_name, email, password, phone_number, calling_code, role, country) VALUES ('angham', 'abed', 'angham@gmail.com', '$2b$10$alFJrbl20cYI7zrX.oo.w.6HDv3ELGhAIHKlNZGood/77ETGrT572', '123456789','970', 'stylist', 'GB');
 
-INSERT INTO business (user_id, full_name, account_number, sort_code, preferred_pay_method) VALUES (4, 'angham aabed', '26207729', '560029', 'card');
+INSERT INTO business (user_id, account_number, sort_code, preferred_pay_method) VALUES (4, '26207729', '560029', 'card');
 
 INSERT INTO salon (user_id, name, about,profile_image, cover_image,document,type,street,city,country,postal_code, status) VALUES (2, 'mossa salon', 'lorem ipsum is a cool text', 'profileImage', 'coverImage','document','home','omar el mukhtar','london','UK','23424','active');
 

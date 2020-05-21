@@ -1,0 +1,5 @@
+@media only screen and (max-width: 768px) {
+	.finance__table {
+		width: 100%;
+	}
+}

@@ -5,15 +5,13 @@ const { updateStylistBusiness } = require('../../database/queries/stylist');
 
 
 const insertBusiness = (id, {
-  fullName,
   accountNumber,
   sortCode,
   preferredPayMethod,
 }) => dbConnection.query(
-  'INSERT INTO business ( user_id, full_name, account_number,  sort_code, preferred_pay_method ) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+  'INSERT INTO business ( user_id, account_number,  sort_code, preferred_pay_method ) VALUES ($1, $2, $3, $4) RETURNING *',
   [
     id,
-    fullName,
     accountNumber,
     sortCode,
     preferredPayMethod,
@@ -29,14 +27,12 @@ afterAll(() => dbConnection.end());
 describe('Add stylist business details', () => {
   test('The user is stylist', async () => {
     const stylistBusiness = {
-      fullName: 'angham aabed',
       accountNumber: '66374958',
       sortCode: '08-99-99',
       preffaredPayMethod: 'card',
     };
 
     const updatedBusiness = {
-      fullName: 'ansam abed',
       accountNumber: '66374958',
       sortCode: '08-9999',
       preffaredPayMethod: 'cash',
@@ -45,7 +41,6 @@ describe('Add stylist business details', () => {
     const businessFields = [
       'business_id',
       'user_id',
-      'full_name',
       'account_number',
       'sort_code',
       'preferred_pay_method',

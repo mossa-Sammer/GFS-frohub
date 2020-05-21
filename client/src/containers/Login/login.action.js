@@ -11,10 +11,22 @@ export default data => async dispatch => {
   });
 
   try {
-    await axios.post('/login', data);
-    dispatch({
-      type: AUTHENTICANTE_SUCCESS,
-    });
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      dispatch({
+        type: AUTHENTICANTE_SUCCESS,
+        payload: { loggedUser: storedUser },
+      });
+    } else {
+      const { data: user } = await axios.post('/login', data);
+      const { data: loggedUser } = user;
+      localStorage.setItem('user', JSON.stringify(loggedUser));
+
+      dispatch({
+        type: AUTHENTICANTE_SUCCESS,
+        // payload: { loggedUser },
+      });
+    }
   } catch (err) {
     const { error } = err.response.data;
     const errorField = error.message.split(' ')[0];
