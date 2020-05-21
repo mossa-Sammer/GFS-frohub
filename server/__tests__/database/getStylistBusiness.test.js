@@ -16,7 +16,6 @@ describe('Get stylist business details query function', () => {
     const businessFields = [
       'business_id',
       'user_id',
-      'full_name',
       'account_number',
       'sort_code',
       'preferred_pay_method',

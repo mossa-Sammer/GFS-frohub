@@ -12,7 +12,6 @@ afterAll(() => dbConnection.end());
 
 test('POST /api/stylist/:id/business Route', async (done) => {
   const businessDetails = {
-    fullName: 'ansam aabed',
     accountNumber: '66374958',
     sortCode: '08-9999',
     preferredPayMethod: 'card',
@@ -21,7 +20,6 @@ test('POST /api/stylist/:id/business Route', async (done) => {
   const businessFields = [
     'business_id',
     'user_id',
-    'full_name',
     'account_number',
     'sort_code',
     'preferred_pay_method',
