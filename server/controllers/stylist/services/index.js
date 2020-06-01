@@ -11,6 +11,7 @@ const addServiceLength = require('./addServiceLength');
 const updateService = require('./updateService');
 const deleteService = require('./deleteService');
 const getAllServices = require('./getAllServices');
+const getServiceLength = require('./getServiceLength');
 
 
 module.exports = {
@@ -26,4 +27,5 @@ module.exports = {
   deleteService,
   getAllServices,
   getServicesLengthes,
+  getServiceLength,
 };

@@ -46,6 +46,7 @@ router.post('/service/length', services.addServiceLength);
 router.get('/services', services.getAllServices);
 router.get('/service/:id', services.getService);
 router.get('/services/lengthes', services.getServicesLengthes);
+router.get('/service/:id/length/', services.getServiceLength);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
