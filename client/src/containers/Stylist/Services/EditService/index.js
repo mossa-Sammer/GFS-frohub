@@ -4,9 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Button, Modal } from 'antd';
-import { Loading, SelectService, ServiceInput } from '../../../../components';
+import {
+  Loading,
+  SelectService,
+  ServiceInput,
+  SelectServiceLength,
+} from '../../../../components';
 
-import { getSalonService } from '../SalonServices/api';
+import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
 import editService from './helper';
 
 import './style.css';
@@ -15,6 +20,7 @@ class EditService extends Component {
   state = {
     visible: false,
     service: {},
+    serviceLength: {},
     loading: false,
     serviceName: '',
     err: false,
@@ -28,7 +34,13 @@ class EditService extends Component {
     const { service } = state;
     const { salon_service_id: salonServiceId, name } = service;
     const salonService = await getSalonService(salonServiceId);
-    this.setState({ service: salonService, loading: false, serviceName: name });
+    const serviceLength = await getSalonServiceLength(salonServiceId);
+    this.setState({
+      service: salonService,
+      loading: false,
+      serviceName: name,
+      serviceLength,
+    });
   }
 
   handleEdit = async () => {
@@ -50,7 +62,15 @@ class EditService extends Component {
 
   render() {
     const status = 'editService';
-    const { loading, service, serviceName, visible, err, errMsg } = this.state;
+    const {
+      loading,
+      service,
+      serviceName,
+      visible,
+      err,
+      errMsg,
+      serviceLength,
+    } = this.state;
     return (
       <>
         {!loading ? (
@@ -60,6 +80,10 @@ class EditService extends Component {
             <div className="edit__service-form">
               <SelectService status={status} service={service} />
               <ServiceInput status={status} />
+              <SelectServiceLength
+                status={status}
+                serviceLength={serviceLength}
+              />
               <Button onClick={this.showModal}>Save</Button>
               <Modal
                 title={`edit ${serviceName}`}

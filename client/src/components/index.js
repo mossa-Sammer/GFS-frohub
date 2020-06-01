@@ -6,6 +6,7 @@ import Loading from './Loading';
 import SearchForm from './SearchForm';
 import ServiceCard from './ServiceCard';
 import SelectService from './SelectService';
+import SelectServiceLength from './SelectServiceLength';
 import ServiceInput from './ServiceInput';
 
 export {
@@ -17,5 +18,6 @@ export {
   SearchForm,
   ServiceCard,
   SelectService,
+  SelectServiceLength,
   ServiceInput,
 };

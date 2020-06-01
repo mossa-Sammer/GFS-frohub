@@ -14,4 +14,23 @@ const getSalonService = async id => {
   return data[0];
 };
 
-export { getSalonServices, getSalonService };
+const getServicesLengthes = async () => {
+  const {
+    data: { servicesLengthes: data },
+  } = await axios.get('/services/lengthes');
+  return data;
+};
+
+const getSalonServiceLength = async id => {
+  const {
+    data: { serviceLength: data },
+  } = await axios.get(`/service/${id}/length/`);
+  return data;
+};
+
+export {
+  getSalonServices,
+  getSalonService,
+  getServicesLengthes,
+  getSalonServiceLength,
+};
