@@ -7,4 +7,11 @@ const getSalonServices = async id => {
   return salonServices;
 };
 
-export default getSalonServices;
+const getSalonService = async id => {
+  const {
+    data: { service: data },
+  } = await axios.get(`/service/${id}`);
+  return data[0];
+};
+
+export { getSalonServices, getSalonService };

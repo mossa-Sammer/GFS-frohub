@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button } from 'antd';
 
-import getSalonServices from './api';
+import { getSalonServices } from './api';
 
 import { STYLIST_EDIT_SERVICE_URL } from '../../../../routes_urls';
 
@@ -23,10 +23,12 @@ class SalonServices extends Component {
   }
 
   handleEdit = service => {
+    const { name, salon_service_id: salonServiceId } = service;
     const { history } = this.props;
     history.push({
       pathname: STYLIST_EDIT_SERVICE_URL,
-      state: { detail: service },
+      search: `${name}${salonServiceId}`,
+      state: { service },
     });
   };
 
