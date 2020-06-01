@@ -7,7 +7,7 @@ import { Select } from 'antd';
 import { Loading } from '..';
 
 import getAllServices from './api';
-import editServiceAction from './selectService.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/selectService.actions';
 
 import './style.css';
 
