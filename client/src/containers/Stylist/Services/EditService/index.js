@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Loading, SelectService } from '../../../../components';
+import { Loading, SelectService, ServiceInput } from '../../../../components';
 
 import { getSalonService } from '../SalonServices/api';
 
@@ -29,13 +29,15 @@ export default class EditService extends Component {
     //     .replace('%', '')
     //     .split(/(\d+)/)
     // );
+    const status = 'editService';
     const { loading, service, serviceName } = this.state;
     return (
       <>
         {!loading ? (
           <div>
             <h2>Edit {serviceName} Service</h2>
-            <SelectService status="editService" service={service} />
+            <SelectService status={status} service={service} />
+            <ServiceInput status={status} />
           </div>
         ) : (
           <Loading />

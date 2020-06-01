@@ -9,7 +9,7 @@ import searchReducer, {
 } from './components/SearchForm/search.reducers';
 import servicesReducer from './containers/Services/services.reducer';
 import advancedSearchReducer from './containers/Services/AdvancedSearch/advancedSearch.reducer';
-import editSalonServiceReducer from './components/SelectService/selectService.reducers';
+import editSalonServiceReducer from './containers/Stylist/Services/EditService/selectService.reducers';
 
 export default combineReducers({
   login: loginReducer,
