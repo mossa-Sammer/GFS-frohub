@@ -8,6 +8,7 @@ import ServiceCard from './ServiceCard';
 import SelectService from './SelectService';
 import SelectServiceLength from './SelectServiceLength';
 import ServiceInput from './ServiceInput';
+import ServiceLengthInput from './ServiceLengthInput';
 
 export {
   Input,
@@ -20,4 +21,5 @@ export {
   SelectService,
   SelectServiceLength,
   ServiceInput,
+  ServiceLengthInput,
 };

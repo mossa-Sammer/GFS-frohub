@@ -9,6 +9,7 @@ import {
   SelectService,
   ServiceInput,
   SelectServiceLength,
+  ServiceLengthInput,
 } from '../../../../components';
 
 import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
@@ -84,6 +85,7 @@ class EditService extends Component {
                 status={status}
                 serviceLength={serviceLength}
               />
+              <ServiceLengthInput status={status} />
               <Button onClick={this.showModal}>Save</Button>
               <Modal
                 title={`edit ${serviceName}`}
