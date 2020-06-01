@@ -7,6 +7,7 @@ import { Button, Modal } from 'antd';
 import { Loading, SelectService, ServiceInput } from '../../../../components';
 
 import { getSalonService } from '../SalonServices/api';
+import editService from './helper';
 
 import './style.css';
 
@@ -30,7 +31,7 @@ class EditService extends Component {
     this.setState({ service: salonService, loading: false, serviceName: name });
   }
 
-  handleEdit = () => {
+  handleEdit = async () => {
     const { serviceName, serviceNewName } = this.props;
     this.setState({ err: false, errMsg: '' });
     if ((serviceNewName && serviceName) || !(serviceNewName || serviceName))
@@ -39,6 +40,7 @@ class EditService extends Component {
         errMsg: 'You should choose one',
         visible: false,
       });
+    await editService({ serviceName, serviceNewName });
     this.setState({ visible: false });
   };
 
