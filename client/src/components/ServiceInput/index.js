@@ -21,6 +21,10 @@ class ServiceInput extends Component {
           value,
         });
       }
+      return editService({
+        fieldName: 'serviceNewName',
+        value: '',
+      });
     }
   };
 
@@ -28,7 +32,11 @@ class ServiceInput extends Component {
     return (
       <div>
         <p>If you don&apos;t find your service, please introduce it below.</p>
-        <Input className="new__service-input" onChange={this.handleChange} />
+        <Input
+          className="new__service-input"
+          onChange={this.handleChange}
+          name="newServiceName"
+        />
       </div>
     );
   }

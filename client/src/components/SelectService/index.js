@@ -20,6 +20,18 @@ class SelectService extends Component {
   };
 
   async componentDidMount() {
+    const { status } = this.props;
+    if (status === 'editService') {
+      const {
+        service: { name },
+        editServiceAction: editService,
+      } = this.props;
+      if (name)
+        editService({
+          fieldName: 'serviceName',
+          value: name,
+        });
+    }
     this.setState({ loading: true });
     const services = await getAllServices();
     this.setState({ services, loading: false });
