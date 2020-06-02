@@ -9,6 +9,7 @@ import SelectService from './SelectService';
 import SelectServiceLength from './SelectServiceLength';
 import ServiceInput from './ServiceInput';
 import ServiceLengthInput from './ServiceLengthInput';
+import ServicePriceInput from './ServicePrice';
 
 export {
   Input,
@@ -22,4 +23,5 @@ export {
   SelectServiceLength,
   ServiceInput,
   ServiceLengthInput,
+  ServicePriceInput,
 };

@@ -3,6 +3,7 @@ import {
   EDIT_SERVICE_NEW_NAME_INPUT,
   EDIT_SERVICE_LENGTH_INPUT,
   EDIT_SERVICE_NEW_LENGTH_INPUT,
+  EDIT_SERVICE_PRICE_INPUT,
 } from './selectService.actions';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   serviceNewName: '',
   serviceLength: '',
   serviceNewLength: '',
+  price: '',
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,12 @@ export default (state = initialState, action) => {
         ...state,
         serviceNewLength: action.payload,
         // serviceLength: '',
+      };
+    }
+    case EDIT_SERVICE_PRICE_INPUT: {
+      return {
+        ...state,
+        price: action.payload,
       };
     }
     default:

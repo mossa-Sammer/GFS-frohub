@@ -10,6 +10,7 @@ import {
   ServiceInput,
   SelectServiceLength,
   ServiceLengthInput,
+  ServicePriceInput,
 } from '../../../../components';
 
 import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
@@ -22,6 +23,7 @@ class EditService extends Component {
     visible: false,
     service: {},
     serviceLength: {},
+    price: '',
     loading: false,
     serviceName: '',
     err: false,
@@ -31,9 +33,10 @@ class EditService extends Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const { location } = this.props;
-    const { state } = location;
-    const { service } = state;
-    const { salon_service_id: salonServiceId, name } = service;
+    const {
+      state: { service },
+    } = location;
+    const { salon_service_id: salonServiceId, name, price } = service;
     const salonService = await getSalonService(salonServiceId);
     const serviceLength = await getSalonServiceLength(salonServiceId);
     this.setState({
@@ -41,6 +44,7 @@ class EditService extends Component {
       loading: false,
       serviceName: name,
       serviceLength,
+      price,
     });
   }
 
@@ -88,6 +92,7 @@ class EditService extends Component {
       err,
       errMsg,
       serviceLength,
+      price,
     } = this.state;
     return (
       <>
@@ -109,6 +114,7 @@ class EditService extends Component {
                 />
               </div>
               <ServiceLengthInput status={status} />
+              <ServicePriceInput status={status} price={price} />
               <Button
                 className="edit__service__form-btn"
                 onClick={this.showModal}
