@@ -21,11 +21,15 @@ import './style.css';
 class EditService extends Component {
   state = {
     visible: false,
+    salonServiceId: null,
+    salonId: null,
     service: {},
     serviceLength: {},
     price: '',
     loading: false,
     serviceName: '',
+    success: false,
+    successMsg: '',
     err: false,
     errMsg: '',
   };
@@ -36,7 +40,12 @@ class EditService extends Component {
     const {
       state: { service },
     } = location;
-    const { salon_service_id: salonServiceId, name, price } = service;
+    const {
+      salon_id: salonId,
+      salon_service_id: salonServiceId,
+      name,
+      price,
+    } = service;
     const salonService = await getSalonService(salonServiceId);
     const serviceLength = await getSalonServiceLength(salonServiceId);
     this.setState({
@@ -45,6 +54,8 @@ class EditService extends Component {
       serviceName: name,
       serviceLength,
       price,
+      salonServiceId,
+      salonId,
     });
   }
 
@@ -56,6 +67,7 @@ class EditService extends Component {
       serviceNewLength,
       price,
     } = this.props;
+    const { salonServiceId, salonId } = this.state;
     this.setState({ err: false, errMsg: '' });
     if (
       (serviceNewName && serviceName) ||
@@ -74,7 +86,9 @@ class EditService extends Component {
         errMsg: 'All fields are required',
         visible: false,
       });
-    const { err, errMsg } = await editService({
+    const { err, errMsg, success, successMsg } = await editService({
+      salonId,
+      salonServiceId,
       serviceName,
       serviceNewName,
       serviceLength,
@@ -83,7 +97,7 @@ class EditService extends Component {
     });
     this.setState({ visible: false });
     if (err) return this.setState({ err, errMsg });
-    this.setState({ err: false });
+    if (success) return this.setState({ err: false, success, successMsg });
   };
 
   handleCancel = () => this.setState({ visible: false });
@@ -97,6 +111,8 @@ class EditService extends Component {
       service,
       serviceName,
       visible,
+      success,
+      successMsg,
       err,
       errMsg,
       serviceLength,
@@ -107,7 +123,13 @@ class EditService extends Component {
         {!loading ? (
           <div>
             <h2>Edit {serviceName} Service</h2>
-            {err && <div className="err-msg"> {message.error(errMsg, 4)} </div>}
+            {err && <div className="err-msg"> {message.error(errMsg, 2)} </div>}
+            {success && (
+              <div className="success-msg">
+                {' '}
+                {message.success(successMsg, 2)}{' '}
+              </div>
+            )}
             <div className="edit__service-form">
               <div className="edit__service__form-item">
                 <p>Select Service:</p>
