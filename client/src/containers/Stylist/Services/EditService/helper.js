@@ -8,16 +8,18 @@ const editService = async fields => {
       serviceNewName,
       serviceLength,
       serviceNewLength,
+      price,
     } = fields;
+    service.price = price;
     if (serviceNewName) {
       const {
         data: { name },
       } = await axios.post('/service', {
         name: serviceNewName,
       });
-      service.serviceId = name;
+      service.service = name;
     } else {
-      service.serviceId = serviceName;
+      service.service = serviceName;
     }
     if (serviceNewLength) {
       const { data: length } = await axios.post('/service/length', {

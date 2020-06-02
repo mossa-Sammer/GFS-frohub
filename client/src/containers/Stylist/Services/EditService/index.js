@@ -54,6 +54,7 @@ class EditService extends Component {
       serviceNewName,
       serviceLength,
       serviceNewLength,
+      price,
     } = this.props;
     this.setState({ err: false, errMsg: '' });
     if (
@@ -67,11 +68,18 @@ class EditService extends Component {
         errMsg: 'You should choose one',
         visible: false,
       });
+    if (!price)
+      return this.setState({
+        err: true,
+        errMsg: 'All fields are required',
+        visible: false,
+      });
     const { err, errMsg } = await editService({
       serviceName,
       serviceNewName,
       serviceLength,
       serviceNewLength,
+      price,
     });
     this.setState({ visible: false });
     if (err) return this.setState({ err, errMsg });
@@ -149,12 +157,14 @@ const mapStateToProps = state => {
     serviceNewName,
     serviceLength,
     serviceNewLength,
+    price,
   } = editSalonService;
   return {
     serviceName,
     serviceNewName,
     serviceLength,
     serviceNewLength,
+    price,
   };
 };
 
