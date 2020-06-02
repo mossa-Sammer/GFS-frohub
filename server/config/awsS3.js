@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 
 
-const storageUrl = 'https://frohub-test.s3.eu-west-2.amazonaws.com';
+const storageUrl = 'https://myfirstbucket512.s3.eu-west-3.amazonaws.com';
 const bucket = 'myfirstbucket512';
 const region = 'eu-west-3';
 
