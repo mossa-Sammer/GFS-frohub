@@ -6,6 +6,7 @@
 	height: 40px;
 }
 
+.new__service__form-btn.ant-btn,
 .new__service-btn.ant-btn,
 .edit__service__form-btn.ant-btn {
 	float: right !important;

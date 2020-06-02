@@ -24,7 +24,8 @@
 	color: green;
 }
 
-.edit__service__form-btn.ant-btn {
+.edit__service__form-btn.ant-btn,
+.new__service__form-btn.ant-btn {
 		margin-top: 10px;
 }
 
@@ -38,7 +39,8 @@
 	.services__select.ant-select {
 		width: 100%;
 	}
-	.edit__service__form-btn.ant-btn {
+	.edit__service__form-btn.ant-btn,
+	.new__service__form-btn.ant-btn {
 		width: 100%;
 	}
 }

@@ -84,7 +84,7 @@ class SelectService extends Component {
               placeholder="Select service name"
             >
               {servicesLengthes.map(length => (
-                <Option key={length.service_id}>{length.name}</Option>
+                <Option key={length.name}>{length.name}</Option>
               ))}
             </Select>
           )
