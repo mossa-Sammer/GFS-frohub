@@ -13,6 +13,7 @@ import {
   Salon,
   StylistServices,
   EditService,
+  NewService,
 } from './containers';
 import { LoggedOutRoute, PrivateRoute } from './auth';
 
@@ -29,6 +30,7 @@ import {
   SALON_URL,
   STYLIST_SERVICES_URL,
   STYLIST_EDIT_SERVICE_URL,
+  STYLIST_NEW_SERVICE_URL,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -65,6 +67,11 @@ class App extends React.Component {
               exact
               path={STYLIST_SERVICES_URL}
               component={StylistServices}
+            />
+            <PrivateRoute
+              exact
+              path={STYLIST_NEW_SERVICE_URL}
+              component={NewService}
             />
             <Route
               render={() => {

@@ -25,14 +25,7 @@
 }
 
 .edit__service__form-btn.ant-btn {
-    float: right;
-    background: #e05747;
-    color: #fff;
-    border-color: #e05747;
-    font-size: 16px;
 		margin-top: 10px;
-		width: 150px;
-    height: 40px 
 }
 
 .new__service-input.ant-input,
@@ -43,6 +36,9 @@
 @media only screen and (max-width: 425px) {
 	.new__service-input.ant-input,
 	.services__select.ant-select {
+		width: 100%;
+	}
+	.edit__service__form-btn.ant-btn {
 		width: 100%;
 	}
 }

@@ -1,0 +1,17 @@
+.services__form-edit {
+	min-height: 100px;
+}
+
+.services__form-new {
+	height: 40px;
+}
+
+.new__service-btn.ant-btn,
+.edit__service__form-btn.ant-btn {
+	float: right !important;
+	background: #e05747;
+	color: #fff;
+	border-color: #e05747;
+	font-size: 16px;
+	width: 150px;
+}

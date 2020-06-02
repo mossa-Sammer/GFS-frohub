@@ -8,3 +8,4 @@ export const BUSINESS_URL = `${STYLIST_URL}/business`;
 export const SALON_URL = `${STYLIST_URL}/salon`;
 export const STYLIST_SERVICES_URL = `${STYLIST_URL}/services`;
 export const STYLIST_EDIT_SERVICE_URL = `${STYLIST_URL}/services/edit`;
+export const STYLIST_NEW_SERVICE_URL = `${STYLIST_URL}/services/new`;
