@@ -1,0 +1,39 @@
+.personal-next-btn {
+  position: absolute !important;
+  right: 0;
+  bottom: -5rem !important;
+}
+
+.email-field {
+  width: 40%;
+}
+.phone-field {
+  width: 40%;
+}
+.name-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.first-name-field {
+  width: 40%;
+}
+.last-name-field {
+  width: 40%;
+}
+
+@media screen and (max-width: 1000px) {
+  .personal-form {
+    margin: auto !important;
+  }
+
+  .phone-field,
+  .email-field {
+    width: 100%;
+  }
+
+  .first-name-field,
+  .last-name-field {
+    width: 45%;
+  }
+}

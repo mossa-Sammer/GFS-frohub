@@ -13,8 +13,9 @@ CREATE TABLE "user"(
   user_id SERIAL PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
-  email VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
   phone_number VARCHAR,
+  calling_code VARCHAR(10) NOT NULL, 
   password VARCHAR NOT NULL,
   role user_role NOT NULL,
   country VARCHAR(2) NOT NULL
@@ -24,7 +25,6 @@ CREATE TABLE "user"(
 CREATE TABLE business (
   business_id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user"(user_id) on DELETE CASCADE,
-  full_name VARCHAR(255),
   account_number  VARCHAR(12) UNIQUE,
   sort_code VARCHAR(12) UNIQUE,
   preferred_pay_method pay_method DEFAULT 'none'
