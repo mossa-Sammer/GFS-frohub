@@ -114,7 +114,10 @@ class EditService extends Component {
                 />
               </div>
               <ServiceLengthInput status={status} />
-              <ServicePriceInput status={status} price={price} />
+              <div className="edit__service__form-item">
+                <p>Price: </p>
+                <ServicePriceInput status={status} price={price} />
+              </div>
               <Button
                 className="edit__service__form-btn"
                 onClick={this.showModal}
