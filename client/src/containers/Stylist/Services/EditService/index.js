@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Button, Modal } from 'antd';
+import { Button, Modal, message } from 'antd';
 import {
   Loading,
   SelectService,
@@ -45,16 +45,33 @@ class EditService extends Component {
   }
 
   handleEdit = async () => {
-    const { serviceName, serviceNewName } = this.props;
+    const {
+      serviceName,
+      serviceNewName,
+      serviceLength,
+      serviceNewLength,
+    } = this.props;
     this.setState({ err: false, errMsg: '' });
-    if ((serviceNewName && serviceName) || !(serviceNewName || serviceName))
+    if (
+      (serviceNewName && serviceName) ||
+      !(serviceNewName || serviceName) ||
+      (serviceLength && serviceNewLength) ||
+      !(serviceLength || serviceNewLength)
+    )
       return this.setState({
         err: true,
         errMsg: 'You should choose one',
         visible: false,
       });
-    await editService({ serviceName, serviceNewName });
+    const { err, errMsg } = await editService({
+      serviceName,
+      serviceNewName,
+      serviceLength,
+      serviceNewLength,
+    });
     this.setState({ visible: false });
+    if (err) return this.setState({ err, errMsg });
+    this.setState({ err: false });
   };
 
   handleCancel = () => this.setState({ visible: false });
@@ -77,16 +94,27 @@ class EditService extends Component {
         {!loading ? (
           <div>
             <h2>Edit {serviceName} Service</h2>
-            {err && <span className="err-msg">{errMsg}</span>}
+            {err && <div className="err-msg"> {message.error(errMsg, 4)} </div>}
             <div className="edit__service-form">
-              <SelectService status={status} service={service} />
+              <div className="edit__service__form-item">
+                <p>Select Service:</p>
+                <SelectService status={status} service={service} />
+              </div>
               <ServiceInput status={status} />
-              <SelectServiceLength
-                status={status}
-                serviceLength={serviceLength}
-              />
+              <div className="edit__service__form-item">
+                <p>Select service length:</p>
+                <SelectServiceLength
+                  status={status}
+                  serviceLength={serviceLength}
+                />
+              </div>
               <ServiceLengthInput status={status} />
-              <Button onClick={this.showModal}>Save</Button>
+              <Button
+                className="edit__service__form-btn"
+                onClick={this.showModal}
+              >
+                Save
+              </Button>
               <Modal
                 title={`edit ${serviceName}`}
                 visible={visible}
@@ -107,10 +135,17 @@ class EditService extends Component {
 
 const mapStateToProps = state => {
   const { editSalonService } = state;
-  const { serviceName, serviceNewName } = editSalonService;
+  const {
+    serviceName,
+    serviceNewName,
+    serviceLength,
+    serviceNewLength,
+  } = editSalonService;
   return {
     serviceName,
     serviceNewName,
+    serviceLength,
+    serviceNewLength,
   };
 };
 
