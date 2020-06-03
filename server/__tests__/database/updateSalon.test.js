@@ -33,6 +33,7 @@ test('testing update salon query', async (done) => {
       'user_id',
       'name',
       'about',
+      'instgram_handle',
       'profile_image',
       'cover_image',
       'document',
