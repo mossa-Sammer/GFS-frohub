@@ -5,10 +5,15 @@ import { connect } from 'react-redux';
 import { Input } from 'antd';
 
 import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
+import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
 class ServiceInput extends Component {
   handleChange = e => {
-    const { status, editServiceAction: editService } = this.props;
+    const {
+      status,
+      editServiceAction: editService,
+      addServiceAction: addService,
+    } = this.props;
 
     const {
       target: { value },
@@ -26,6 +31,16 @@ class ServiceInput extends Component {
         value: '',
       });
     }
+    if (value) {
+      return addService({
+        fieldName: 'serviceNewLength',
+        value,
+      });
+    }
+    return addService({
+      fieldName: 'serviceNewLength',
+      value: '',
+    });
   };
 
   render() {
@@ -44,4 +59,6 @@ class ServiceInput extends Component {
   }
 }
 
-export default connect(null, { editServiceAction })(ServiceInput);
+export default connect(null, { editServiceAction, addServiceAction })(
+  ServiceInput
+);
