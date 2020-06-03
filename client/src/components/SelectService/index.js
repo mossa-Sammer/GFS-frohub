@@ -8,6 +8,7 @@ import { Loading } from '..';
 
 import getAllServices from './api';
 import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
+import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
 import './style.css';
 
@@ -22,8 +23,10 @@ class SelectService extends Component {
   async componentDidMount() {
     const { status } = this.props;
     this.setState({ loading: true });
+
     const services = await getAllServices();
     this.setState({ services, loading: false });
+
     if (status === 'editService') {
       const {
         service: { name },
@@ -47,6 +50,20 @@ class SelectService extends Component {
       });
     }
     return editService({
+      fieldName: 'serviceName',
+      value: '',
+    });
+  };
+
+  handleAdd = value => {
+    const { addServiceAction: addService } = this.props;
+    if (value) {
+      return addService({
+        fieldName: 'serviceName',
+        value,
+      });
+    }
+    return addService({
       fieldName: 'serviceName',
       value: '',
     });
@@ -87,9 +104,10 @@ class SelectService extends Component {
             <Select
               className="services__select"
               placeholder="Select service name"
+              onChange={this.handleAdd}
             >
               {services.map(service => (
-                <Option key={service.service_id}>{service.name}</Option>
+                <Option key={service.name}>{service.name}</Option>
               ))}
             </Select>
           )
@@ -101,4 +119,6 @@ class SelectService extends Component {
   }
 }
 
-export default connect(null, { editServiceAction })(SelectService);
+export default connect(null, { editServiceAction, addServiceAction })(
+  SelectService
+);
