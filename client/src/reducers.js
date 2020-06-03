@@ -10,6 +10,7 @@ import searchReducer, {
 import servicesReducer from './containers/Services/services.reducer';
 import advancedSearchReducer from './containers/Services/AdvancedSearch/advancedSearch.reducer';
 import editSalonServiceReducer from './containers/Stylist/Services/EditService/editService.reducers';
+import addNewSalonServiceReducer from './containers/Stylist/Services/NewSalonService/newService.reducesr';
 
 export default combineReducers({
   login: loginReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
   advancedSearchQueries: advancedSearchReducer,
   services: servicesReducer,
   editSalonService: editSalonServiceReducer,
+  newSalonService: addNewSalonServiceReducer,
 });
