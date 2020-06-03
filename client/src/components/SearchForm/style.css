@@ -14,7 +14,7 @@
 
 .close__collapse-box {
   width: 100vw;
-  height: 100vh;
+  min-height: 100px;
   position: fixed;
   z-index: 50;
   top: 0;
