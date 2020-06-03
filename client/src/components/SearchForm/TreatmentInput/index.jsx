@@ -114,7 +114,7 @@ class TreatmentInput extends Component {
             <Input
               className="select__treatment-input"
               prefix={<Icon type="search" />}
-              placeholder="Search hear and beauty"
+              placeholder="Search hair and beauty"
               onClick={closeCollapse}
               onChange={this.handleSearch}
               value={searchField}
