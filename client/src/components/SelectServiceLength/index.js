@@ -8,6 +8,7 @@ import { Loading } from '..';
 
 import { getServicesLengthes } from '../../containers/Stylist/Services/SalonServices/api';
 import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
+import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
 const { Option } = Select;
 
@@ -52,6 +53,21 @@ class SelectService extends Component {
     });
   };
 
+  handleAdd = value => {
+    const { addServiceAction: addService } = this.props;
+
+    if (value) {
+      return addService({
+        fieldName: 'serviceLength',
+        value,
+      });
+    }
+    return addService({
+      fieldName: 'serviceLength',
+      value: '',
+    });
+  };
+
   render() {
     let currentServiceLength = {};
     const { servicesLengthes, loading } = this.state;
@@ -85,6 +101,7 @@ class SelectService extends Component {
             <Select
               className="services__select"
               placeholder="Select service name"
+              onChange={this.handleAdd}
             >
               {servicesLengthes.map(length => (
                 <Option key={length.name}>{length.name}</Option>
@@ -99,4 +116,6 @@ class SelectService extends Component {
   }
 }
 
-export default connect(null, { editServiceAction })(SelectService);
+export default connect(null, { editServiceAction, addServiceAction })(
+  SelectService
+);
