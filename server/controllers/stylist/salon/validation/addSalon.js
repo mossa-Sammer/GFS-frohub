@@ -3,6 +3,7 @@ const yup = require('yup');
 const addSalonSchema = yup.object().shape({
   name: yup.string().min(3).required(),
   about: yup.string().min(10).required(),
+  instgramHandle: yup.string().min(3).required(),
   profileImage: yup.string().required(),
   coverImage: yup.string().required(),
   document: yup.string().default(null),

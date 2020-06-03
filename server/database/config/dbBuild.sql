@@ -36,6 +36,7 @@ CREATE TABLE salon (
   user_id INT REFERENCES "user"(user_id) on DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   about VARCHAR,
+  instgram_handle VARCHAR,
   profile_image VARCHAR,
   cover_image VARCHAR,
   document VARCHAR,
