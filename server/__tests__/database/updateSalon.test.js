@@ -18,6 +18,7 @@ test('testing update salon query', async (done) => {
       salonId,
       name: 'lolololol',
       about: 'lorem lorem lorem lorem',
+      instgramHandle: 'http://instgram.com/***',
       profileImage: 'image',
       coverImage: 'image',
       document: 'docu',

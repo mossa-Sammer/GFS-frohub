@@ -22,7 +22,7 @@ test('POST /api/salon ', async (done) => {
         userId: user.user_id,
         name: 'gfs salon',
         about: 'lorem ipsum is the simplest text in the world',
-        instgramHandle: 'http://instgram.com',
+        instgramHandle: 'http://instgram.com/***',
         profileImage: 'c',
         coverImage: 'c',
         document: '',
