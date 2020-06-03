@@ -17,6 +17,7 @@ class TreatmentInput extends Component {
     filteredTreatments: [],
     // eslint-disable-next-line react/destructuring-assignment
     searchField: this.props.searchQueries.treatmentName,
+    treatmentValue: false,
   };
 
   async componentDidMount() {
@@ -96,16 +97,28 @@ class TreatmentInput extends Component {
     let filteredData = treatments;
     if (value) {
       filteredData = searchLogic(value, filteredData);
-      this.setState(() => ({ filteredTreatments: filteredData }));
+      this.setState(() => ({
+        filteredTreatments: filteredData,
+        treatmentValue: true,
+      }));
     } else {
       this.setState(() => ({ filteredTreatments: treatments }));
     }
   };
 
+  handleClearInput = () => {
+    const { treatments } = this.state;
+    this.setState(() => ({
+      filteredTreatments: treatments,
+      searchField: '',
+      treatmentValue: false,
+    }));
+  };
+
   render() {
     const { loading, err, searchQueries, toClose, closeCollapse } = this.props;
     const { treatmentName: treatmentQuery } = searchQueries;
-    const { filteredTreatments, searchField } = this.state;
+    const { filteredTreatments, searchField, treatmentValue } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -142,6 +155,16 @@ class TreatmentInput extends Component {
                   onChange={this.handleSearch}
                   name="searchField"
                 />
+                {!treatmentValue ? (
+                  <></>
+                ) : (
+                  <Button
+                    className="clear__treatment__value-btn"
+                    onClick={this.handleClearInput}
+                  >
+                    X
+                  </Button>
+                )}
                 <Button
                   className="clear__search-btn"
                   onClick={this.handleClear}
