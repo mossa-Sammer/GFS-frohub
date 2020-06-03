@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 
 import { Input } from 'antd';
 
-import editServiceAction from '../../containers/Stylist/Services/EditService/selectService.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 
 class ServiceInput extends Component {
   async componentDidMount() {
     const { status } = this.props;
+
     if (status === 'editService') {
       const { price, editServiceAction: editService } = this.props;
       if (price)
@@ -21,9 +22,11 @@ class ServiceInput extends Component {
 
   handleChange = e => {
     const { status, editServiceAction: editService } = this.props;
+
     const {
       target: { value },
     } = e;
+
     if (status === 'editService') {
       if (value) {
         return editService({
@@ -41,10 +44,12 @@ class ServiceInput extends Component {
   render() {
     let defaultPrice = '';
     const { status } = this.props;
+
     if (status === 'editService') {
       const { price } = this.props;
       defaultPrice = price;
     }
+
     return (
       <Input
         className="new__service-input"

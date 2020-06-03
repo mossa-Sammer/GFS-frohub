@@ -7,7 +7,7 @@ import { Select } from 'antd';
 import { Loading } from '..';
 
 import { getServicesLengthes } from '../../containers/Stylist/Services/SalonServices/api';
-import editServiceAction from '../../containers/Stylist/Services/EditService/selectService.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 
 const { Option } = Select;
 
@@ -19,6 +19,7 @@ class SelectService extends Component {
 
   async componentDidMount() {
     const { status } = this.props;
+
     if (status === 'editService') {
       const {
         serviceLength: { name },
@@ -30,6 +31,7 @@ class SelectService extends Component {
           value: name,
         });
     }
+
     this.setState({ loading: true });
     const servicesLengthes = await getServicesLengthes();
     this.setState({ servicesLengthes, loading: false });
@@ -37,6 +39,7 @@ class SelectService extends Component {
 
   handleEdit = value => {
     const { editServiceAction: editService } = this.props;
+
     if (value) {
       return editService({
         fieldName: 'serviceLength',

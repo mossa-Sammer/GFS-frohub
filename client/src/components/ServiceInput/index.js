@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 
 import { Input } from 'antd';
 
-import editServiceAction from '../../containers/Stylist/Services/EditService/selectService.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 
 import './style.css';
 
 class ServiceInput extends Component {
   handleChange = e => {
     const { status, editServiceAction: editService } = this.props;
+
     const {
       target: { value },
     } = e;
+
     if (status === 'editService') {
       if (value) {
         return editService({

@@ -1,4 +1,4 @@
-/* eslint-disable no-nested-ternary */
+/* eslint-disable consistent-return, no-nested-ternary */
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { Select } from 'antd';
 import { Loading } from '..';
 
 import getAllServices from './api';
-import editServiceAction from '../../containers/Stylist/Services/EditService/selectService.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 
 import './style.css';
 
@@ -21,24 +21,25 @@ class SelectService extends Component {
 
   async componentDidMount() {
     const { status } = this.props;
+    this.setState({ loading: true });
+    const services = await getAllServices();
+    this.setState({ services, loading: false });
     if (status === 'editService') {
       const {
         service: { name },
         editServiceAction: editService,
       } = this.props;
       if (name)
-        editService({
+        return editService({
           fieldName: 'serviceName',
           value: name,
         });
     }
-    this.setState({ loading: true });
-    const services = await getAllServices();
-    this.setState({ services, loading: false });
   }
 
   handleEdit = value => {
     const { editServiceAction: editService } = this.props;
+
     if (value) {
       return editService({
         fieldName: 'serviceName',
@@ -55,10 +56,12 @@ class SelectService extends Component {
     let currentService = {};
     const { services, loading } = this.state;
     const { status } = this.props;
+
     if (status === 'editService') {
       const { service } = this.props;
       currentService = service;
     }
+
     return (
       <>
         {!loading ? (
