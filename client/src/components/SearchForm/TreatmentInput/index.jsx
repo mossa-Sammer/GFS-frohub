@@ -17,7 +17,6 @@ class TreatmentInput extends Component {
     filteredTreatments: [],
     // eslint-disable-next-line react/destructuring-assignment
     searchField: this.props.searchQueries.treatmentName,
-    treatmentValue: false,
   };
 
   async componentDidMount() {
@@ -99,7 +98,6 @@ class TreatmentInput extends Component {
       filteredData = searchLogic(value, filteredData);
       this.setState(() => ({
         filteredTreatments: filteredData,
-        treatmentValue: true,
       }));
     } else {
       this.setState(() => ({ filteredTreatments: treatments }));
@@ -111,14 +109,13 @@ class TreatmentInput extends Component {
     this.setState(() => ({
       filteredTreatments: treatments,
       searchField: '',
-      treatmentValue: false,
     }));
   };
 
   render() {
     const { loading, err, searchQueries, toClose, closeCollapse } = this.props;
     const { treatmentName: treatmentQuery } = searchQueries;
-    const { filteredTreatments, searchField, treatmentValue } = this.state;
+    const { filteredTreatments, searchField } = this.state;
     return (
       <div className="treatment__input">
         {err && message.error(err.message)}
@@ -155,7 +152,7 @@ class TreatmentInput extends Component {
                   onChange={this.handleSearch}
                   name="searchField"
                 />
-                {!treatmentValue ? (
+                {!searchField ? (
                   <></>
                 ) : (
                   <Button
