@@ -11,6 +11,7 @@ const editService = async fields => {
       serviceLength,
       serviceNewLength,
       price,
+      status,
     } = fields;
     service.price = price;
     if (serviceNewName) {
@@ -33,16 +34,27 @@ const editService = async fields => {
       service.length = serviceLength;
     }
     service.images = ['https://go.aws/2MnYmGY'];
-    const updatedService = await axios.patch(
-      `/salon/${salonId}/service/${salonServiceId}`,
-      service
-    );
-    if (updatedService.status === 200) {
+    if (status === 'edit') {
+      const updatedService = await axios.patch(
+        `/salon/${salonId}/service/${salonServiceId}`,
+        service
+      );
+      if (updatedService.status === 200) {
+        return {
+          err: false,
+          errMsg: '',
+          success: true,
+          successMsg: 'Updated Successfully',
+        };
+      }
+    }
+    const newService = await axios.post(`/salon/${salonId}/service`, service);
+    if (newService.status === 200) {
       return {
         err: false,
         errMsg: '',
         success: true,
-        successMsg: 'Updated Successfully',
+        successMsg: 'Added Successfully',
       };
     }
   } catch (err) {

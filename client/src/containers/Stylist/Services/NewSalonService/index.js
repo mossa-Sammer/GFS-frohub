@@ -1,4 +1,6 @@
+/* eslint-disable consistent-return */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Button, Modal, message } from 'antd';
@@ -12,6 +14,8 @@ import {
   ServicePriceInput,
 } from '../../../../components';
 
+import addService from '../EditService/helper';
+
 class NewSalonService extends Component {
   state = {
     visible: false,
@@ -22,7 +26,49 @@ class NewSalonService extends Component {
     errMsg: '',
   };
 
-  handleNewService = () => this.setState({ visible: false });
+  handleNewService = async () => {
+    const {
+      serviceName,
+      serviceNewName,
+      serviceLength,
+      serviceNewLength,
+      price,
+    } = this.props;
+
+    const salonId = 2;
+
+    this.setState({ err: false, errMsg: '' });
+
+    if (
+      (serviceNewName && serviceName) ||
+      !(serviceNewName || serviceName) ||
+      (serviceLength && serviceNewLength) ||
+      !(serviceLength || serviceNewLength)
+    )
+      return this.setState({
+        err: true,
+        errMsg: 'You should choose one',
+        visible: false,
+      });
+
+    if (!price)
+      return this.setState({
+        err: true,
+        errMsg: 'All fields are required',
+        visible: false,
+      });
+    // const { err, errMsg, success, successMsg } =
+    await addService({
+      serviceName,
+      serviceNewName,
+      serviceLength,
+      serviceNewLength,
+      price,
+      salonId,
+      status: 'new',
+    });
+    this.setState({ visible: false });
+  };
 
   handleCancel = () => this.setState({ visible: false });
 
@@ -81,4 +127,23 @@ class NewSalonService extends Component {
   }
 }
 
-export default withRouter(NewSalonService);
+const mapStateToProps = state => {
+  const {
+    newSalonService: {
+      serviceName,
+      serviceNewName,
+      serviceLength,
+      serviceNewLength,
+      price,
+    },
+  } = state;
+  return {
+    serviceName,
+    serviceNewName,
+    serviceLength,
+    serviceNewLength,
+    price,
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(NewSalonService));

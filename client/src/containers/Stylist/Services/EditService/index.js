@@ -94,6 +94,7 @@ class EditService extends Component {
       serviceLength,
       serviceNewLength,
       price,
+      status: 'edit',
     });
     this.setState({ visible: false });
     if (err) return this.setState({ err, errMsg });
