@@ -18,6 +18,7 @@ test('API PATCH /api/salon', async (done) => {
         salonId,
         name: 'update salon',
         about: 'lorem lorem lorem',
+        instgramHandle: 'http://instgram.com/***',
         profileImage: 'pro',
         coverImage: 'cover',
         document: 'ddd',

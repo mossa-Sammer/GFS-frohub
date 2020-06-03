@@ -14,6 +14,7 @@ test('adding a new salon for an existing user', async () => {
     userId: user.user_id,
     name: 'aaa salon',
     about: 'lorem ipsum is a fake text to add to make a paragrphs with no mening and blablabla',
+    instgramHandle: 'http://instgram.com/***',
     profileImage: '',
     coverImage: '',
     document: '',

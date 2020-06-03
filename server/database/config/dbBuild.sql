@@ -13,8 +13,9 @@ CREATE TABLE "user"(
   user_id SERIAL PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
-  email VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
   phone_number VARCHAR,
+  calling_code VARCHAR(10) NOT NULL, 
   password VARCHAR NOT NULL,
   role user_role NOT NULL,
   country VARCHAR(2) NOT NULL
@@ -35,6 +36,7 @@ CREATE TABLE salon (
   user_id INT REFERENCES "user"(user_id) on DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   about VARCHAR,
+  instgram_handle VARCHAR,
   profile_image VARCHAR,
   cover_image VARCHAR,
   document VARCHAR,

@@ -36,14 +36,18 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // error handler
+// eslint-disable-next-line consistent-return
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, _next) => {
   let errObj = { message: err.message };
-  // console.log(11111111, err);
   // for boom errors
   if (err.isBoom) {
     const { statusCode } = err.output;
     res.status(err.output.statusCode || 500);
+    if (statusCode === 400) {
+      errObj.errors = err.data;
+      res.status(statusCode).json(errObj);
+    }
     if (statusCode === 409 || statusCode === 422) {
       errObj = err.data;
     }
