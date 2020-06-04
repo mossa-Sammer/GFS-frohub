@@ -58,11 +58,15 @@ const editService = async fields => {
       };
     }
   } catch (err) {
+    let errMsg = '';
     const { error } = err.response.data;
-    const { message } = error;
+
+    if (!error) errMsg = err.response.data.message;
+    else errMsg = error.message;
+
     return {
       err: true,
-      errMsg: message,
+      errMsg,
       success: false,
       successMsg: '',
     };

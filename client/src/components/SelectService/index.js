@@ -105,6 +105,7 @@ class SelectService extends Component {
               className="services__select"
               placeholder="Select service name"
               onChange={this.handleAdd}
+              allowClear
             >
               {services.map(service => (
                 <Option key={service.name}>{service.name}</Option>

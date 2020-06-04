@@ -23,11 +23,15 @@ class SalonServices extends Component {
   }
 
   handleEdit = service => {
-    const { name, salon_service_id: salonServiceId } = service;
+    const {
+      name,
+      salon_service_id: salonServiceId,
+      salon_service_name: salonServiceName,
+    } = service;
     const { history } = this.props;
     history.push({
       pathname: STYLIST_EDIT_SERVICE_URL,
-      search: `${name}${salonServiceId}`,
+      search: `${name} ${salonServiceName} ${salonServiceId}`,
       state: { service },
     });
   };
@@ -42,7 +46,9 @@ class SalonServices extends Component {
           salonServices.length &&
           salonServices.map(service => (
             <div className="service__container" key={service.salon_service_id}>
-              <span className="service_name">{service.name}</span>
+              <span className="service_name">
+                {service.salon_service_name} {service.name}
+              </span>
               <div className="edit__service">
                 <Button onClick={() => this.handleEdit(service)}>edit</Button>
               </div>

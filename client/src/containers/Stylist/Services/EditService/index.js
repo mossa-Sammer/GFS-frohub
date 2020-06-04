@@ -28,6 +28,7 @@ class EditService extends Component {
     price: '',
     loading: false,
     serviceName: '',
+    salonServiceName: '',
     success: false,
     successMsg: '',
     err: false,
@@ -45,6 +46,7 @@ class EditService extends Component {
       salon_service_id: salonServiceId,
       name,
       price,
+      salon_service_name: salonServiceName,
     } = service;
     const salonService = await getSalonService(salonServiceId);
     const serviceLength = await getSalonServiceLength(salonServiceId);
@@ -52,6 +54,7 @@ class EditService extends Component {
       service: salonService,
       loading: false,
       serviceName: name,
+      salonServiceName,
       serviceLength,
       price,
       salonServiceId,
@@ -117,13 +120,16 @@ class EditService extends Component {
       err,
       errMsg,
       serviceLength,
+      salonServiceName,
       price,
     } = this.state;
     return (
       <>
         {!loading ? (
           <div>
-            <h2>Edit {serviceName} Service</h2>
+            <h2>
+              Edit {serviceName} {salonServiceName}
+            </h2>
             {err && <div className="err-msg"> {message.error(errMsg, 2)} </div>}
             {success && (
               <div className="success-msg">

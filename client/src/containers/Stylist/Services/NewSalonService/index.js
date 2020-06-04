@@ -57,8 +57,7 @@ class NewSalonService extends Component {
         errMsg: 'All fields are required',
         visible: false,
       });
-    // const { err, errMsg, success, successMsg } =
-    await addService({
+    const { err, errMsg, success, successMsg } = await addService({
       serviceName,
       serviceNewName,
       serviceLength,
@@ -68,6 +67,8 @@ class NewSalonService extends Component {
       status: 'new',
     });
     this.setState({ visible: false });
+    if (err) return this.setState({ err, errMsg });
+    if (success) return this.setState({ err: false, success, successMsg });
   };
 
   handleCancel = () => this.setState({ visible: false });
