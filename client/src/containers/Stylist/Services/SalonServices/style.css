@@ -15,3 +15,9 @@
 .edit__service {
 	width: 50%;
 }
+
+.edit__service-btn.ant-btn {
+  color: var(--primary-color) !important;
+	border-color: var(--primary-color) !important;
+	text-align: center;
+}

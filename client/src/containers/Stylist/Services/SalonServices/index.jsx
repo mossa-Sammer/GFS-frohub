@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 
 import { getSalonServices } from './api';
 
@@ -50,7 +50,13 @@ class SalonServices extends Component {
                 {service.salon_service_name} {service.name}
               </span>
               <div className="edit__service">
-                <Button onClick={() => this.handleEdit(service)}>edit</Button>
+                <Button
+                  className="edit__service-btn"
+                  onClick={() => this.handleEdit(service)}
+                >
+                  <Icon type="setting" />
+                  Edit
+                </Button>
               </div>
             </div>
           ))
