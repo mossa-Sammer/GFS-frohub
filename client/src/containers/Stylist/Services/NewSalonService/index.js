@@ -12,6 +12,7 @@ import {
   SelectServiceLength,
   ServiceLengthInput,
   ServicePriceInput,
+  SalonServiceImages,
 } from '../../../../components';
 
 import addService from '../EditService/helper';
@@ -104,6 +105,15 @@ class NewSalonService extends Component {
                 <p>Price: </p>
                 <ServicePriceInput status={status} />
               </div>
+              {/* <div className="new__service__form-item">
+                <p>
+                  upload up to 3 pictures for this service. Have a look on our{' '}
+                  <span className="guideline-link">
+                    Guidelines for best picture practices.
+                  </span>
+                </p>
+                <SalonServiceImages status={status} />
+              </div> */}
               <div className="new__service__form-item">
                 <Button
                   className="new__service__form-btn"

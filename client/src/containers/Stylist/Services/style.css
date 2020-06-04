@@ -6,6 +6,15 @@
 	height: 40px;
 }
 
+.new__service__form-item {
+	margin-top: 10px;
+}
+
+.guideline-link {
+	color: #56A2FD;
+	text-decoration: underline;
+}
+
 .new__service__form-btn.ant-btn,
 .new__service-btn.ant-btn,
 .edit__service__form-btn.ant-btn {

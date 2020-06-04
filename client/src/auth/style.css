@@ -50,6 +50,6 @@
 
 @media only screen and (max-width: 425px){
 	.stylist__main-content.ant-layout-content {
-		padding-top: 50px;
+		padding-top: 35px;
 	}
 }
