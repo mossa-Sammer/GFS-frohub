@@ -34,6 +34,10 @@
 	width: 40%;
 }
 
+.edit__service__form-item.edit__btn-item {
+	height: 67px;
+}
+
 @media only screen and (max-width: 425px) {
 	.new__service-input.ant-input,
 	.services__select.ant-select {
@@ -42,5 +46,6 @@
 	.edit__service__form-btn.ant-btn,
 	.new__service__form-btn.ant-btn {
 		width: 100%;
+		height: 38px;
 	}
 }

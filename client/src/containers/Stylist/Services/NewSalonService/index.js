@@ -104,12 +104,14 @@ class NewSalonService extends Component {
                 <p>Price: </p>
                 <ServicePriceInput status={status} />
               </div>
-              <Button
-                className="new__service__form-btn"
-                onClick={this.showModal}
-              >
-                Save
-              </Button>
+              <div className="new__service__form-item">
+                <Button
+                  className="new__service__form-btn"
+                  onClick={this.showModal}
+                >
+                  Save
+                </Button>
+              </div>
               <Modal
                 title="Add new Service"
                 visible={visible}

@@ -155,12 +155,14 @@ class EditService extends Component {
                 <p>Price: </p>
                 <ServicePriceInput status={status} price={price} />
               </div>
-              <Button
-                className="edit__service__form-btn"
-                onClick={this.showModal}
-              >
-                Save
-              </Button>
+              <div className="edit__service__form-item edit__btn-item">
+                <Button
+                  className="edit__service__form-btn"
+                  onClick={this.showModal}
+                >
+                  Save
+                </Button>
+              </div>
               <Modal
                 title={`edit ${serviceName}`}
                 visible={visible}
