@@ -1,10 +1,11 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable consistent-return, no-param-reassign  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Upload, Icon, Modal } from 'antd';
 import axios from '../../axios-config';
 
 import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
+import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -67,14 +68,24 @@ class ServiceImages extends Component {
   };
 
   handleUpload = async ({ file }) => {
-    const { editServiceAction: editService } = this.props;
+    const {
+      editServiceAction: editService,
+      addServiceAction: addService,
+    } = this.props;
+    const { status } = this.props;
     const link = await axios.post(`/upload/${2}`, {
       contentTypes: [file.type],
     });
     const {
       data: { images },
     } = link;
-    editService({
+    if (status === 'editService') {
+      return editService({
+        fieldName: 'serviceImage',
+        value: images,
+      });
+    }
+    return addService({
       fieldName: 'serviceImage',
       value: images,
     });
@@ -110,4 +121,6 @@ class ServiceImages extends Component {
   }
 }
 
-export default connect(null, { editServiceAction })(ServiceImages);
+export default connect(null, { editServiceAction, addServiceAction })(
+  ServiceImages
+);

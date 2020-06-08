@@ -70,9 +70,12 @@ class EditService extends Component {
       serviceLength,
       serviceNewLength,
       price,
+      images,
     } = this.props;
+
     const { salonServiceId, salonId } = this.state;
     this.setState({ err: false, errMsg: '' });
+
     if (
       (serviceNewName && serviceName) ||
       !(serviceNewName || serviceName) ||
@@ -84,7 +87,7 @@ class EditService extends Component {
         errMsg: 'You should choose one',
         visible: false,
       });
-    if (!price)
+    if (!price || !images.length)
       return this.setState({
         err: true,
         errMsg: 'All fields are required',
@@ -98,6 +101,7 @@ class EditService extends Component {
       serviceLength,
       serviceNewLength,
       price,
+      images,
       status: 'edit',
     });
     this.setState({ visible: false });
@@ -203,6 +207,7 @@ const mapStateToProps = state => {
     serviceLength,
     serviceNewLength,
     price,
+    images,
   } = editSalonService;
   return {
     serviceName,
@@ -210,6 +215,7 @@ const mapStateToProps = state => {
     serviceLength,
     serviceNewLength,
     price,
+    images,
   };
 };
 

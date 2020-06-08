@@ -4,6 +4,7 @@ import {
   ADD_SERVICE_LENGTH_INPUT,
   ADD_SERVICE_NEW_LENGTH_INPUT,
   ADD_SERVICE_PRICE_INPUT,
+  ADD_SERVICE_IMAGES,
 } from './newService.actions';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   serviceLength: '',
   serviceNewLength: '',
   price: '',
+  images: [],
 };
 
 export default (state = initialState, action) => {
@@ -44,6 +46,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         price: action.payload,
+      };
+    }
+    case ADD_SERVICE_IMAGES: {
+      const { images } = state;
+      return {
+        ...state,
+        images: images.concat(action.payload),
       };
     }
     default:

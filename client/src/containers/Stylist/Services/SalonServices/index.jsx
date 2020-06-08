@@ -45,7 +45,7 @@ class SalonServices extends Component {
         ) : (
           salonServices.length &&
           salonServices.map(service => (
-            <div className="service__container" key={service.salon_service_id}>
+            <div className="service__container" key={Math.random()}>
               <span className="service_name">
                 {service.salon_service_name} {service.name}
               </span>

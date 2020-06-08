@@ -34,8 +34,8 @@ class NewSalonService extends Component {
       serviceLength,
       serviceNewLength,
       price,
+      images,
     } = this.props;
-
     const salonId = 2;
 
     this.setState({ err: false, errMsg: '' });
@@ -52,7 +52,7 @@ class NewSalonService extends Component {
         visible: false,
       });
 
-    if (!price)
+    if (!price || !images.length)
       return this.setState({
         err: true,
         errMsg: 'All fields are required',
@@ -65,6 +65,7 @@ class NewSalonService extends Component {
       serviceNewLength,
       price,
       salonId,
+      images,
       status: 'new',
     });
     this.setState({ visible: false });
@@ -105,7 +106,7 @@ class NewSalonService extends Component {
                 <p>Price: </p>
                 <ServicePriceInput status={status} />
               </div>
-              {/* <div className="new__service__form-item">
+              <div className="new__service__form-item">
                 <p>
                   upload up to 3 pictures for this service. Have a look on our{' '}
                   <span className="guideline-link">
@@ -113,7 +114,7 @@ class NewSalonService extends Component {
                   </span>
                 </p>
                 <SalonServiceImages status={status} />
-              </div> */}
+              </div>
               <div className="new__service__form-item">
                 <Button
                   className="new__service__form-btn"
@@ -148,6 +149,7 @@ const mapStateToProps = state => {
       serviceLength,
       serviceNewLength,
       price,
+      images,
     },
   } = state;
   return {
@@ -156,6 +158,7 @@ const mapStateToProps = state => {
     serviceLength,
     serviceNewLength,
     price,
+    images,
   };
 };
 

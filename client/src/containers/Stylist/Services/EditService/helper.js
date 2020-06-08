@@ -12,6 +12,7 @@ const editService = async fields => {
       serviceNewLength,
       price,
       status,
+      images,
     } = fields;
     service.price = price;
     if (serviceNewName) {
@@ -33,8 +34,9 @@ const editService = async fields => {
     } else {
       service.length = serviceLength;
     }
-    service.images = ['https://go.aws/2MnYmGY'];
+    service.images = images;
     if (status === 'edit') {
+      service.images = images;
       const updatedService = await axios.patch(
         `/salon/${salonId}/service/${salonServiceId}`,
         service
