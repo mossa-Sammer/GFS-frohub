@@ -123,6 +123,7 @@ class EditService extends Component {
       serviceLength,
       salonServiceName,
       price,
+      salonServiceId,
     } = this.state;
     return (
       <>
@@ -163,7 +164,10 @@ class EditService extends Component {
                     Guidelines for best picture practices.
                   </span>
                 </p>
-                <SalonServiceImages status={status} />
+                <SalonServiceImages
+                  status={status}
+                  salonServiceId={salonServiceId}
+                />
               </div>
               <div className="edit__service__form-item edit__btn-item">
                 <Button

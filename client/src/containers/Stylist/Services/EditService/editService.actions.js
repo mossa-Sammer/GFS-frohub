@@ -3,6 +3,7 @@ export const EDIT_SERVICE_NEW_NAME_INPUT = 'EDIT_SERVICE_NEW_NAME_INPUT';
 export const EDIT_SERVICE_LENGTH_INPUT = 'EDIT_SERVICE_LENGTH_INPUT';
 export const EDIT_SERVICE_NEW_LENGTH_INPUT = 'EDIT_SERVICE_NEW_LENGTH_INPUT';
 export const EDIT_SERVICE_PRICE_INPUT = 'EDIT_SERVICE_PRICE_INPUT';
+export const EDIT_SERVICE_IMAGES = 'EDIT_SERVICE_IMAGES';
 
 export default inputField => async dispatch => {
   switch (inputField.fieldName) {
@@ -33,6 +34,12 @@ export default inputField => async dispatch => {
     case 'servicePrice':
       dispatch({
         type: EDIT_SERVICE_PRICE_INPUT,
+        payload: inputField.value,
+      });
+      break;
+    case 'serviceImage':
+      dispatch({
+        type: EDIT_SERVICE_IMAGES,
         payload: inputField.value,
       });
       break;
