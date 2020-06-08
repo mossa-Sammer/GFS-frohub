@@ -4,7 +4,8 @@
 .ant-btn.close__treatments-btn,
 .clear__search-btn.ant-btn,
 .hr,
-.close__btn-box {
+.close__btn-box,
+.ant-btn.clear__treatment__value-btn {
 	display: none;
 }
 
@@ -97,5 +98,7 @@
 	border-color: #e05747 ;
 }
 
-
+.treatments__options-box .treatment__option-box .ant-radio-wrapper {
+	width: 90%;
+}
 
