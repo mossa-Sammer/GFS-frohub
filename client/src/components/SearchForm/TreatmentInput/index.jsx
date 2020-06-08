@@ -96,10 +96,20 @@ class TreatmentInput extends Component {
     let filteredData = treatments;
     if (value) {
       filteredData = searchLogic(value, filteredData);
-      this.setState(() => ({ filteredTreatments: filteredData }));
+      this.setState(() => ({
+        filteredTreatments: filteredData,
+      }));
     } else {
       this.setState(() => ({ filteredTreatments: treatments }));
     }
+  };
+
+  handleClearInput = () => {
+    const { treatments } = this.state;
+    this.setState(() => ({
+      filteredTreatments: treatments,
+      searchField: '',
+    }));
   };
 
   render() {
@@ -114,7 +124,7 @@ class TreatmentInput extends Component {
             <Input
               className="select__treatment-input"
               prefix={<Icon type="search" />}
-              placeholder="Search hear and beauty"
+              placeholder="Search hair and beauty"
               onClick={closeCollapse}
               onChange={this.handleSearch}
               value={searchField}
@@ -142,6 +152,16 @@ class TreatmentInput extends Component {
                   onChange={this.handleSearch}
                   name="searchField"
                 />
+                {!searchField ? (
+                  <></>
+                ) : (
+                  <Button
+                    className="clear__treatment__value-btn"
+                    onClick={this.handleClearInput}
+                  >
+                    X
+                  </Button>
+                )}
                 <Button
                   className="clear__search-btn"
                   onClick={this.handleClear}
