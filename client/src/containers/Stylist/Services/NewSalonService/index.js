@@ -16,6 +16,7 @@ import {
 } from '../../../../components';
 
 import addService from '../EditService/helper';
+import { STYLIST_SERVICES_URL } from '../../../../routes_urls';
 
 class NewSalonService extends Component {
   state = {
@@ -35,6 +36,7 @@ class NewSalonService extends Component {
       serviceNewLength,
       price,
       images,
+      history,
     } = this.props;
     const salonId = 2;
 
@@ -70,7 +72,8 @@ class NewSalonService extends Component {
     });
     this.setState({ visible: false });
     if (err) return this.setState({ err, errMsg });
-    if (success) return this.setState({ err: false, success, successMsg });
+    if (success) this.setState({ err: false, success, successMsg });
+    setTimeout(() => history.push(STYLIST_SERVICES_URL), 3000);
   };
 
   handleCancel = () => this.setState({ visible: false });

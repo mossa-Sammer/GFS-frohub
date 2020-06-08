@@ -19,6 +19,8 @@ import editService from './helper';
 
 import './style.css';
 
+import { STYLIST_SERVICES_URL } from '../../../../routes_urls';
+
 class EditService extends Component {
   state = {
     visible: false,
@@ -71,6 +73,7 @@ class EditService extends Component {
       serviceNewLength,
       price,
       images,
+      history,
     } = this.props;
 
     const { salonServiceId, salonId } = this.state;
@@ -106,7 +109,8 @@ class EditService extends Component {
     });
     this.setState({ visible: false });
     if (err) return this.setState({ err, errMsg });
-    if (success) return this.setState({ err: false, success, successMsg });
+    if (success) this.setState({ err: false, success, successMsg });
+    setTimeout(() => history.push(STYLIST_SERVICES_URL), 3000);
   };
 
   handleCancel = () => this.setState({ visible: false });
