@@ -10,10 +10,10 @@ const router = express.Router();
 router.post('/login', login);
 
 router.post('/signup', signup);
-router.post('/upload/:id', uploads.uploadFiles);
 router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 
+router.post('/upload/:id', uploads.uploadFiles);
 // Stylist/Personal
 
 router.get('/user/:id/personal', personal.getUser);
@@ -51,6 +51,7 @@ router.get('/service/:id/length/', services.getServiceLength);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
+router.get('/service/:id/images', services.getServiceImages);
 
 // catch 404 and forward to error handler
 router.use((req, res, next) => {
