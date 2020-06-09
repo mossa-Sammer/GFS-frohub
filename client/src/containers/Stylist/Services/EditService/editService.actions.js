@@ -1,3 +1,5 @@
+import { SALON_SERVICE_ERROR } from '../NewSalonService/newService.actions';
+
 export const EDIT_SERVICE_NAME_INPUT = 'EDIT_SERVICE_NAME_INPUT';
 export const EDIT_SERVICE_NEW_NAME_INPUT = 'EDIT_SERVICE_NEW_NAME_INPUT';
 export const EDIT_SERVICE_LENGTH_INPUT = 'EDIT_SERVICE_LENGTH_INPUT';
@@ -40,6 +42,12 @@ export default inputField => async dispatch => {
     case 'serviceImage':
       dispatch({
         type: EDIT_SERVICE_IMAGES,
+        payload: inputField.value,
+      });
+      break;
+    case 'serviceError':
+      dispatch({
+        type: SALON_SERVICE_ERROR,
         payload: inputField.value,
       });
       break;

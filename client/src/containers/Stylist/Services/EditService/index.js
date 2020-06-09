@@ -16,6 +16,7 @@ import {
 
 import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
 import editService from './helper';
+import editServiceAction from './editService.actions';
 
 import './style.css';
 
@@ -44,6 +45,7 @@ class EditService extends Component {
     const {
       state: { service },
     } = location;
+
     const {
       salon_id: salonId,
       salon_service_id: salonServiceId,
@@ -51,8 +53,10 @@ class EditService extends Component {
       price,
       salon_service_name: salonServiceName,
     } = service;
+
     const salonService = await getSalonService(salonServiceId);
     const serviceLength = await getSalonServiceLength(salonServiceId);
+
     this.setState({
       service: salonService,
       loading: false,
@@ -74,28 +78,36 @@ class EditService extends Component {
       price,
       images,
       history,
+      editServiceAction: handleEditService,
     } = this.props;
 
     const { salonServiceId, salonId } = this.state;
-    this.setState({ err: false, errMsg: '' });
 
     if (
       (serviceNewName && serviceName) ||
       !(serviceNewName || serviceName) ||
       (serviceLength && serviceNewLength) ||
       !(serviceLength || serviceNewLength)
-    )
-      return this.setState({
-        err: true,
-        errMsg: 'You should choose one',
+    ) {
+      this.setState({
         visible: false,
       });
-    if (!price || !images.length)
-      return this.setState({
-        err: true,
-        errMsg: 'All fields are required',
+      return handleEditService({
+        fieldName: 'serviceError',
+        value: 'You should choose one',
+      });
+    }
+
+    if (!price || !images.length) {
+      this.setState({
         visible: false,
       });
+      return handleEditService({
+        fieldName: 'serviceError',
+        value: 'All fields are required',
+      });
+    }
+
     const { err, errMsg, success, successMsg } = await editService({
       salonId,
       salonServiceId,
@@ -107,9 +119,18 @@ class EditService extends Component {
       images,
       status: 'edit',
     });
+
     this.setState({ visible: false });
-    if (err) return this.setState({ err, errMsg });
-    if (success) this.setState({ err: false, success, successMsg });
+
+    if (err) {
+      return handleEditService({
+        fieldName: 'serviceError',
+        value: errMsg,
+      });
+    }
+
+    if (success) this.setState({ success, successMsg });
+
     setTimeout(() => history.push(STYLIST_SERVICES_URL), 3000);
   };
 
@@ -119,6 +140,7 @@ class EditService extends Component {
 
   render() {
     const status = 'editService';
+
     const {
       loading,
       service,
@@ -126,13 +148,14 @@ class EditService extends Component {
       visible,
       success,
       successMsg,
-      err,
-      errMsg,
       serviceLength,
       salonServiceName,
       price,
       salonServiceId,
     } = this.state;
+
+    const { err, errMsg } = this.props;
+
     return (
       <>
         {!loading ? (
@@ -212,6 +235,8 @@ const mapStateToProps = state => {
     serviceNewLength,
     price,
     images,
+    err,
+    errMsg,
   } = editSalonService;
   return {
     serviceName,
@@ -220,7 +245,9 @@ const mapStateToProps = state => {
     serviceNewLength,
     price,
     images,
+    err,
+    errMsg,
   };
 };
 
-export default connect(mapStateToProps)(EditService);
+export default connect(mapStateToProps, { editServiceAction })(EditService);
