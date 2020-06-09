@@ -4,6 +4,7 @@ export const ADD_SERVICE_LENGTH_INPUT = 'ADD_SERVICE_LENGTH_INPUT';
 export const ADD_SERVICE_NEW_LENGTH_INPUT = 'ADD_SERVICE_NEW_LENGTH_INPUT';
 export const ADD_SERVICE_PRICE_INPUT = 'ADD_SERVICE_PRICE_INPUT';
 export const ADD_SERVICE_IMAGES = 'ADD_SERVICE_IMAGES';
+export const SALON_SERVICE_ERROR = 'SALON_SERVICE_ERROR';
 
 export default inputField => async dispatch => {
   switch (inputField.fieldName) {
@@ -40,6 +41,12 @@ export default inputField => async dispatch => {
     case 'serviceImage':
       dispatch({
         type: ADD_SERVICE_IMAGES,
+        payload: inputField.value,
+      });
+      break;
+    case 'serviceError':
+      dispatch({
+        type: SALON_SERVICE_ERROR,
         payload: inputField.value,
       });
       break;

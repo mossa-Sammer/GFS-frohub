@@ -16,6 +16,7 @@ import {
 } from '../../../../components';
 
 import addService from '../EditService/helper';
+import addServiceAction from './newService.actions';
 import { STYLIST_SERVICES_URL } from '../../../../routes_urls';
 
 class NewSalonService extends Component {
@@ -24,8 +25,6 @@ class NewSalonService extends Component {
     loading: false,
     success: false,
     successMsg: '',
-    err: false,
-    errMsg: '',
   };
 
   handleNewService = async () => {
@@ -37,29 +36,34 @@ class NewSalonService extends Component {
       price,
       images,
       history,
+      addServiceAction: addNewService,
     } = this.props;
     const salonId = 2;
-
-    this.setState({ err: false, errMsg: '' });
 
     if (
       (serviceNewName && serviceName) ||
       !(serviceNewName || serviceName) ||
       (serviceLength && serviceNewLength) ||
       !(serviceLength || serviceNewLength)
-    )
-      return this.setState({
-        err: true,
-        errMsg: 'You should choose one',
+    ) {
+      this.setState({
         visible: false,
       });
+      return addNewService({
+        fieldName: 'serviceError',
+        value: 'You should choose one',
+      });
+    }
 
-    if (!price || !images.length)
-      return this.setState({
-        err: true,
-        errMsg: 'All fields are required',
+    if (!price || !images.length) {
+      this.setState({
         visible: false,
       });
+      return addNewService({
+        fieldName: 'serviceError',
+        value: 'All fields are required',
+      });
+    }
     const { err, errMsg, success, successMsg } = await addService({
       serviceName,
       serviceNewName,
@@ -71,8 +75,12 @@ class NewSalonService extends Component {
       status: 'new',
     });
     this.setState({ visible: false });
-    if (err) return this.setState({ err, errMsg });
-    if (success) this.setState({ err: false, success, successMsg });
+    if (err)
+      return addNewService({
+        fieldName: 'serviceError',
+        value: errMsg,
+      });
+    if (success) this.setState({ success, successMsg });
     setTimeout(() => history.push(STYLIST_SERVICES_URL), 3000);
   };
 
@@ -82,7 +90,8 @@ class NewSalonService extends Component {
 
   render() {
     const status = 'newService';
-    const { loading, visible, success, successMsg, err, errMsg } = this.state;
+    const { loading, visible, success, successMsg } = this.state;
+    const { err, errMsg } = this.props;
     return (
       <>
         {!loading ? (
@@ -153,6 +162,8 @@ const mapStateToProps = state => {
       serviceNewLength,
       price,
       images,
+      err,
+      errMsg,
     },
   } = state;
   return {
@@ -162,7 +173,11 @@ const mapStateToProps = state => {
     serviceNewLength,
     price,
     images,
+    err,
+    errMsg,
   };
 };
 
-export default connect(mapStateToProps)(withRouter(NewSalonService));
+export default connect(mapStateToProps, { addServiceAction })(
+  withRouter(NewSalonService)
+);
