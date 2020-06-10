@@ -8,6 +8,12 @@ const {
 } = require('./stylist');
 const uploads = require('./uploads');
 
+const {
+  servicesByAdmin,
+  lengthesByAdmin,
+  stylistByAdmin,
+} = require('./admin');
+
 module.exports = {
   login,
   signup,
@@ -19,4 +25,7 @@ module.exports = {
   salon,
   services,
   uploads,
+  servicesByAdmin,
+  lengthesByAdmin,
+  stylistByAdmin,
 };

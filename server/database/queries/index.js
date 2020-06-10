@@ -25,6 +25,16 @@ const {
   addSalonService,
 } = require('./salon');
 
+const {
+  checkAdmin,
+  getAllServices: getServicesByAdmin,
+  getAllServicesLengthes,
+  insertService: insertServiceByAdmin,
+  insertServiceLength,
+  updateService,
+  updateServiceLength,
+} = require('./admin');
+
 module.exports = {
   insertStylistBusiness,
   updateStylistBusiness,
@@ -44,4 +54,11 @@ module.exports = {
   updateSalonService,
   getFinance,
   deleteSalonServiceImages,
+  checkAdmin,
+  getServicesByAdmin,
+  getAllServicesLengthes,
+  insertServiceByAdmin,
+  insertServiceLength,
+  updateService,
+  updateServiceLength,
 };

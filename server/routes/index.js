@@ -2,7 +2,19 @@ const boom = require('@hapi/boom');
 const express = require('express');
 
 const {
-  login, signup, auth, getTreatments, personal, business, finance, salon, services, uploads,
+  login,
+  signup,
+  auth,
+  getTreatments,
+  personal,
+  business,
+  finance,
+  salon,
+  services,
+  uploads,
+  stylistByAdmin,
+  lengthesByAdmin,
+  servicesByAdmin,
 } = require('../controllers');
 
 const router = express.Router();
@@ -50,6 +62,18 @@ router.get('/services/lengthes', services.getServicesLengthes);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
+
+// admin
+router.post('/admin/:id/service', servicesByAdmin.insertService);
+router.post('/admin/:id/services/length', lengthesByAdmin.insertServiceLength);
+router.get('/admin/:id/services', servicesByAdmin.getServices);
+router.get('/admin/:id/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
+router.get('/admin/:id/stylists', stylistByAdmin.getAllStylists);
+router.get('/admin/:id/stylist/:stylistId', stylistByAdmin.getStylistProfile);
+router.get('/admin/:id/stylist/:stylistId/services', stylistByAdmin.getStylistServices);
+router.patch('/admin/:id/service/:serviceId', servicesByAdmin.updateService);
+router.patch('/admin/:id/services/length/:lengthId', servicesByAdmin.updateService);
+
 
 // catch 404 and forward to error handler
 router.use((req, res, next) => {
