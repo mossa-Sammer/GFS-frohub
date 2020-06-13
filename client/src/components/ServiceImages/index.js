@@ -77,17 +77,24 @@ class ServiceImages extends Component {
       contentTypes: [file.type],
     });
     const {
-      data: { images },
+      data: { promises },
     } = link;
+    // console.log(77777777777, link);
+    const mm = await axios.put(promises[0], file.blob, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
+    console.log(9999999999999, mm);
     if (status === 'editService') {
       return editService({
         fieldName: 'serviceImage',
-        value: images,
+        value: promises[0],
       });
     }
     return addService({
       fieldName: 'serviceImage',
-      value: images,
+      value: promises[0],
     });
   };
 
