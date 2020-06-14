@@ -19,13 +19,12 @@ test('POST /api/salon ', async (done) => {
 
     const data = {
       salon: {
-        userId: user.user_id,
         name: 'gfs salon',
         about: 'lorem ipsum is the simplest text in the world',
         instgramHandle: 'http://instgram.com/***',
         profileImage: 'c',
         coverImage: 'c',
-        document: '',
+        document: 'm',
         type: 'mobile',
         street: 'hmeed',
         city: 'gaza',
@@ -91,7 +90,7 @@ test('POST /api/salon ', async (done) => {
     ];
 
     const res = await request(app)
-      .post('/api/salon')
+      .post(`/api/salon/${user.user_id}`)
       .send(data).expect(200)
       .expect('Content-Type', /json/);
     let { salon, times, zones } = res.body.data;
