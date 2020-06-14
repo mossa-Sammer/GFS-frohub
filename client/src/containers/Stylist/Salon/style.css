@@ -1,9 +1,25 @@
+.salon__loading-spiner {
+  font-size: 5rem !important;
+  color: brown !important;
+}
+
+.ant-spin .ant-spin-spinning {
+  display: block;
+  text-align: center;
+}
+
 .profile-image__input .ant-form-item-control {
   width: fit-content;
 }
 
 .document-upload__wrapper {
   margin: 2rem 0;
+}
+
+.salon-page__salon-type .ant-radio-wrapper {
+  display: block;
+  height: 30px;
+  line-height: 30px;
 }
 
 .address-section__header {

@@ -55,7 +55,6 @@ export const addSalonData = (userId, data) => async dispatch => {
 
 export const updateSalonData = (salonId, data) => async dispatch => {
   const { salon, openingTimes, zones } = data;
-  console.log('action data', data);
   try {
     const {
       data: {
@@ -64,12 +63,6 @@ export const updateSalonData = (salonId, data) => async dispatch => {
         zones: updatedZones,
       },
     } = await updateSalon(salonId, salon, openingTimes, zones);
-    console.log(
-      'hello there response',
-      updatedSalon,
-      updatedOpeningTimes,
-      updatedZones
-    );
 
     dispatch({
       type: PATCH_SALON_DATA,
