@@ -36,7 +36,10 @@
 .search__treatment-input.ant-input:focus,
 .clear__treatment-btn.ant-btn:hover,
 .clear__treatment-btn.ant-btn:focus,
-.treatments__group.ant-radio-group {
+.treatments__group.ant-radio-group,
+.clear__treatment__value-btn.ant-btn,
+.clear__treatment__value-btn.ant-btn:hover,
+.clear__treatment__value-btn.ant-btn:focus {
   border: none;
 }
 

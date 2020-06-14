@@ -173,8 +173,6 @@ class ServicesPage extends Component {
                     ))}
                   </div>
                   <Pagination
-                    showSizeChanger
-                    pageSizeOptions={['9', '10', '20', '30']}
                     onShowSizeChange={this.onPageSizeChange}
                     className="services__pagination"
                     defaultPageSize={pageSize}
