@@ -15,7 +15,9 @@ const {
 
 // eslint-disable-next-line consistent-return
 module.exports = async (req, res, next) => {
+  const { id: userId } = req.params;
   const { salon, openingTimes, zones } = req.body;
+  salon.userId = userId;
 
   try {
     await Promise.all([
