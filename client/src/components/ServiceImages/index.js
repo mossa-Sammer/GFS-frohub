@@ -10,7 +10,7 @@ import editServiceAction from '../../containers/Stylist/Services/EditService/edi
 import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
 // ***********************
-import { getSignedUrl } from './api';
+import { getSignedUrl, uploadFiles } from './api';
 
 import './style.css';
 
@@ -138,19 +138,26 @@ class ServiceImages extends Component {
 
   // ********************
   handleChang = info => {
-    const { images } = this.state;
-    console.log(22222, info.file.status);
+    // const { images, blob } = this.state;
+    // console.log(22222, info.file.status);
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
-      console.log(9999, 'loaaaad');
+      // console.log(9999, 'loaaaad');
     }
     if (info.file.status === 'done') {
-      console.log(11111111111);
-      getBase64(info.file.originFileObj, imageUrl => {
-        // console.log(5555555555555, imageUrl);
+      // console.log(11111111111);
+      getBase64(info.file.originFileObj, async imageUrl => {
+        // console.log(5555555555555, info.file);
+        const uploadedImage = await getSignedUrl(2, info.file.type);
+        const {
+          data: { promises },
+        } = uploadedImage;
+        // console.log(1111111111, blob);
+        const ui = await uploadFiles(promises, info.file.originFileObj);
+        // console.log(22222222222, ui);
         this.setState({
-          images: images.concat(imageUrl),
-          blob: info.file.originFileObj,
+          // images: images.concat(imageUrl),
+          // blob: info.file.originFileObj,
           loading: false,
         });
       });
