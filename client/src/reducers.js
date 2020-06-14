@@ -9,6 +9,7 @@ import searchReducer, {
 } from './components/SearchForm/search.reducers';
 import servicesReducer from './containers/Services/services.reducer';
 import advancedSearchReducer from './containers/Services/AdvancedSearch/advancedSearch.reducer';
+import salonReducer from './containers/Stylist/Salon/salon.reducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   searchQueries: searchReducer,
   advancedSearchQueries: advancedSearchReducer,
   services: servicesReducer,
+  salonData: salonReducer,
 });
