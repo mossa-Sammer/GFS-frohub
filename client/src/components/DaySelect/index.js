@@ -14,20 +14,21 @@ const days = [
   { index: 6, name: 'Saturday' },
 ];
 
-const DaySelect = ({ dayIndex }) => {
+const DaySelect = ({ className, dayIndex, size, handleDayChange }) => {
   const handleFilter = (input, option) =>
     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
   return (
     <Select
-      className="day-select"
+      className={`day-select ${className}`}
       name="day"
       showSearch
-      size="default"
+      size={size}
       placeholder="day"
       optionFilterProp="children"
       filterOption={handleFilter}
       defaultValue={days[dayIndex]?.name}
+      onChange={handleDayChange}
     >
       {days.map(day => (
         <Option key={day.index} value={day.index}>

@@ -1,103 +1,182 @@
-import React from 'react';
-import { Select, InputNumber, Button } from 'antd';
-import uniqueId from 'uuid/dist/v4';
+import React, { Component } from 'react';
+import { Select, Input, Button, Icon } from 'antd';
+import uniqueId from 'uuid/dist/v1';
+
 // each zone from to price
 import './style.css';
 
-const ZonesSelector = ({
-  zones,
-  label = 'which london zones are you covering?',
-  // handleSave,
-  handleAddMore,
-}) => {
-  const londonZones = {
-    '1': 'zone 1',
-    '2': 'zone 2',
-    '3': 'zone 3',
-    '4': 'zone 4',
-    '5': 'zone 5',
-    '6': 'zone 6',
-    '7': 'zone 7',
-    '8': 'zone 8',
-    '9': 'zone 9',
+const londonZones = {
+  '1': 'zone1',
+  '2': 'zone2',
+  '3': 'zone3',
+  '4': 'zone4',
+  '5': 'zone5',
+  '6': 'zone6',
+  '7': 'zone7',
+  '8': 'zone8',
+  '9': 'zone9',
+};
+
+class ZonesSelector extends Component {
+  state = {
+    zones: [],
   };
 
-  const handleFilter = (input, option) =>
+  componentDidUpdate(prevProps) {
+    const { zones } = this.props;
+    // eslint-disable-next-line react/no-did-update-set-state
+    if (prevProps.zones !== zones) this.setState({ zones });
+  }
+
+  handleFilter = (input, option) =>
     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
-  return (
-    <div className="zone-selector__zones">
-      <p>{label}</p>
-      {zones.map(zone => (
-        <div key={uniqueId()} className="zone-selector__item" disabled>
-          <div className="zone-selector__select-wrapper">
-            <Select
-              className="zone-selector"
-              size={window.innerWidth > 450 ? 'default' : 'small'}
-              name="fromZone"
-              showSearch
-              placeholder="From"
-              defaultValue={zone.from}
-              optionFilterProp="children"
-              filterOption={handleFilter}
+  handleSelect = (value, option) => {
+    const { name } = option.props;
+    const [selectId, selectType] = name.split('_');
+    const { zones } = this.state;
+
+    const newZones = zones.map(z => {
+      if (String(z.salon_zone_id) === selectId) {
+        if (selectType === 'to') {
+          return {
+            ...z,
+            to_zone: value,
+          };
+        }
+        if (selectType === 'from') {
+          return { ...z, from_zone: value };
+        }
+      }
+      return z;
+    });
+    this.setState({ zones: newZones });
+  };
+
+  handlePriceChange = e => {
+    const { name, value } = e.target;
+    const { zones } = this.state;
+
+    const newZones = zones.map(z => {
+      if (String(z.salon_zone_id) === name) {
+        return { ...z, price: value };
+      }
+      return z;
+    });
+    this.setState({ zones: newZones });
+  };
+
+  handleDelete = id => {
+    const { zones } = this.state;
+    // eslint-disable-next-line
+    const newZones = zones.filter(z => z.salon_zone_id !== id);
+    this.setState({ zones: newZones });
+  };
+
+  handleAddMore = () => {
+    const { zones } = this.state;
+    const newZones = [...zones];
+    newZones.push({ salon_zone_id: uniqueId() });
+    this.setState({ zones: newZones });
+  };
+
+  render() {
+    const { label = 'which london zones are you covering?' } = this.props;
+    const { zones } = this.state;
+    return (
+      <div className="zone-selector__zones">
+        <p>{label}</p>
+        {zones.map(zone => (
+          <div className="zone-selector__item" key={zone.salon_zone_id}>
+            {window.innerWidth < 600 && (
+              <Icon
+                className="zone-seletor__delete"
+                type="close-circle"
+                theme="twoTone"
+                twoToneColor="#d11a2a"
+                onClick={() => {
+                  this.handleDelete(zone.salon_zone_id);
+                }}
+              />
+            )}
+            <div
+              className="zone-selector__select-wrapper"
+              key={zone.salon_zone_id}
             >
-              {Object.entries(londonZones).map(([key, value]) => (
-                <Select.Option key={uniqueId()} value={key}>
-                  {value}
-                </Select.Option>
-              ))}
-            </Select>
-            <Select
-              className="zone-selector"
+              <Select
+                className="zone-selector"
+                size={window.innerWidth > 450 ? 'default' : 'small'}
+                name="far"
+                showSearch
+                placeholder="From"
+                defaultValue={londonZones[zone.from_zone]}
+                optionFilterProp="children"
+                filterOption={this.handleFilter}
+                onSelect={this.handleSelect}
+              >
+                {Object.entries(londonZones).map(([key, value]) => (
+                  <Select.Option
+                    key={uniqueId()}
+                    value={key}
+                    name={`${zone.salon_zone_id}_from`}
+                  >
+                    {value}
+                  </Select.Option>
+                ))}
+              </Select>
+              <Select
+                className="zone-selector"
+                size={window.innerWidth > 450 ? 'default' : 'small'}
+                showSearch
+                placeholder="To"
+                optionFilterProp="children"
+                filterOption={this.handleFilter}
+                defaultValue={londonZones[zone.to_zone]}
+                onSelect={this.handleSelect}
+              >
+                {Object.entries(londonZones).map(([key, value]) => (
+                  <Select.Option
+                    key={uniqueId()}
+                    value={key}
+                    name={`${zone.salon_zone_id || zone.id}_to`}
+                  >
+                    {value}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+            <Input
+              className="zone-selector__price"
+              min={0}
+              max={12121212}
+              name={zone.salon_zone_id}
               size={window.innerWidth > 450 ? 'default' : 'small'}
-              name="toZone"
-              showSearch
-              placeholder="To"
-              defaultValue={zone.to}
-              optionFilterProp="children"
-              filterOption={handleFilter}
-            >
-              {Object.entries(londonZones).map(([key, value]) => (
-                <Select.Option key={uniqueId()} value={key}>
-                  {value}
-                </Select.Option>
-              ))}
-            </Select>
+              defaultValue={zone.price}
+              placeholder="price"
+              onChange={this.handlePriceChange}
+            />
+            <div className="zone-selector__btns-wrapper">
+              {window.innerWidth > 600 && (
+                <Button
+                  className="zone-selector__btn"
+                  type="danger"
+                  size={window.innerWidth > 450 ? 'default' : 'small'}
+                  onClick={() => {
+                    this.handleDelete(zone.salon_zone_id);
+                  }}
+                >
+                  Delete
+                </Button>
+              )}
+            </div>
           </div>
-          <InputNumber
-            className="zone-selector__price"
-            size={window.innerWidth > 450 ? 'default' : 'small'}
-            formatter={value =>
-              `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            parser={value => value.replace(/\$\s?|(,*)/g, '')}
-            // onChange={onChange}
-            // value={zone.price}
-            placeholder="price"
-          />
-          <div className="zone-selector__btns-wrapper">
-            {/* <Button
-              type="primary"
-              className="zone-selector__btn"
-              size={window.innerWidth > 450 ? 'default' : 'small'}
-            >
-              Save
-            </Button> */}
-            <Button
-              type="danger"
-              className="zone-selector__btn"
-              size={window.innerWidth > 450 ? 'default' : 'small'}
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-      ))}
-      <Button type="primary" onClick={handleAddMore}>
-        + Add more
-      </Button>
-    </div>
-  );
-};
+        ))}
+        <Button type="primary" onClick={this.handleAddMore}>
+          + Add more
+        </Button>
+      </div>
+    );
+  }
+}
 
 export default ZonesSelector;

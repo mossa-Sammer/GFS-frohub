@@ -1,25 +1,78 @@
 .opening-times {
-  width: 65%;
+  width: 100%;
 }
 
 .opening-times__item {
   display: flex !important;
   align-items: center !important;
-  width: 100%;
-  justify-content: space-between !important;
+  width: 100% !important;
   margin-bottom: 1rem;
+}
+
+.opening-times__time-wrapper {
+  display: flex;
 }
 
 .day-select {
   margin-right: 1rem !important;
-  width: 200px !important;
-  height: 36px !important;
 }
 
 .day-select .ant-select-selection {
   height: 36px;
+  width: 12rem;
 }
 
 .opening-times__item__time {
   margin-right: 1rem !important;
+}
+
+@media screen and (max-width: 600px) {
+  .opening-times {
+    width: 100%;
+  }
+
+  .day-select {
+    width: 100% !important;
+  }
+
+  .day-select .ant-select-selection {
+    width: 100% !important;
+  }
+
+  .opening-times__item {
+    display: flex !important;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0.5rem;
+    align-items: center !important;
+    position: relative;
+  }
+
+  .opening-times__item .day-select {
+    margin: 0 !important;
+  }
+
+  .opening-times__item__time {
+    margin: 0 !important;
+  }
+
+  .opening-times__time-wrapper {
+    width: 100%;
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .opening-times__item__time .ant-time-picker-icon {
+    top: 12px;
+  }
+
+  .opening-times__item__time .ant-time-picker-input {
+    height: 25px !important;
+  }
+
+  .opening-times__item__time .ant-time-picker {
+    width: 45%;
+  }
 }

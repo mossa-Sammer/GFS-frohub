@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unused-state */
 import React from 'react';
-
 import { Upload, Icon, message } from 'antd';
+
 import './style.css';
 
 function getBase64(img, callback) {
@@ -24,7 +25,25 @@ function beforeUpload(file) {
 class Uploader extends React.Component {
   state = {
     loading: false,
+    imageUrl: null,
+    blob: null,
+    flag: false,
   };
+
+  componentDidMount() {
+    const { imgUrl } = this.props;
+    this.setState({ imageUrl: imgUrl });
+  }
+
+  componentDidUpdate() {
+    const { imgUrl } = this.props;
+    const { imageUrl, flag } = this.state;
+    if (imageUrl !== imgUrl) {
+      if (flag) return;
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ imageUrl: imgUrl, flag: true });
+    }
+  }
 
   handleChange = info => {
     if (info.file.status === 'uploading') {
@@ -33,25 +52,24 @@ class Uploader extends React.Component {
     }
 
     if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
+      getBase64(info.file.originFileObj, imageUrl => {
         this.setState({
           imageUrl,
+          blob: info.file.originFileObj,
           loading: false,
-        })
-      );
+        });
+      });
     }
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, imageUrl } = this.state;
     const uploadButton = (
       <div>
         <Icon type={loading ? 'loading' : 'plus'} />
         <div className="ant-upload-text">Click to Upload</div>
       </div>
     );
-    const { imageUrl } = this.state;
     return (
       <Upload
         name="avatar"
@@ -60,8 +78,8 @@ class Uploader extends React.Component {
         showUploadList={false}
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
-        customRequest={({ file, onSuccess }) => {
-          console.log(file.path);
+        // eslint-disable-next-line no-unused-vars
+        customRequest={({ _file, onSuccess }) => {
           setTimeout(() => {
             onSuccess('ok');
           }, 0);

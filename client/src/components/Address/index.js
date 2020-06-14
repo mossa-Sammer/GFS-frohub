@@ -1,39 +1,93 @@
 import React from 'react';
 import { Input, Select, Form } from 'antd';
+import axios from 'axios';
 
 const { Option } = Select;
 
-const Address = ({ countries }) => {
-  const handleFilter = (input, option) =>
-    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-  return (
-    <div className="address">
-      <Form.Item label="Street">
-        <Input type="text" name="street" />
-      </Form.Item>
-      <Form.Item label="City">
-        <Input type="text" name="city" />
-      </Form.Item>
-      <Form.Item label="Postal Code">
-        <Input type="text" name="postalCode" />
-      </Form.Item>
-      <Form.Item label="Country">
-        <Select
-          name="country"
-          showSearch
-          placeholder="Country"
-          optionFilterProp="children"
-          filterOption={handleFilter}
-        >
-          {countries.map(c => (
-            <Option key={c.alpha2Code} value={c.alpha2Code}>
-              {c.name}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-    </div>
-  );
-};
+class Address extends React.Component {
+  state = {
+    countries: [],
+  };
 
-export default Address;
+  async componentDidMount() {
+    const countriesData = await axios.get(
+      'https://cors-anywhere.herokuapp.com/https://restcountries.eu/rest/v2/all?fields=name;alpha2Code'
+    );
+    this.setState({ countries: countriesData.data });
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      form: { setFieldsValue },
+      address,
+    } = this.props;
+    const { street, country, city, postalCode } = address;
+
+    if (prevProps.address !== address) {
+      setFieldsValue({
+        street,
+        country,
+        city,
+        postalCode,
+      });
+    }
+  }
+
+  handleFilter = (input, option) =>
+    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+
+  render() {
+    const {
+      form: { getFieldDecorator },
+    } = this.props;
+    const { countries } = this.state;
+    return (
+      <Form>
+        <div className="address">
+          <Form.Item label="Street">
+            {getFieldDecorator('street', {
+              rules: [{ required: true, message: 'Please enter your street' }],
+            })(<Input type="text" name="street" />)}
+          </Form.Item>
+          <Form.Item label="City">
+            {getFieldDecorator('city', {
+              rules: [{ required: true, message: 'Please enter your city' }],
+            })(<Input type="text" name="city" />)}
+          </Form.Item>
+          <Form.Item label="Postal Code">
+            {getFieldDecorator('postalCode', {
+              rules: [
+                { required: true, message: 'Please enter your postal code' },
+              ],
+            })(<Input type="text" name="postalCode" />)}
+          </Form.Item>
+          <Form.Item label="Country">
+            {getFieldDecorator('country', {
+              rules: [{ required: true, message: 'Please enter your country' }],
+            })(
+              <Select
+                name="country"
+                showSearch
+                placeholder="Country"
+                optionFilterProp="children"
+                filterOption={this.handleFilter}
+              >
+                {countries.map(c => (
+                  <Option key={c.alpha2Code} value={c.alpha2Code}>
+                    {c.name}
+                  </Option>
+                ))}
+              </Select>
+            )}
+          </Form.Item>
+        </div>
+      </Form>
+    );
+  }
+}
+
+const EnhancedForm = Form.create({
+  name: 'address',
+})(Address);
+
+export default EnhancedForm;
