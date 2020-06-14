@@ -1,0 +1,4 @@
+.service__images-upload .ant-upload.ant-upload-select.ant-upload-select-picture-card span img{
+	/* display: none; */
+	display: block;
+}

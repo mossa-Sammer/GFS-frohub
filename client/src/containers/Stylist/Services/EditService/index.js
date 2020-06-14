@@ -45,7 +45,7 @@ class EditService extends Component {
     const {
       state: { service },
     } = location;
-
+    console.log(1111111111111, service);
     const {
       salon_id: salonId,
       salon_service_id: salonServiceId,
