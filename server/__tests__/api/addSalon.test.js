@@ -24,7 +24,7 @@ test('POST /api/salon ', async (done) => {
         instgramHandle: 'http://instgram.com/***',
         profileImage: 'c',
         coverImage: 'c',
-        document: 'm',
+        document: ['m', 'dada'],
         type: 'mobile',
         street: 'hmeed',
         city: 'gaza',

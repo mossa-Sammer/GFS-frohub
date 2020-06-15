@@ -6,7 +6,7 @@ const addSalonSchema = yup.object().shape({
   instgramHandle: yup.string().min(3).required(),
   profileImage: yup.string().required(),
   coverImage: yup.string().required(),
-  document: yup.string().nullable(),
+  document: yup.array().of(yup.string()).required(),
   type: yup.string().oneOf(['home', 'salon', 'mobile']).required(),
   street: yup.string().required(),
   city: yup.string().required(),
