@@ -63,12 +63,11 @@ export default (state = initialState, action) => {
       };
     }
     case EDIT_SERVICE_IMAGES: {
-      const { images } = state;
       return {
         ...state,
         err: false,
         errMsg: '',
-        images: images.concat(action.payload),
+        images: action.payload,
       };
     }
     case SALON_SERVICE_ERROR: {

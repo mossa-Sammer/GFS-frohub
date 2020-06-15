@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return, no-param-reassign  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Upload, Icon, Modal } from 'antd';
 import { Upload, Icon, message } from 'antd';
 
 import axios from '../../axios-config';
@@ -9,7 +8,6 @@ import axios from '../../axios-config';
 import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 import addServiceAction from '../../containers/Stylist/Services/NewSalonService/newService.actions';
 
-// ***********************
 import { getSignedUrl, uploadFiles } from './api';
 
 import './style.css';
@@ -20,7 +18,6 @@ function getBase64(img, cb) {
   reader.readAsDataURL(img);
 }
 
-// ****************
 function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
@@ -33,35 +30,11 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-// const fileList = [
-//   {
-//     uid: '-1',
-//     name: 'image.png',
-//     status: 'done',
-//     url: 'https://go.aws/2XFQXt6',
-//   },
-//   {
-//     uid: '-2',
-//     name: 'image.png',
-//     status: 'done',
-//     url: 'https://go.aws/2XFxk4k',
-//   },
-// ];
-
 class ServiceImages extends Component {
   state = {
     loading: false,
-    imageUrl: null,
-    blob: null,
-    flag: false,
     images: [],
   };
-  // state = {
-  //   // imageUrl: '',
-  //   // loading: false,
-  //   fileList: [],
-  //   // image: '',
-  // };
 
   async componentDidMount() {
     const { status, editServiceAction: editService } = this.props;
@@ -71,10 +44,8 @@ class ServiceImages extends Component {
       const {
         data: { images },
       } = await axios.get(`/service/${salonServiceId}/images`);
-      // console.log(999999999999, images);
       if (images && images.length) {
         await images.map(image => serviceImages.push(image.image));
-        // console.log(666666, serviceImages);
         this.setState({ images: serviceImages });
       }
       editService({
@@ -84,80 +55,40 @@ class ServiceImages extends Component {
     }
   }
 
-  // handleCancel = () => this.setState({ previewVisible: false });
-
-  // handlePreview = async file => {
-  //   if (!file.url && !file.preview) {
-  //     file.preview = await getBase64(file.originFileObj);
-  //   }
-
-  //   this.setState({
-  //     previewImage: file.url || file.preview,
-  //     previewVisible: true,
-  //   });
-  // };
-
-  // handleUpload = async ({ file }) => {
-  //   const {
-  //     editServiceAction: editService,
-  //     addServiceAction: addService,
-  //   } = this.props;
-  //   const { status } = this.props;
-  //   const link = await axios.post(`/upload/${2}`, {
-  //     contentTypes: [file.type],
-  //   });
-  //   const {
-  //     data: { promises },
-  //   } = link;
-  //   // console.log(77777777777, link);
-  //   const mm = await axios.put(promises[0], file.blob, {
-  //     headers: {
-  //       'Content-Type': file.type,
-  //     },
-  //   });
-  //   console.log(9999999999999, mm);
-  //   if (status === 'editService') {
-  //     return editService({
-  //       fieldName: 'serviceImage',
-  //       value: promises[0],
-  //     });
-  //   }
-  //   return addService({
-  //     fieldName: 'serviceImage',
-  //     value: promises[0],
-  //   });
-  // };
-
-  // ****************
   componentDidUpdate() {
-    // console.log(7777777777, this.state);
-    // const { flag, images } = this.state;
-    // if(images !=== )
+    const {
+      status,
+      editServiceAction: editService,
+      addServiceAction: addService,
+    } = this.props;
     const { images } = this.state;
+    if (status === 'editService') {
+      return editService({
+        fieldName: 'serviceImage',
+        value: images,
+      });
+    }
+    return addService({
+      fieldName: 'serviceImage',
+      value: images,
+    });
   }
 
-  // ********************
-  handleChang = info => {
-    // const { images, blob } = this.state;
-    // console.log(22222, info.file.status);
+  handleChange = info => {
+    const { images } = this.state;
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
-      // console.log(9999, 'loaaaad');
     }
     if (info.file.status === 'done') {
-      // console.log(11111111111);
-      getBase64(info.file.originFileObj, async imageUrl => {
-        // console.log(5555555555555, info.file);
+      getBase64(info.file.originFileObj, async () => {
         const uploadedImage = await getSignedUrl(2, info.file.type);
         const {
-          data: { promises },
+          data: { images: serviceImages, promises },
         } = uploadedImage;
-        // console.log(1111111111, blob);
-        const ui = await uploadFiles(promises, info.file.originFileObj);
-        // console.log(22222222222, ui);
+
+        await uploadFiles(promises, info.file.originFileObj);
         this.setState({
-          // images: images.concat(imageUrl),
-          // blob: info.file.originFileObj,
+          images: images.concat(serviceImages[0]),
           loading: false,
         });
       });
@@ -166,12 +97,11 @@ class ServiceImages extends Component {
 
   render() {
     const { loading, images } = this.state;
-    console.log(9999121, images);
 
     return (
       <div className="clearfix">
         <Upload
-          onChange={this.handleChang}
+          onChange={this.handleChange}
           customRequest={({ _file, onSuccess }) => {
             setTimeout(() => {
               onSuccess('ok');
@@ -182,17 +112,12 @@ class ServiceImages extends Component {
           // showUploadList={false}
           className="service__images-upload"
         >
-          {// images &&
-          images.length &&
+          {images.length &&
             images.map(image => (
               <>
-                {console.log('ooooooooooooooooor', image)}
                 <img src={image} alt="avatar" style={{ width: '100%' }} />
               </>
-            ))
-          // <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-          }
-          {/* <uploadButton /> */}
+            ))}
           <div>
             <Icon type={loading ? 'loading' : 'plus'} />
             <div className="ant-upload-text">Click to Upload</div>

@@ -8,15 +8,12 @@ const getSignedUrl = (userId, type) => {
 };
 
 const uploadFiles = (urls, files) => {
-  console.log(555555, files);
   urls.map(async (url, index) => {
-    // console.log(1111, url, 999, files[index]);
-    const rr = await generalAxios.put(url, files[index], {
+    await generalAxios.put(url, files[index], {
       headers: {
         'Content-Type': files.type,
       },
     });
-    console.log(3333, rr);
   });
 };
 
