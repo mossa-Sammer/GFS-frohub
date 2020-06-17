@@ -7,19 +7,22 @@
 .email-field {
   width: 40%;
 }
+
 .phone-field {
   width: 40%;
 }
+
 .name-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
 }
+
 .first-name-field {
-  width: 40%;
+  width: 44%;
 }
 .last-name-field {
-  width: 40%;
+  width: 44%;
 }
 
 @media screen and (max-width: 1000px) {
