@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 
-import { Form, Input, Radio, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 import {
   getBusinessDetails,
@@ -22,7 +22,6 @@ class BusinessDetails extends Component {
     err: false,
     errMsg: '',
     sortCode: '',
-    preferredPayMethod: 'none',
     hasBusiness: false,
     success: false,
     successMessage: '',
@@ -32,44 +31,25 @@ class BusinessDetails extends Component {
     const user = await JSON.parse(localStorage.getItem('user'));
     const { userId } = user;
     const stylistBusiness = await getBusinessDetails(userId);
-    const {
-      accountNumber,
-      sortCode,
-      preferredPayMethod,
-      hasBusiness,
-    } = stylistBusiness;
+    const { accountNumber, sortCode, hasBusiness } = stylistBusiness;
     this.setState({
       userId,
       accountNumber,
       sortCode,
-      preferredPayMethod,
       hasBusiness,
     });
   }
 
-  handlePaymetMethod = method =>
-    this.setState({
-      preferredPayMethod: method.target.value,
-      err: false,
-      errMsg: '',
-    });
-
   handleBusiness = e => {
     e.preventDefault();
     const { form, history } = this.props;
-    const {
-      accountNumber,
-      sortCode,
-      preferredPayMethod,
-      hasBusiness,
-      userId,
-    } = this.state;
+    const { accountNumber, sortCode, hasBusiness, userId } = this.state;
     form.validateFieldsAndScroll(async err => {
       if (!err) {
         const business = {
           accountNumber,
           sortCode,
-          preferredPayMethod,
+          preferredPayMethod: 'card',
         };
         if (!hasBusiness) {
           const { error } = await postBusinessDetails(userId, business);
@@ -106,7 +86,6 @@ class BusinessDetails extends Component {
       errMsg,
       accountNumber,
       sortCode,
-      preferredPayMethod,
       success,
       successMessage,
     } = this.state;
@@ -158,23 +137,6 @@ class BusinessDetails extends Component {
               This is the bank account that we would transfer any funds to, such
               as deposits etc.
             </p>
-          </Form.Item>
-          <Form.Item className="business__form-item">
-            <Radio.Group
-              onChange={this.handlePaymetMethod}
-              className="payment__methods-box"
-              value={preferredPayMethod}
-            >
-              <Radio className="business__radio-btn" value="card">
-                Card
-              </Radio>
-              <Radio className="business__radio-btn" value="cash">
-                Cash
-              </Radio>
-              <Radio className="business__radio-btn" value="none">
-                No preference
-              </Radio>
-            </Radio.Group>
           </Form.Item>
           <Button className="business__next-btn" htmlType="submit">
             Save and Next
