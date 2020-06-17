@@ -134,7 +134,7 @@ class PersonalForm extends Component {
 
     return (
       <div>
-        <h3>Personal details</h3>
+        <h3>Personal Details</h3>
         <Form
           className="personal-form"
           onChange={this.handleFormChange}
