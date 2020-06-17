@@ -210,7 +210,7 @@ class EditService extends Component {
                   className="edit__service__form-btn"
                   onClick={this.showModal}
                 >
-                  Save
+                  Save and Next
                 </Button>
               </div>
               <Modal

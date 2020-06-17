@@ -132,7 +132,7 @@ class NewSalonService extends Component {
                   className="new__service__form-btn"
                   onClick={this.showModal}
                 >
-                  Save
+                  Save and Next
                 </Button>
               </div>
               <Modal
