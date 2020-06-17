@@ -117,7 +117,7 @@ class BusinessDetails extends Component {
         <Form onSubmit={this.handleBusiness}>
           <Form.Item
             className="business__form-item"
-            label="Your account number"
+            label="Your Bank Account Number"
           >
             {getFieldDecorator('accountNumber', {
               rules: [
@@ -127,9 +127,15 @@ class BusinessDetails extends Component {
                 },
               ],
               initialValue: accountNumber,
-            })(<Input name="accountNumber" onChange={this.handleValues} />)}
+            })(
+              <Input
+                name="accountNumber"
+                onChange={this.handleValues}
+                placeholder="Bank Account Number"
+              />
+            )}
           </Form.Item>
-          <Form.Item className="business__form-item" label="Your sort code">
+          <Form.Item className="business__form-item" label="Sort Code">
             {getFieldDecorator('sortCode', {
               rules: [
                 {
@@ -143,14 +149,14 @@ class BusinessDetails extends Component {
                 className="sort_code-input"
                 name="sortCode"
                 onChange={this.handleValues}
+                placeholder="Sort Code"
               />
             )}
           </Form.Item>
           <Form.Item className="business__form-item">
             <p className="business-hint">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam
+              This is the bank account that we would transfer any funds to, such
+              as deposits etc.
             </p>
           </Form.Item>
           <Form.Item className="business__form-item">
@@ -171,7 +177,7 @@ class BusinessDetails extends Component {
             </Radio.Group>
           </Form.Item>
           <Button className="business__next-btn" htmlType="submit">
-            Next
+            Save and Next
           </Button>
         </Form>
       </div>
