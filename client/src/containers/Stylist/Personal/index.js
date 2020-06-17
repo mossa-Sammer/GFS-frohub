@@ -133,7 +133,7 @@ class PersonalForm extends Component {
     );
 
     return (
-      <div>
+      <div className="peronal-form__wrapper">
         <h3>Personal Details</h3>
         <Form
           className="personal-form"
