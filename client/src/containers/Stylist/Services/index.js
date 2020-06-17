@@ -16,14 +16,14 @@ export default class StylistServices extends Component {
   render() {
     return (
       <div>
-        <h3>Services</h3>
+        <h1>Your Services</h1>
         <div className="services__form">
           <div className="services__form-new">
             <Button
               className="new__service-btn"
               onClick={this.handleNewService}
             >
-              Add new Service
+              Add New Service
             </Button>
           </div>
           <div className="services__form-edit">

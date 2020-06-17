@@ -45,7 +45,6 @@ class EditService extends Component {
     const {
       state: { service },
     } = location;
-    console.log(1111111111111, service);
     const {
       salon_id: salonId,
       salon_service_id: salonServiceId,
@@ -177,7 +176,7 @@ class EditService extends Component {
               </div>
               <ServiceInput status={status} />
               <div className="edit__service__form-item">
-                <p>Select service length:</p>
+                <p>Hair Length:</p>
                 <SelectServiceLength
                   status={status}
                   serviceLength={serviceLength}
@@ -190,10 +189,16 @@ class EditService extends Component {
               </div>
               <div className="new__service__form-item">
                 <p>
-                  upload up to 3 pictures for this service. Have a look on our{' '}
-                  <span className="guideline-link">
-                    Guidelines for best picture practices.
-                  </span>
+                  Upload up to 3 pictures for this service. Have a look at our
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://frohub.com/partner-photo-guidelines/"
+                  >
+                    {' '}
+                    guidelines{' '}
+                  </a>{' '}
+                  for best picture practices.
                 </p>
                 <SalonServiceImages
                   status={status}
@@ -216,6 +221,12 @@ class EditService extends Component {
               >
                 <p>Are you sure to edit {serviceName} </p>
               </Modal>
+              <div>
+                <p>
+                  If you cannot find your service or hair length listed, please
+                  contact us at partner@frohub.com.
+                </p>
+              </div>
             </div>
           </div>
         ) : (

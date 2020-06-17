@@ -110,7 +110,7 @@ class NewSalonService extends Component {
               </div>
               <ServiceInput status={status} />
               <div className="new__service__form-item">
-                <p>Select service length:</p>
+                <p>Hair Length:</p>
                 <SelectServiceLength status={status} />
               </div>
               <ServiceLengthInput status={status} />

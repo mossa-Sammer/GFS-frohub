@@ -100,6 +100,17 @@ class ServiceImages extends Component {
 
     return (
       <div className="clearfix">
+        {images.length &&
+          images.map(image => (
+            <div className="service_img-box">
+              <img
+                className="service_img"
+                src={image}
+                alt="avatar"
+                style={{ width: '100%' }}
+              />
+            </div>
+          ))}
         <Upload
           onChange={this.handleChange}
           customRequest={({ _file, onSuccess }) => {
@@ -112,12 +123,6 @@ class ServiceImages extends Component {
           // showUploadList={false}
           className="service__images-upload"
         >
-          {images.length &&
-            images.map(image => (
-              <>
-                <img src={image} alt="avatar" style={{ width: '100%' }} />
-              </>
-            ))}
           <div>
             <Icon type={loading ? 'loading' : 'plus'} />
             <div className="ant-upload-text">Click to Upload</div>
