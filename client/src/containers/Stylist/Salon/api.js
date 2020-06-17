@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-// get signedUrl
+import APIAxios from '../../../axios-config';
 
 const getSignedUrl = (userId, types) => {
-  return axios.post(`/api/upload/${userId}`, {
+  return APIAxios.post(`/upload/${userId}`, {
     contentTypes: types,
   });
 };
@@ -19,7 +18,7 @@ const uploadFiles = (urls, files) => {
 };
 
 const addSalon = (userId, salon, openingTimes, zones) => {
-  return axios.post(`/api/salon/${userId}`, {
+  return APIAxios.post(`/salon/${userId}`, {
     salon,
     openingTimes,
     zones,
