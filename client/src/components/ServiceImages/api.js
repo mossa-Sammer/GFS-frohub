@@ -7,13 +7,11 @@ const getSignedUrl = (userId, type) => {
   });
 };
 
-const uploadFiles = (urls, files) => {
-  urls.map(async (url, index) => {
-    await generalAxios.put(url, files[index], {
-      headers: {
-        'Content-Type': files.type,
-      },
-    });
+const uploadFiles = async (url, file) => {
+  await generalAxios.put(url, file, {
+    headers: {
+      'Content-Type': file.type,
+    },
   });
 };
 

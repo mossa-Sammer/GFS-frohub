@@ -85,8 +85,7 @@ class ServiceImages extends Component {
         const {
           data: { images: serviceImages, promises },
         } = uploadedImage;
-
-        await uploadFiles(promises, info.file.originFileObj);
+        await uploadFiles(promises[0], info.file.originFileObj);
         this.setState({
           images: images.concat(serviceImages[0]),
           loading: false,
