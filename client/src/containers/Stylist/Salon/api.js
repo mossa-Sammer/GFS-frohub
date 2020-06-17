@@ -2,9 +2,9 @@ import axios from 'axios';
 
 // get signedUrl
 
-const getSignedUrl = (userId, type) => {
+const getSignedUrl = (userId, types) => {
   return axios.post(`/api/upload/${userId}`, {
-    contentTypes: [type],
+    contentTypes: types,
   });
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Input, Radio, Upload, Icon, Spin } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import uuid from 'uuid/dist/v4';
 
 import { getSignedUrl, uploadFiles } from './api';
 import {
@@ -46,20 +47,65 @@ class SalonForm extends Component {
         salonData: { salon },
       } = this.props;
 
-      const { name, about, instgram_handle: instgramHandle, type } = salon;
-
+      const {
+        name,
+        about,
+        instgram_handle: instgramHandle,
+        type,
+        document,
+      } = salon;
+      let newList = [...document];
+      newList = newList.map(d => {
+        return {
+          uid: uuid(),
+          name: d,
+          url: d,
+          status: 'done',
+        };
+      });
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        fileList: newList,
+      });
       setFieldsValue({
         salonName: name,
         about,
         instgramHandle,
         type,
       });
-      // eslint-disable-next-line react/no-did-update-set-state
     }
   }
 
+  sliceDocName = name => name.substring(name.lastIndexOf('/') + 1);
+
+  filterBlobs = blobs => blobs.map(b => b.originFileObj).filter(Boolean);
+
+  filterFilesUrls = files =>
+    files.filter(b => !b.originFileObj).map(f => f.url);
+
+  getFilesTypes = files => files.map(f => f.type);
+
+  normalizeTimes = times => {
+    return times.map(t => {
+      return {
+        day: t.day,
+        fromTime: t.from_time,
+        toTime: t.to_time,
+      };
+    });
+  };
+
+  normalizeZones = zones => {
+    return zones.map(z => {
+      return {
+        fromZone: z.from_zone,
+        toZone: z.toZone,
+        price: z.price,
+      };
+    });
+  };
+
   handleSubmit = () => {
-    this.setState({ loading: true });
     const {
       props: { form: addressForm },
     } = this.addressComponent;
@@ -93,63 +139,53 @@ class SalonForm extends Component {
       fileList,
     } = this.state;
 
-    const document = fileList[0]?.originFileObj;
+    const documents = this.filterBlobs(fileList);
+    const prevFiles = this.filterFilesUrls(fileList);
 
     form.validateFieldsAndScroll(async (err, salonDetails) => {
       if (!err) {
         addressForm.validateFieldsAndScroll(
           async (errAddress, addressDetails) => {
             if (!errAddress) {
-              const blobsToUpload = [];
-              const urlsToUPload = [];
+              const normalizedZones = this.normalizeZones(zones);
+              const normalizedTimes = this.normalizeTimes(times);
+
+              let blobsToUpload = [];
+              let urlsToUPload = [];
 
               let profileImageUrl;
               let coverImageUrl;
-              let documentUrl;
+              let documentUrls = [];
 
               if (profileImage.blob) {
-                const { data } = await getSignedUrl(
-                  userId,
-                  profileImage.blob.type
-                );
+                const { data } = await getSignedUrl(userId, [
+                  profileImage.blob.type,
+                ]);
                 [profileImageUrl] = data.images;
                 blobsToUpload.push(profileImage.blob);
                 urlsToUPload.push(data.promises[0]);
               }
 
               if (coverImage.blob) {
-                const { data } = await getSignedUrl(
-                  userId,
-                  coverImage.blob.type
-                );
+                const { data } = await getSignedUrl(userId, [
+                  coverImage.blob.type,
+                ]);
                 [coverImageUrl] = data.images;
                 blobsToUpload.push(coverImage.blob);
                 urlsToUPload.push(data.promises[0]);
               }
 
-              if (document) {
-                const { data } = await getSignedUrl(userId, document.type);
-                [documentUrl] = data.images;
-                blobsToUpload.push(document);
-                urlsToUPload.push(data.promises[0]);
+              if (documents.length) {
+                const { data } = await getSignedUrl(
+                  userId,
+                  this.getFilesTypes(documents)
+                );
+                documentUrls = data.images;
+                blobsToUpload = [...blobsToUpload, ...documents];
+                urlsToUPload = [...urlsToUPload, ...data.promises];
               }
 
               await uploadFiles(urlsToUPload, blobsToUpload);
-
-              const normalizedZones = zones.map(zone => {
-                return {
-                  fromZone: zone.from_zone,
-                  toZone: zone.to_zone,
-                  price: zone.price,
-                };
-              });
-              const normalizedTimes = times.map(time => {
-                return {
-                  day: time.day,
-                  fromTime: time.from_time,
-                  toTime: time.to_time,
-                };
-              });
 
               const salon = {
                 ...salonDetails,
@@ -157,12 +193,13 @@ class SalonForm extends Component {
                 profileImage: profileImageUrl || profileImage.imageUrl,
                 coverImage: coverImageUrl || coverImage.imageUrl,
               };
+
               salon.name = salon.salonName;
               salon.countryCode = salon.country;
               delete salon.salonName;
               delete salon.country;
-              if (document) salon.document = documentUrl;
-              else salon.document = salonData.salon.document;
+
+              salon.document = [...documentUrls, ...prevFiles];
 
               if (salonData.salon) {
                 updateSalonData(salonData.salon.salon_id, {
@@ -185,8 +222,6 @@ class SalonForm extends Component {
     });
   };
 
-  sliceDocName = name => name.substring(name.lastIndexOf('/') + 1);
-
   render() {
     const {
       fileList,
@@ -207,7 +242,6 @@ class SalonForm extends Component {
 
     let profileImage = '';
     let coverImage = '';
-    const document = [];
 
     let zones = [];
     let openingTimes = [];
@@ -216,13 +250,6 @@ class SalonForm extends Component {
     if (salon) {
       profileImage = salon.profile_image;
       coverImage = salon.cover_image;
-      const docName = this.sliceDocName(salon.document);
-      document.push({
-        uid: '1',
-        name: docName,
-        url: salon.document,
-        status: 'done',
-      });
 
       zones = salonData.zones;
       openingTimes = salonData.openingTimes;
@@ -248,7 +275,7 @@ class SalonForm extends Component {
           spiner
         ) : (
           <>
-            <h3>Salon Details</h3>
+            <h2>Salon Details</h2>
             <Form>
               <Form.Item className="salon-input" label="Salon name">
                 {getFieldDecorator('salonName', {
@@ -315,7 +342,7 @@ class SalonForm extends Component {
                 className="document-upload__uploader"
                 name="document"
                 listType="text"
-                fileList={fileList.length === 0 ? document : fileList}
+                fileList={fileList}
                 // eslint-disable-next-line no-unused-vars
                 customRequest={({ _file, onSuccess }) => {
                   setTimeout(() => {
@@ -323,10 +350,8 @@ class SalonForm extends Component {
                   }, 0);
                 }}
                 onChange={info => {
-                  let clonedList = [...info.fileList];
-                  clonedList = clonedList.slice(-1);
                   this.setState({
-                    fileList: clonedList,
+                    fileList: info.fileList,
                   });
                 }}
               >
