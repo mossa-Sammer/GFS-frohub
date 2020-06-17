@@ -140,30 +140,30 @@ class PersonalForm extends Component {
           onChange={this.handleFormChange}
           onSubmit={this.handleSubmit}
         >
-          <Form.Item className="email-field" label="Email">
+          <Form.Item className="email-field" label="Email Address">
             {getFieldDecorator('email', {
               rules: [
                 {
                   type: 'email',
-                  message: 'The input is not valid E-mail!',
+                  message: 'Please enter a valid email address',
                 },
                 {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please enter a valid email address',
                 },
               ],
             })(<Input />)}
           </Form.Item>
-          <Form.Item className="phone-field" label="Phone Number">
+          <Form.Item className="phone-field" label="Mobile Phone Number">
             {getFieldDecorator('phoneNumber', {
               rules: [
                 {
                   required: true,
-                  message: 'Please input your phone number!',
+                  message: 'Please enter a valid mobile phone number',
                 },
                 {
                   whitespace: true,
-                  message: 'Please input your phone number!',
+                  message: 'Please enter a valid mobile phone number',
                 },
                 { validator: this.handlePhoneValidation },
               ],
@@ -180,11 +180,11 @@ class PersonalForm extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Please input your first name',
+                    message: 'Please enter your first name',
                   },
                   {
                     whitespace: true,
-                    message: 'Please input your first name',
+                    message: 'Please enter your first name',
                   },
                 ],
               })(<Input />)}
@@ -194,11 +194,11 @@ class PersonalForm extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Please input your last name',
+                    message: 'Please enter your last name',
                   },
                   {
                     whitespace: true,
-                    message: 'Please input your last name',
+                    message: 'Please enter your last name',
                   },
                 ],
               })(<Input />)}
