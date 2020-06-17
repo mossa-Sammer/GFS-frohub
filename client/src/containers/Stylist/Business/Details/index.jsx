@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return, react/no-unused-state */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 import { Form, Input, Button } from 'antd';
 
@@ -28,8 +29,9 @@ class BusinessDetails extends Component {
   };
 
   async componentDidMount() {
-    const user = await JSON.parse(localStorage.getItem('user'));
-    const { userId } = user;
+    const {
+      loggedUser: { userId },
+    } = this.props;
     const stylistBusiness = await getBusinessDetails(userId);
     const { accountNumber, sortCode, hasBusiness } = stylistBusiness;
     this.setState({
@@ -93,7 +95,7 @@ class BusinessDetails extends Component {
       <div className="business__details-container">
         {err && <span className="err__msg-box">* {errMsg} !</span>}
         {success && <span className="success__msg-box">{successMessage}</span>}
-        <Form onSubmit={this.handleBusiness}>
+        <Form className="business__details-form" onSubmit={this.handleBusiness}>
           <Form.Item
             className="business__form-item"
             label="Your Bank Account Number"
@@ -138,10 +140,10 @@ class BusinessDetails extends Component {
               as deposits etc.
             </p>
           </Form.Item>
-          <Button className="business__next-btn" htmlType="submit">
-            Save and Next
-          </Button>
         </Form>
+        <Button className="business__next-btn" htmlType="submit">
+          Save and Next
+        </Button>
       </div>
     );
   }
@@ -151,4 +153,8 @@ const BusinessDetailsForm = Form.create({ name: 'BusinessDetails' })(
   BusinessDetails
 );
 
-export default withRouter(BusinessDetailsForm);
+const mapStateToProps = state => {
+  return state.login;
+};
+
+export default connect(mapStateToProps, null)(withRouter(BusinessDetailsForm));
