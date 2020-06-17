@@ -39,7 +39,7 @@ CREATE TABLE salon (
   instgram_handle VARCHAR,
   profile_image VARCHAR,
   cover_image VARCHAR,
-  document VARCHAR,
+  document VARCHAR[],
   type salon_type NOT NULL,
   street VARCHAR(255),
   city VARCHAR(30) NOT NULL,

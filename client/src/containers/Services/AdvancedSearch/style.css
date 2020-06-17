@@ -33,7 +33,7 @@ body {
   z-index: 1;
   background: #fff;
   padding: 2rem;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,.5);
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   z-index: 2;
 }
@@ -61,7 +61,7 @@ body {
   font-size: 14px;
 }
 
-.ant-radio {
+.filter__containter__radio.ant-radio {
   left: 300px;
 }
 
@@ -83,7 +83,7 @@ body {
 
 .clear-btn {
   border: none !important;
-  color: #56A2FD !important;
+  color: #56a2fd !important;
 }
 
 .filter__menu-type {

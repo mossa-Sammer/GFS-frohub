@@ -25,9 +25,7 @@ class PersonalForm extends Component {
 
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
       axios.get(`/api/user/${user.userId}/personal`),
-      axios.get(
-        'https://cors-anywhere.herokuapp.com/http://country.io/phone.json'
-      ),
+      axios.get('http://country.io/phone.json'),
     ]);
 
     const countries = [];
