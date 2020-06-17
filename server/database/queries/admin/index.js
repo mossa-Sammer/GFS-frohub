@@ -10,7 +10,15 @@ const {
   getAllServicesLengthes,
   insertServiceLength,
   updateServiceLength,
+  deleteServiceLength,
 } = require('./servicesLengthes');
+
+const {
+  getAllPartners,
+  getPartnerBusiness,
+  getPartnerServices,
+  getPartnerSalon,
+} = require('./partner');
 
 module.exports = {
   checkAdmin,
@@ -20,4 +28,9 @@ module.exports = {
   getAllServicesLengthes,
   insertServiceLength,
   updateServiceLength,
+  deleteServiceLength,
+  getAllPartners,
+  getPartnerBusiness,
+  getPartnerServices,
+  getPartnerSalon,
 };

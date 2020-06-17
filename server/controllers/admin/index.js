@@ -1,9 +1,9 @@
 const servicesByAdmin = require('./services');
 const lengthesByAdmin = require('./servicesLengthes');
-const stylistByAdmin = require('./stylist');
+const partnerByAdmin = require('./partner');
 
 module.exports = {
   servicesByAdmin,
   lengthesByAdmin,
-  stylistByAdmin,
+  partnerByAdmin,
 };

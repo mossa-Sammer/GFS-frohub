@@ -12,7 +12,7 @@ const {
   salon,
   services,
   uploads,
-  stylistByAdmin,
+  partnerByAdmin,
   lengthesByAdmin,
   servicesByAdmin,
 } = require('../controllers');
@@ -64,15 +64,22 @@ router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
 
 // admin
-router.post('/admin/:id/service', servicesByAdmin.insertService);
-router.post('/admin/:id/services/length', lengthesByAdmin.insertServiceLength);
-router.get('/admin/:id/services', servicesByAdmin.getServices);
-router.get('/admin/:id/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
-router.get('/admin/:id/stylists', stylistByAdmin.getAllStylists);
-router.get('/admin/:id/stylist/:stylistId', stylistByAdmin.getStylistProfile);
-router.get('/admin/:id/stylist/:stylistId/services', stylistByAdmin.getStylistServices);
-router.patch('/admin/:id/service/:serviceId', servicesByAdmin.updateService);
-router.patch('/admin/:id/services/length/:lengthId', servicesByAdmin.updateService);
+
+// services and lengthes
+router.get('/admin/services', servicesByAdmin.getServices);
+router.get('/admin/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
+router.post('/admin/services', servicesByAdmin.insertService);
+router.post('/admin/services/lengthes', lengthesByAdmin.insertServiceLength);
+router.patch('/admin/services/:id', servicesByAdmin.updateService);
+router.patch('/admin/services/lengthes/:id', lengthesByAdmin.updateServiceLength);
+router.delete('/admin/services/:id', servicesByAdmin.deleteService);
+router.delete('/admin/services/lengthes/:id', lengthesByAdmin.deleteServiceLength);
+
+// stylist: personal, business, salon, services
+router.get('/admin/partners', partnerByAdmin.getAllPartners);
+router.get('/admin/users/:id/business', partnerByAdmin.getPartnerBusiness);
+router.get('/admin/users/:id/services', partnerByAdmin.getPartnerServices);
+router.get('/admin/users/:id/salon', partnerByAdmin.getPartnerSalon);
 
 
 // catch 404 and forward to error handler

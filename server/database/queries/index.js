@@ -33,6 +33,11 @@ const {
   insertServiceLength,
   updateService,
   updateServiceLength,
+  deleteServiceLength,
+  getAllPartners,
+  getPartnerBusiness,
+  getPartnerServices,
+  getPartnerSalon,
 } = require('./admin');
 
 module.exports = {
@@ -61,4 +66,9 @@ module.exports = {
   insertServiceLength,
   updateService,
   updateServiceLength,
+  deleteServiceLength,
+  getAllPartners,
+  getPartnerBusiness,
+  getPartnerServices,
+  getPartnerSalon,
 };

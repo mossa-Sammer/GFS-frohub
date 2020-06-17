@@ -11,7 +11,7 @@ const uploads = require('./uploads');
 const {
   servicesByAdmin,
   lengthesByAdmin,
-  stylistByAdmin,
+  partnerByAdmin,
 } = require('./admin');
 
 module.exports = {
@@ -27,5 +27,5 @@ module.exports = {
   uploads,
   servicesByAdmin,
   lengthesByAdmin,
-  stylistByAdmin,
+  partnerByAdmin,
 };
