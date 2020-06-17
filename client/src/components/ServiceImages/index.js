@@ -119,7 +119,7 @@ class ServiceImages extends Component {
           }}
           beforeUpload={beforeUpload}
           listType="picture-card"
-          // showUploadList={false}
+          showUploadList={false}
           className="service__images-upload"
         >
           <div>

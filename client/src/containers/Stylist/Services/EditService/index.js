@@ -7,9 +7,7 @@ import { Button, Modal, message } from 'antd';
 import {
   Loading,
   SelectService,
-  ServiceInput,
   SelectServiceLength,
-  ServiceLengthInput,
   ServicePriceInput,
   SalonServiceImages,
 } from '../../../../components';
@@ -174,7 +172,6 @@ class EditService extends Component {
                 <p>Select Service:</p>
                 <SelectService status={status} service={service} />
               </div>
-              <ServiceInput status={status} />
               <div className="edit__service__form-item">
                 <p>Hair Length:</p>
                 <SelectServiceLength
@@ -182,7 +179,6 @@ class EditService extends Component {
                   serviceLength={serviceLength}
                 />
               </div>
-              <ServiceLengthInput status={status} />
               <div className="edit__service__form-item">
                 <p>Price: </p>
                 <ServicePriceInput status={status} price={price} />
@@ -205,6 +201,12 @@ class EditService extends Component {
                   salonServiceId={salonServiceId}
                 />
               </div>
+              <div>
+                <p>
+                  If you cannot find your service or hair length listed, please
+                  contact us at partner@frohub.com.
+                </p>
+              </div>
               <div className="edit__service__form-item edit__btn-item">
                 <Button
                   className="edit__service__form-btn"
@@ -221,12 +223,6 @@ class EditService extends Component {
               >
                 <p>Are you sure to edit {serviceName} </p>
               </Modal>
-              <div>
-                <p>
-                  If you cannot find your service or hair length listed, please
-                  contact us at partner@frohub.com.
-                </p>
-              </div>
             </div>
           </div>
         ) : (
