@@ -22,10 +22,17 @@ class ZonesSelector extends Component {
     zones: [],
   };
 
+  componentDidMount() {
+    const { zones } = this.props;
+    this.setState({ zones });
+  }
+
   componentDidUpdate(prevProps) {
     const { zones } = this.props;
-    // eslint-disable-next-line react/no-did-update-set-state
-    if (prevProps.zones !== zones) this.setState({ zones });
+    if (prevProps.zones !== zones) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ zones });
+    }
   }
 
   handleFilter = (input, option) =>

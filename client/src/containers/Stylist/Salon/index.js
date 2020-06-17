@@ -29,6 +29,7 @@ class SalonForm extends Component {
     profileImageRef: React.createRef(),
     coverImageRef: React.createRef(),
     loading: false,
+    isMobile: false,
   };
 
   async componentDidMount() {
@@ -66,6 +67,7 @@ class SalonForm extends Component {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         fileList: newList,
+        isMobile: type === 'mobile',
       });
       setFieldsValue({
         salonName: name,
@@ -99,7 +101,7 @@ class SalonForm extends Component {
     return zones.map(z => {
       return {
         fromZone: z.from_zone,
-        toZone: z.toZone,
+        toZone: z.to_zone,
         price: z.price,
       };
     });
@@ -125,11 +127,7 @@ class SalonForm extends Component {
           state: { times },
         },
       },
-      zonesRef: {
-        current: {
-          state: { zones },
-        },
-      },
+      zonesRef: { current: zonesComponent },
       profileImageRef: {
         current: { state: profileImage },
       },
@@ -139,6 +137,11 @@ class SalonForm extends Component {
       fileList,
     } = this.state;
 
+    let zones;
+    if (zonesComponent) {
+      zones = zonesComponent.state.zones;
+    }
+
     const documents = this.filterBlobs(fileList);
     const prevFiles = this.filterFilesUrls(fileList);
 
@@ -147,7 +150,7 @@ class SalonForm extends Component {
         addressForm.validateFieldsAndScroll(
           async (errAddress, addressDetails) => {
             if (!errAddress) {
-              const normalizedZones = this.normalizeZones(zones);
+              const normalizedZones = zones ? this.normalizeZones(zones) : [];
               const normalizedTimes = this.normalizeTimes(times);
 
               let blobsToUpload = [];
@@ -230,6 +233,7 @@ class SalonForm extends Component {
       profileImageRef,
       coverImageRef,
       loading,
+      isMobile,
     } = this.state;
     const {
       form: { getFieldDecorator },
@@ -285,17 +289,7 @@ class SalonForm extends Component {
                   ],
                 })(<Input />)}
               </Form.Item>
-              <Form.Item label="About me">
-                {getFieldDecorator('about', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please enter salon description',
-                    },
-                    { max: 400, message: 'too long description' },
-                  ],
-                })(<Input.TextArea rows={4} />)}
-              </Form.Item>
+
               <Form.Item
                 className="instgram-handle-input"
                 label="Instgram handle"
@@ -318,12 +312,48 @@ class SalonForm extends Component {
                     },
                   ],
                 })(
-                  <Radio.Group className="salon-page__salon-type">
+                  <Radio.Group
+                    className="salon-page__salon-type"
+                    onChange={({ target: { value } }) => {
+                      this.setState({ isMobile: value === 'mobile' });
+                    }}
+                  >
                     <Radio value="salon">Salon based</Radio>
                     <Radio value="home">Home based</Radio>
                     <Radio value="mobile">Mobile based</Radio>
                   </Radio.Group>
                 )}
+              </Form.Item>
+            </Form>
+            <div className="address-section">
+              <h4 className="address-section__header">What is your address?</h4>
+              <Address
+                address={address}
+                wrappedComponentRef={form => {
+                  this.addressComponent = form;
+                }}
+              />
+            </div>
+            {isMobile && (
+              <ZonesSelector
+                zones={zones || []}
+                handleAddMore={this.handleAddMoreZone}
+                ref={zonesRef}
+              />
+            )}
+            <h4>What Are your opening times?</h4>
+            <OpeningTimes times={openingTimes || []} ref={openingTimesRef} />
+            <Form>
+              <Form.Item label="About me">
+                {getFieldDecorator('about', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please enter salon description',
+                    },
+                    { max: 400, message: 'too long description' },
+                  ],
+                })(<Input.TextArea rows={4} />)}
               </Form.Item>
               <Form.Item className="profile-image__input" label="Profile image">
                 <Uploader imgUrl={profileImage} ref={profileImageRef} />
@@ -332,7 +362,6 @@ class SalonForm extends Component {
                 <Uploader imgUrl={coverImage} ref={coverImageRef} />
               </Form.Item>
             </Form>
-
             <div className="document-upload__wrapper">
               <p className="document-upload__text">
                 if you have any formal qualifications as Hairstylist/Beautian,
@@ -359,24 +388,6 @@ class SalonForm extends Component {
                   <Icon type="upload" /> Click to upload a document
                 </Button>
               </Upload>
-              <ZonesSelector
-                zones={zones || []}
-                handleAddMore={this.handleAddMoreZone}
-                ref={zonesRef}
-              />
-              <div className="address-section">
-                <h4 className="address-section__header">
-                  What is your address?
-                </h4>
-                <Address
-                  address={address}
-                  wrappedComponentRef={form => {
-                    this.addressComponent = form;
-                  }}
-                />
-              </div>
-              <h4>What Are your opening times?</h4>
-              <OpeningTimes times={openingTimes || []} ref={openingTimesRef} />
             </div>
             <Button
               type="primary"
