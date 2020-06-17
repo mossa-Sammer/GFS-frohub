@@ -42,6 +42,10 @@
   bottom: -2rem;
 }
 
+.salon-opening-times {
+  margin-bottom: 2rem;
+}
+
 @media only screen and (max-width: 600px) {
   .address-section .address {
     width: 80% !important;

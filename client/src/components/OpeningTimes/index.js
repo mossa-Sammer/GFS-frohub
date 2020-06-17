@@ -56,9 +56,10 @@ class OpeningTimes extends React.Component {
 
   render() {
     const { times } = this.state;
+    const { className } = this.props;
     const format = 'HH:mm';
     return (
-      <div className="opening-times">
+      <div className={`opening-times ${className}`}>
         {times.map(time => (
           <div className="opening-times__item" key={time.salon_opening_time_id}>
             <DaySelect

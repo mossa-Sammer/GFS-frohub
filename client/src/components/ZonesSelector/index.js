@@ -88,10 +88,13 @@ class ZonesSelector extends Component {
   };
 
   render() {
-    const { label = 'which london zones are you covering?' } = this.props;
+    const {
+      label = 'which london zones are you covering?',
+      className,
+    } = this.props;
     const { zones } = this.state;
     return (
-      <div className="zone-selector__zones">
+      <div className={`zone-selector__zones ${className}`}>
         <p>{label}</p>
         {zones.map(zone => (
           <div className="zone-selector__item" key={zone.salon_zone_id}>

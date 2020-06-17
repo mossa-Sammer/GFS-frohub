@@ -88,23 +88,27 @@ class SalonForm extends Component {
   getFilesTypes = files => files.map(f => f.type);
 
   normalizeTimes = times => {
-    return times.map(t => {
-      return {
-        day: t.day,
-        fromTime: t.from_time,
-        toTime: t.to_time,
-      };
-    });
+    return times
+      .filter(t => t.day && t.from_time && t.to_time)
+      .map(t => {
+        return {
+          day: t.day,
+          fromTime: t.from_time,
+          toTime: t.to_time,
+        };
+      });
   };
 
   normalizeZones = zones => {
-    return zones.map(z => {
-      return {
-        fromZone: z.from_zone,
-        toZone: z.to_zone,
-        price: z.price,
-      };
-    });
+    zones
+      .filter(zone => zone.from_zone && zone.to_zone && zone.price)
+      .map(z => {
+        return {
+          fromZone: z.from_zone,
+          toZone: z.to_zone,
+          price: z.price,
+        };
+      });
   };
 
   handleSubmit = () => {
@@ -336,13 +340,22 @@ class SalonForm extends Component {
             </div>
             {isMobile && (
               <ZonesSelector
-                zones={zones || []}
+                className="salon-zones"
+                zones={zones.length !== 0 ? zones : [{ salon_zone_id: uuid() }]}
                 handleAddMore={this.handleAddMoreZone}
                 ref={zonesRef}
               />
             )}
             <h4>What Are your opening times?</h4>
-            <OpeningTimes times={openingTimes || []} ref={openingTimesRef} />
+            <OpeningTimes
+              className="salon-opening-times"
+              times={
+                openingTimes?.length !== 0
+                  ? openingTimes
+                  : [{ salon_opening_time_id: uuid() }]
+              }
+              ref={openingTimesRef}
+            />
             <Form>
               <Form.Item label="About me">
                 {getFieldDecorator('about', {
