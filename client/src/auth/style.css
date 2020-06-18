@@ -46,4 +46,5 @@
 	padding: 40px;
 	border-left: none;
 	padding-top: 100px;
+	overflow-x: unset !important;
 }
