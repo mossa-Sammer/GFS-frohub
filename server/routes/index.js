@@ -70,13 +70,13 @@ router.get('/admin/services', servicesByAdmin.getServices);
 router.get('/admin/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
 router.post('/admin/services', servicesByAdmin.insertService);
 router.post('/admin/services/lengthes', lengthesByAdmin.insertServiceLength);
-router.patch('/admin/services/:id', servicesByAdmin.updateService);
-router.patch('/admin/services/lengthes/:id', lengthesByAdmin.updateServiceLength);
+router.put('/admin/services/:id', servicesByAdmin.updateService);
+router.put('/admin/services/lengthes/:id', lengthesByAdmin.updateServiceLength);
 router.delete('/admin/services/:id', servicesByAdmin.deleteService);
 router.delete('/admin/services/lengthes/:id', lengthesByAdmin.deleteServiceLength);
 
 // stylist: personal, business, salon, services
-router.get('/admin/partners', partnerByAdmin.getAllPartners);
+router.get('/admin/users', partnerByAdmin.getAllPartners);
 router.get('/admin/users/:id/business', partnerByAdmin.getPartnerBusiness);
 router.get('/admin/users/:id/services', partnerByAdmin.getPartnerServices);
 router.get('/admin/users/:id/salon', partnerByAdmin.getPartnerSalon);
