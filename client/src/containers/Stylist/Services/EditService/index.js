@@ -9,7 +9,7 @@ import {
   SelectService,
   SelectServiceLength,
   ServicePriceInput,
-  SalonServiceImages,
+  ServicesImages,
 } from '../../../../components';
 
 import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
@@ -33,8 +33,6 @@ class EditService extends Component {
     salonServiceName: '',
     success: false,
     successMsg: '',
-    err: false,
-    errMsg: '',
   };
 
   async componentDidMount() {
@@ -196,10 +194,7 @@ class EditService extends Component {
                   </a>{' '}
                   for best picture practices.
                 </p>
-                <SalonServiceImages
-                  status={status}
-                  salonServiceId={salonServiceId}
-                />
+                <ServicesImages salonServiceId={salonServiceId} />
               </div>
               <div>
                 <p>
