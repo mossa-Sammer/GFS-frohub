@@ -14,8 +14,8 @@ export {
   PageNotFound,
   Services,
   Welcome,
-  Personal,
   Business,
+  Personal,
   Salon,
   StylistServices,
 };

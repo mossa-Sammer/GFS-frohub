@@ -17,7 +17,7 @@ test('adding a new salon for an existing user', async () => {
     instgramHandle: 'http://instgram.com/***',
     profileImage: '',
     coverImage: '',
-    document: '',
+    document: ['mamama', 'dadada'],
     type: 'mobile',
     street: 'omar el mukhtar',
     city: 'gaza',

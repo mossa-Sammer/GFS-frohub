@@ -22,6 +22,8 @@ module.exports = async (req, res, next) => {
     salon, zones, openingTimes,
   } = req.body;
 
+  salon.salonId = salonId;
+
   try {
     await Promise.all([
       addSalonSchema.validate(salon, { abortEarly: false }),
@@ -31,17 +33,21 @@ module.exports = async (req, res, next) => {
 
     const [{ rows: [updatedSalon] }] = await Promise.all([
       updateSalon(salon),
-      deleteZones(salon.salonId),
-      deleteOpeningTimes(salon.salonId),
+      deleteZones(salonId),
+      deleteOpeningTimes(salonId),
     ]);
 
-    const [
-      { rows: updatedZones },
-      { rows: updatedOpeningTimes },
-    ] = await Promise.all([
-      addSalonZones(zones, salonId),
-      addSalonOpeningTimes(openingTimes, salonId),
-    ]);
+    let updatedZones;
+    let updatedOpeningTimes;
+
+    if (zones && zones.length !== 0) {
+      const { rows } = await addSalonZones(zones, salonId);
+      updatedZones = rows;
+    }
+    if (openingTimes && openingTimes.length !== 0) {
+      const { rows } = await addSalonOpeningTimes(openingTimes, salonId);
+      updatedOpeningTimes = rows;
+    }
 
     res.json({
       salon: updatedSalon,
@@ -53,6 +59,7 @@ module.exports = async (req, res, next) => {
       const errors = validationError(err);
       const errObj = boom.badData('message', errors);
       next(errObj);
-    } next(err);
+    }
+    next(err);
   }
 };

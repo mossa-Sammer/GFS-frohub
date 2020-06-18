@@ -44,7 +44,7 @@ router.post('/stylist/finance', finance.addFinance);
 // Salon
 router.get('/salons', salon.getAllSalons);
 router.get('/salon/:id', salon.getSalonByUserId);
-router.post('/salon', salon.addSalon);
+router.post('/salon/:id', salon.addSalon);
 router.patch('/salon/:id', salon.updateSalon);
 
 // Salon services

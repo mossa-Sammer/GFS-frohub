@@ -8,7 +8,7 @@
     z-index: 50;
   }
 
-  .ant-radio {
+  .filter__containter__radio.ant-radio {
     left: 325px;
   }
 
@@ -18,13 +18,13 @@
 }
 
 @media only screen and (max-width: 400px) {
-  .ant-radio {
+  .filter__containter__radio.ant-radio {
     left: 280px;
   }
 }
 
 @media only screen and (max-width: 340px) {
-  .ant-radio {
+  .filter__containter__radio.ant-radio {
     left: 240px;
   }
 }
