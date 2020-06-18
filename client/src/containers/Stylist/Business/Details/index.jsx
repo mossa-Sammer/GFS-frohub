@@ -1,8 +1,9 @@
 /* eslint-disable consistent-return, react/no-unused-state */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
-import { Form, Input, Radio, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 import {
   getBusinessDetails,
@@ -22,54 +23,35 @@ class BusinessDetails extends Component {
     err: false,
     errMsg: '',
     sortCode: '',
-    preferredPayMethod: 'none',
     hasBusiness: false,
     success: false,
     successMessage: '',
   };
 
   async componentDidMount() {
-    const user = await JSON.parse(localStorage.getItem('user'));
-    const { userId } = user;
-    const stylistBusiness = await getBusinessDetails(userId);
     const {
-      accountNumber,
-      sortCode,
-      preferredPayMethod,
-      hasBusiness,
-    } = stylistBusiness;
+      loggedUser: { userId },
+    } = this.props;
+    const stylistBusiness = await getBusinessDetails(userId);
+    const { accountNumber, sortCode, hasBusiness } = stylistBusiness;
     this.setState({
       userId,
       accountNumber,
       sortCode,
-      preferredPayMethod,
       hasBusiness,
     });
   }
 
-  handlePaymetMethod = method =>
-    this.setState({
-      preferredPayMethod: method.target.value,
-      err: false,
-      errMsg: '',
-    });
-
   handleBusiness = e => {
     e.preventDefault();
     const { form, history } = this.props;
-    const {
-      accountNumber,
-      sortCode,
-      preferredPayMethod,
-      hasBusiness,
-      userId,
-    } = this.state;
+    const { accountNumber, sortCode, hasBusiness, userId } = this.state;
     form.validateFieldsAndScroll(async err => {
       if (!err) {
         const business = {
           accountNumber,
           sortCode,
-          preferredPayMethod,
+          preferredPayMethod: 'card',
         };
         if (!hasBusiness) {
           const { error } = await postBusinessDetails(userId, business);
@@ -106,7 +88,6 @@ class BusinessDetails extends Component {
       errMsg,
       accountNumber,
       sortCode,
-      preferredPayMethod,
       success,
       successMessage,
     } = this.state;
@@ -114,10 +95,10 @@ class BusinessDetails extends Component {
       <div className="business__details-container">
         {err && <span className="err__msg-box">* {errMsg} !</span>}
         {success && <span className="success__msg-box">{successMessage}</span>}
-        <Form onSubmit={this.handleBusiness}>
+        <Form className="business__details-form" onSubmit={this.handleBusiness}>
           <Form.Item
             className="business__form-item"
-            label="Your account number"
+            label="Your Bank Account Number"
           >
             {getFieldDecorator('accountNumber', {
               rules: [
@@ -127,9 +108,15 @@ class BusinessDetails extends Component {
                 },
               ],
               initialValue: accountNumber,
-            })(<Input name="accountNumber" onChange={this.handleValues} />)}
+            })(
+              <Input
+                name="accountNumber"
+                onChange={this.handleValues}
+                placeholder="Bank Account Number"
+              />
+            )}
           </Form.Item>
-          <Form.Item className="business__form-item" label="Your sort code">
+          <Form.Item className="business__form-item" label="Sort Code">
             {getFieldDecorator('sortCode', {
               rules: [
                 {
@@ -143,37 +130,20 @@ class BusinessDetails extends Component {
                 className="sort_code-input"
                 name="sortCode"
                 onChange={this.handleValues}
+                placeholder="Sort Code"
               />
             )}
           </Form.Item>
           <Form.Item className="business__form-item">
             <p className="business-hint">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam
+              This is the bank account that we would transfer any funds to, such
+              as deposits etc.
             </p>
           </Form.Item>
-          <Form.Item className="business__form-item">
-            <Radio.Group
-              onChange={this.handlePaymetMethod}
-              className="payment__methods-box"
-              value={preferredPayMethod}
-            >
-              <Radio className="business__radio-btn" value="card">
-                Card
-              </Radio>
-              <Radio className="business__radio-btn" value="cash">
-                Cash
-              </Radio>
-              <Radio className="business__radio-btn" value="none">
-                No preference
-              </Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Button className="business__next-btn" htmlType="submit">
-            Next
-          </Button>
         </Form>
+        <Button className="business__next-btn" htmlType="submit">
+          Save and Next
+        </Button>
       </div>
     );
   }
@@ -183,4 +153,8 @@ const BusinessDetailsForm = Form.create({ name: 'BusinessDetails' })(
   BusinessDetails
 );
 
-export default withRouter(BusinessDetailsForm);
+const mapStateToProps = state => {
+  return state.login;
+};
+
+export default connect(mapStateToProps, null)(withRouter(BusinessDetailsForm));

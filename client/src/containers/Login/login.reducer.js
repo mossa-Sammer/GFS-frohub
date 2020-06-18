@@ -20,6 +20,7 @@ export default function loginReducer(state = initState, action) {
         ...state,
         error: null,
         loading: false,
+        loggedUser: action.payload,
       };
     case LOGIN_LOADING:
       return {
