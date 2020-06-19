@@ -2,7 +2,17 @@ const boom = require('@hapi/boom');
 const express = require('express');
 
 const {
-  login, signup, auth, getTreatments, personal, business, finance, salon, services, uploads,
+  login,
+  signup,
+  auth,
+  getTreatments,
+  personal,
+  business,
+  finance,
+  salon,
+  services,
+  uploads,
+  countriesPhones,
 } = require('../controllers');
 
 const router = express.Router();
@@ -14,6 +24,7 @@ router.post('/upload/:id', uploads.uploadFiles);
 router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 
+router.get('/country.io/phone.json', countriesPhones);
 // Stylist/Personal
 
 router.get('/user/:id/personal', personal.getUser);
