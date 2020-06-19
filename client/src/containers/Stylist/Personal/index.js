@@ -15,7 +15,6 @@ const { Option } = Select;
 class PersonalForm extends Component {
   state = {
     country: '',
-    changed: false,
     error: false,
     countries: [],
   };
@@ -85,15 +84,12 @@ class PersonalForm extends Component {
   };
 
   handleFormChange = () => {
-    const { changed } = this.state;
     const {
       form: { getFieldsError },
     } = this.props;
 
     const isError = Object.values(getFieldsError()).some(e => e !== undefined);
     this.setState({ error: isError });
-
-    if (!changed) this.setState({ changed: true });
   };
 
   handlePhonePrefix = value => this.setState({ country: value });
@@ -107,7 +103,7 @@ class PersonalForm extends Component {
   };
 
   render() {
-    const { changed, error, countries } = this.state;
+    const { error, countries } = this.state;
     const {
       form: { getFieldDecorator },
     } = this.props;
@@ -210,7 +206,7 @@ class PersonalForm extends Component {
               htmlType="submit"
               disabled={error}
             >
-              {changed ? 'Save & Next' : 'Next'}
+              Save & Next
             </Button>
           </Form.Item>
         </Form>
