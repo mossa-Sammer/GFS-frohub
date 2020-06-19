@@ -25,7 +25,7 @@ class PersonalForm extends Component {
 
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
       axios.get(`/api/user/${user.userId}/personal`),
-      axios.get('http://country.io/phone.json'),
+      axios.get('/api/country.io/phone.json'),
     ]);
 
     const countries = [];
