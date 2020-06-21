@@ -15,7 +15,6 @@ const { Option } = Select;
 class PersonalForm extends Component {
   state = {
     country: '',
-    changed: false,
     error: false,
     countries: [],
   };
@@ -25,7 +24,7 @@ class PersonalForm extends Component {
 
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
       axios.get(`/api/user/${user.userId}/personal`),
-      axios.get('http://country.io/phone.json'),
+      axios.get('/api/country.io/phone.json'),
     ]);
 
     const countries = [];
@@ -85,15 +84,12 @@ class PersonalForm extends Component {
   };
 
   handleFormChange = () => {
-    const { changed } = this.state;
     const {
       form: { getFieldsError },
     } = this.props;
 
     const isError = Object.values(getFieldsError()).some(e => e !== undefined);
     this.setState({ error: isError });
-
-    if (!changed) this.setState({ changed: true });
   };
 
   handlePhonePrefix = value => this.setState({ country: value });
@@ -107,7 +103,7 @@ class PersonalForm extends Component {
   };
 
   render() {
-    const { changed, error, countries } = this.state;
+    const { error, countries } = this.state;
     const {
       form: { getFieldDecorator },
     } = this.props;
@@ -132,7 +128,7 @@ class PersonalForm extends Component {
 
     return (
       <div className="peronal-form__wrapper">
-        <h3>Personal Details</h3>
+        <h1>Personal Details</h1>
         <Form
           className="personal-form"
           onChange={this.handleFormChange}
@@ -210,7 +206,7 @@ class PersonalForm extends Component {
               htmlType="submit"
               disabled={error}
             >
-              {changed ? 'Save & Next' : 'Next'}
+              Save and Next
             </Button>
           </Form.Item>
         </Form>

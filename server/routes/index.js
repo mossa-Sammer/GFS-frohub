@@ -12,6 +12,7 @@ const {
   salon,
   services,
   uploads,
+  countriesPhones,
   partnerByAdmin,
   lengthesByAdmin,
   servicesByAdmin,
@@ -26,8 +27,9 @@ router.post('/upload/:id', uploads.uploadFiles);
 router.get('/treatments', getTreatments);
 router.get('/authenticated', auth);
 
-// Stylist/Personal
+router.get('/country.io/phone.json', countriesPhones);
 
+// Stylist/Personal
 router.get('/user/:id/personal', personal.getUser);
 router.post('/user/:id/personal', personal.addUserData);
 router.patch('/user/personal', personal.updateUser);
