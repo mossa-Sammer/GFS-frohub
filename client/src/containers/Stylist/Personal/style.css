@@ -1,6 +1,18 @@
-.personal-next-btn {
-  position: absolute !important;
+.personal-next-btn.ant-btn {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  position: absolute;
   right: 0;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.personal-next-btn.ant-btn:hover {
+  background-color: rgba(224, 87, 71, 0.7) ;
+  border-color: var(--primary-color);
+  color: var(--font-color);
 }
 
 .email-field {

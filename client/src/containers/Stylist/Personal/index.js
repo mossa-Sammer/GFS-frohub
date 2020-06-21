@@ -128,7 +128,7 @@ class PersonalForm extends Component {
 
     return (
       <div className="peronal-form__wrapper">
-        <h3>Personal Details</h3>
+        <h1>Personal Details</h1>
         <Form
           className="personal-form"
           onChange={this.handleFormChange}
@@ -206,7 +206,7 @@ class PersonalForm extends Component {
               htmlType="submit"
               disabled={error}
             >
-              Save & Next
+              Save and Next
             </Button>
           </Form.Item>
         </Form>

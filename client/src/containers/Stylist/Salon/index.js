@@ -407,7 +407,7 @@ class SalonForm extends Component {
               className="salon__btn"
               onClick={this.handleSubmit}
             >
-              Save & Next
+              Save and Next
             </Button>
           </>
         )}
