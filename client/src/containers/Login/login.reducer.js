@@ -1,5 +1,5 @@
 import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS } from './login.action';
-import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
+// import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
 
 const initState = {
   error: null,
@@ -15,13 +15,13 @@ export default function loginReducer(state = initState, action) {
         loggedUser: action.payload.loggedUser,
       };
     }
-    case AUTHENTICANTE_SUCCESS:
-      return {
-        ...state,
-        error: null,
-        loading: false,
-        loggedUser: action.payload,
-      };
+    // case AUTHENTICANTE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     error: null,
+    //     loading: false,
+    //     loggedUser: action.payload,
+    //   };
     case LOGIN_LOADING:
       return {
         ...state,
