@@ -15,7 +15,7 @@ export default class StylistServices extends Component {
 
   render() {
     return (
-      <div>
+      <div className="salon__services-container">
         <h1>Your Services</h1>
         <div className="services__form">
           <div className="services__form-new">

@@ -16,6 +16,7 @@ const initialState = {
   serviceNewLength: '',
   price: '',
   images: [],
+  length: 0,
   err: false,
   errMsg: '',
 };
@@ -68,6 +69,7 @@ export default (state = initialState, action) => {
         err: false,
         errMsg: '',
         images: action.payload,
+        length: state.length + 1,
       };
     }
     case SALON_SERVICE_ERROR: {

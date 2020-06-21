@@ -52,4 +52,9 @@
 	.stylist__main-content.ant-layout-content {
 		padding-top: 35px;
 	}
+	.stylist__main-content.ant-layout-content {
+		padding: 0;
+		padding-top: 70px;
+		height: 100vh !important;
+	}
 }

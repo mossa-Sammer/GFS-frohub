@@ -45,6 +45,7 @@ class ServiceImageUploader extends Component {
           return editService({
             fieldName: 'serviceImage',
             value: serviceImages,
+            status: 'edit',
           });
         return addService({
           fieldName: 'serviceImage',
@@ -56,6 +57,7 @@ class ServiceImageUploader extends Component {
 
   render() {
     const { loading, images } = this.state;
+    const { length } = this.props;
     return (
       <div className="service__images-container">
         <div className="service__image-container">
@@ -64,23 +66,25 @@ class ServiceImageUploader extends Component {
             : images.map(img => (
                 <img src={img} className="service__image" alt="servcie" />
               ))}
-          <Upload
-            onChange={this.handleChange}
-            customRequest={({ _file, onSuccess }) => {
-              setTimeout(() => {
-                onSuccess('ok');
-              }, 0);
-            }}
-            beforeUpload={beforeUpload}
-            listType="picture-card"
-            showUploadList={false}
-            className="service__images-upload"
-          >
-            <div>
-              <Icon type={loading ? 'loading' : 'plus'} />
-              <div className="ant-upload-text">Upload</div>
-            </div>
-          </Upload>
+          {length >= 3 ? null : (
+            <Upload
+              onChange={this.handleChange}
+              customRequest={({ _file, onSuccess }) => {
+                setTimeout(() => {
+                  onSuccess('ok');
+                }, 0);
+              }}
+              beforeUpload={beforeUpload}
+              listType="picture-card"
+              showUploadList={false}
+              className="service__images-upload"
+            >
+              <div>
+                <Icon type={loading ? 'loading' : 'plus'} />
+                <div className="ant-upload-text">Upload</div>
+              </div>
+            </Upload>
+          )}
         </div>
       </div>
     );

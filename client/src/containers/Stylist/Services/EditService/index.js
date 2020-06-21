@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+/* eslint-disable no-nested-ternary, consistent-return */
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
@@ -165,80 +165,91 @@ class EditService extends Component {
       salonServiceId,
     } = this.state;
 
-    const { err, errMsg } = this.props;
+    const { err, errMsg, imagesLength, length } = this.props;
 
     return (
       <>
         {!loading ? (
-          <div>
-            <h2>
-              Edit {serviceName} {salonServiceName}
-            </h2>
-            {err && <div className="err-msg"> {message.error(errMsg, 2)} </div>}
-            {success && (
-              <div className="success-msg">
-                {' '}
-                {message.success(successMsg, 2)}{' '}
-              </div>
-            )}
-            <div className="edit__service-form">
-              <div className="edit__service__form-item">
-                <p>Select Service:</p>
-                <SelectService status={status} service={service} />
-              </div>
-              <div className="edit__service__form-item">
-                <p>Hair Length:</p>
-                <SelectServiceLength
-                  status={status}
-                  serviceLength={serviceLength}
-                />
-              </div>
-              <div className="edit__service__form-item">
-                <p>Price: </p>
-                <ServicePriceInput status={status} price={price} />
-              </div>
-              <div className="new__service__form-item">
-                <p>
-                  Upload up to 3 pictures for this service. Have a look at our
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://frohub.com/partner-photo-guidelines/"
-                  >
-                    {' '}
-                    guidelines{' '}
-                  </a>{' '}
-                  for best picture practices.
-                </p>
-                <ServicesImages salonServiceId={salonServiceId} />
-              </div>
-              <div>
-                <ServiceImageUploader status={status} />
-              </div>
-              <div>
-                <p>
-                  If you cannot find your service or hair length listed, please
-                  contact us at partner@frohub.com.
-                </p>
-              </div>
-              <div className="edit__service__form-item edit__btn-item">
-                <Button
-                  className="edit__service__form-btn"
-                  onClick={this.showModal}
+          <>
+            <div className="edit__service-container">
+              <h2>
+                Edit {serviceName} {salonServiceName}
+              </h2>
+              {err && (
+                <div className="err-msg"> {message.error(errMsg, 2)} </div>
+              )}
+              {success && (
+                <div className="success-msg">
+                  {' '}
+                  {message.success(successMsg, 2)}{' '}
+                </div>
+              )}
+              <div className="edit__service-form">
+                <div className="edit__service__form-item">
+                  <p>Select Service:</p>
+                  <SelectService status={status} service={service} />
+                </div>
+                <div className="edit__service__form-item">
+                  <p>Hair Length:</p>
+                  <SelectServiceLength
+                    status={status}
+                    serviceLength={serviceLength}
+                  />
+                </div>
+                <div className="edit__service__form-item">
+                  <p>Price: </p>
+                  <ServicePriceInput status={status} price={price} />
+                </div>
+                <div className="service__images-title">
+                  <p>
+                    Upload up to 3 pictures for this service. Have a look at our
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://frohub.com/partner-photo-guidelines/"
+                    >
+                      {' '}
+                      guidelines{' '}
+                    </a>{' '}
+                    for best picture practices.
+                  </p>
+                </div>
+                <div className="new__service__form-item">
+                  <div>
+                    <ServicesImages salonServiceId={salonServiceId} />
+                  </div>
+                  {imagesLength >= 3 ? null : (
+                    <ServiceImageUploader
+                      status={status}
+                      length={length + imagesLength}
+                    />
+                  )}
+                </div>
+                <div>
+                  <p>
+                    If you cannot find your service or hair length listed,
+                    please contact us at partner@frohub.com.
+                  </p>
+                </div>
+                <Modal
+                  title={`edit ${serviceName}`}
+                  visible={visible}
+                  onOk={this.handleEdit}
+                  onCancel={this.handleCancel}
                 >
-                  Save and Next
-                </Button>
+                  <p>Are you sure to edit {serviceName} </p>
+                </Modal>
               </div>
-              <Modal
-                title={`edit ${serviceName}`}
-                visible={visible}
-                onOk={this.handleEdit}
-                onCancel={this.handleCancel}
-              >
-                <p>Are you sure to edit {serviceName} </p>
-              </Modal>
             </div>
-          </div>
+            <div className="edit__service__form-item edit__btn-item">
+              <Button
+                className="edit__service__form-btn"
+                onClick={this.showModal}
+              >
+                Save and Next
+              </Button>
+            </div>
+          </>
         ) : (
           <Loading />
         )}
@@ -258,8 +269,9 @@ const mapStateToProps = state => {
     images,
     err,
     errMsg,
+    length,
   } = editSalonService;
-  const { images: currentImages } = serviceImages;
+  const { images: currentImages, imagesLength } = serviceImages;
   return {
     serviceName,
     serviceNewName,
@@ -267,9 +279,11 @@ const mapStateToProps = state => {
     serviceNewLength,
     price,
     images,
+    length,
     err,
     errMsg,
     currentImages,
+    imagesLength,
   };
 };
 
