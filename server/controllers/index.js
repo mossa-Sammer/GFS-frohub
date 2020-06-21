@@ -10,6 +10,11 @@ const uploads = require('./uploads');
 
 const countriesPhones = require('./countriesPhone');
 
+const {
+  servicesByAdmin,
+  lengthesByAdmin,
+  partnerByAdmin,
+} = require('./admin');
 
 module.exports = {
   login,
@@ -23,4 +28,7 @@ module.exports = {
   services,
   uploads,
   countriesPhones,
+  servicesByAdmin,
+  lengthesByAdmin,
+  partnerByAdmin,
 };
