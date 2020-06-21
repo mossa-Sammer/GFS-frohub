@@ -21,7 +21,7 @@ test('API PATCH /api/salon', async (done) => {
         instgramHandle: 'http://instgram.com/***',
         profileImage: 'pro',
         coverImage: 'cover',
-        document: 'ddd',
+        document: ['ddd'],
         type: 'mobile',
         street: 'omar el mukhtar',
         city: 'gaza',

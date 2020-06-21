@@ -15,7 +15,6 @@ const { Option } = Select;
 class PersonalForm extends Component {
   state = {
     country: '',
-    changed: false,
     error: false,
     countries: [],
   };
@@ -25,9 +24,7 @@ class PersonalForm extends Component {
 
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
       axios.get(`/api/user/${user.userId}/personal`),
-      axios.get(
-        'https://cors-anywhere.herokuapp.com/http://country.io/phone.json'
-      ),
+      axios.get('/api/country.io/phone.json'),
     ]);
 
     const countries = [];
@@ -87,15 +84,12 @@ class PersonalForm extends Component {
   };
 
   handleFormChange = () => {
-    const { changed } = this.state;
     const {
       form: { getFieldsError },
     } = this.props;
 
     const isError = Object.values(getFieldsError()).some(e => e !== undefined);
     this.setState({ error: isError });
-
-    if (!changed) this.setState({ changed: true });
   };
 
   handlePhonePrefix = value => this.setState({ country: value });
@@ -109,7 +103,7 @@ class PersonalForm extends Component {
   };
 
   render() {
-    const { changed, error, countries } = this.state;
+    const { error, countries } = this.state;
     const {
       form: { getFieldDecorator },
     } = this.props;
@@ -133,37 +127,37 @@ class PersonalForm extends Component {
     );
 
     return (
-      <div>
-        <h3>Personal details</h3>
+      <div className="peronal-form__wrapper">
+        <h1>Personal Details</h1>
         <Form
           className="personal-form"
           onChange={this.handleFormChange}
           onSubmit={this.handleSubmit}
         >
-          <Form.Item className="email-field" label="Email">
+          <Form.Item className="email-field" label="Email Address">
             {getFieldDecorator('email', {
               rules: [
                 {
                   type: 'email',
-                  message: 'The input is not valid E-mail!',
+                  message: 'Please enter a valid email address',
                 },
                 {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please enter a valid email address',
                 },
               ],
             })(<Input />)}
           </Form.Item>
-          <Form.Item className="phone-field" label="Phone Number">
+          <Form.Item className="phone-field" label="Mobile Phone Number">
             {getFieldDecorator('phoneNumber', {
               rules: [
                 {
                   required: true,
-                  message: 'Please input your phone number!',
+                  message: 'Please enter a valid mobile phone number',
                 },
                 {
                   whitespace: true,
-                  message: 'Please input your phone number!',
+                  message: 'Please enter a valid mobile phone number',
                 },
                 { validator: this.handlePhoneValidation },
               ],
@@ -180,11 +174,11 @@ class PersonalForm extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Please input your first name',
+                    message: 'Please enter your first name',
                   },
                   {
                     whitespace: true,
-                    message: 'Please input your first name',
+                    message: 'Please enter your first name',
                   },
                 ],
               })(<Input />)}
@@ -194,11 +188,11 @@ class PersonalForm extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Please input your last name',
+                    message: 'Please enter your last name',
                   },
                   {
                     whitespace: true,
-                    message: 'Please input your last name',
+                    message: 'Please enter your last name',
                   },
                 ],
               })(<Input />)}
@@ -212,7 +206,7 @@ class PersonalForm extends Component {
               htmlType="submit"
               disabled={error}
             >
-              {changed ? 'Save & Next' : 'Next'}
+              Save and Next
             </Button>
           </Form.Item>
         </Form>

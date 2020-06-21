@@ -1,0 +1,64 @@
+.salon__loading-spiner {
+  font-size: 5rem !important;
+  color: brown !important;
+}
+
+.ant-spin .ant-spin-spinning {
+  display: block;
+  text-align: center;
+}
+
+.profile-image__input .ant-form-item-control {
+  width: fit-content;
+}
+
+.document-upload__wrapper {
+  margin: 2rem 0;
+}
+
+.salon-page__salon-type .ant-radio-wrapper {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.address-section__header {
+  margin: 2rem 0 1rem;
+}
+
+.address-section .address {
+  width: 50% !important;
+}
+
+.salon__page {
+  position: relative;
+  padding-bottom: 4rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.salon__btn.ant-btn {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.salon__btn.ant-btn:hover {
+  background-color: rgba(224, 87, 71, 0.7) ;
+  border-color: var(--primary-color);
+  color: var(--font-color);
+}
+
+.salon-opening-times {
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .address-section .address {
+    width: 80% !important;
+  }
+}

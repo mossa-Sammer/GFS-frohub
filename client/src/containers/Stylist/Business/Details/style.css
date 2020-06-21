@@ -1,5 +1,7 @@
 .business__details-container {
-	width: 50%;
+	width: 100%;
+	position: relative;
+	height: 100%;
 }
 .ant-input-group .sort_code-input.ant-input,
 .ant-input-group .sort_code-input.ant-input:nth-child(2) {
@@ -57,4 +59,21 @@
 	border-radius: 3px;
 	display: flex;
 	padding: 15px;
+}
+
+.business__next-btn.ant-btn {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--font-color) !important;
+	width: 150px;
+	height: 40px;
+	font-size: 16px;
+	position: absolute;
+	bottom: 5%;
+	right: 0 !important;
+}
+
+.business__next-btn.ant-btn:hover {
+  background: var(--primary-color) !important;
+  opacity: 0.7 !important;
 }

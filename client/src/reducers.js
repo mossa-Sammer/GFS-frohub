@@ -12,6 +12,7 @@ import advancedSearchReducer from './containers/Services/AdvancedSearch/advanced
 import editSalonServiceReducer from './containers/Stylist/Services/EditService/editService.reducers';
 import addNewSalonServiceReducer from './containers/Stylist/Services/NewSalonService/newService.reducesr';
 import getPartnerServiceImages from './components/ServicesImages/services.images.reducer';
+import salonReducer from './containers/Stylist/Salon/salon.reducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -25,4 +26,5 @@ export default combineReducers({
   editSalonService: editSalonServiceReducer,
   newSalonService: addNewSalonServiceReducer,
   serviceImages: getPartnerServiceImages,
+  salonData: salonReducer,
 });

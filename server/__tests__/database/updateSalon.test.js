@@ -21,7 +21,7 @@ test('testing update salon query', async (done) => {
       instgramHandle: 'http://instgram.com/***',
       profileImage: 'image',
       coverImage: 'image',
-      document: 'docu',
+      document: ['docu'],
       type: 'home',
       street: 'hmeed',
       city: 'gaza',

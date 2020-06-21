@@ -13,6 +13,10 @@ import ServicePriceInput from './ServicePrice';
 import SalonServiceImages from './ServiceImages';
 import ServicesImages from './ServicesImages';
 import ServiceImageUploader from './ServiceImageUploader';
+import Uploader from './Uploader';
+import ZonesSelector from './ZonesSelector';
+import Address from './Address';
+import OpeningTimes from './OpeningTimes';
 
 export {
   Input,
@@ -30,4 +34,8 @@ export {
   SalonServiceImages,
   ServicesImages,
   ServiceImageUploader,
+  Uploader,
+  ZonesSelector,
+  Address,
+  OpeningTimes,
 };

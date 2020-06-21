@@ -107,6 +107,7 @@ class AdvancedSearch extends Component {
                 <span className="filter-tilte">Sort by:</span>
                 <div>
                   <Radio.Group
+                    className="filter__containter__radio"
                     onChange={this.handleSortRated}
                     value={advancedSearchQueries.sortBy}
                   >

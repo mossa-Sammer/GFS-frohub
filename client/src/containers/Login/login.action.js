@@ -4,6 +4,7 @@ import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
 
 export const LOGIN_LOADING = 'LOGIN_LOADING';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export default data => async dispatch => {
   dispatch({
@@ -14,17 +15,19 @@ export default data => async dispatch => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       dispatch({
-        type: AUTHENTICANTE_SUCCESS,
+        type: LOGIN_SUCCESS,
         payload: { loggedUser: storedUser },
       });
     } else {
       const { data: user } = await axios.post('/login', data);
       const { data: loggedUser } = user;
       localStorage.setItem('user', JSON.stringify(loggedUser));
-
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { loggedUser },
+      });
       dispatch({
         type: AUTHENTICANTE_SUCCESS,
-        // payload: { loggedUser },
       });
     }
   } catch (err) {

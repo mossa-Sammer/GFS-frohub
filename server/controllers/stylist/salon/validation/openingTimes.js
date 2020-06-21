@@ -1,6 +1,6 @@
 const yup = require('yup');
+const moment = require('moment');
 
-const time24Regx = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
 const openingTimesSchema = yup.array().of(yup.object().shape({
   day: yup.number().lessThan(7).moreThan(-1),
@@ -8,12 +8,12 @@ const openingTimesSchema = yup.array().of(yup.object().shape({
     .string()
     .required()
     .test('is 24 hour format', 'time should be in 24 hour format',
-      (v) => time24Regx.test(v)),
+      (v) => moment(v, 'HH:mm:ss').isValid()),
   toTime: yup
     .string()
     .required()
     .test('is 24 hour format', 'time should be in 24 hour format',
-      (v) => time24Regx.test(v)),
+      (v) => moment(v, 'HH:mm:ss').isValid()),
 }));
 
 module.exports = openingTimesSchema;
