@@ -7,6 +7,7 @@ import { message } from 'antd';
 import Loading from '../Loading';
 
 import ServiceImagesAction from './services.images.actions';
+import editServiceAction from '../../containers/Stylist/Services/EditService/editService.actions';
 
 import './style.css';
 
@@ -52,6 +53,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { ServiceImagesAction })(
-  ServicesImages
-);
+export default connect(mapStateToProps, {
+  ServiceImagesAction,
+  editServiceAction,
+})(ServicesImages);

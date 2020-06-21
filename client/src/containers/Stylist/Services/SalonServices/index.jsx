@@ -21,9 +21,9 @@ class SalonServices extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true });
-    // const { userId } = this.props;
-    // const salonId = await getSalonId(userId);
-    const salonServices = await getSalonServices(2);
+    const { userId } = this.props;
+    const salonId = await getSalonId(userId);
+    const salonServices = await getSalonServices(salonId);
     this.setState({ salonServices, loading: false });
   }
 

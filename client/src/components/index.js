@@ -12,6 +12,7 @@ import ServiceLengthInput from './ServiceLengthInput';
 import ServicePriceInput from './ServicePrice';
 import SalonServiceImages from './ServiceImages';
 import ServicesImages from './ServicesImages';
+import ServiceImageUploader from './ServiceImageUploader';
 
 export {
   Input,
@@ -28,4 +29,5 @@ export {
   ServicePriceInput,
   SalonServiceImages,
   ServicesImages,
+  ServiceImageUploader,
 };

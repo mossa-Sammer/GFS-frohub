@@ -10,6 +10,7 @@ import {
   SelectServiceLength,
   ServicePriceInput,
   ServicesImages,
+  ServiceImageUploader,
 } from '../../../../components';
 
 import { getSalonService, getSalonServiceLength } from '../SalonServices/api';
@@ -88,6 +89,7 @@ class EditService extends Component {
       images,
       history,
       editServiceAction: handleEditService,
+      currentImages,
     } = this.props;
 
     const { salonServiceId, salonId } = this.state;
@@ -107,7 +109,7 @@ class EditService extends Component {
       });
     }
 
-    if (!price || !images.length) {
+    if (!price || !images.length || !currentImages.length) {
       this.setState({
         visible: false,
       });
@@ -125,7 +127,7 @@ class EditService extends Component {
       serviceLength,
       serviceNewLength,
       price,
-      images,
+      images: currentImages.concat(images),
       status: 'edit',
     });
 
@@ -211,6 +213,9 @@ class EditService extends Component {
                 <ServicesImages salonServiceId={salonServiceId} />
               </div>
               <div>
+                <ServiceImageUploader status={status} />
+              </div>
+              <div>
                 <p>
                   If you cannot find your service or hair length listed, please
                   contact us at partner@frohub.com.
@@ -243,7 +248,7 @@ class EditService extends Component {
 }
 
 const mapStateToProps = state => {
-  const { editSalonService } = state;
+  const { editSalonService, serviceImages } = state;
   const {
     serviceName,
     serviceNewName,
@@ -254,6 +259,7 @@ const mapStateToProps = state => {
     err,
     errMsg,
   } = editSalonService;
+  const { images: currentImages } = serviceImages;
   return {
     serviceName,
     serviceNewName,
@@ -263,6 +269,7 @@ const mapStateToProps = state => {
     images,
     err,
     errMsg,
+    currentImages,
   };
 };
 

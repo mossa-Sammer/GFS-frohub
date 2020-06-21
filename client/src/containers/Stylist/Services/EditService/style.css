@@ -29,6 +29,13 @@
 		margin-top: 10px;
 }
 
+.edit__service__form-btn.ant-btn:hover {
+	background: var(--primary-color) !important;
+	opacity: 0.7 !important;
+	color: #fff;
+	border-color: #fff;
+}
+
 .new__service-input.ant-input,
 .services__select.ant-select {
 	width: 40%;
