@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import { Layout, Icon } from 'antd';
 
-import AdminSider from './AdminSider';
-import PartnerSider from './PartnerSider';
+import StylistSider from '../../../components/StylistNavbar';
 
 import './style.css';
 import './media.css';
@@ -24,11 +23,10 @@ export default class Sider extends Component {
 
   render() {
     const { isOpen } = this.state;
-    const { status } = this.props;
     return (
       <>
         <Layout.Sider className="sider__container">
-          {status === 'admin' ? <AdminSider /> : <PartnerSider />}
+          <StylistSider />
         </Layout.Sider>
         <div className="mobile__sider-container">
           <div className="left-mobile__sider">
@@ -48,7 +46,7 @@ export default class Sider extends Component {
         </div>
         {isOpen && (
           <div className="mobile__menu-container" onClick={this.handleMenu}>
-            {status === 'admin' ? <AdminSider /> : <PartnerSider />}
+            <StylistSider />
           </div>
         )}
       </>

@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
 import { Loading } from '../components';
-
-import Sider from '../containers/Layout';
+import Sider from '../containers/Layout/Sider';
 import { LOGIN_URL } from '../routes_urls';
-
 import './style.css';
 
-const PrivateRoute = ({
+const AdminRoute = ({
   component: Component,
   isAuth,
   loading,
@@ -23,7 +21,7 @@ const PrivateRoute = ({
     return (
       <div className="stylist__onboarding-container">
         <Layout className="stylist__container-layout">
-          <Sider />
+          <Sider status="admin" />
           <Layout.Content className="stylist__main-content">
             <Route {...rest} component={Component} />
           </Layout.Content>
@@ -37,12 +35,10 @@ const PrivateRoute = ({
     />
   );
 };
-
 const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuth,
     loading: state.auth.loading,
   };
 };
-
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(AdminRoute);

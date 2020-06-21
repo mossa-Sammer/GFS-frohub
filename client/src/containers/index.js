@@ -4,6 +4,7 @@ import Layout from './Layout';
 import Home from './Home';
 import Services from './Services';
 import { Welcome, Personal, Business, Salon, StylistServices } from './Stylist';
+import { Dashboard, Partners, Services as ServicesByAdmin } from './Admin';
 import PageNotFound from './PageNotFound';
 
 export {
@@ -18,4 +19,7 @@ export {
   Personal,
   Salon,
   StylistServices,
+  Dashboard,
+  Partners,
+  ServicesByAdmin,
 };

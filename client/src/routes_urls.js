@@ -7,3 +7,6 @@ export const PERSONAL_URL = `${STYLIST_URL}/personal`;
 export const BUSINESS_URL = `${STYLIST_URL}/business`;
 export const SALON_URL = `${STYLIST_URL}/salon`;
 export const STYLIST_SERVICES_URL = `${STYLIST_URL}/services`;
+export const ADMIN_URL = '/admin';
+export const ADMIN_PARTNERS_URLS = `${ADMIN_URL}/partners`;
+export const ADMIN_SERVICES_URLS = `${ADMIN_URL}/services`;
