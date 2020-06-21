@@ -1,8 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import { Button, Icon } from 'antd';
 
-import { getSalonServices } from './api';
+import { getSalonId, getSalonServices } from './api';
 
 import { STYLIST_EDIT_SERVICE_URL } from '../../../../routes_urls';
 
@@ -18,20 +21,18 @@ class SalonServices extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true });
+    // const { userId } = this.props;
+    // const salonId = await getSalonId(userId);
     const salonServices = await getSalonServices(2);
     this.setState({ salonServices, loading: false });
   }
 
   handleEdit = service => {
-    const {
-      name,
-      salon_service_id: salonServiceId,
-      salon_service_name: salonServiceName,
-    } = service;
+    const { salon_service_id: salonServiceId } = service;
     const { history } = this.props;
     history.push({
       pathname: STYLIST_EDIT_SERVICE_URL,
-      search: `${name} ${salonServiceName} ${salonServiceId}`,
+      search: `${salonServiceId}`,
       state: { service },
     });
   };
@@ -42,8 +43,7 @@ class SalonServices extends Component {
       <div>
         {loading ? (
           <Loading />
-        ) : (
-          salonServices.length &&
+        ) : salonServices.length ? (
           salonServices.map(service => (
             <div className="service__container" key={Math.random()}>
               <span className="service_name">
@@ -60,10 +60,21 @@ class SalonServices extends Component {
               </div>
             </div>
           ))
+        ) : (
+          <p>No Services yet</p>
         )}
       </div>
     );
   }
 }
 
-export default withRouter(SalonServices);
+const mapStateToProps = state => {
+  const {
+    login: {
+      loggedUser: { userId },
+    },
+  } = state;
+  return { userId };
+};
+
+export default connect(mapStateToProps)(withRouter(SalonServices));

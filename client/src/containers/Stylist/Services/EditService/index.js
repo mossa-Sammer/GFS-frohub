@@ -38,30 +38,44 @@ class EditService extends Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const { location } = this.props;
-    const {
-      state: { service },
-    } = location;
-    const {
-      salon_id: salonId,
-      salon_service_id: salonServiceId,
-      name,
-      price,
-      salon_service_name: salonServiceName,
-    } = service;
+    const { search, state } = location;
+    if (state) {
+      const {
+        state: { service },
+      } = location;
+      const {
+        salon_id: salonId,
+        salon_service_id: salonServiceId,
+        name,
+        price,
+        salon_service_name: salonServiceName,
+      } = service;
+      const salonService = await getSalonService(salonServiceId);
+      const serviceLength = await getSalonServiceLength(salonServiceId);
+      this.setState({
+        service: salonService,
+        loading: false,
+        serviceName: name,
+        salonServiceName,
+        serviceLength,
+        price,
+        salonServiceId,
+        salonId,
+      });
+    } else {
+      const serviceId = search.split('?')[1];
+      const salonService = await getSalonService(serviceId);
+      const serviceLength = await getSalonServiceLength(serviceId);
+      const { service_id: salonServiceId, name: serviceName } = salonService;
 
-    const salonService = await getSalonService(salonServiceId);
-    const serviceLength = await getSalonServiceLength(salonServiceId);
-
-    this.setState({
-      service: salonService,
-      loading: false,
-      serviceName: name,
-      salonServiceName,
-      serviceLength,
-      price,
-      salonServiceId,
-      salonId,
-    });
+      this.setState({
+        loading: false,
+        service: salonService,
+        serviceName,
+        salonServiceId,
+        serviceLength,
+      });
+    }
   }
 
   handleEdit = async () => {

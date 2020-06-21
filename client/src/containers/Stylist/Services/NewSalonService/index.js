@@ -8,9 +8,7 @@ import { Button, Modal, message } from 'antd';
 import {
   Loading,
   SelectService,
-  ServiceInput,
   SelectServiceLength,
-  ServiceLengthInput,
   ServicePriceInput,
   SalonServiceImages,
 } from '../../../../components';
@@ -108,12 +106,10 @@ class NewSalonService extends Component {
                 <p>Select Service:</p>
                 <SelectService status={status} />
               </div>
-              <ServiceInput status={status} />
               <div className="new__service__form-item">
                 <p>Hair Length:</p>
                 <SelectServiceLength status={status} />
               </div>
-              <ServiceLengthInput status={status} />
               <div className="new__service__form-item">
                 <p>Price: </p>
                 <ServicePriceInput status={status} />

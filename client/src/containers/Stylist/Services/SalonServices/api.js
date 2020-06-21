@@ -1,5 +1,17 @@
 import axios from '../../../../axios-config';
 
+const getSalonId = async userId => {
+  try {
+    const {
+      data: { salon },
+    } = await axios.get(`/salon/${userId}`);
+    const { salon_id: salonId } = salon;
+    return salonId;
+  } catch (err) {
+    return err;
+  }
+};
+
 const getSalonServices = async id => {
   const {
     data: { salonServices },
@@ -29,6 +41,7 @@ const getSalonServiceLength = async id => {
 };
 
 export {
+  getSalonId,
   getSalonServices,
   getSalonService,
   getServicesLengthes,
