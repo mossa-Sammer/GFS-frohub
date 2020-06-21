@@ -10,12 +10,14 @@ import {
   SelectService,
   SelectServiceLength,
   ServicePriceInput,
-  SalonServiceImages,
+  ServiceImageUploader,
 } from '../../../../components';
 
 import addService from '../EditService/helper';
 import addServiceAction from './newService.actions';
 import { STYLIST_SERVICES_URL } from '../../../../routes_urls';
+
+import './style.css';
 
 class NewSalonService extends Component {
   state = {
@@ -89,62 +91,77 @@ class NewSalonService extends Component {
   render() {
     const status = 'newService';
     const { loading, visible, success, successMsg } = this.state;
-    const { err, errMsg } = this.props;
+    const { err, errMsg, length } = this.props;
     return (
-      <>
+      <div className="new__partner__service-container">
         {!loading ? (
-          <div>
-            {err && <div className="err-msg"> {message.error(errMsg, 2)} </div>}
-            {success && (
-              <div className="success-msg">
-                {' '}
-                {message.success(successMsg, 2)}{' '}
-              </div>
-            )}
-            <div className="new__service-form">
-              <div className="new__service__form-item">
-                <p>Select Service:</p>
-                <SelectService status={status} />
-              </div>
-              <div className="new__service__form-item">
-                <p>Hair Length:</p>
-                <SelectServiceLength status={status} />
-              </div>
-              <div className="new__service__form-item">
-                <p>Price: </p>
-                <ServicePriceInput status={status} />
-              </div>
-              <div className="new__service__form-item">
-                <p>
-                  upload up to 3 pictures for this service. Have a look on our{' '}
-                  <span className="guideline-link">
-                    Guidelines for best picture practices.
-                  </span>
-                </p>
-                <SalonServiceImages status={status} />
-              </div>
-              <div className="new__service__form-item">
-                <Button
-                  className="new__service__form-btn"
-                  onClick={this.showModal}
+          <>
+            <div className="new__service__form-container">
+              {err && (
+                <div className="err-msg"> {message.error(errMsg, 2)} </div>
+              )}
+              {success && (
+                <div className="success-msg">
+                  {' '}
+                  {message.success(successMsg, 2)}{' '}
+                </div>
+              )}
+              <h2>Add New Service</h2>
+              <div className="new__service-form">
+                <div>
+                  <p>Select Service:</p>
+                  <div className="new__service__form-item">
+                    <SelectService status={status} />
+                  </div>
+                </div>
+                <div>
+                  <p>Hair Length:</p>
+                  <div className="edit__service__form-item">
+                    <SelectServiceLength status={status} />
+                  </div>
+                </div>
+                <div>
+                  <p>Price: </p>
+                  <div className="new__service__form-item">
+                    <ServicePriceInput status={status} />
+                  </div>
+                </div>
+                <div className="new__service__form-item">
+                  <p>
+                    Upload up to 3 pictures for this service. Have a look on our{' '}
+                    <span className="guideline-link">
+                      Guidelines for best picture practices.
+                    </span>
+                  </p>
+                </div>
+                <div className="new__service__form-item">
+                  {length > 3 ? null : (
+                    <ServiceImageUploader status={status} length={length} />
+                  )}
+                </div>
+                <Modal
+                  title="Add new Service"
+                  visible={visible}
+                  onOk={this.handleNewService}
+                  onCancel={this.handleCancel}
                 >
-                  Save and Next
-                </Button>
+                  <p>Are you sure to add this service </p>
+                </Modal>
               </div>
-              <Modal
-                title="Add new Service"
-                visible={visible}
-                onOk={this.handleNewService}
-                onCancel={this.handleCancel}
-              >
-                <p>Are you sure to add this service </p>
-              </Modal>
             </div>
-          </div>
+            <div className="new__service__form-item">
+              <Button
+                className="new__service__form-btn"
+                onClick={this.showModal}
+              >
+                Save and Next
+              </Button>
+            </div>
+          </>
         ) : (
           <Loading />
         )}
-      </>
+      </div>
     );
   }
 }
@@ -158,6 +175,7 @@ const mapStateToProps = state => {
       serviceNewLength,
       price,
       images,
+      length,
       err,
       errMsg,
     },
@@ -169,6 +187,7 @@ const mapStateToProps = state => {
     serviceNewLength,
     price,
     images,
+    length,
     err,
     errMsg,
   };
