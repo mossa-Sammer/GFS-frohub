@@ -16,7 +16,7 @@ export default data => async dispatch => {
     if (storedUser) {
       dispatch({
         type: AUTHENTICANTE_SUCCESS,
-        payload: storedUser,
+        payload: { storedUser },
       });
       dispatch({
         type: LOGIN_SUCCESS,
@@ -28,7 +28,7 @@ export default data => async dispatch => {
       localStorage.setItem('user', JSON.stringify(loggedUser));
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: loggedUser,
+        payload: { loggedUser },
       });
       dispatch({
         type: AUTHENTICANTE_SUCCESS,
