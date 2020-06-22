@@ -6,7 +6,17 @@ const dbBuild = require('../../database/config/dbBuild');
 
 const getService = () => dbConnection.query('SELECT * FROM service LIMIT 1');
 
-beforeAll(() => dbBuild());
+let token;
+
+beforeAll(async () => {
+  await dbBuild();
+  const result = await supertest(app).post('/api/login').send({
+    email: 'mossa@gmail.com',
+    password: '123456',
+  });
+  // eslint-disable-next-line prefer-destructuring
+  token = result.headers['set-cookie'][0].split(';')[0];
+});
 
 afterAll(() => dbConnection.end());
 
@@ -24,6 +34,7 @@ test('GET /api/service/:id', async (done) => {
     const { service_id: serviceId, name: serviceName } = firstService[0];
     const response = await supertest(app)
       .get(`/api/service/${serviceId}`)
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/);
     const { service } = response.body;

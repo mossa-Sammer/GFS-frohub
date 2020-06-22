@@ -4,7 +4,17 @@ const build = require('../../database/config/dbBuild');
 const connection = require('../../database/config/dbConnection');
 
 
-beforeAll(() => build());
+let token;
+
+beforeAll(async () => {
+  await build();
+  const result = await request(app).post('/api/login').send({
+    email: 'mossa@gmail.com',
+    password: '123456',
+  });
+  // eslint-disable-next-line prefer-destructuring
+  token = result.headers['set-cookie'][0].split(';')[0];
+});
 afterAll(() => connection.end());
 
 const getStylist = () => connection.query(
@@ -92,6 +102,7 @@ test('POST /api/salon ', async (done) => {
     const res = await request(app)
       .post(`/api/salon/${user.user_id}`)
       .send(data).expect(200)
+      .set('Cookie', token)
       .expect('Content-Type', /json/);
     let { salon, times, zones } = res.body.data;
 
