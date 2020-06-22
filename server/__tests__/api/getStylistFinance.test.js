@@ -5,7 +5,17 @@ const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
 const dbBuild = require('../../database/config/dbBuild');
 
-beforeAll(() => dbBuild());
+let token;
+
+beforeAll(async () => {
+  await dbBuild();
+  const result = await supertest(app).post('/api/login').send({
+    email: 'mossa@gmail.com',
+    password: '123456',
+  });
+  // eslint-disable-next-line prefer-destructuring
+  token = result.headers['set-cookie'][0].split(';')[0];
+});
 
 afterAll(() => dbConnection.end());
 
@@ -26,6 +36,7 @@ test('GET /api/stylist/:id/finance', async (done) => {
 
     const response = await supertest(app)
       .get(`/api/stylist/${stylistId}/finance`)
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/);
 
