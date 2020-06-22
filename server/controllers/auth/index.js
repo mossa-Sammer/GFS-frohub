@@ -7,7 +7,8 @@ const auth = (req, res, next) => {
   if (jwt && secret) {
     verify(jwt, secret, (err, decoded) => {
       if (decoded) {
-        res.send();
+        req.user = decoded;
+        next();
       } else {
         res.clearCookie('jwt');
         next(boom.unauthorized('Un authorized'));
