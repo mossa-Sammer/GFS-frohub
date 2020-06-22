@@ -20,10 +20,10 @@ class PersonalForm extends Component {
   };
 
   async componentDidMount() {
-    const { user, form } = this.props;
-
+    const { form } = this.props;
+    const { userId } = JSON.parse(localStorage.getItem('user'));
     const [{ data: fetchedUser }, { data: allCountries }] = await Promise.all([
-      axios.get(`/api/user/${user.userId}/personal`),
+      axios.get(`/api/user/${userId}/personal`),
       axios.get('/api/country.io/phone.json'),
     ]);
 

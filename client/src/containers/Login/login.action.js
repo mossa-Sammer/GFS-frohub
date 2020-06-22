@@ -15,6 +15,10 @@ export default data => async dispatch => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       dispatch({
+        type: AUTHENTICANTE_SUCCESS,
+        payload: storedUser,
+      });
+      dispatch({
         type: LOGIN_SUCCESS,
         payload: { loggedUser: storedUser },
       });
@@ -24,10 +28,11 @@ export default data => async dispatch => {
       localStorage.setItem('user', JSON.stringify(loggedUser));
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { loggedUser },
+        payload: loggedUser,
       });
       dispatch({
         type: AUTHENTICANTE_SUCCESS,
+        payload: loggedUser,
       });
     }
   } catch (err) {
