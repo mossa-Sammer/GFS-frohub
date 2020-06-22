@@ -23,11 +23,13 @@ const router = express.Router();
 router.post('/login', login);
 
 router.post('/signup', signup);
-router.post('/upload/:id', uploads.uploadFiles);
 router.get('/treatments', getTreatments);
+router.get('/country.io/phone.json', countriesPhones);
 router.get('/authenticated', auth);
 
-router.get('/country.io/phone.json', countriesPhones);
+router.use(auth);
+router.post('/upload/:id', uploads.uploadFiles);
+
 
 // Stylist/Personal
 router.get('/user/:id/personal', personal.getUser);

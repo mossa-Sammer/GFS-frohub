@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
     }
 
     const {
-      user_id: userId, password: signedPassword, role,
+      user_id: userId, password: signedPassword, email: addedEmail, role,
     } = user[0];
 
     const isMatch = await compare(password, signedPassword);
@@ -25,7 +25,10 @@ module.exports = async (req, res, next) => {
       return next(boom.unauthorized('password cannot be recognised'));
     }
 
-    const token = sign({ userId, role }, secret, { expiresIn: 6 * 30 * 24 * 60 * 60 * 1000 });
+    const token = sign(
+      { userId, email: addedEmail, role },
+      secret, { expiresIn: 6 * 30 * 24 * 60 * 60 * 1000 },
+    );
 
     const cookieOptions = { httpOnly: true };
 

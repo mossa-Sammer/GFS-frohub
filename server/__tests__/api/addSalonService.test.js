@@ -10,7 +10,16 @@ const {
   getServicesLengthes,
 } = require('../../database/queries');
 
-beforeAll(() => dbBuild());
+let token;
+beforeAll(async () => {
+  await dbBuild();
+  const result = await supertest(app).post('/api/login').send({
+    email: 'mossa@gmail.com',
+    password: '123456',
+  });
+  // eslint-disable-next-line prefer-destructuring
+  token = result.headers['set-cookie'][0].split(';')[0];
+});
 
 afterAll(() => dbConnection.end());
 
@@ -50,6 +59,7 @@ test('POST /api/salon/:id/service route', async (done) => {
     const response = await supertest(app)
       .post(`/api/salon/${salonId}/service`)
       .send(newSalonService)
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/);
 
