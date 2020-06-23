@@ -17,4 +17,12 @@ const auth = (req, res, next) => {
   } else next(boom.unauthorized('Un authorized'));
 };
 
-module.exports = auth;
+
+const verfiyAdmin = (req, res, next) => {
+  const { role } = req.user;
+  if (role === 'admin') next();
+  else next(boom.unauthorized('un authorized'));
+};
+
+
+module.exports = { auth, verfiyAdmin };
