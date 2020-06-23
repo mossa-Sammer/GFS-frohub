@@ -12,7 +12,7 @@ export default function authReducer(state = initialState, action) {
       return {
         isAuth: true,
         loading: false,
-        loggedUser: JSON.parse(localStorage.getItem('user')),
+        loggedUser: action.payload,
       };
     case AUTHENTICANTE_FAIL:
       return {
