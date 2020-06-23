@@ -197,6 +197,12 @@ class EditService extends Component {
                   />
                 </div>
                 <div className="edit__service__form-item">
+                  <p>
+                    If you cannot find your service or hair length listed,
+                    please contact us at partner@frohub.com.
+                  </p>
+                </div>
+                <div className="edit__service__form-item">
                   <p>Price: </p>
                   <ServicePriceInput status={status} price={price} />
                 </div>
@@ -214,10 +220,10 @@ class EditService extends Component {
                     for best picture practices.
                   </p>
                 </div>
+                {/* <div className="new__service__form-item"> */}
+                <ServicesImages salonServiceId={salonServiceId} />
+                {/* </div> */}
                 <div className="new__service__form-item">
-                  <div>
-                    <ServicesImages salonServiceId={salonServiceId} />
-                  </div>
                   {imagesLength >= 3 ? null : (
                     <ServiceImageUploader
                       status={status}
@@ -234,12 +240,12 @@ class EditService extends Component {
                   <p>Are you sure to edit {serviceName} </p>
                 </Modal>
               </div>
-              <div className="edit__service__form-item">
+              {/* <div className="edit__service__form-item">
                 <p>
                   If you cannot find your service or hair length listed, please
                   contact us at partner@frohub.com.
                 </p>
-              </div>
+              </div> */}
               <div className="edit__service__form-item edit__btn-item">
                 <Button
                   className="edit__service__form-btn"

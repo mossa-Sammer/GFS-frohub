@@ -56,7 +56,7 @@
 	}
 	.edit__service-form {
 		width: 100%;
-		height: 70%;
+		min-height: 70%;
 	}
 
 	.edit__service__form-item.edit__btn-item {

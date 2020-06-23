@@ -5,6 +5,7 @@ const {
   login,
   signup,
   auth,
+  verfiyAdmin,
   getTreatments,
   personal,
   business,
@@ -24,11 +25,13 @@ router.post('/login', login);
 
 router.post('/signup', signup);
 router.get('/treatments', getTreatments);
+router.get('/country.io/phone.json', countriesPhones);
 router.get('/authenticated', auth);
 
+router.get('/country.io/phone.json', countriesPhones);
+router.use(auth);
 router.post('/upload/:id', uploads.uploadFiles);
 
-router.get('/country.io/phone.json', countriesPhones);
 
 // Stylist/Personal
 router.get('/user/:id/personal', personal.getUser);
@@ -71,6 +74,7 @@ router.get('/service/:id/images', services.getServiceImages);
 // admin
 
 // services and lengthes
+router.use(verfiyAdmin);
 router.get('/admin/services', servicesByAdmin.getServices);
 router.get('/admin/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
 router.post('/admin/services', servicesByAdmin.insertService);
