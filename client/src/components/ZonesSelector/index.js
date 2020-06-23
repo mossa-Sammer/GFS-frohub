@@ -89,7 +89,7 @@ class ZonesSelector extends Component {
 
   render() {
     const {
-      label = 'which london zones are you covering?',
+      label = 'If a Mobile Hairstylist/Beautician, what London Zones do you cover?',
       className,
     } = this.props;
     const { zones } = this.state;
