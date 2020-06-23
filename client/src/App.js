@@ -15,6 +15,8 @@ import {
   Dashboard,
   Partners,
   ServicesByAdmin,
+  EditService,
+  NewService,
 } from './containers';
 import { LoggedOutRoute, PartnerRoute, AdminRoute } from './auth';
 
@@ -33,6 +35,8 @@ import {
   ADMIN_URL,
   ADMIN_PARTNERS_URLS,
   ADMIN_SERVICES_URLS,
+  STYLIST_EDIT_SERVICE_URL,
+  STYLIST_NEW_SERVICE_URL,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -70,6 +74,21 @@ class App extends React.Component {
                   exact
                   path={STYLIST_SERVICES_URL}
                   component={StylistServices}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_EDIT_SERVICE_URL}
+                  component={EditService}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_SERVICES_URL}
+                  component={StylistServices}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_NEW_SERVICE_URL}
+                  component={NewService}
                 />
                 <Route
                   render={() => {

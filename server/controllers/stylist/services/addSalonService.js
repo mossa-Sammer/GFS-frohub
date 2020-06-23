@@ -40,6 +40,7 @@ module.exports = async (req, res, next) => {
     }, { abortEarly: false });
 
     const { rows: [serviceNameExist] } = await checkService(service);
+    salonService.service_id = serviceNameExist.service_id;
     if (!serviceNameExist) return next(notFound('Service name not found'));
 
     const { rows: [isServiceLength] } = await checkServiceLength(length);

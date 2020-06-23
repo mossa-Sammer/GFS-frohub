@@ -1,0 +1,6 @@
+.services__select.ant-select {
+	margin-bottom: 15px;
+}
+.services__select .ant-select-selection__rendered {
+	margin-left: 10px !important;
+}

@@ -4,7 +4,10 @@
 	}
 	.stylist__container-layout.ant-layout.ant-layout-has-sider,
 	.stylist__onboarding-container {
-		min-height: 100vh !important;
+		min-height: 1500px !important;
+	}
+	.stylist__main-content.ant-layout-content {
+		min-height: 20% !important;
 	}
 	.stylist__onboarding-container {
 		width: 100% !important;
