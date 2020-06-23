@@ -5,6 +5,7 @@ const {
   login,
   signup,
   auth,
+  verfiyAdmin,
   getTreatments,
   personal,
   business,
@@ -70,6 +71,7 @@ router.delete('/service', services.deleteService);
 // admin
 
 // services and lengthes
+router.use(verfiyAdmin);
 router.get('/admin/services', servicesByAdmin.getServices);
 router.get('/admin/services/lengthes', lengthesByAdmin.getAllServicesLengthes);
 router.post('/admin/services', servicesByAdmin.insertService);
