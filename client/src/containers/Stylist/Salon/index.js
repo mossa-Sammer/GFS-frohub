@@ -418,7 +418,7 @@ class SalonForm extends Component {
 
 const wrappedForm = Form.create({})(SalonForm);
 
-const mapStateToProps = ({ salonData, login: { loggedUser } }) => {
+const mapStateToProps = ({ salonData, auth: { loggedUser } }) => {
   return { salonData, loggedUser };
 };
 

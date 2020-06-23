@@ -3,6 +3,7 @@ import { AUTHENTICANTE_SUCCESS, AUTHENTICANTE_FAIL } from './auth.action';
 const initialState = {
   isAuth: false,
   loading: true,
+  loggedUser: null,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -11,6 +12,7 @@ export default function authReducer(state = initialState, action) {
       return {
         isAuth: true,
         loading: false,
+        loggedUser: action.payload,
       };
     case AUTHENTICANTE_FAIL:
       return {
