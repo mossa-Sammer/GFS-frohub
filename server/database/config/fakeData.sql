@@ -63,7 +63,7 @@ INSERT INTO finance (user_id, salon_service_id, collected_deposit, done) VALUES 
 
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/08/05224838/twists_locs_category_frohub_home-265x300.png');
 INSERT INTO service_image (salon_service_id,image) VALUES (1,'https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/08/05224839/wash_haircut_category_frohub_home-265x300.png');
-INSERT INTO service_image (salon_service_id,image) VALUES (1,'https://s4-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/08/05224836/braids_category_frohub_home-265x300.png');
+INSERT INTO service_image (salon_service_id,image) VALUES (1,'https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2020/01/05231706/10AE5DC2-D5F5-4CE1-AA2C-5A0FFB38DFC5-300x300.jpeg');
 INSERT INTO service_image (salon_service_id,image) VALUES (2,'https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2020/01/05231706/10AE5DC2-D5F5-4CE1-AA2C-5A0FFB38DFC5-300x300.jpeg');
 
 COMMIT;

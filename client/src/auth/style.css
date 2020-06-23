@@ -57,4 +57,11 @@
 		padding: 0;
 		padding-top: 70px;
 	}
+	.stylist__main-content.ant-layout-content,
+	.sider__container.ant-layout-sider.ant-layout-sider-dark {
+		border: none;
+	}
+	.edit__service__form-btn.ant-btn {
+		margin-bottom: 10px;
+	}
 }

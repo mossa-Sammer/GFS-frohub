@@ -41,6 +41,10 @@
 	width: 40%;
 }
 
+.new__service__form-item.new__service__item-images {
+	min-height: 215px;
+}
+
 
 .new__service__form-item {
 	display: flex;
@@ -77,12 +81,16 @@
 	}
 	.new__service__form-item {
 		display: flex;
-	}
-	.service__images-container {
 		flex-direction: column;
 	}
 	.service__image-container {
+		width: 90%;
+		margin: 0;
 		margin-top: 8px;
+		flex-direction: column;
+	}
+	.service__images-container {
+		flex-direction: column;
 	}
 	.edit__service__form-btn.ant-btn {
     position: absolute;
@@ -91,5 +99,8 @@
 	}
 	.edit__service-container {
 		padding: 0 25px;
+	}
+	.service__images-upload .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+		min-height: 200px;
 	}
 }

@@ -22,9 +22,13 @@ class SalonServices extends Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const { userId } = this.props;
-    const salonId = await getSalonId(userId);
-    const salonServices = await getSalonServices(salonId);
-    this.setState({ salonServices, loading: false });
+    try {
+      const salonId = await getSalonId(userId);
+      const salonServices = await getSalonServices(salonId);
+      this.setState({ salonServices, loading: false });
+    } catch (err) {
+      this.setState({ loading: false });
+    }
   }
 
   handleEdit = service => {
