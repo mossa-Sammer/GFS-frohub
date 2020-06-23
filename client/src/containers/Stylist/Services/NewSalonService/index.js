@@ -149,7 +149,7 @@ class NewSalonService extends Component {
                 </Modal>
               </div>
             </div>
-            <div className="new__service__form-item">
+            <div className="new__service__form-item add__new__service-btn">
               <Button
                 className="new__service__form-btn"
                 onClick={this.showModal}
