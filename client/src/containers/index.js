@@ -3,7 +3,15 @@ import Signup from './signup';
 import Layout from './Layout';
 import Home from './Home';
 import Services from './Services';
-import { Welcome, Personal, Business, Salon, StylistServices } from './Stylist';
+import {
+  Welcome,
+  Personal,
+  Business,
+  Salon,
+  StylistServices,
+  NewService,
+} from './Stylist';
+import EditService from './Stylist/Services/EditService/index';
 import PageNotFound from './PageNotFound';
 
 export {
@@ -18,4 +26,6 @@ export {
   Personal,
   Salon,
   StylistServices,
+  EditService,
+  NewService,
 };

@@ -28,6 +28,7 @@ router.get('/treatments', getTreatments);
 router.get('/country.io/phone.json', countriesPhones);
 router.get('/authenticated', auth);
 
+router.get('/country.io/phone.json', countriesPhones);
 router.use(auth);
 router.post('/upload/:id', uploads.uploadFiles);
 
@@ -64,9 +65,11 @@ router.post('/service/length', services.addServiceLength);
 router.get('/services', services.getAllServices);
 router.get('/service/:id', services.getService);
 router.get('/services/lengthes', services.getServicesLengthes);
+router.get('/service/:id/length/', services.getServiceLength);
 router.post('/service', services.addService);
 router.patch('/service/:id', services.updateService);
 router.delete('/service', services.deleteService);
+router.get('/service/:id/images', services.getServiceImages);
 
 // admin
 
