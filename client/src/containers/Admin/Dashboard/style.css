@@ -1,0 +1,11 @@
+.dashboard__logo {
+  display: block;
+  width: 200px;
+	background-size: contain;
+	background-repeat: no-repeat;
+  margin: 2rem auto;
+}
+
+.admin__dashboard-container {
+	text-align: center;
+}

@@ -63,7 +63,7 @@ module.exports = async (req, res, next) => {
     const { rows: [updatedService] } = await updateSalonService(salonService);
     const { salon_service_id: salonServiceId } = updatedService;
     await deleteSalonServiceImages(salonServiceId);
-    const { rows: updatedImages } = await insertServiceImage(images);
+    const { rows: updatedImages } = await insertServiceImage(images, salonServiceId);
     res.json({
       salonService: updatedService,
       images: updatedImages,

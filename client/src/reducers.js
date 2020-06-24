@@ -9,6 +9,9 @@ import searchReducer, {
 } from './components/SearchForm/search.reducers';
 import servicesReducer from './containers/Services/services.reducer';
 import advancedSearchReducer from './containers/Services/AdvancedSearch/advancedSearch.reducer';
+import editSalonServiceReducer from './containers/Stylist/Services/EditService/editService.reducers';
+import addNewSalonServiceReducer from './containers/Stylist/Services/NewSalonService/newService.reducesr';
+import getPartnerServiceImages from './components/ServicesImages/services.images.reducer';
 import salonReducer from './containers/Stylist/Salon/salon.reducer';
 
 export default combineReducers({
@@ -20,5 +23,8 @@ export default combineReducers({
   searchQueries: searchReducer,
   advancedSearchQueries: advancedSearchReducer,
   services: servicesReducer,
+  editSalonService: editSalonServiceReducer,
+  newSalonService: addNewSalonServiceReducer,
+  serviceImages: getPartnerServiceImages,
   salonData: salonReducer,
 });

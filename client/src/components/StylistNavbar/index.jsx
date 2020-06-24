@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import {
+  STYLIST_URL,
   PERSONAL_URL,
   BUSINESS_URL,
   SALON_URL,
   STYLIST_SERVICES_URL,
 } from '../../routes_urls';
 
-export default class Sider extends Component {
+class Sider extends Component {
+  handleWelcome = () => {
+    const { history } = this.props;
+    history.push(STYLIST_URL);
+  };
+
   render() {
     return (
       <Menu className="sidebar-menu">
-        <Menu.Item className="logo-box">
+        <Menu.Item className="logo-box" onClick={this.handleWelcome}>
           <img
             src="https://s3-eu-west-2.amazonaws.com/frohub-content/wp-content/uploads/2019/10/22155814/frohub_landscape_e05747ff_transparent_300dpi.png"
             alt="logo"
@@ -36,3 +42,5 @@ export default class Sider extends Component {
     );
   }
 }
+
+export default withRouter(Sider);

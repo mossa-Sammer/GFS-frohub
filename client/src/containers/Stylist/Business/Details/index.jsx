@@ -154,7 +154,7 @@ const BusinessDetailsForm = Form.create({ name: 'BusinessDetails' })(
 );
 
 const mapStateToProps = state => {
-  return state.login;
+  return state.auth;
 };
 
 export default connect(mapStateToProps, null)(withRouter(BusinessDetailsForm));

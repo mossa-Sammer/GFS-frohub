@@ -1,0 +1,66 @@
+.edit__service__form-item {
+	margin-top: 15px;
+}
+
+.ant-message .ant-message-notice-content,
+.ant-message .ant-message-custom-content.ant-message-success {
+	height: 50px;
+	width: 300px;
+	border-radius: 3px;
+	display: flex;
+	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
+}
+
+.ant-message .ant-message-notice-content.ant-message-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.ant-message .ant-message-custom-content.ant-message-success {
+	color: green;
+}
+
+.edit__service__form-btn.ant-btn,
+.new__service__form-btn.ant-btn {
+		margin-top: 10px;
+}
+
+.new__service-input.ant-input,
+.services__select.ant-select {
+	width: 40%;
+}
+
+.new__service__form-item {
+	height: 67px;
+}
+
+.new__service__form-item {
+	display: flex;
+}
+
+.service__images-title {
+	margin-top: 15px;
+}
+
+.new__service__form-btn.ant-btn:hover {
+	background: var(--primary-color) !important;
+	opacity: 0.7 !important;
+	color: #fff;
+	border-color: #fff;
+	position: absolute;
+	right: 0;
+}
+
+@media only screen and (max-width: 425px) {
+	.new__service__form-container {
+		padding: 0 25px;
+	}
+	.new__service__form-btn.ant-btn {
+		position: absolute;
+		border: none;
+	}
+}

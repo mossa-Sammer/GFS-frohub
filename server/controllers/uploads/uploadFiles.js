@@ -11,7 +11,6 @@ module.exports = async (req, res, next) => {
   const { id: userId } = req.params;
   const { contentTypes } = req.body;
   const images = [];
-
   const imageUrl = `${storageUrl}/`;
   let promises = [];
 

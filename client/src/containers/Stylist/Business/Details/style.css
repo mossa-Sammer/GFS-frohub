@@ -30,6 +30,15 @@
 	left: 0 !important;
 }
 
+.business__next-btn.ant-btn {
+	width: 100%;
+	height: 38px;
+	background: #e05747;
+	color: #fff;
+	border-color: #e05747;
+	font-size: 16px;
+}
+
 .err__msg-box {
 	color: #721c24;
 	background-color: #f8d7da;
