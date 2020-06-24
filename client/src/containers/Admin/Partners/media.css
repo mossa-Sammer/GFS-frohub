@@ -1,5 +1,12 @@
 @media only screen and (max-width: 425px){
 	.users__container {
-		padding: 0 25px;
+		padding: 0 10px;
+	}
+	.users-table .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+		padding: 8px 1px !important;
+		text-align: center;
+	}
+	.users-table .ant-table-thead > tr > th {
+		text-align: center !important;
 	}
 }

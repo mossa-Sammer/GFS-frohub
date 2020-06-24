@@ -42,6 +42,7 @@ export default class Partners extends Component {
         ) : (
           <div>
             <Table
+              className="users-table"
               columns={userColumns}
               dataSource={users}
               rowKey={record => record.user_id}
