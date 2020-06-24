@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 
 import { message, Tabs } from 'antd';
@@ -16,6 +17,7 @@ export default class Partner extends Component {
   state = {
     loading: true,
     user: {},
+    isUser: false,
   };
 
   async componentDidMount() {
@@ -24,19 +26,21 @@ export default class Partner extends Component {
     } = this.props;
     const userId = search.split('?')[1];
     try {
-      const user = await getUserPersonal(userId);
-      this.setState({ user, loading: false });
+      const { isUser, data: user } = await getUserPersonal(userId);
+      this.setState({ isUser, user, loading: false });
     } catch (err) {
       message.error(err.response.data.message);
     }
   }
 
   render() {
-    const { loading, user } = this.state;
+    const { loading, user, isUser } = this.state;
     return (
       <div>
         {loading ? (
           <Loading />
+        ) : !isUser ? (
+          <h2>Not A user</h2>
         ) : (
           <div>
             <div>
