@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 
-import { Modal, Button, Form, Input, Radio } from 'antd';
+import { Modal, Button, Input, Radio } from 'antd';
 
 import './style.css';
 
@@ -57,10 +58,10 @@ class ServiceTypeForm extends Component {
           onCancel={this.handleCancel}
         >
           <div>
-            <label htmlFor="serviceName" className="name-label">
+            <label className="name-label">
               Name:
               <Input
-                aria-label="serviceName"
+                id="serviceName"
                 type="text"
                 onChange={handleName}
                 value={name}
