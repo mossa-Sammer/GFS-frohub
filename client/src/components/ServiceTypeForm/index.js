@@ -42,7 +42,7 @@ class ServiceTypeForm extends Component {
     const { name, status, handleName, handleStatus } = this.props;
     const { visible, confirmLoading } = this.state;
     return (
-      <div>
+      <div className="service-form">
         <Button
           type="primary"
           className="add-new-service"
