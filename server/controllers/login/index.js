@@ -41,6 +41,7 @@ module.exports = async (req, res, next) => {
     const data = {
       userId,
       email,
+      role,
     };
 
     return res.json({ data });

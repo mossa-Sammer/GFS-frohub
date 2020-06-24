@@ -4,7 +4,7 @@ import { AUTHENTICANTE_SUCCESS } from '../../auth/auth.action';
 const initState = {
   error: null,
   loading: false,
-  loggedUser: {},
+  loggedUser: null,
 };
 
 export default function loginReducer(state = initState, action) {

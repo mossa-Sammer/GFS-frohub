@@ -1,4 +1,5 @@
-import PrivateRoute from './PrivateRoute';
+import PartnerRoute from './PartnerRoute';
 import LoggedOutRoute from './LoggedOutRoute';
+import AdminRoute from './adminRoute';
 
-export { PrivateRoute, LoggedOutRoute };
+export { PartnerRoute, AdminRoute, LoggedOutRoute };

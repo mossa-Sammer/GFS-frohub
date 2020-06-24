@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
-
 import {
-  STYLIST_URL,
-  PERSONAL_URL,
-  BUSINESS_URL,
-  SALON_URL,
-  STYLIST_SERVICES_URL,
-} from '../../routes_urls';
+  ADMIN_URL,
+  ADMIN_PARTNERS_URLS,
+  ADMIN_SERVICES_URLS,
+} from '../../../routes_urls';
 
 class Sider extends Component {
   handleWelcome = () => {
     const { history } = this.props;
-    history.push(STYLIST_URL);
+    history.push(ADMIN_URL);
   };
 
   render() {
@@ -27,16 +24,13 @@ class Sider extends Component {
           />
         </Menu.Item>
         <Menu.Item className="sider-item">
-          <Link to={PERSONAL_URL}>Personal</Link>
+          <Link to={ADMIN_URL}>Dashboard</Link>
         </Menu.Item>
         <Menu.Item className="sider-item">
-          <Link to={BUSINESS_URL}>Business</Link>
+          <Link to={ADMIN_SERVICES_URLS}>Services</Link>
         </Menu.Item>
         <Menu.Item className="sider-item">
-          <Link to={SALON_URL}>Salon</Link>
-        </Menu.Item>
-        <Menu.Item className="sider-item">
-          <Link to={STYLIST_SERVICES_URL}>Services</Link>
+          <Link to={ADMIN_PARTNERS_URLS}>Users</Link>
         </Menu.Item>
       </Menu>
     );

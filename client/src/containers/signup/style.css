@@ -23,3 +23,10 @@
   color: #fff;
   height: 50px;
 }
+
+@media only screen and (max-width: 425px){
+  .signup__container {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+}

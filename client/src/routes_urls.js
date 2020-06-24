@@ -9,3 +9,6 @@ export const SALON_URL = `${STYLIST_URL}/salon`;
 export const STYLIST_SERVICES_URL = `${STYLIST_URL}/services`;
 export const STYLIST_EDIT_SERVICE_URL = `${STYLIST_URL}/services/edit`;
 export const STYLIST_NEW_SERVICE_URL = `${STYLIST_URL}/services/new`;
+export const ADMIN_URL = '/admin';
+export const ADMIN_PARTNERS_URLS = `${ADMIN_URL}/partners`;
+export const ADMIN_SERVICES_URLS = `${ADMIN_URL}/services`;
