@@ -1,11 +1,13 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 
-import { message, Button } from 'antd';
+import { message, Button, Table } from 'antd';
 
 import getAllPartners from './api';
 
 import { Loading } from '../../../components';
+
+import userColumns from './userColumns';
 
 import './style.css';
 import './media.css';
@@ -29,7 +31,7 @@ export default class Partners extends Component {
   render() {
     const { loading, users } = this.state;
     return (
-      <>
+      <div className="users__container">
         <div className="add__new__user-container">
           <Button className="add__new__user-btn">Add New User</Button>
         </div>
@@ -38,9 +40,15 @@ export default class Partners extends Component {
         ) : !users.length ? (
           <p>There is no users</p>
         ) : (
-          <div>{console.log(88888888888, users)}</div>
+          <div>
+            <Table
+              columns={userColumns}
+              dataSource={users}
+              rowKey={record => record.id}
+            />
+          </div>
         )}
-      </>
+      </div>
     );
   }
 }

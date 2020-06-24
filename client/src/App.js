@@ -17,6 +17,10 @@ import {
   ServicesByAdmin,
   EditService,
   NewService,
+  ViewAdmin,
+  EditAdmin,
+  PartnerByAdmin,
+  EditPartnerByAdmin,
 } from './containers';
 import { LoggedOutRoute, PartnerRoute, AdminRoute } from './auth';
 
@@ -37,6 +41,10 @@ import {
   ADMIN_SERVICES_URLS,
   STYLIST_EDIT_SERVICE_URL,
   STYLIST_NEW_SERVICE_URL,
+  ADMIN_PERSONAL,
+  ADMIN_EDIT_URL,
+  STYLIST_PERSONAL_BY_ADMIN,
+  ADMIN_EDIT_STYLIST,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -109,6 +117,18 @@ class App extends React.Component {
                   exact
                   path={ADMIN_SERVICES_URLS}
                   component={ServicesByAdmin}
+                />
+                <AdminRoute exact path={ADMIN_PERSONAL} component={ViewAdmin} />
+                <AdminRoute exact path={ADMIN_EDIT_URL} component={EditAdmin} />
+                <AdminRoute
+                  exact
+                  path={STYLIST_PERSONAL_BY_ADMIN}
+                  component={PartnerByAdmin}
+                />
+                <AdminRoute
+                  exact
+                  path={ADMIN_EDIT_STYLIST}
+                  component={EditPartnerByAdmin}
                 />
                 <Route
                   render={() => {

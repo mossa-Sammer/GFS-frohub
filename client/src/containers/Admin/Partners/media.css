@@ -1,3 +1,5 @@
 @media only screen and (max-width: 425px){
-
+	.users__container {
+		padding: 0 25px;
+	}
 }
