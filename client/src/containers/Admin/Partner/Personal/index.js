@@ -7,7 +7,7 @@ export default class Personal extends Component {
     const { user } = this.props;
     return (
       <div>
-        <Form>
+        <Form className="partner__personal-form">
           <Form.Item label="Full Name">
             <Input value={`${user.first_name}  ${user.last_name}`} disabled />
           </Form.Item>

@@ -11,6 +11,8 @@ import Services from './Services';
 
 import getUserPersonal from './api';
 
+import './style.css';
+
 const { TabPane } = Tabs;
 
 export default class Partner extends Component {
@@ -43,10 +45,10 @@ export default class Partner extends Component {
           <h2>Not A user</h2>
         ) : (
           <div>
-            <div>
+            <div className="partner__email-container">
               <span>View user: {user.email} </span>
             </div>
-            <Tabs defaultActiveKey="personal">
+            <Tabs defaultActiveKey="personal" className="partner__tabs">
               <TabPane tab="Personal" key="personal">
                 <Personal user={user} />
               </TabPane>
