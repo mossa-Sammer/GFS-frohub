@@ -28,7 +28,7 @@ const {
 const {
   checkAdmin,
   getAllServices: getServicesByAdmin,
-  getAllServicesLengthes,
+  getAllServicesLengthes: getServicesLengthesByAdmin,
   insertService: insertServiceByAdmin,
   insertServiceLength,
   updateService,
@@ -61,7 +61,7 @@ module.exports = {
   deleteSalonServiceImages,
   checkAdmin,
   getServicesByAdmin,
-  getAllServicesLengthes,
+  getServicesLengthesByAdmin,
   insertServiceByAdmin,
   insertServiceLength,
   updateService,
