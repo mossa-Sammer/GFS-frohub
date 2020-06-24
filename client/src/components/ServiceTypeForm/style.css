@@ -1,0 +1,29 @@
+.service-status {
+  margin-top: 1rem;
+}
+
+.status-label {
+  display: block;
+}
+
+.service-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.add-new-service.ant-btn-primary,add-new-service.ant-btn-primary:focus {
+  margin-bottom: 1rem;
+  height: 40px;
+  font-size: 16px;
+  right: 0;
+  top:0;
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.add-new-service.ant-btn-primary:hover {
+  background-color: rgba(224, 87, 71, 0.7) !important;
+  border-color: var(--primary-color);
+  color: var(--font-color);
+}
