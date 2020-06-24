@@ -285,7 +285,7 @@ class SalonForm extends Component {
           <>
             <h2>Salon Details</h2>
             <Form>
-              <Form.Item className="salon-input" label="Salon name">
+              <Form.Item className="salon-input" label="Salon Name">
                 {getFieldDecorator('salonName', {
                   rules: [
                     { required: true, message: 'Please enter salon name' },
@@ -296,7 +296,7 @@ class SalonForm extends Component {
 
               <Form.Item
                 className="instgram-handle-input"
-                label="Instgram handle"
+                label="Instgram Handle"
               >
                 {getFieldDecorator('instgramHandle', {
                   rules: [
@@ -330,7 +330,7 @@ class SalonForm extends Component {
               </Form.Item>
             </Form>
             <div className="address-section">
-              <h4 className="address-section__header">What is your address?</h4>
+              <h4 className="address-section__header">Salon Address</h4>
               <Address
                 address={address}
                 wrappedComponentRef={form => {
@@ -346,7 +346,7 @@ class SalonForm extends Component {
                 ref={zonesRef}
               />
             )}
-            <h4>What Are your opening times?</h4>
+            <h4>Opening Times</h4>
             <OpeningTimes
               className="salon-opening-times"
               times={
@@ -357,7 +357,7 @@ class SalonForm extends Component {
               ref={openingTimesRef}
             />
             <Form>
-              <Form.Item label="About me">
+              <Form.Item label="About Me">
                 {getFieldDecorator('about', {
                   rules: [
                     {
@@ -368,17 +368,17 @@ class SalonForm extends Component {
                   ],
                 })(<Input.TextArea rows={4} />)}
               </Form.Item>
-              <Form.Item className="profile-image__input" label="Profile image">
+              <Form.Item className="profile-image__input" label="Profile Image">
                 <Uploader imgUrl={profileImage} ref={profileImageRef} />
               </Form.Item>
-              <Form.Item label="Cover image">
+              <Form.Item label="Cover Image">
                 <Uploader imgUrl={coverImage} ref={coverImageRef} />
               </Form.Item>
             </Form>
             <div className="document-upload__wrapper">
               <p className="document-upload__text">
-                if you have any formal qualifications as Hairstylist/Beautian,
-                please upload them here
+                If you have any formal qualifications as a
+                Hairstylist/Beautician, please upload them here
               </p>
               <Upload
                 className="document-upload__uploader"
