@@ -14,12 +14,7 @@ export default class Sider extends Component {
   };
 
   handleMenu = () => {
-    this.setState(prevState => {
-      const { isOpen } = prevState;
-      return {
-        isOpen: !isOpen,
-      };
-    });
+    this.setState({ isOpen: true });
   };
 
   render() {
