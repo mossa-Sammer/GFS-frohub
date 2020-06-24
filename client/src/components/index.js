@@ -17,6 +17,7 @@ import Uploader from './Uploader';
 import ZonesSelector from './ZonesSelector';
 import Address from './Address';
 import OpeningTimes from './OpeningTimes';
+import ServiceTypeForm from './ServiceTypeForm';
 
 export {
   Input,
@@ -38,4 +39,5 @@ export {
   ZonesSelector,
   Address,
   OpeningTimes,
+  ServiceTypeForm,
 };
