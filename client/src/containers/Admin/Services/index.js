@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { Table, Divider, Tabs } from 'antd';
+import { Table, Divider, Tabs, Tag } from 'antd';
 
 import { ServiceTypeForm } from '../../../components';
 import Axios from '../../../axios-config';
@@ -15,7 +15,9 @@ const columns = [
     title: 'status',
     dataIndex: 'status',
     key: 'status',
-    render: text => <a>{text}</a>,
+    render: text => (
+      <Tag color={text === 'active' ? 'geekblue' : 'volcano'}>{text}</Tag>
+    ),
   },
   {
     title: 'Action',
@@ -29,7 +31,6 @@ const columns = [
     ),
   },
 ];
-
 class Services extends Component {
   state = {
     services: [],
@@ -89,17 +90,18 @@ class Services extends Component {
         <h2>Services</h2>
         <Tabs>
           <Tabs.TabPane tab="Services Types" key="1">
-            <Table
-              columns={columns}
-              dataSource={services}
-              onChange={this.handleChange}
-            />
             <ServiceTypeForm
               name={name}
               status={status}
               handleName={this.handleNameChange}
               handleStatus={this.handleStatusChange}
               handleSubmit={this.handleAdd}
+            />
+            <Table
+              columns={columns}
+              dataSource={services}
+              onChange={this.handleChange}
+              rowKey={record => record.id}
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Services lengthes" key="2">
