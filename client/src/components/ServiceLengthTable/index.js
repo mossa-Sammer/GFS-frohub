@@ -1,36 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { Table, Divider, Tag } from 'antd';
+import { Table } from 'antd';
 import ServiceTypeForm from '../ServiceTypeForm';
-
+import Columns from '../ServicesTableColumns';
 import Axios from '../../axios-config';
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'status',
-    dataIndex: 'status',
-    key: 'status',
-    render: text => (
-      <Tag color={text === 'active' ? 'green' : 'geekblue'}>{text}</Tag>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: () => (
-      <span>
-        <a>Edit</a>
-        <Divider type="vertical" />
-        <a>Delete</a>
-      </span>
-    ),
-  },
-];
 
 class ServiceLengthTable extends Component {
   state = {
@@ -96,7 +69,7 @@ class ServiceLengthTable extends Component {
           handleSubmit={this.handleAdd}
         />
         <Table
-          columns={columns}
+          columns={Columns}
           dataSource={services}
           onChange={this.handleChange}
           rowKey={record => record.id}
