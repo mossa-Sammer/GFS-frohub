@@ -38,6 +38,7 @@ const {
   getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 } = require('./admin');
 
 module.exports = {
@@ -71,4 +72,5 @@ module.exports = {
   getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 };

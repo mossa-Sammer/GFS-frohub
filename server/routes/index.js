@@ -90,6 +90,7 @@ router.get('/admin/users/:id/business', partnerByAdmin.getPartnerBusiness);
 router.get('/admin/users/:id/services', partnerByAdmin.getPartnerServices);
 router.get('/admin/users/:id/salon', partnerByAdmin.getPartnerSalon);
 
+router.post('/admin/users', partnerByAdmin.insertPartner);
 
 // catch 404 and forward to error handler
 router.use((req, res, next) => {
