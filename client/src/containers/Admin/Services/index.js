@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
 
-import { ServiceTypeTable } from '../../../components';
+import { ServiceTypeTable, ServiceLengthTable } from '../../../components';
 
 class Services extends Component {
   render() {
@@ -14,7 +14,7 @@ class Services extends Component {
             <ServiceTypeTable />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Services lengthes" key="2">
-            lengths
+            <ServiceLengthTable />
           </Tabs.TabPane>
         </Tabs>
       </div>

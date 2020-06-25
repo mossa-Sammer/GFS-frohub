@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
-
 import ServiceTypeForm from '../ServiceTypeForm';
+
 import Axios from '../../axios-config';
 
 const columns = [
@@ -32,7 +32,7 @@ const columns = [
   },
 ];
 
-class ServiceType extends Component {
+class ServiceLengthTable extends Component {
   state = {
     services: [],
     name: '',
@@ -42,7 +42,7 @@ class ServiceType extends Component {
   async componentDidMount() {
     const {
       data: { data: services },
-    } = await Axios.get('/admin/services');
+    } = await Axios.get('/admin/services/lengthes');
     const normalizedData = this.normalizeData(services);
     this.setState({ services: normalizedData });
   }
@@ -64,7 +64,7 @@ class ServiceType extends Component {
     try {
       const {
         data: { data: service },
-      } = await Axios.post('/admin/services', { name, status });
+      } = await Axios.post('/admin/services/lengthes', { name, status });
       this.setState({
         services: [...clonedServices, ...this.normalizeData([service])],
       });
@@ -85,10 +85,9 @@ class ServiceType extends Component {
 
   render() {
     const { services, name, status } = this.state;
-
     return (
       <div>
-        <h2>Services</h2>
+        <h2>Hair Length</h2>
         <ServiceTypeForm
           name={name}
           status={status}
@@ -107,4 +106,4 @@ class ServiceType extends Component {
   }
 }
 
-export default ServiceType;
+export default ServiceLengthTable;

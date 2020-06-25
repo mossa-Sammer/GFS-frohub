@@ -18,7 +18,8 @@ import ZonesSelector from './ZonesSelector';
 import Address from './Address';
 import OpeningTimes from './OpeningTimes';
 import ServiceTypeForm from './ServiceTypeForm';
-import ServiceTypeTable from './serviceTypeTable';
+import ServiceTypeTable from './ServiceTypeTable';
+import ServiceLengthTable from './ServiceLengthTable';
 
 export {
   Input,
@@ -42,4 +43,5 @@ export {
   OpeningTimes,
   ServiceTypeForm,
   ServiceTypeTable,
+  ServiceLengthTable,
 };
