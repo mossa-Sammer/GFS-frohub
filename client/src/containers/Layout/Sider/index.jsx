@@ -14,6 +14,15 @@ export default class Sider extends Component {
   };
 
   handleMenu = () => {
+    const { status } = this.props;
+    if (status === 'admin') {
+      return this.setState(prevState => {
+        const { isOpen } = prevState;
+        return {
+          isOpen: !isOpen,
+        };
+      });
+    }
     this.setState({ isOpen: true });
   };
 
@@ -42,7 +51,12 @@ export default class Sider extends Component {
           </div>
         </div>
         {isOpen && (
-          <div className="mobile__menu-container" onClick={this.handleMenu}>
+          <div
+            className={`mobile__menu-container ${
+              status === 'admin' ? 'admin__mobile-menu' : 'partner__mobile-menu'
+            }`}
+            onClick={this.handleMenu}
+          >
             {status === 'admin' ? <AdminSider /> : <PartnerSider />}
           </div>
         )}
