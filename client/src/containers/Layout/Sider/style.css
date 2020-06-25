@@ -12,3 +12,13 @@
 .mobile__sider-container {
 	display: none;
 }
+
+@media only screen and (max-width: 425px){
+	 
+	.mobile__menu-container {	
+		top: 30px !important;
+	}
+	.mobile__menu-container.admin__mobile-menu {
+		top: 60px !important;
+	}
+}

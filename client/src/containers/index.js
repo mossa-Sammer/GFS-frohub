@@ -15,7 +15,15 @@ import EditService from './Stylist/Services/EditService/index';
 
 import PageNotFound from './PageNotFound';
 
-import { Dashboard, Partners, Services as ServicesByAdmin } from './Admin';
+import {
+  Dashboard,
+  Partners,
+  Services as ServicesByAdmin,
+  ViewAdmin,
+  EditAdmin,
+  PartnerByAdmin,
+  EditPartnerByAdmin,
+} from './Admin';
 
 export {
   Login,
@@ -34,4 +42,8 @@ export {
   ServicesByAdmin,
   EditService,
   NewService,
+  ViewAdmin,
+  EditAdmin,
+  PartnerByAdmin,
+  EditPartnerByAdmin,
 };
