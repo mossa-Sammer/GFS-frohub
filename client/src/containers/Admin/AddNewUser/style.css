@@ -1,0 +1,17 @@
+.add__new__user-container {
+	display: block;
+	width: 60%;
+}
+
+.new__user__name-field {
+	display: inline-block !important;
+}
+
+.new__user__name-field.last__name-field {
+	margin-left: 5px;
+}
+
+.new__user-form-item.ant-form-item {
+	margin-bottom: 10px;
+	padding-bottom: 0;
+}
