@@ -64,4 +64,7 @@
 	.edit__service__form-btn.ant-btn {
 		margin-bottom: 10px;
 	}
+	.ant-layout.stylist__container-layout {
+		display: block !important;
+	}
 }
