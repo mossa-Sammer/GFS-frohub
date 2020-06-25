@@ -7,15 +7,21 @@ const { getUserByEmail } = require('../../../database/sql_queries/getUser');
 const { insertPartner } = require('../../../database/queries');
 
 module.exports = async (req, res, next) => {
-  const { email, password } = req.body;
+  const {
+    email, password, firstName, lastName,
+  } = req.body;
   try {
-    const isValid = await validateUser.validate({ email, password }, { abortEarly: false });
+    const isValid = await validateUser.validate({
+      email, password, firstName, lastName,
+    }, { abortEarly: false });
     if (isValid) {
       const { rows: emailExist } = await getUserByEmail(email);
       // console.log(33333333, emailExist);
       if (emailExist.length) return next(badData('Email is Already Exist'));
       const hashedPass = await hashPassword(password);
-      const { rows: [user] } = await insertPartner({ email, hashedPass });
+      const { rows: [user] } = await insertPartner({
+        email, hashedPass, firstName, lastName,
+      });
       console.log(99999, user);
       res.json(user);
     }
