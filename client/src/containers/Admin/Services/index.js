@@ -4,10 +4,12 @@ import { Tabs } from 'antd';
 
 import { ServiceTypeTable, ServiceLengthTable } from '../../../components';
 
+import './style.css';
+
 class Services extends Component {
   render() {
     return (
-      <div>
+      <div className="services-admin-page">
         <h2>Services</h2>
         <Tabs>
           <Tabs.TabPane tab="Services Types" key="1">
