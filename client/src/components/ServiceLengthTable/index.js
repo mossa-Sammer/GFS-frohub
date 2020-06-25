@@ -22,7 +22,7 @@ class ServiceLengthTable extends Component {
 
   normalizeData = data => {
     return data.map(d => {
-      const { service_id: serviceId, name, status } = d;
+      const { service_length_id: serviceId, name, status } = d;
       return {
         id: serviceId,
         name,
