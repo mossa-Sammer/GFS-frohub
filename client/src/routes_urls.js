@@ -16,3 +16,4 @@ export const ADMIN_PERSONAL = `${ADMIN_URL}/personal`;
 export const ADMIN_EDIT_URL = `${ADMIN_URL}/edit`;
 export const STYLIST_PERSONAL_BY_ADMIN = `${ADMIN_EDIT_URL}/partners/personal`;
 export const ADMIN_EDIT_STYLIST = `${ADMIN_URL}/partners/edit`;
+export const ADMIN_ADD_USER = `${ADMIN_URL}/partners/new`;
