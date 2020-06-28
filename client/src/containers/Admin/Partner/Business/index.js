@@ -14,7 +14,6 @@ export default class Business extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ loading: false });
     const { userId } = this.props;
     const { data } = await axios.get(`/admin/users/${userId}/business`);
     if (!data.length)
