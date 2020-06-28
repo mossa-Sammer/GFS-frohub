@@ -1,3 +1,8 @@
-const { notImplemented } = require('@hapi/boom');
+const { getAllServices } = require('../../../database/queries');
 
-module.exports = async (req, res, next) => next(notImplemented());
+module.exports = async (req, res, next) => {
+  try {
+    const { rows: services } = await getAllServices();
+    res.json({ data: services });
+  } catch (e) { next(e); }
+};

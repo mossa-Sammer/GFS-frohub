@@ -7,6 +7,7 @@ const LoggedOutRoute = ({
   component: Component,
   isAuth,
   loading,
+  loggedUser,
   location,
   ...rest
 }) => {
@@ -15,7 +16,9 @@ const LoggedOutRoute = ({
     return <Loading />;
   }
   if (isAuth) {
-    return <Redirect to={pathname || '/'} />;
+    const { role } = loggedUser;
+    if (role === 'admin') return <Redirect to={pathname || '/admin'} />;
+    return <Redirect to={pathname || '/partner'} />;
   }
   return <Route {...rest} component={Component} />;
 };
@@ -23,6 +26,7 @@ const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuth,
     loading: state.auth.loading,
+    loggedUser: state.login.loggedUser,
   };
 };
 

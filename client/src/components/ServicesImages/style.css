@@ -1,0 +1,13 @@
+.service__images-container {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.service__image-container {
+	width: 200px;
+	margin: 0 10px;
+}
+
+.service__image {
+	width: 100%;
+}

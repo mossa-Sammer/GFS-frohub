@@ -1,0 +1,18 @@
+.service__images-upload.ant-upload-picture-card-wrapper {
+	margin-left: 10px;
+}
+
+.service__image {
+	margin-left: 17px;
+}
+
+.service__image-container {
+	display: flex;
+}
+
+.service__images-upload .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}

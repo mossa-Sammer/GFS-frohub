@@ -1,0 +1,44 @@
+.services__form-edit {
+	min-height: 100px;
+}
+
+.services__form-new {
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+.new__service__form-item {
+	margin-top: 10px;
+}
+
+.guideline-link {
+	color: #56A2FD;
+	text-decoration: underline;
+}
+
+.new__service__form-btn.ant-btn,
+.new__service-btn.ant-btn,
+.edit__service__form-btn.ant-btn {
+	float: right !important;
+	background: #e05747;
+	color: #fff;
+	border-color: #e05747;
+	font-size: 16px;
+	width: 150px;
+	height: 38px;
+}
+
+.new__partner__service-container {
+	height: 100%;
+}
+
+.new__service__form-container {
+	height: 80%;
+}
+
+.new__service__form-item.add__new__service-btn{
+	height: 20%;
+	display: flex;
+	justify-content: center;
+}
+

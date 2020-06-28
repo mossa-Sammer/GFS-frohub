@@ -1,3 +1,6 @@
-const { notImplemented } = require('@hapi/boom');
+const { getServicesLengthesByAdmin } = require('../../../database/queries');
 
-module.exports = async (req, res, next) => next(notImplemented());
+module.exports = async (req, res) => {
+  const { rows: servicesLengthes } = await getServicesLengthesByAdmin();
+  res.json({ data: servicesLengthes });
+};

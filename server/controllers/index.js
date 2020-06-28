@@ -1,6 +1,6 @@
 const login = require('./login');
 const signup = require('./signup');
-const auth = require('./auth');
+const { auth, verfiyAdmin } = require('./auth');
 const getTreatments = require('./treatments');
 const personal = require('./personal');
 const {
@@ -16,10 +16,14 @@ const {
   partnerByAdmin,
 } = require('./admin');
 
+
+const logout = require('./logout');
+
 module.exports = {
   login,
   signup,
   auth,
+  verfiyAdmin,
   getTreatments,
   personal,
   business,
@@ -31,4 +35,5 @@ module.exports = {
   servicesByAdmin,
   lengthesByAdmin,
   partnerByAdmin,
+  logout,
 };

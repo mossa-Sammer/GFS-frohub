@@ -12,8 +12,17 @@ import {
   Business,
   Salon,
   StylistServices,
+  Dashboard,
+  Partners,
+  ServicesByAdmin,
+  EditService,
+  NewService,
+  ViewAdmin,
+  EditAdmin,
+  PartnerByAdmin,
+  EditPartnerByAdmin,
 } from './containers';
-import { LoggedOutRoute, PrivateRoute } from './auth';
+import { LoggedOutRoute, PartnerRoute, AdminRoute } from './auth';
 
 import checkAuthAction from './auth/auth.action';
 
@@ -27,6 +36,15 @@ import {
   BUSINESS_URL,
   SALON_URL,
   STYLIST_SERVICES_URL,
+  ADMIN_URL,
+  ADMIN_PARTNERS_URLS,
+  ADMIN_SERVICES_URLS,
+  STYLIST_EDIT_SERVICE_URL,
+  STYLIST_NEW_SERVICE_URL,
+  ADMIN_PERSONAL,
+  ADMIN_EDIT_URL,
+  STYLIST_PERSONAL_BY_ADMIN,
+  ADMIN_EDIT_STYLIST,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -38,6 +56,10 @@ class App extends React.Component {
   }
 
   render() {
+    let role = '';
+    const { user } = this.props;
+    if (user) role = user.role;
+
     return (
       <div className="App">
         <Router>
@@ -50,15 +72,71 @@ class App extends React.Component {
             <Route exact path={SERVICES_URL}>
               <Services />
             </Route>
-            <PrivateRoute exact path={STYLIST_URL} component={Welcome} />
-            <PrivateRoute exact path={PERSONAL_URL} component={Personal} />
-            <PrivateRoute exact path={BUSINESS_URL} component={Business} />
-            <PrivateRoute exact path={SALON_URL} component={Salon} />
-            <PrivateRoute
-              exact
-              path={STYLIST_SERVICES_URL}
-              component={StylistServices}
-            />
+            {role && role === 'stylist' && (
+              <Switch>
+                <PartnerRoute exact path={STYLIST_URL} component={Welcome} />
+                <PartnerRoute exact path={PERSONAL_URL} component={Personal} />
+                <PartnerRoute exact path={BUSINESS_URL} component={Business} />
+                <PartnerRoute exact path={SALON_URL} component={Salon} />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_SERVICES_URL}
+                  component={StylistServices}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_EDIT_SERVICE_URL}
+                  component={EditService}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_SERVICES_URL}
+                  component={StylistServices}
+                />
+                <PartnerRoute
+                  exact
+                  path={STYLIST_NEW_SERVICE_URL}
+                  component={NewService}
+                />
+                <Route
+                  render={() => {
+                    return <PageNotFound />;
+                  }}
+                />
+              </Switch>
+            )}
+            {role && role === 'admin' && (
+              <Switch>
+                <AdminRoute exact path={ADMIN_URL} component={Dashboard} />
+                <AdminRoute
+                  exact
+                  path={ADMIN_PARTNERS_URLS}
+                  component={Partners}
+                />
+                <AdminRoute
+                  exact
+                  path={ADMIN_SERVICES_URLS}
+                  component={ServicesByAdmin}
+                />
+                <AdminRoute exact path={ADMIN_PERSONAL} component={ViewAdmin} />
+                <AdminRoute exact path={ADMIN_EDIT_URL} component={EditAdmin} />
+                <AdminRoute
+                  exact
+                  path={STYLIST_PERSONAL_BY_ADMIN}
+                  component={PartnerByAdmin}
+                />
+                <AdminRoute
+                  exact
+                  path={ADMIN_EDIT_STYLIST}
+                  component={EditPartnerByAdmin}
+                />
+                <Route
+                  render={() => {
+                    return <PageNotFound />;
+                  }}
+                />
+              </Switch>
+            )}
             <Route
               render={() => {
                 return <PageNotFound />;
@@ -71,4 +149,11 @@ class App extends React.Component {
   }
 }
 
-export default connect(null, { checkAuth: checkAuthAction })(App);
+const mapStateToProps = state => {
+  const { login } = state;
+  return {
+    user: login.loggedUser,
+  };
+};
+
+export default connect(mapStateToProps, { checkAuth: checkAuthAction })(App);

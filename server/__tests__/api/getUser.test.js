@@ -3,7 +3,18 @@ const app = require('../../app');
 const dbConnection = require('../../database/config/dbConnection');
 const build = require('../../database/config/dbBuild');
 
-beforeAll(() => build());
+let token;
+
+beforeAll(async () => {
+  await build();
+  const result = await request(app).post('/api/login').send({
+    email: 'mossa@gmail.com',
+    password: '123456',
+  });
+  // eslint-disable-next-line prefer-destructuring
+  token = result.headers['set-cookie'][0].split(';')[0];
+});
+
 afterAll(() => dbConnection.end());
 
 test('get the user using id in query param', () => {
@@ -29,6 +40,7 @@ test('get the user using id in query param', () => {
 
       return request(app)
         .get(`/api/user/${userId}/personal`)
+        .set('Cookie', token)
         .expect('Content-Type', /json/)
         .expect(200);
     }).then((result) => {
