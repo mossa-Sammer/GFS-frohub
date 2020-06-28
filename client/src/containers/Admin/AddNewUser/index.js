@@ -4,9 +4,9 @@ import { Form, Input, Button, Radio, message } from 'antd';
 
 import './style.css';
 
-// import axios from '../../../axios-config';
+import axios from '../../../axios-config';
 
-// import { ADMIN_PARTNERS_URLS } from '../../../routes_urls';
+import { ADMIN_PARTNERS_URLS } from '../../../routes_urls';
 
 class AddNewUser extends Component {
   state = {
@@ -23,34 +23,32 @@ class AddNewUser extends Component {
     this.setState({ err: isError });
   };
 
-  // handleRole = role => this.setState({ role });
-
   handleAddNewUser = e => {
     e.preventDefault();
     const { form, history } = this.props;
     form.validateFields(async (err, values) => {
       if (!err) {
-        // try {
-        //   const { email, firstName, lastName, password, role } = values;
-        //   await axios.post('/admin/users', {
-        //     email,
-        //     firstName,
-        //     lastName,
-        //     password,
-        //     role,
-        //   });
-        //   message.success('Successfully Added!');
-        //   setTimeout(() => history.push(ADMIN_PARTNERS_URLS), 1500);
-        // } catch (error) {
-        //   console.log(error.status);
-        //   if (error.status === 422) {
-        //     return this.setState({
-        //       err: true,
-        //       errMsg: 'Email is Already Exist',
-        //     });
-        //   }
-        //   this.setState({ err: true, errMsg: 'Internal Server Error' });
-        // }
+        try {
+          const { email, firstName, lastName, password, role } = values;
+          await axios.post('/admin/users', {
+            email,
+            firstName,
+            lastName,
+            password,
+            role,
+          });
+          message.success('Successfully Added!');
+          setTimeout(() => history.push(ADMIN_PARTNERS_URLS), 1500);
+        } catch (error) {
+          console.log(error.status);
+          if (error.status === 422) {
+            return this.setState({
+              err: true,
+              errMsg: 'Email is Already Exist',
+            });
+          }
+          this.setState({ err: true, errMsg: 'Internal Server Error' });
+        }
       }
     });
   };
@@ -61,16 +59,19 @@ class AddNewUser extends Component {
       form: { getFieldDecorator },
     } = this.props;
     return (
-      <div>
+      <div className="add__new__user-container">
         <h2>Add New User</h2>
         {err && <span>{errMsg}</span>}
         <Form
-          className="add__new__user-container"
+          className="add__new__user-Form"
           onSubmit={this.handleAddNewUser}
           onChange={this.handleFormChange}
           layout="vertical"
         >
-          <Form.Item className="new__user-form-item" label="Email Address">
+          <Form.Item
+            className="new__user-form-item email-form-item"
+            label="Email Address"
+          >
             {getFieldDecorator('email', {
               rules: [
                 {
@@ -118,7 +119,10 @@ class AddNewUser extends Component {
               ],
             })(<Input />)}
           </Form.Item>
-          <Form.Item className="new__user-form-item" label="Password">
+          <Form.Item
+            className="new__user-form-item password-form-item"
+            label="Password"
+          >
             {getFieldDecorator('password', {
               rules: [
                 {
@@ -147,9 +151,15 @@ class AddNewUser extends Component {
               </Radio.Group>
             )}
           </Form.Item>
-          <Button htmlType="submit" onClick={this.showModal}>
-            Add New User
-          </Button>
+          <Form.Item className="admin-new-user-btn">
+            <Button
+              className="admin__new__user-btn"
+              htmlType="submit"
+              onClick={this.showModal}
+            >
+              Add New User
+            </Button>
+          </Form.Item>
         </Form>
       </div>
     );

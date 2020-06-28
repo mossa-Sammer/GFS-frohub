@@ -39,7 +39,7 @@ export default class Partners extends Component {
     const { loading, users } = this.state;
     return (
       <div className="users__container">
-        <div className="add__new__user-container">
+        <div className="admin__new__user-container">
           <Button className="add__new__user-btn" onClick={this.handleAddUser}>
             Add New User
           </Button>
