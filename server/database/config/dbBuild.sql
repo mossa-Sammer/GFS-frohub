@@ -96,7 +96,7 @@ CREATE TABLE service_image (
 CREATE TABLE finance (
   finance_id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user"(user_id),
-  salon_service_id INT REFERENCES salon_service(salon_service_id),
+  salon_service_id INT REFERENCES salon_service(salon_service_id) on DELETE CASCADE,
   collected_deposit FLOAT(32),
   done DATE NOT NULL
 );
