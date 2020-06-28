@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Tag, Divider } from 'antd';
@@ -19,11 +20,12 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
-    render: () => (
+    render: (text, record) => (
       <span>
         <a>Edit</a>
         <Divider type="vertical" />
-        <a>Delete</a>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+        <a onClick={() => this.handleDelete(record.id)}>Delete</a>
       </span>
     ),
   },
