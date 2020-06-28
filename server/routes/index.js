@@ -17,6 +17,7 @@ const {
   partnerByAdmin,
   lengthesByAdmin,
   servicesByAdmin,
+  logout,
 } = require('../controllers');
 
 const router = express.Router();
@@ -32,6 +33,7 @@ router.get('/country.io/phone.json', countriesPhones);
 router.use(auth);
 router.post('/upload/:id', uploads.uploadFiles);
 
+router.get('/logout', logout);
 
 // Stylist/Personal
 router.get('/user/:id/personal', personal.getUser);

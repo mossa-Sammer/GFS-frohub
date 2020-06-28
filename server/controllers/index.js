@@ -16,6 +16,9 @@ const {
   partnerByAdmin,
 } = require('./admin');
 
+
+const logout = require('./logout');
+
 module.exports = {
   login,
   signup,
@@ -32,4 +35,5 @@ module.exports = {
   servicesByAdmin,
   lengthesByAdmin,
   partnerByAdmin,
+  logout,
 };

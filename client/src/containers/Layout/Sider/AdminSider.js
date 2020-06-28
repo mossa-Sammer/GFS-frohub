@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
+
+import axios from '../../../axios-config';
+
 import {
   ADMIN_URL,
   ADMIN_PARTNERS_URLS,
   ADMIN_SERVICES_URLS,
+  LOGIN_URL,
 } from '../../../routes_urls';
 
 class Sider extends Component {
   handleWelcome = () => {
     const { history } = this.props;
     history.push(ADMIN_URL);
+  };
+
+  handleLogout = async () => {
+    await axios.get('/logout');
+    localStorage.removeItem('user');
+    window.open(LOGIN_URL, '_self');
   };
 
   render() {
@@ -31,6 +41,9 @@ class Sider extends Component {
         </Menu.Item>
         <Menu.Item className="sider-item">
           <Link to={ADMIN_PARTNERS_URLS}>Users</Link>
+        </Menu.Item>
+        <Menu.Item className="sider-item" onClick={this.handleLogout}>
+          Logout
         </Menu.Item>
       </Menu>
     );
