@@ -1,6 +1,6 @@
 const boom = require('@hapi/boom');
 const { validationError } = require('../../helper');
-const { addSalonService: addSalonServiceValidation } = require('./validation');
+const { serviceValidation } = require('./validation');
 
 const { insertServiceByAdmin } = require('../../../database/queries');
 
@@ -8,7 +8,7 @@ const { insertServiceByAdmin } = require('../../../database/queries');
 module.exports = async (req, res, next) => {
   try {
     const { name, status } = req.body;
-    const validatedService = await addSalonServiceValidation.validate({ name, status });
+    const validatedService = await serviceValidation.validate({ name, status });
     const {
       rows: [addedService],
     } = await insertServiceByAdmin(validatedService.name, validatedService.status);

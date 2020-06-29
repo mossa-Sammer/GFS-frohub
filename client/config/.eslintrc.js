@@ -48,6 +48,7 @@ module.exports = {
         "trailingComma": "es5",
         "singleQuote": true,
       }
-    ]
+    ],
+    'jsx-a11y/no-static-element-interactions': 0
   },
 };
