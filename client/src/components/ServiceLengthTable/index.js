@@ -7,8 +7,6 @@ import Axios from '../../axios-config';
 import { EditableCell, EditableContext } from '../TableEditCell';
 import ServiceTypeForm from '../ServiceTypeForm';
 
-// import './style.css';
-
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +83,6 @@ class EditableTable extends React.Component {
 
   handleAdd = async () => {
     const { services, name } = this.state;
-    console.log(11111, name);
     const clonedServices = [...services];
     try {
       const {
