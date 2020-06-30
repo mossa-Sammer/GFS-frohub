@@ -16,9 +16,9 @@ const {
 
 const {
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 } = require('./partner');
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
   updateServiceLength,
   deleteServiceLength,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 };

@@ -1,0 +1,63 @@
+.add__new__user-Form {
+	display: block;
+	width: 100%;
+}
+
+.new__user__name-field {
+	display: inline-block !important;
+}
+
+.email-form-item.ant-form-item,
+.password-form-item.ant-form-item {
+	width: 42%;
+}
+
+.new__user__name-field.last__name-field {
+	margin-left: 5px;
+}
+
+.new__user-form-item.ant-form-item {
+	margin-bottom: 10px;
+	padding-bottom: 0;
+}
+
+.admin__new__user-btn.ant-btn {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--font-color);
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+}
+.admin__new__user-btn:hover,
+.admin__new__user-btn:focus {
+	opacity: 0.7;
+}
+
+.admin-new-user-btn.ant-form-item {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 425px){
+	.add__new__user-container {
+		padding: 0 20px !important;
+	}
+	.add__new__user-Form {
+		display: block;
+		width: 100%;
+	}
+	.new__user__name-field {
+		display: block !important;
+	}
+	.new__user-form-item.ant-form-item {
+		width: 100%;
+	}
+	.admin-new-user-btn.ant-form-item {
+		text-align: center;
+	}
+	.admin__new__user-btn.ant-btn {
+		width: 100%;
+	}
+
+}

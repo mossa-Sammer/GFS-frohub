@@ -1,16 +1,16 @@
-.add__new__user-container {
-	height: 70px;
-	display: flex;
+.admin__new__user-container {
+  height: 70px;
+  display: flex;
   justify-content: flex-end;
 }
 
 .add__new__user-btn.ant-btn {
-	background: var(--primary-color)!important;
-	border-color: var(--primary-color)!important;
-	color: var(--font-color)!important;
-	width: 150px;
-	height: 40px;
-	font-size: 16px;
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--font-color) !important;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
 }
 
 .add__new__user-btn.ant-btn:hover {
@@ -18,7 +18,7 @@
 }
 
 .ant-divider.ant-divider-vertical {
-	background: #bfbfbf;
+  background: #bfbfbf;
 }
 
 .stylist__action-btn.ant-btn,
@@ -27,8 +27,8 @@
 .admin__action-btn.ant-btn,
 .admin__action-btn.ant-btn:hover,
 .admin__action-btn.ant-btn:focus {
-	border: none;
-	background: none;
-	box-shadow: none;
-	color: #1890ff;
+  border: none;
+  background: none;
+  box-shadow: none;
+  color: #1890ff;
 }
