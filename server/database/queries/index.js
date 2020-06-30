@@ -35,7 +35,6 @@ const {
   updateServiceLength,
   deleteServiceLength,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 } = require('./admin');
@@ -68,7 +67,6 @@ module.exports = {
   updateServiceLength,
   deleteServiceLength,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 };

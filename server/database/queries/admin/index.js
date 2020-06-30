@@ -15,7 +15,6 @@ const {
 
 const {
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 } = require('./partner');
@@ -30,7 +29,6 @@ module.exports = {
   updateServiceLength,
   deleteServiceLength,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 };
