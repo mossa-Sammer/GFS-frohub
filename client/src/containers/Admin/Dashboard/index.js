@@ -12,7 +12,7 @@ export default function Dashboard() {
           alt="logo"
         />
       </div>
-      <h2>FroHub Hairstylists</h2>
+      <h2>FroHub Partners</h2>
     </div>
   );
 }
