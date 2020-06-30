@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { Component } from 'react';
 
 import { Form, Input, Button, Radio, message } from 'antd';
@@ -11,7 +12,6 @@ import { ADMIN_PARTNERS_URLS } from '../../../routes_urls';
 class AddNewUser extends Component {
   state = {
     err: false,
-    errMsg: '',
   };
 
   handleFormChange = () => {
@@ -40,28 +40,25 @@ class AddNewUser extends Component {
           message.success('Successfully Added!');
           setTimeout(() => history.push(ADMIN_PARTNERS_URLS), 1500);
         } catch (error) {
-          console.log(error.status);
-          if (error.status === 422) {
-            return this.setState({
-              err: true,
-              errMsg: 'Email is Already Exist',
-            });
+          if (error.response.status === 422) {
+            return message.error('Email is Already Exist');
           }
-          this.setState({ err: true, errMsg: 'Internal Server Error' });
+          return message.error('Internal Server Error');
         }
+      } else {
+        this.setState({ err: true });
       }
     });
   };
 
   render() {
-    const { err, errMsg } = this.state;
+    const { err } = this.state;
     const {
       form: { getFieldDecorator },
     } = this.props;
     return (
       <div className="add__new__user-container">
         <h2>Add New User</h2>
-        {err && <span>{errMsg}</span>}
         <Form
           className="add__new__user-Form"
           onSubmit={this.handleAddNewUser}
@@ -93,6 +90,7 @@ class AddNewUser extends Component {
               rules: [
                 {
                   required: true,
+                  min: 3,
                   message: 'Please enter your first name',
                 },
                 {
@@ -110,6 +108,7 @@ class AddNewUser extends Component {
               rules: [
                 {
                   required: true,
+                  min: 3,
                   message: 'Please enter your last name',
                 },
                 {
@@ -156,6 +155,7 @@ class AddNewUser extends Component {
               className="admin__new__user-btn"
               htmlType="submit"
               onClick={this.showModal}
+              disabled={err}
             >
               Add New User
             </Button>
