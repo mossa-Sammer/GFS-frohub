@@ -65,7 +65,7 @@ class SalonServices extends Component {
             </div>
           ))
         ) : (
-          <p>No Services yet</p>
+          <p>You have not added any services yet.</p>
         )}
       </div>
     );
