@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { Form, Input } from 'antd';
-
 export default class Personal extends Component {
   render() {
     const { user } = this.props;

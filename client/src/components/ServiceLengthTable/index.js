@@ -18,13 +18,13 @@ class EditableTable extends React.Component {
     };
     this.columns = [
       {
-        title: 'name',
+        title: 'Length',
         dataIndex: 'name',
         width: '50%',
         editable: true,
       },
       {
-        title: 'operation',
+        title: 'Manage',
         dataIndex: 'operation',
         render: (text, record) => {
           const { editingKey } = this.state;
