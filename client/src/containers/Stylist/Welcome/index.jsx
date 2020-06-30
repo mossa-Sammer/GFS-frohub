@@ -9,7 +9,7 @@ export default function WelcomeStylist() {
       <div className="welcome__stylist-heading">
         <h1>Welcome</h1>
       </div>
-      <div>
+      <div className="welcome__stylist-text">
         <h3>
           We&apos;re super excited and thrilled to have you join the FroHub
           Community!

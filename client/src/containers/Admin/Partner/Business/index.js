@@ -30,7 +30,7 @@ export default class Business extends Component {
         ) : (
           <>
             {!hasBusiness ? (
-              <p>This user hasn&apos;t business yet.</p>
+              <p> The user has not submitted business details yet.</p>
             ) : (
               <Form>
                 <Form.Item label="Bank Account Number">
