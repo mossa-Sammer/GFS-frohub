@@ -140,7 +140,7 @@ class NewSalonService extends Component {
                   )}
                 </div>
                 <Modal
-                  title="Add new Service"
+                  title="Add New Service"
                   visible={visible}
                   onOk={this.handleNewService}
                   onCancel={this.handleCancel}
