@@ -12,10 +12,10 @@ class Services extends Component {
       <div className="services-admin-page">
         <h2>Services</h2>
         <Tabs>
-          <Tabs.TabPane tab="Services Types" key="1">
+          <Tabs.TabPane tab="Services Type" key="1">
             <ServiceTypeTable />
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Services lengthes" key="2">
+          <Tabs.TabPane tab="Hair Length" key="2">
             <ServiceLengthTable />
           </Tabs.TabPane>
         </Tabs>

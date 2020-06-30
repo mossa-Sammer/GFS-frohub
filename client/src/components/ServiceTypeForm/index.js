@@ -39,8 +39,10 @@ class ServiceTypeForm extends Component {
   };
 
   render() {
-    const { name, handleName } = this.props;
+    const { name, handleName, status } = this.props;
     const { visible, confirmLoading } = this.state;
+    const isServiceType = status === 'type';
+
     return (
       <div className="service-form">
         <Button
@@ -48,10 +50,10 @@ class ServiceTypeForm extends Component {
           className="add-new-service"
           onClick={this.showModal}
         >
-          add new
+          {isServiceType ? <>Add New Service</> : <>Add New Length</>}
         </Button>
         <Modal
-          title="New Service"
+          title={isServiceType ? 'New Service' : 'New Hair Length'}
           visible={visible}
           onOk={this.handleOk}
           confirmLoading={confirmLoading}

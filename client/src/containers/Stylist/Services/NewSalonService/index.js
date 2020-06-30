@@ -145,7 +145,10 @@ class NewSalonService extends Component {
                   onOk={this.handleNewService}
                   onCancel={this.handleCancel}
                 >
-                  <p>Are you sure to add this service </p>
+                  <p>
+                    Please ensure you have completed all the required
+                    information.
+                  </p>
                 </Modal>
               </div>
             </div>
