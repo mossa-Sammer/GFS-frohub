@@ -53,7 +53,7 @@ export default class Partner extends Component {
                 <Personal user={user} />
               </TabPane>
               <TabPane tab="Business" key="business">
-                <Business />
+                <Business userId={user.user_id} />
               </TabPane>
               <TabPane tab="Salon" key="salon">
                 <Salon />

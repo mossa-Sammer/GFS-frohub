@@ -36,7 +36,6 @@ const {
   updateServiceLength: updateServiceLengthByAdmin,
   deleteServiceLength: deleteServiceLengthByAdmin,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 } = require('./admin');
@@ -70,7 +69,6 @@ module.exports = {
   updateServiceLengthByAdmin,
   deleteServiceLengthByAdmin,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
 };
