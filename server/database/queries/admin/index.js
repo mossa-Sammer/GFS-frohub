@@ -16,7 +16,6 @@ const {
 
 const {
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
   insertPartner,
@@ -33,7 +32,6 @@ module.exports = {
   updateServiceLength,
   deleteServiceLength,
   getAllPartners,
-  getPartnerBusiness,
   getPartnerServices,
   getPartnerSalon,
   insertPartner,
