@@ -7,6 +7,8 @@ import getAllPartners from './api';
 
 import { Loading } from '../../../components';
 
+import { ADMIN_ADD_USER } from '../../../routes_urls';
+
 import userColumns from './userColumns';
 
 import './style.css';
@@ -28,12 +30,19 @@ export default class Partners extends Component {
     }
   }
 
+  handleAddUser = () => {
+    const { history } = this.props;
+    history.push(ADMIN_ADD_USER);
+  };
+
   render() {
     const { loading, users } = this.state;
     return (
       <div className="users__container">
-        <div className="add__new__user-container">
-          <Button className="add__new__user-btn">Add New User</Button>
+        <div className="admin__new__user-container">
+          <Button className="add__new__user-btn" onClick={this.handleAddUser}>
+            Add New User
+          </Button>
         </div>
         {loading ? (
           <Loading />
