@@ -128,10 +128,15 @@ class NewSalonService extends Component {
                 </div>
                 <div className="new__service__form-item">
                   <p>
-                    Upload up to 3 pictures for this service. Have a look on our{' '}
-                    <span className="guideline-link">
+                    Upload up to 3 pictures for this service. Have a look at our{' '}
+                    <a
+                      href="https://frohub.com/partner-photo-guidelines/"
+                      target="_blank"
+                      className="guideline-link"
+                      rel="noopener noreferrer"
+                    >
                       Guidelines for best picture practices.
-                    </span>
+                    </a>
                   </p>
                 </div>
                 <div className="new__service__form-item">
