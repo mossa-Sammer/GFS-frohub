@@ -5,6 +5,7 @@ import ViewAdmin from './ViewAdmin';
 import EditAdmin from './EditAdmin';
 import PartnerByAdmin from './Partner';
 import EditPartnerByAdmin from './EditPartner';
+import AddNewUserByAdmin from './AddNewUser';
 
 export {
   Dashboard,
@@ -14,4 +15,5 @@ export {
   EditAdmin,
   PartnerByAdmin,
   EditPartnerByAdmin,
+  AddNewUserByAdmin,
 };

@@ -18,6 +18,7 @@ const {
   getAllPartners,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 } = require('./partner');
 
 module.exports = {
@@ -33,4 +34,5 @@ module.exports = {
   getAllPartners,
   getPartnerServices,
   getPartnerSalon,
+  insertPartner,
 };

@@ -23,6 +23,7 @@ import {
   EditAdmin,
   PartnerByAdmin,
   EditPartnerByAdmin,
+  AddNewUserByAdmin,
 } from './Admin';
 
 export {
@@ -46,4 +47,5 @@ export {
   EditAdmin,
   PartnerByAdmin,
   EditPartnerByAdmin,
+  AddNewUserByAdmin,
 };

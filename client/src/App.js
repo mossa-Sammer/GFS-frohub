@@ -21,6 +21,7 @@ import {
   EditAdmin,
   PartnerByAdmin,
   EditPartnerByAdmin,
+  AddNewUserByAdmin,
 } from './containers';
 import { LoggedOutRoute, PartnerRoute, AdminRoute } from './auth';
 
@@ -45,6 +46,7 @@ import {
   ADMIN_EDIT_URL,
   STYLIST_PERSONAL_BY_ADMIN,
   ADMIN_EDIT_STYLIST,
+  ADMIN_ADD_USER,
 } from './routes_urls';
 
 import 'antd/dist/antd.css';
@@ -124,6 +126,11 @@ class App extends React.Component {
                   exact
                   path={STYLIST_PERSONAL_BY_ADMIN}
                   component={PartnerByAdmin}
+                />
+                <AdminRoute
+                  exact
+                  path={ADMIN_ADD_USER}
+                  component={AddNewUserByAdmin}
                 />
                 <AdminRoute
                   exact
