@@ -39,4 +39,5 @@ const DaySelect = ({ className, dayIndex, size, handleDayChange }) => {
   );
 };
 
+export { days };
 export default DaySelect;
