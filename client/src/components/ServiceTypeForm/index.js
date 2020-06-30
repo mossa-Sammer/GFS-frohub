@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 
-import { Modal, Button, Input, Radio } from 'antd';
+import { Modal, Button, Input } from 'antd';
 
 import './style.css';
 
@@ -39,7 +39,7 @@ class ServiceTypeForm extends Component {
   };
 
   render() {
-    const { name, status, handleName, handleStatus } = this.props;
+    const { name, handleName } = this.props;
     const { visible, confirmLoading } = this.state;
     return (
       <div className="service-form">
@@ -48,7 +48,7 @@ class ServiceTypeForm extends Component {
           className="add-new-service"
           onClick={this.showModal}
         >
-          add a new service
+          add new
         </Button>
         <Modal
           title="New Service"
@@ -67,13 +67,6 @@ class ServiceTypeForm extends Component {
                 value={name}
               />
             </label>
-          </div>
-          <div className="service-status">
-            <label className="status-label">Status:</label>
-            <Radio.Group onChange={handleStatus} value={status}>
-              <Radio value="active">active</Radio>
-              <Radio value="inactive">inactive</Radio>
-            </Radio.Group>
           </div>
         </Modal>
       </div>

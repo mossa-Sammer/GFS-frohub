@@ -4,6 +4,7 @@ const {
   getAllServices,
   insertService,
   updateService,
+  deleteService,
 } = require('./services');
 
 const {
@@ -26,6 +27,7 @@ module.exports = {
   getAllServices,
   insertService,
   updateService,
+  deleteService,
   getAllServicesLengthes,
   insertServiceLength,
   updateServiceLength,

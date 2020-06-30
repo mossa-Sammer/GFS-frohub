@@ -1,3 +1,3 @@
-const addSalonService = require('./addServiceValidation');
+const serviceValidation = require('./serviceValidation');
 
-module.exports = { addSalonService };
+module.exports = { serviceValidation };
