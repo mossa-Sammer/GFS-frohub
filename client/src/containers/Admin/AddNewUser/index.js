@@ -38,7 +38,7 @@ class AddNewUser extends Component {
             role,
           });
           message.success('Successfully Added!');
-          setTimeout(() => history.push(ADMIN_PARTNERS_URLS), 1500);
+          setTimeout(() => history.push(ADMIN_PARTNERS_URLS), 1000);
         } catch (error) {
           if (error.response.status === 422) {
             return message.error('Email is Already Exist');

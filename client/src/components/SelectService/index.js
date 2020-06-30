@@ -91,7 +91,7 @@ class SelectService extends Component {
                 className="services__select"
                 defaultValue={currentService.name}
                 allowClear
-                placeholder="Select service name"
+                placeholder="Select service type"
                 onChange={this.handleEdit}
               >
                 {services.map(service => (
@@ -103,7 +103,7 @@ class SelectService extends Component {
             //  add new service
             <Select
               className="services__select"
-              placeholder="Select service name"
+              placeholder="Select service type"
               onChange={this.handleAdd}
               allowClear
             >

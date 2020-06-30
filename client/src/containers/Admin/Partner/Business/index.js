@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import React, { Component } from 'react';
 
-import { Form, Input } from 'antd';
 import { Loading } from '../../../../components';
 
 import axios from '../../../../axios-config';
@@ -30,16 +29,20 @@ export default class Business extends Component {
         ) : (
           <>
             {!hasBusiness ? (
-              <p>This user hasn&apos;t business yet.</p>
+              <p> The user has not submitted business details yet.</p>
             ) : (
-              <Form>
-                <Form.Item label="Bank Account Number">
-                  <Input value={business.account_number} disabled />
-                </Form.Item>
-                <Form.Item label="Sort Code">
-                  <Input value={business.sort_code} disabled />
-                </Form.Item>
-              </Form>
+              <div>
+                <p>
+                  <span style={{ fontWeight: 'bold' }}>
+                    Bank Account Number:
+                  </span>{' '}
+                  {business.account_number}
+                </p>
+                <p>
+                  <span style={{ fontWeight: 'bold' }}>Bank Sort Code:</span>{' '}
+                  {business.sort_code}{' '}
+                </p>
+              </div>
             )}
           </>
         )}

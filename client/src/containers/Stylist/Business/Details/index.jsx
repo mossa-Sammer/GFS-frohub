@@ -104,7 +104,7 @@ class BusinessDetails extends Component {
               rules: [
                 {
                   required: true,
-                  message: 'Please, Enter your account number',
+                  message: 'Please enter your bank account number.',
                 },
               ],
               initialValue: accountNumber,
@@ -121,7 +121,7 @@ class BusinessDetails extends Component {
               rules: [
                 {
                   required: true,
-                  message: 'Please, Enter your sort code',
+                  message: 'Please enter your bank sort code.',
                 },
               ],
               initialValue: sortCode,

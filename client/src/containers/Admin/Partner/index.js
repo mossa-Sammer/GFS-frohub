@@ -58,7 +58,7 @@ export default class Partner extends Component {
               <TabPane tab="Salon" key="salon">
                 <Salon />
               </TabPane>
-              <TabPane tab="Servies" key="servies">
+              <TabPane tab="Services" key="services">
                 <Services />
               </TabPane>
             </Tabs>

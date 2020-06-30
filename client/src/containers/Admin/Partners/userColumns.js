@@ -34,7 +34,7 @@ const userColumns = [
           : 'volcano';
       return (
         <Tag key={Math.random()} color={color}>
-          {role.toUpperCase()}
+          {role === 'stylist' ? 'PARTNER' : role.toUpperCase()}
         </Tag>
       );
     },

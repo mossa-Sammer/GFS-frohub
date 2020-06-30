@@ -19,13 +19,13 @@ class EditableTable extends React.Component {
     };
     this.columns = [
       {
-        title: 'name',
+        title: 'Service Type',
         dataIndex: 'name',
         width: '50%',
         editable: true,
       },
       {
-        title: 'operation',
+        title: 'Manage',
         dataIndex: 'operation',
         render: (text, record) => {
           const { editingKey } = this.state;
@@ -183,6 +183,7 @@ class EditableTable extends React.Component {
             name={name}
             handleName={this.handleNameChange}
             handleSubmit={this.handleAdd}
+            status="type"
           />
         </div>
         <Table

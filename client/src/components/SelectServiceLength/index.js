@@ -88,7 +88,7 @@ class SelectService extends Component {
                 className="services__select"
                 defaultValue={currentServiceLength.name}
                 allowClear
-                placeholder="Select service name"
+                placeholder="Select hair length"
                 onChange={this.handleEdit}
               >
                 {servicesLengthes.map(length => (
@@ -100,7 +100,7 @@ class SelectService extends Component {
             //  add new service length
             <Select
               className="services__select"
-              placeholder="Select service name"
+              placeholder="Select hair length"
               onChange={this.handleAdd}
               allowClear
             >
