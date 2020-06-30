@@ -2,6 +2,11 @@
 	display: block;
 }
 
+.service__images-upload .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+	width: 180px !important;
+	height: 130px !important;
+}
+
 .service_img-box {
 	width: 20% !important;
 	margin: 0;
