@@ -135,7 +135,7 @@ class NewSalonService extends Component {
                       className="guideline-link"
                       rel="noopener noreferrer"
                     >
-                      Guidelines for best picture practices.
+                      guidelines for best picture practices.
                     </a>
                   </p>
                 </div>
