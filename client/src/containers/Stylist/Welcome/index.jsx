@@ -15,6 +15,11 @@ export default function WelcomeStylist() {
           Community!
         </h3>
       </div>
+      <div className="partner__dashboard-text">
+        <p>
+          If you require any support please contact us at partner@frohub.com.
+        </p>
+      </div>
     </div>
   );
 }
