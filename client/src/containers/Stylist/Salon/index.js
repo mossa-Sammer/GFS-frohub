@@ -296,13 +296,13 @@ class SalonForm extends Component {
 
               <Form.Item
                 className="instgram-handle-input"
-                label="Instgram Handle"
+                label="Salon Instagram Handle @"
               >
                 {getFieldDecorator('instgramHandle', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter instgram handle',
+                      message: 'Please enter Instagram handle',
                     },
                   ],
                 })(<Input />)}
@@ -378,7 +378,7 @@ class SalonForm extends Component {
             <div className="document-upload__wrapper">
               <p className="document-upload__text">
                 If you have any formal qualifications as a
-                Hairstylist/Beautician, please upload them here
+                Hairstylist/Beautician, please upload them here:
               </p>
               <Upload
                 className="document-upload__uploader"

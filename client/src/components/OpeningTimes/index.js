@@ -117,7 +117,7 @@ class OpeningTimes extends React.Component {
           </div>
         ))}
         <Button type="primary" onClick={this.handleAdd}>
-          +Add More
+          + Add More
         </Button>
       </div>
     );

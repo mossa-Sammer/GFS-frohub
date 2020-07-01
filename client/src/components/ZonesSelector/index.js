@@ -182,7 +182,7 @@ class ZonesSelector extends Component {
           </div>
         ))}
         <Button type="primary" onClick={this.handleAddMore}>
-          + Add more
+          + Add More
         </Button>
       </div>
     );
