@@ -207,18 +207,15 @@ class EditService extends Component {
                   <ServicePriceInput status={status} price={price} />
                 </div>
                 <div className="service__images-title">
-                  <p>
-                    Upload up to 3 pictures for this service. Have a look at our
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://frohub.com/partner-photo-guidelines/"
-                    >
-                      {' '}
-                      guidelines{' '}
-                    </a>{' '}
-                    for best picture practices.
-                  </p>
+                  Upload up to 3 pictures for this service. Have a look at our{' '}
+                  <a
+                    href="https://frohub.com/partner-photo-guidelines/"
+                    target="_blank"
+                    className="guideline-link"
+                    rel="noopener noreferrer"
+                  >
+                    guidelines for best picture practices.
+                  </a>
                 </div>
                 <ServicesImages salonServiceId={salonServiceId} />
                 {imagesLength >= 3 ? null : (
