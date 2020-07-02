@@ -44,24 +44,28 @@ class Address extends React.Component {
     return (
       <Form>
         <div className="address">
-          <Form.Item label="Street">
+          <Form.Item label="Address:">
             {getFieldDecorator('street', {
-              rules: [{ required: true, message: 'Please enter your street' }],
+              rules: [
+                { required: true, message: 'Please enter your street address' },
+              ],
             })(<Input type="text" name="street" />)}
           </Form.Item>
-          <Form.Item label="City">
+          <Form.Item label="Town/City:">
             {getFieldDecorator('city', {
-              rules: [{ required: true, message: 'Please enter your city' }],
+              rules: [
+                { required: true, message: 'Please enter your town/city' },
+              ],
             })(<Input type="text" name="city" />)}
           </Form.Item>
-          <Form.Item label="Postal Code">
+          <Form.Item label="Postcode:">
             {getFieldDecorator('postalCode', {
               rules: [
-                { required: true, message: 'Please enter your postal code' },
+                { required: true, message: 'Please enter your postcode' },
               ],
             })(<Input type="text" name="postalCode" />)}
           </Form.Item>
-          <Form.Item label="Country">
+          <Form.Item label="Country:">
             {getFieldDecorator('country', {
               rules: [{ required: true, message: 'Please enter your country' }],
             })(

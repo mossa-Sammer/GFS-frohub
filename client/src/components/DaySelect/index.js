@@ -4,14 +4,24 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 
-const days = [
-  { index: 0, name: 'Sunday' },
+const ukDays = [
   { index: 1, name: 'Monday' },
+  { index: 0, name: 'Sunday' },
   { index: 2, name: 'Tuesday' },
   { index: 3, name: 'Wednesday' },
   { index: 4, name: 'Thursday' },
   { index: 5, name: 'Friday' },
   { index: 6, name: 'Saturday' },
+];
+
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
 ];
 
 const DaySelect = ({ className, dayIndex, size, handleDayChange }) => {
@@ -27,10 +37,10 @@ const DaySelect = ({ className, dayIndex, size, handleDayChange }) => {
       placeholder="day"
       optionFilterProp="children"
       filterOption={handleFilter}
-      defaultValue={days[dayIndex]?.name}
+      defaultValue={days[dayIndex]}
       onChange={handleDayChange}
     >
-      {days.map(day => (
+      {ukDays.map(day => (
         <Option key={day.index} value={day.index}>
           {day.name}
         </Option>

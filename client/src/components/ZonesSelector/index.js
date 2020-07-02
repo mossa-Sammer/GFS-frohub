@@ -93,6 +93,7 @@ class ZonesSelector extends Component {
       className,
     } = this.props;
     const { zones } = this.state;
+    if (zones.length === 0) zones.push({});
     return (
       <div className={`zone-selector__zones ${className}`}>
         <p>{label}</p>
@@ -182,7 +183,7 @@ class ZonesSelector extends Component {
           </div>
         ))}
         <Button type="primary" onClick={this.handleAddMore}>
-          + Add more
+          + Add More
         </Button>
       </div>
     );

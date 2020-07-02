@@ -16,6 +16,7 @@
 .zone-selector__item > .zone-selector__select-wrapper {
   display: flex;
   margin: 0 1rem;
+  width: 40%;
 }
 
 .zone-selector__select-wrapper .zone-selector:first-child {
@@ -28,6 +29,10 @@
 
 .zone-selector__btns-wrapper {
   display: flex;
+}
+
+.zone-selector.ant-select {
+  width: 100% !important;
 }
 
 .zone-selector__btns-wrapper .zone-selector__btn:first-child {
@@ -53,6 +58,7 @@
     display: flex;
     justify-content: space-between;
     margin: 0 0 0.5rem 0 !important;
+    width: 100% !important;
   }
 
   .zone-selector__item .zone-selector__select-wrapper > * {

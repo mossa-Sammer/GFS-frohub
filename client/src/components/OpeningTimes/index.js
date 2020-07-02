@@ -56,6 +56,9 @@ class OpeningTimes extends React.Component {
 
   render() {
     const { times } = this.state;
+    if (times.length === 0) {
+      times.push({});
+    }
     const { className } = this.props;
     const format = 'HH:mm';
     return (
@@ -117,7 +120,7 @@ class OpeningTimes extends React.Component {
           </div>
         ))}
         <Button type="primary" onClick={this.handleAdd}>
-          +Add More
+          + Add More
         </Button>
       </div>
     );
