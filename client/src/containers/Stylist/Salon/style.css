@@ -1,3 +1,9 @@
+.salon__page {
+  width:90% !important;
+  margin: auto;
+}
+
+
 .salon__loading-spiner {
   font-size: 5rem !important;
   color: brown !important;
