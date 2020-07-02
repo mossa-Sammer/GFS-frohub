@@ -6,3 +6,12 @@
 .welcome__stylist-heading h1 {
 	font-weight: bold;
 }
+
+.welcome__stylist-heading h1 {
+	font-weight: bold;
+}
+
+.partner__dashboard-text,
+.welcome__stylist-text {
+	text-align: center;
+}

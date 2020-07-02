@@ -10,10 +10,15 @@ export default function WelcomeStylist() {
         <h1>Welcome</h1>
       </div>
       <div className="welcome__stylist-text">
-        <h3>
+        <p>
           We&apos;re super excited and thrilled to have you join the FroHub
           Community!
-        </h3>
+        </p>
+      </div>
+      <div className="partner__dashboard-text">
+        <p>
+          If you require any support please contact us at partner@frohub.com.
+        </p>
       </div>
     </div>
   );
