@@ -34,7 +34,7 @@ const DaySelect = ({ className, dayIndex, size, handleDayChange }) => {
       name="day"
       showSearch
       size={size}
-      placeholder="day"
+      placeholder="Day"
       optionFilterProp="children"
       filterOption={handleFilter}
       defaultValue={days[dayIndex]}
