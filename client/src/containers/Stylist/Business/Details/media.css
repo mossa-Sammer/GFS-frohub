@@ -1,8 +1,12 @@
 @media only screen and (max-width: 768px) {
-	.business__container {
-		padding: 0 25px;
-	}
-	.business__details-container {
-		width: 100%;
-	}
+  .business__container {
+    padding: 0 25px;
+  }
+  .business__details-container {
+    width: 100%;
+  }
+  .business__next-btn.ant-btn {
+		float: right;
+		position: relative;
+  }
 }
